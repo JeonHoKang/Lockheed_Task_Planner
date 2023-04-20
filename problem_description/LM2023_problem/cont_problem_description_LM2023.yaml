@@ -1,0 +1,13 @@
+num_tasks: 120
+num_agents: 8
+agents:
+- r1
+- r2
+- r3
+- r4
+- r5
+- TT
+- H1
+- H2
+task_model_id: cont_task_model_LM2023.yaml
+htn_model_id: cont_LM2023_htn.yaml

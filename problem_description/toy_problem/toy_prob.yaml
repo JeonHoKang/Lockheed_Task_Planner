@@ -1,0 +1,37 @@
+id: toy_prob
+type: sequential
+children: 
+  - id: sub_task_1
+    type: sequential
+    children: 
+      - id: sub_task_2
+        type: sequential
+        children:
+        - id: a1
+          type: atomic
+          agent: ["r1"]
+      - id: sub_task_3
+        type: sequential
+        children:
+        - id: a2
+          type: atomic
+          agent: ["r2"]
+        - id: a3
+          type: atomic
+          agent: ["r2"]
+        - id: a4
+          type: atomic
+          agent: ["r2"]
+  - id: sub_task_4
+    type: sequential
+    children:
+      - id: a5
+        type: atomic
+        agent: ["H"]
+      - id: a6
+        type: atomic
+        agent: ["H"]
+
+    
+
+  

@@ -1,0 +1,5 @@
+num_tasks: 170
+num_agents: 7
+agents: ["r1","r2","r3","r4","r5","H1","H2"]
+task_model_id: "task_model_sat.yaml"
+htn_model_id: "sat_assem_htn.yaml"

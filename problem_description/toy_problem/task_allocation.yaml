@@ -1,0 +1,75 @@
+r1:
+  a1:
+    StarttoEnd:
+    - 0
+    - 6
+  p2_a1:
+    StarttoEnd:
+    - 6
+    - 12
+  p3_a1:
+    StarttoEnd:
+    - 12
+    - 18
+r2:
+  a2:
+    StarttoEnd:
+    - 6
+    - 12
+  a3:
+    StarttoEnd:
+    - 12
+    - 16
+  a4:
+    StarttoEnd:
+    - 16
+    - 48
+  p2_a2:
+    StarttoEnd:
+    - 48
+    - 54
+  p2_a3:
+    StarttoEnd:
+    - 54
+    - 58
+  p2_a4:
+    StarttoEnd:
+    - 58
+    - 90
+  p3_a2:
+    StarttoEnd:
+    - 90
+    - 96
+  p3_a3:
+    StarttoEnd:
+    - 96
+    - 100
+  p3_a4:
+    StarttoEnd:
+    - 100
+    - 132
+H:
+  a5:
+    StarttoEnd:
+    - 48
+    - 66
+  a6:
+    StarttoEnd:
+    - 66
+    - 84
+  p2_a5:
+    StarttoEnd:
+    - 90
+    - 108
+  p2_a6:
+    StarttoEnd:
+    - 108
+    - 126
+  p3_a5:
+    StarttoEnd:
+    - 132
+    - 150
+  p3_a6:
+    StarttoEnd:
+    - 150
+    - 168
