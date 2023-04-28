@@ -221,9 +221,9 @@ Move_Right_Panel_to_the_Side:
       id: det
       mean: 4
 Mount_Right_Panel_on_the_Fixture:
-  agent_model: ["H1"]
+  agent_model: ["r4"]
   duration_model: 
-    H1:
+    r4:
       id: det
       mean: 10
 Hold_Hinge_to_Right_Panel:
@@ -294,9 +294,9 @@ Move_Middle_Panel_to_the_Side:
       id: det
       mean: 4
 Mount_Middle_Panel_on_the_Fixture:
-  agent_model: ["H1"]
+  agent_model: ["r4"]
   duration_model: 
-    H1:
+    r4:
       id: det
       mean: 10
 Hold_Hinge_to_Middle_Panel:
@@ -505,9 +505,9 @@ Hinge_Top_Panel_Screw2:
       mean: 4  
 
 Mount_Panel_B4_on_the_Fixture:
-  agent_model: ["H1"]
+  agent_model: ["r4"]
   duration_model: 
-    H1:
+    r4:
       id: det
       mean: 10
 
@@ -533,9 +533,9 @@ Hinge_Panel_B4_Screw2:
       mean: 4  
  
 Mount_Panel_B5_on_the_Fixture:
-  agent_model: ["H1"]
+  agent_model: ["r4"]
   duration_model: 
-    H1:
+    r4:
       id: det
       mean: 10
 
@@ -560,19 +560,6 @@ Hinge_Panel_B5_Screw2:
       id: det
       mean: 4  
 
-Fold_Panel1_on_2:
-  agent_model: ["H2"]
-  duration_model: 
-    H2:
-      id: det
-      mean: 3
-
-Fix_Panel1_and2:
-  agent_model: ["H2"]
-  duration_model: 
-    H2:
-      id: det
-      mean: 3
 
 Attach_and_Hold_Hinge_on_Panel12:
   agent_model: ["H2"]
@@ -596,20 +583,6 @@ Hinge_on_Panel12_Screw2:
       id: det
       mean: 5
 
-Fold_Panel2_on_3:
-  agent_model: ["H2"]
-  duration_model: 
-    H2:
-      id: det
-      mean: 3
-
-Fix_Panel2_and3:
-  agent_model: ["H2"]
-  duration_model: 
-    H2:
-      id: det
-      mean: 3
-
 Attach_and_Hold_Hinge_on_Panel23:
   agent_model: ["H2"]
   duration_model: 
@@ -632,19 +605,7 @@ Hinge_on_Panel23_Screw2:
       id: det
       mean: 5
 
-Fold_Panel3_on_4:
-  agent_model: ["H2"]
-  duration_model: 
-    H2:
-      id: det
-      mean: 3
 
-Fix_Panel3_and4:
-  agent_model: ["H2"]
-  duration_model: 
-    H2:
-      id: det
-      mean: 3
 
 Attach_and_Hold_Hinge_on_Panel34:
   agent_model: ["H2"]
@@ -667,20 +628,6 @@ Hinge_on_Panel34_Screw2:
     H2:
       id: det
       mean: 5
-
-Fold_Panel4_on_5:
-  agent_model: ["H2"]
-  duration_model: 
-    H2:
-      id: det
-      mean: 3
-
-Fix_Panel4_and5:
-  agent_model: ["H2"]
-  duration_model: 
-    H2:
-      id: det
-      mean: 3
 
 Attach_and_Hold_Hinge_on_Panel45:
   agent_model: ["H2"]

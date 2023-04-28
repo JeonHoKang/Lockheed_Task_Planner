@@ -226,41 +226,8 @@ class HtnMilpScheduler(object):
                 p_parent = p_action.parent.id
                 if p_parent[3::] == s_parent[3::]:
                     model.Add(starts[s_id] >= ends[p_id])
-            # self.preserved2.append(atomic_action_groups2.pop(0))
-            # print(len(atomic_action_groups2))
-            # if len(atomic_action_groups2) == 0:
-            #     print('check133')
-            #     print(self.preserved2)
-            #     input()
-            #     break
 
-    # def generate_multiproduct_task_contrasints_later(self, atomic_action_groups1, atomic_action_groups2):
-    #     model = self.model
-    #     starts = self.task_start_vars
-    #     ends = self.task_end_vars
-    #     self.preserved_later1 = []
-    #     self.preserved_later2 = []
-    #     print('hit1')
-    #     while len(atomic_action_groups2) >= 0:
-    #         product1_atomic_actions = atomic_action_groups1
-    #         subsequent_atomic_actions = atomic_action_groups2
-    #         print()
-    #         for s_action in subsequent_atomic_actions:
-    #             s_id = s_action.id
-    #             s_parent = s_action.parent.id
-    #             for p_action in product1_atomic_actions:
-    #                 p_id = p_action.id
-    #                 p_parent = p_action.parent.id
-    #                 print('hit')
-    #                 print(p_parent[3::], s_parent[3::])
-    #                 if p_parent[3::] == s_parent[3::]:
-    #                     print('hit22')
-    #                     model.Add(starts[s_id] >= ends[p_id])
-    #                     print('s_id, p_id', s_id, 'and', p_id)
-    #         if len(atomic_action_groups2) == 0:
-    #             break
-    #         print('atom', atomic_action_groups1, atomic_action_groups2)
-    #         self.preserved_later2.append(atomic_action_groups2.pop(0))
+
 
     def generate_independent_task_constraints(self, atomic_action_groups):
         model = self.model
@@ -493,15 +460,7 @@ class HtnMilpScheduler(object):
                         self.task_end_vars[task_id])])
                     visual_t_assignmnent[val].append((solver.Value(self.task_start_vars[task_id]), solver.Value(
                         self.task_end_vars[task_id])-solver.Value(self.task_start_vars[task_id])))
-                    # assigned_items = t_assignment[val][task_id]["StarttoEnd"][0]
-            # if t_assignment[
-            #         print(val, ':', t_assignment[val][task_id]["StarttoEnd"])
-
-                    #     if t_assignment[val][task_id]["StarttoEnd"][length][0] < t_assignment[val][task_id]["StarttoEnd"][length+1][0]:
-                    #         new_element = t_assignment[val][task_id]["StarttoEnd"][length]
-                    #         next_element = t_assignment[val][task_id]["StarttoEnd"][length+1]
-                    #         t_assignment[val][task_id]["StarttoEnd"][length] =  next_element
-                    #         t_assignment[val][task_id]["StarttoEnd"][length+1] = new_element
+                   
         print('task', self.task_id)
         self.visualize(visual_t_assignmnent)
         self.export_yaml(t_assignment)
