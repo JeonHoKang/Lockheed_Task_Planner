@@ -214,7 +214,7 @@ Screw10_B1_Right_P_C5:
       id: det
       mean: 3
 
-Move_Right_Panel_to_the_Side:
+Move_Right_Panel_to_the_lift:
   agent_model: ["r1"]
   duration_model: 
     r1:
@@ -287,7 +287,7 @@ Screw4_B2_Middle_P_C4:
     r3:
       id: det
       mean: 3
-Move_Middle_Panel_to_the_Side:
+Move_Middle_Panel_to_the_lift:
   agent_model: ["r1"]
   duration_model: 
     r1:
@@ -715,30 +715,165 @@ Fix_Extern_Comp2_for_Panel2:
       mean: 3
 
 Extern_Comp2_for_Panel2_joining1:
-  agent_model: ["r5"]
+  agent_model: ["H2"]
   duration_model: 
-    r5:
+    H2:
       id: det
       mean: 4
 
 Extern_Comp2_for_Panel2_joining2:
-  agent_model: ["r5"]
+  agent_model: ["H2"]
   duration_model: 
-    r5:
+    H2:
       id: det
       mean: 4 
 
 Extern_Comp2_for_Panel2_joining3:
-  agent_model: ["r5"]
+  agent_model: ["H2"]
   duration_model: 
-    r5:
+    H2:
       id: det
       mean: 4
 
 Extern_Comp2_for_Panel2_joining4:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4   
+
+Pick_Extern_Comp1_for_Panel3:
   agent_model: ["r5"]
   duration_model: 
     r5:
       id: det
+      mean: 5   
+
+Fix_Extern_Comp1_for_Panel3:
+  agent_model: ["r5"]
+  duration_model: 
+    r5:
+      id: det
+      mean: 3
+
+Extern_Comp1_for_Panel3_joining1:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4
+
+Extern_Comp1_for_Panel3_joining2:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4 
+
+Extern_Comp1_for_Panel3_joining3:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4
+
+Extern_Comp1_for_Panel3_joining4:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
       mean: 4   
-   
+
+roate_turntable_180_2:
+  agent_model: ["TT"]
+  duration_model: 
+    TT:
+      id: det
+      mean: 3
+
+
+Pick_Extern_Comp1_for_Panel3:
+  agent_model: ["r5"]
+  duration_model: 
+    r5:
+      id: det
+      mean: 5   
+
+Fix_Extern_Comp1_for_Panel3:
+  agent_model: ["r5"]
+  duration_model: 
+    r5:
+      id: det
+      mean: 3
+
+Extern_Comp1_for_Panel3_joining1:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4
+
+Extern_Comp1_for_Panel3_joining2:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4 
+
+Extern_Comp1_for_Panel3_joining3:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4
+
+Extern_Comp1_for_Panel3_joining4:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4   
+
+
+
+Pick_Extern_Comp2_for_Panel4:
+  agent_model: ["r5"]
+  duration_model: 
+    r5:
+      id: det
+      mean: 5   
+
+Fix_Extern_Comp2_for_Panel4:
+  agent_model: ["r5"]
+  duration_model: 
+    r5:
+      id: det
+      mean: 3
+
+Extern_Comp2_for_Panel4_joining1:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4
+
+Extern_Comp2_for_Panel4_joining2:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4 
+
+Extern_Comp2_for_Panel4_joining3:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4
+
+Extern_Comp2_for_Panel4_joining4:
+  agent_model: ["H2"]
+  duration_model: 
+    H2:
+      id: det
+      mean: 4   

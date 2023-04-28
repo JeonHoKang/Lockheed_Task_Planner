@@ -516,7 +516,7 @@ children:
       - id: Rotate_turn_table
         type: sequential
         children: 
-          - id: roate_turntable_180
+          - id: roate_turntable_180_2
             type: atomic
             agent: ['TT']
       - id: External_Comp2_on_Panel4
@@ -543,3 +543,4 @@ children:
               - id: Extern_Comp2_for_Panel4_joining4
                 type: atomic
                 agent: ['H2']
+
