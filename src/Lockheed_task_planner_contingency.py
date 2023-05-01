@@ -304,11 +304,6 @@ class HtnMilpScheduler(object):
                     else:
                         self.generate_multiproduct_task_contrasints(
                             atomic_action_groups1[k-1], atomic_action_groups1[k-1+j])
-                        print('a')
-                        print(k-1)
-                        print('b')
-                        print(k-1+j)
-                        input()
                 multi_product_index -= 1
 
     def generate_model(self):

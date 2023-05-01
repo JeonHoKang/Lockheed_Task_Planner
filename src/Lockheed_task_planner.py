@@ -232,41 +232,6 @@ class HtnMilpScheduler(object):
                 p_parent = p_action.parent.id
                 if p_parent[3::] == s_parent[3::]:
                     model.Add(starts[s_id] >= ends[p_id])
-            # self.preserved2.append(atomic_action_groups2.pop(0))
-            # print(len(atomic_action_groups2))
-            # if len(atomic_action_groups2) == 0:
-            #     print('check133')
-            #     print(self.preserved2)
-            #     input()
-            #     break
-
-    # def generate_multiproduct_task_contrasints_later(self, atomic_action_groups1, atomic_action_groups2):
-    #     model = self.model
-    #     starts = self.task_start_vars
-    #     ends = self.task_end_vars
-    #     self.preserved_later1 = []
-    #     self.preserved_later2 = []
-    #     print('hit1')
-    #     while len(atomic_action_groups2) >= 0:
-    #         product1_atomic_actions = atomic_action_groups1
-    #         subsequent_atomic_actions = atomic_action_groups2
-    #         print()
-    #         for s_action in subsequent_atomic_actions:
-    #             s_id = s_action.id
-    #             s_parent = s_action.parent.id
-    #             for p_action in product1_atomic_actions:
-    #                 p_id = p_action.id
-    #                 p_parent = p_action.parent.id
-    #                 print('hit')
-    #                 print(p_parent[3::], s_parent[3::])
-    #                 if p_parent[3::] == s_parent[3::]:
-    #                     print('hit22')
-    #                     model.Add(starts[s_id] >= ends[p_id])
-    #                     print('s_id, p_id', s_id, 'and', p_id)
-    #         if len(atomic_action_groups2) == 0:
-    #             break
-    #         print('atom', atomic_action_groups1, atomic_action_groups2)
-    #         self.preserved_later2.append(atomic_action_groups2.pop(0))
 
     def generate_independent_task_constraints(self, atomic_action_groups):
         model = self.model
