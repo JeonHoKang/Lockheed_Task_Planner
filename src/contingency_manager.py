@@ -21,15 +21,14 @@ scheduler.create_task_model()
 htn = scheduler.import_htn()
 
 
-contingency_name = 'p1_Screw1_Right_P_C1_1_Screw'
-if contingency_name == 'p1_Screw1_Right_P_C1_1_Screw':
+contingency_name = 'p1_Pick_and_Place_Middle_Panel'
+if contingency_name == 'p1_Screw2_Right_P_C1_3':
     # Node = []
     for node in PostOrderIter(htn, filter_=lambda n: n.id in (contingency_name)):
         contingency_parent = node.parent
         print(contingency_parent)
         children_of_cont_parent = contingency_parent.children
         print(len(children_of_cont_parent))
-
         Contingency_handle = AnyNode(
             id='contingency_handler', type='sequential', parent=contingency_parent)
         contingency_node = node
@@ -42,15 +41,15 @@ if contingency_name == 'p1_Screw1_Right_P_C1_1_Screw':
             if children_of_cont == contingency_node:
                 print('True')
                 protocol1 = AnyNode(
-                    id='p1_motion_planning', type='atomic', agent=['r3'], parent=Contingency_handle)
+                    id='p1_check_bin', type='atomic', agent=['H1'], parent=Contingency_handle)
                 protocol2 = AnyNode(
-                    id='p1_repick_crew', type='atomic', agent=['r3'], parent=Contingency_handle)
+                    id='p1_refill_screw', type='atomic', agent=['H1'], parent=Contingency_handle)
                 protocol3 = AnyNode(
                     id='p1_reattempt_screwing', type='atomic', agent=['r3'], parent=Contingency_handle)
                 protocol4 = AnyNode(
                     id='p1_revert_back', type='atomic', agent=['r3'], parent=Contingency_handle)
                 contingency_node.parent = Contingency_handle
-elif contingency_name == 'p1_Pick_and_Place_Right_Panel':
+elif contingency_name == 'p1_Pick_and_Place_Middle_Panel':
     # Node = []
     for node in PostOrderIter(htn, filter_=lambda n: n.id in (contingency_name)):
         contingency_parent = node.parent
@@ -70,13 +69,13 @@ elif contingency_name == 'p1_Pick_and_Place_Right_Panel':
             if children_of_cont == contingency_node:
                 print('True')
                 protocol1 = AnyNode(
-                    id='p1_locate_panel', type='atomic', agent=['r1'], parent=Contingency_handle)
+                    id='p1_check_for_panel', type='atomic', agent=['H1'], parent=Contingency_handle)
                 protocol2 = AnyNode(
-                    id='p1_pick_panel', type='atomic', agent=['r1'], parent=Contingency_handle)
+                    id='p1_get_panel', type='atomic', agent=['H1'], parent=Contingency_handle)
                 protocol3 = AnyNode(
-                    id='p1_place_panel', type='atomic', agent=['r1'], parent=Contingency_handle)
+                    id='p1_resent_panel', type='atomic', agent=['H1'], parent=Contingency_handle)
                 protocol4 = AnyNode(
-                    id='p1_re-pick_panel', type='atomic', agent=['r1'], parent=Contingency_handle)
+                    id='p1_re-pick_panel', type='atomic', agent=['H1'], parent=Contingency_handle)
                 contingency_node.parent = Contingency_handle
 
 exporter = DictExporter()
@@ -104,9 +103,9 @@ with open('problem_description/LM2023_problem/cont_problem_description_LM2023.ya
 with open("problem_description/LM2023_problem/task_model_LM2023.yaml", "r") as file:
     yaml_model = yaml.safe_load(file)
     yaml_model[protocol1.id[3::]] = {'agent_model': [
-        protocol1.agent[0]], 'duration_model': {protocol1.agent[0]: {'id': 'det', 'mean': 4}}}
+        protocol1.agent[0]], 'duration_model': {protocol1.agent[0]: {'id': 'det', 'mean': 6}}}
     yaml_model[protocol2.id[3::]] = {'agent_model': [
-        protocol2.agent[0]], 'duration_model': {protocol2.agent[0]: {'id': 'det', 'mean': 4}}}
+        protocol2.agent[0]], 'duration_model': {protocol2.agent[0]: {'id': 'det', 'mean': 6}}}
     yaml_model[protocol3.id[3::]] = {'agent_model': [
         protocol3.agent[0]], 'duration_model': {protocol3.agent[0]: {'id': 'det', 'mean': 4}}}
     yaml_model[protocol4.id[3::]] = {'agent_model': [

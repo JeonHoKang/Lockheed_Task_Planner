@@ -54,32 +54,88 @@ Extern_Comp1_for_Panel1_joining4:
     r4:
       id: det
       mean: 4
+Extern_Comp1_for_Panel3_joining1:
+  agent_model:
+  - H2
+  duration_model:
+    H2:
+      id: det
+      mean: 4
+Extern_Comp1_for_Panel3_joining2:
+  agent_model:
+  - H2
+  duration_model:
+    H2:
+      id: det
+      mean: 4
+Extern_Comp1_for_Panel3_joining3:
+  agent_model:
+  - H2
+  duration_model:
+    H2:
+      id: det
+      mean: 4
+Extern_Comp1_for_Panel3_joining4:
+  agent_model:
+  - H2
+  duration_model:
+    H2:
+      id: det
+      mean: 4
 Extern_Comp2_for_Panel2_joining1:
   agent_model:
-  - r5
+  - H2
   duration_model:
-    r5:
+    H2:
       id: det
       mean: 4
 Extern_Comp2_for_Panel2_joining2:
   agent_model:
-  - r5
+  - H2
   duration_model:
-    r5:
+    H2:
       id: det
       mean: 4
 Extern_Comp2_for_Panel2_joining3:
   agent_model:
-  - r5
+  - H2
   duration_model:
-    r5:
+    H2:
       id: det
       mean: 4
 Extern_Comp2_for_Panel2_joining4:
   agent_model:
-  - r5
+  - H2
   duration_model:
-    r5:
+    H2:
+      id: det
+      mean: 4
+Extern_Comp2_for_Panel4_joining1:
+  agent_model:
+  - H2
+  duration_model:
+    H2:
+      id: det
+      mean: 4
+Extern_Comp2_for_Panel4_joining2:
+  agent_model:
+  - H2
+  duration_model:
+    H2:
+      id: det
+      mean: 4
+Extern_Comp2_for_Panel4_joining3:
+  agent_model:
+  - H2
+  duration_model:
+    H2:
+      id: det
+      mean: 4
+Extern_Comp2_for_Panel4_joining4:
+  agent_model:
+  - H2
+  duration_model:
+    H2:
       id: det
       mean: 4
 Fix_Extern_Comp1_for_Panel1:
@@ -89,6 +145,13 @@ Fix_Extern_Comp1_for_Panel1:
     r4:
       id: det
       mean: 3
+Fix_Extern_Comp1_for_Panel3:
+  agent_model:
+  - r5
+  duration_model:
+    r5:
+      id: det
+      mean: 3
 Fix_Extern_Comp2_for_Panel2:
   agent_model:
   - r5
@@ -96,60 +159,11 @@ Fix_Extern_Comp2_for_Panel2:
     r5:
       id: det
       mean: 3
-Fix_Panel1_and2:
+Fix_Extern_Comp2_for_Panel4:
   agent_model:
-  - H2
+  - r5
   duration_model:
-    H2:
-      id: det
-      mean: 3
-Fix_Panel2_and3:
-  agent_model:
-  - H2
-  duration_model:
-    H2:
-      id: det
-      mean: 3
-Fix_Panel3_and4:
-  agent_model:
-  - H2
-  duration_model:
-    H2:
-      id: det
-      mean: 3
-Fix_Panel4_and5:
-  agent_model:
-  - H2
-  duration_model:
-    H2:
-      id: det
-      mean: 3
-Fold_Panel1_on_2:
-  agent_model:
-  - H2
-  duration_model:
-    H2:
-      id: det
-      mean: 3
-Fold_Panel2_on_3:
-  agent_model:
-  - H2
-  duration_model:
-    H2:
-      id: det
-      mean: 3
-Fold_Panel3_on_4:
-  agent_model:
-  - H2
-  duration_model:
-    H2:
-      id: det
-      mean: 3
-Fold_Panel4_on_5:
-  agent_model:
-  - H2
-  duration_model:
-    H2:
+    r5:
       id: det
       mean: 3
 Hinge_Middle_Panel_Screw1:
@@ -315,30 +329,30 @@ Hold_Hinge_to_Top_Panel:
       mean: 3
 Mount_Middle_Panel_on_the_Fixture:
   agent_model:
-  - H1
+  - r4
   duration_model:
-    H1:
+    r4:
       id: det
       mean: 10
 Mount_Panel_B4_on_the_Fixture:
   agent_model:
-  - H1
+  - r4
   duration_model:
-    H1:
+    r4:
       id: det
       mean: 10
 Mount_Panel_B5_on_the_Fixture:
   agent_model:
-  - H1
+  - r4
   duration_model:
-    H1:
+    r4:
       id: det
       mean: 10
 Mount_Right_Panel_on_the_Fixture:
   agent_model:
-  - H1
+  - r4
   duration_model:
-    H1:
+    r4:
       id: det
       mean: 10
 Mount_Top_Panel_on_the_Fixture:
@@ -348,14 +362,14 @@ Mount_Top_Panel_on_the_Fixture:
     H1:
       id: det
       mean: 10
-Move_Middle_Panel_to_the_Side:
+Move_Middle_Panel_to_the_lift:
   agent_model:
   - r1
   duration_model:
     r1:
       id: det
       mean: 4
-Move_Right_Panel_to_the_Side:
+Move_Right_Panel_to_the_lift:
   agent_model:
   - r1
   duration_model:
@@ -376,7 +390,21 @@ Pick_Extern_Comp1_for_Panel1:
     r4:
       id: det
       mean: 5
+Pick_Extern_Comp1_for_Panel3:
+  agent_model:
+  - r5
+  duration_model:
+    r5:
+      id: det
+      mean: 5
 Pick_Extern_Comp2_for_Panel2:
+  agent_model:
+  - r5
+  duration_model:
+    r5:
+      id: det
+      mean: 5
+Pick_Extern_Comp2_for_Panel4:
   agent_model:
   - r5
   duration_model:
@@ -803,32 +831,32 @@ Screw9_Top_P_C6:
     r3:
       id: det
       mean: 3
-motion_planning:
+check_for_panel:
   agent_model:
-  - r3
+  - H1
   duration_model:
-    r3:
+    H1:
+      id: det
+      mean: 6
+get_panel:
+  agent_model:
+  - H1
+  duration_model:
+    H1:
+      id: det
+      mean: 6
+re-pick_panel:
+  agent_model:
+  - H1
+  duration_model:
+    H1:
       id: det
       mean: 4
-reattempt_screwing:
+resent_panel:
   agent_model:
-  - r3
+  - H1
   duration_model:
-    r3:
-      id: det
-      mean: 4
-repick_crew:
-  agent_model:
-  - r3
-  duration_model:
-    r3:
-      id: det
-      mean: 4
-revert_back:
-  agent_model:
-  - r3
-  duration_model:
-    r3:
+    H1:
       id: det
       mean: 4
 roate_turntable_180:
@@ -838,3 +866,10 @@ roate_turntable_180:
     TT:
       id: det
       mean: 4
+roate_turntable_180_2:
+  agent_model:
+  - TT
+  duration_model:
+    TT:
+      id: det
+      mean: 3

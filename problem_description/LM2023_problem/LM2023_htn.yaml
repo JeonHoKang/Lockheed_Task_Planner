@@ -176,7 +176,7 @@ children:
                         type: atomic
                         agent: ["r2"]
                       - id: Screw_Operation_Right_P_C1_3
-                        type: independent
+                        type: sequential
                         children:
                           - id: Screw1_Right_P_C1_3
                             type: atomic
@@ -197,7 +197,7 @@ children:
                         type: atomic
                         agent: ["r2"]
                       - id: Screw_Operation_Right_P_C2
-                        type: independent
+                        type: sequential
                         children:
                           - id: Screw1_B1_Right_P_C2
                             type: atomic
@@ -218,7 +218,7 @@ children:
                         type: atomic
                         agent: ["r2"]
                       - id: Screw_Operation_Right_P_C5
-                        type: independent
+                        type: sequential
                         children:
                           - id: Screw1_B1_Right_P_C5
                             type: atomic

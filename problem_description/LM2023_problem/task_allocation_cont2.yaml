@@ -1,488 +1,508 @@
 r1:
-  p1_Move_Middle_Panel_to_the_Side:
+  p1_Move_Middle_Panel_to_the_lift:
     StarttoEnd:
-    - 193
-    - 197
-  p1_Move_Right_Panel_to_the_Side:
+    - 244
+    - 248
+  p1_Move_Right_Panel_to_the_lift:
     StarttoEnd:
-    - 104
-    - 108
+    - 177
+    - 181
   p1_Move_Top_Panel_to_the_Side:
     StarttoEnd:
-    - 282
-    - 286
+    - 64
+    - 68
   p1_Pick_and_Place_Middle_Panel:
     StarttoEnd:
-    - 171
-    - 176
+    - 222
+    - 227
   p1_Pick_and_Place_Right_Panel:
+    StarttoEnd:
+    - 89
+    - 94
+  p1_Pick_and_Place_Top_Panel:
     StarttoEnd:
     - 0
     - 5
-  p1_Pick_and_Place_Top_Panel:
-    StarttoEnd:
-    - 218
-    - 223
 r2:
   p1_Pick_Place_Right_P_C1_1:
     StarttoEnd:
-    - 5
-    - 10
+    - 109
+    - 114
   p1_Pick_and_Place_Middle_P_C4:
     StarttoEnd:
-    - 176
-    - 181
+    - 227
+    - 232
   p1_Pick_and_Place_Right_P_C1_2:
+    StarttoEnd:
+    - 99
+    - 104
+  p1_Pick_and_Place_Right_P_C1_3:
+    StarttoEnd:
+    - 94
+    - 99
+  p1_Pick_and_Place_Right_P_C2:
+    StarttoEnd:
+    - 114
+    - 119
+  p1_Pick_and_Place_Right_P_C5:
+    StarttoEnd:
+    - 104
+    - 109
+  p1_Pick_and_Place_Top_P_C3:
+    StarttoEnd:
+    - 15
+    - 20
+  p1_Pick_and_Place_Top_P_C6:
+    StarttoEnd:
+    - 5
+    - 10
+  p1_Pick_and_Place_Top_P_C7:
     StarttoEnd:
     - 10
     - 15
-  p1_Pick_and_Place_Right_P_C1_3:
-    StarttoEnd:
-    - 15
-    - 20
-  p1_Pick_and_Place_Right_P_C2:
-    StarttoEnd:
-    - 20
-    - 25
-  p1_Pick_and_Place_Right_P_C5:
-    StarttoEnd:
-    - 25
-    - 30
-  p1_Pick_and_Place_Top_P_C3:
-    StarttoEnd:
-    - 223
-    - 228
-  p1_Pick_and_Place_Top_P_C6:
-    StarttoEnd:
-    - 228
-    - 233
-  p1_Pick_and_Place_Top_P_C7:
-    StarttoEnd:
-    - 233
-    - 238
 r3:
   p1_Screw10_B1_Right_P_C5:
     StarttoEnd:
-    - 31
-    - 34
+    - 174
+    - 177
   p1_Screw10_Top_P_C6:
     StarttoEnd:
-    - 234
-    - 237
+    - 31
+    - 34
   p1_Screw1_B1_Right_P_C2:
     StarttoEnd:
-    - 25
-    - 28
+    - 120
+    - 123
   p1_Screw1_B1_Right_P_C5:
     StarttoEnd:
-    - 34
-    - 37
+    - 147
+    - 150
   p1_Screw1_B2_Middle_P_C4:
     StarttoEnd:
-    - 181
-    - 184
+    - 241
+    - 244
   p1_Screw1_Right_P_C1_1:
     StarttoEnd:
-    - 98
-    - 101
+    - 108
+    - 111
   p1_Screw1_Right_P_C1_1_Screw:
     StarttoEnd:
-    - 101
-    - 104
+    - 144
+    - 147
   p1_Screw1_Right_P_C1_3:
     StarttoEnd:
-    - 22
-    - 25
+    - 99
+    - 102
   p1_Screw1_Top_P_C3:
     StarttoEnd:
-    - 228
-    - 231
+    - 58
+    - 61
   p1_Screw1_Top_P_C6:
-    StarttoEnd:
-    - 237
-    - 240
-  p1_Screw1_Top_P_C7:
-    StarttoEnd:
-    - 240
-    - 243
-  p1_Screw2_B1_Right_P_C2:
-    StarttoEnd:
-    - 28
-    - 31
-  p1_Screw2_B1_Right_P_C5:
-    StarttoEnd:
-    - 37
-    - 40
-  p1_Screw2_B2_Middle_P_C4:
-    StarttoEnd:
-    - 184
-    - 187
-  p1_Screw2_Right_P_C1_1:
-    StarttoEnd:
-    - 16
-    - 19
-  p1_Screw2_Right_P_C1_1_Screw:
     StarttoEnd:
     - 10
     - 13
-  p1_Screw2_Right_P_C1_3:
-    StarttoEnd:
-    - 40
-    - 43
-  p1_Screw2_Top_P_C3:
-    StarttoEnd:
-    - 231
-    - 234
-  p1_Screw2_Top_P_C6:
-    StarttoEnd:
-    - 243
-    - 246
-  p1_Screw2_Top_P_C7:
-    StarttoEnd:
-    - 246
-    - 249
-  p1_Screw3_B1_Right_P_C2:
-    StarttoEnd:
-    - 43
-    - 46
-  p1_Screw3_B1_Right_P_C5:
-    StarttoEnd:
-    - 46
-    - 49
-  p1_Screw3_B2_Middle_P_C4:
-    StarttoEnd:
-    - 187
-    - 190
-  p1_Screw3_Right_P_C1_1:
+  p1_Screw1_Top_P_C7:
     StarttoEnd:
     - 19
     - 22
+  p1_Screw2_B1_Right_P_C2:
+    StarttoEnd:
+    - 123
+    - 126
+  p1_Screw2_B1_Right_P_C5:
+    StarttoEnd:
+    - 150
+    - 153
+  p1_Screw2_B2_Middle_P_C4:
+    StarttoEnd:
+    - 235
+    - 238
+  p1_Screw2_Right_P_C1_1:
+    StarttoEnd:
+    - 105
+    - 108
+  p1_Screw2_Right_P_C1_1_Screw:
+    StarttoEnd:
+    - 141
+    - 144
+  p1_Screw2_Right_P_C1_3:
+    StarttoEnd:
+    - 102
+    - 105
+  p1_Screw2_Top_P_C3:
+    StarttoEnd:
+    - 28
+    - 31
+  p1_Screw2_Top_P_C6:
+    StarttoEnd:
+    - 52
+    - 55
+  p1_Screw2_Top_P_C7:
+    StarttoEnd:
+    - 37
+    - 40
+  p1_Screw3_B1_Right_P_C2:
+    StarttoEnd:
+    - 126
+    - 129
+  p1_Screw3_B1_Right_P_C5:
+    StarttoEnd:
+    - 153
+    - 156
+  p1_Screw3_B2_Middle_P_C4:
+    StarttoEnd:
+    - 232
+    - 235
+  p1_Screw3_Right_P_C1_1:
+    StarttoEnd:
+    - 111
+    - 114
   p1_Screw3_Right_P_C1_1_Screw:
     StarttoEnd:
-    - 13
-    - 16
+    - 114
+    - 117
   p1_Screw3_Right_P_C1_3:
+    StarttoEnd:
+    - 117
+    - 120
+  p1_Screw3_Top_P_C3:
+    StarttoEnd:
+    - 55
+    - 58
+  p1_Screw3_Top_P_C6:
+    StarttoEnd:
+    - 46
+    - 49
+  p1_Screw3_Top_P_C7:
+    StarttoEnd:
+    - 34
+    - 37
+  p1_Screw4_B1_Right_P_C2:
+    StarttoEnd:
+    - 129
+    - 132
+  p1_Screw4_B1_Right_P_C5:
+    StarttoEnd:
+    - 156
+    - 159
+  p1_Screw4_B2_Middle_P_C4:
+    StarttoEnd:
+    - 238
+    - 241
+  p1_Screw4_Right_P_C1_1:
+    StarttoEnd:
+    - 135
+    - 138
+  p1_Screw4_Right_P_C1_1_Screw:
+    StarttoEnd:
+    - 138
+    - 141
+  p1_Screw4_Right_P_C1_3:
+    StarttoEnd:
+    - 132
+    - 135
+  p1_Screw4_Top_P_C3:
+    StarttoEnd:
+    - 43
+    - 46
+  p1_Screw4_Top_P_C6:
+    StarttoEnd:
+    - 61
+    - 64
+  p1_Screw4_Top_P_C7:
+    StarttoEnd:
+    - 25
+    - 28
+  p1_Screw5_B1_Right_P_C5:
+    StarttoEnd:
+    - 159
+    - 162
+  p1_Screw5_Top_P_C6:
+    StarttoEnd:
+    - 40
+    - 43
+  p1_Screw6_B1_Right_P_C5:
+    StarttoEnd:
+    - 162
+    - 165
+  p1_Screw6_Top_P_C6:
+    StarttoEnd:
+    - 16
+    - 19
+  p1_Screw7_B1_Right_P_C5:
+    StarttoEnd:
+    - 165
+    - 168
+  p1_Screw7_Top_P_C6:
     StarttoEnd:
     - 49
     - 52
-  p1_Screw3_Top_P_C3:
-    StarttoEnd:
-    - 249
-    - 252
-  p1_Screw3_Top_P_C6:
-    StarttoEnd:
-    - 252
-    - 255
-  p1_Screw3_Top_P_C7:
-    StarttoEnd:
-    - 255
-    - 258
-  p1_Screw4_B1_Right_P_C2:
-    StarttoEnd:
-    - 52
-    - 55
-  p1_Screw4_B1_Right_P_C5:
-    StarttoEnd:
-    - 55
-    - 58
-  p1_Screw4_B2_Middle_P_C4:
-    StarttoEnd:
-    - 190
-    - 193
-  p1_Screw4_Right_P_C1_1:
-    StarttoEnd:
-    - 58
-    - 61
-  p1_Screw4_Right_P_C1_1_Screw:
-    StarttoEnd:
-    - 61
-    - 64
-  p1_Screw4_Right_P_C1_3:
-    StarttoEnd:
-    - 64
-    - 67
-  p1_Screw4_Top_P_C3:
-    StarttoEnd:
-    - 258
-    - 261
-  p1_Screw4_Top_P_C6:
-    StarttoEnd:
-    - 261
-    - 264
-  p1_Screw4_Top_P_C7:
-    StarttoEnd:
-    - 264
-    - 267
-  p1_Screw5_B1_Right_P_C5:
-    StarttoEnd:
-    - 67
-    - 70
-  p1_Screw5_Top_P_C6:
-    StarttoEnd:
-    - 267
-    - 270
-  p1_Screw6_B1_Right_P_C5:
-    StarttoEnd:
-    - 70
-    - 73
-  p1_Screw6_Top_P_C6:
-    StarttoEnd:
-    - 270
-    - 273
-  p1_Screw7_B1_Right_P_C5:
-    StarttoEnd:
-    - 73
-    - 76
-  p1_Screw7_Top_P_C6:
-    StarttoEnd:
-    - 273
-    - 276
   p1_Screw8_B1_Right_P_C5:
     StarttoEnd:
-    - 76
-    - 79
+    - 168
+    - 171
   p1_Screw8_Top_P_C6:
     StarttoEnd:
-    - 276
-    - 279
+    - 22
+    - 25
   p1_Screw9_B1_Right_P_C5:
     StarttoEnd:
-    - 79
-    - 82
+    - 171
+    - 174
   p1_Screw9_Top_P_C6:
     StarttoEnd:
-    - 279
-    - 282
-  p1_motion_planning:
-    StarttoEnd:
-    - 82
-    - 86
-  p1_reattempt_screwing:
-    StarttoEnd:
-    - 90
-    - 94
-  p1_repick_crew:
-    StarttoEnd:
-    - 86
-    - 90
-  p1_revert_back:
-    StarttoEnd:
-    - 94
-    - 98
+    - 13
+    - 16
 r4:
   p1_Extern_Comp1_for_Panel1_joining1:
     StarttoEnd:
-    - 391
-    - 395
+    - 371
+    - 375
   p1_Extern_Comp1_for_Panel1_joining2:
     StarttoEnd:
-    - 395
-    - 399
+    - 375
+    - 379
   p1_Extern_Comp1_for_Panel1_joining3:
     StarttoEnd:
-    - 399
-    - 403
+    - 379
+    - 383
   p1_Extern_Comp1_for_Panel1_joining4:
     StarttoEnd:
-    - 403
-    - 407
+    - 383
+    - 387
   p1_Fix_Extern_Comp1_for_Panel1:
     StarttoEnd:
-    - 388
-    - 391
+    - 368
+    - 371
+  p1_Mount_Middle_Panel_on_the_Fixture:
+    StarttoEnd:
+    - 248
+    - 258
+  p1_Mount_Panel_B4_on_the_Fixture:
+    StarttoEnd:
+    - 269
+    - 279
+  p1_Mount_Panel_B5_on_the_Fixture:
+    StarttoEnd:
+    - 290
+    - 300
+  p1_Mount_Right_Panel_on_the_Fixture:
+    StarttoEnd:
+    - 181
+    - 191
   p1_Pick_Extern_Comp1_for_Panel1:
     StarttoEnd:
-    - 383
-    - 388
+    - 363
+    - 368
 r5:
-  p1_Extern_Comp2_for_Panel2_joining1:
+  p1_Fix_Extern_Comp1_for_Panel3:
     StarttoEnd:
-    - 419
+    - 420
     - 423
-  p1_Extern_Comp2_for_Panel2_joining2:
-    StarttoEnd:
-    - 423
-    - 427
-  p1_Extern_Comp2_for_Panel2_joining3:
-    StarttoEnd:
-    - 427
-    - 431
-  p1_Extern_Comp2_for_Panel2_joining4:
-    StarttoEnd:
-    - 431
-    - 435
   p1_Fix_Extern_Comp2_for_Panel2:
     StarttoEnd:
-    - 416
-    - 419
+    - 396
+    - 399
+  p1_Fix_Extern_Comp2_for_Panel4:
+    StarttoEnd:
+    - 447
+    - 450
+  p1_Pick_Extern_Comp1_for_Panel3:
+    StarttoEnd:
+    - 415
+    - 420
   p1_Pick_Extern_Comp2_for_Panel2:
     StarttoEnd:
-    - 411
-    - 416
+    - 391
+    - 396
+  p1_Pick_Extern_Comp2_for_Panel4:
+    StarttoEnd:
+    - 442
+    - 447
 TT:
   p1_roate_turntable_180:
     StarttoEnd:
-    - 407
-    - 411
+    - 387
+    - 391
+  p1_roate_turntable_180_2:
+    StarttoEnd:
+    - 439
+    - 442
 H1:
-  p1_Mount_Middle_Panel_on_the_Fixture:
-    StarttoEnd:
-    - 197
-    - 207
-  p1_Mount_Panel_B4_on_the_Fixture:
-    StarttoEnd:
-    - 108
-    - 118
-  p1_Mount_Panel_B5_on_the_Fixture:
-    StarttoEnd:
-    - 129
-    - 139
-  p1_Mount_Right_Panel_on_the_Fixture:
-    StarttoEnd:
-    - 150
-    - 160
   p1_Mount_Top_Panel_on_the_Fixture:
     StarttoEnd:
-    - 286
-    - 296
-H2:
-  p1_Attach_and_Hold_Hinge_on_Panel12:
+    - 68
+    - 78
+  p1_check_for_panel:
     StarttoEnd:
-    - 313
-    - 316
-  p1_Attach_and_Hold_Hinge_on_Panel23:
+    - 202
+    - 208
+  p1_get_panel:
     StarttoEnd:
-    - 322
-    - 325
-  p1_Attach_and_Hold_Hinge_on_Panel34:
-    StarttoEnd:
-    - 331
-    - 334
-  p1_Attach_and_Hold_Hinge_on_Panel45:
-    StarttoEnd:
-    - 340
-    - 343
-  p1_Fix_Panel1_and2:
-    StarttoEnd:
-    - 310
-    - 313
-  p1_Fix_Panel2_and3:
-    StarttoEnd:
-    - 319
-    - 322
-  p1_Fix_Panel3_and4:
-    StarttoEnd:
-    - 328
-    - 331
-  p1_Fix_Panel4_and5:
-    StarttoEnd:
-    - 337
-    - 340
-  p1_Fold_Panel1_on_2:
-    StarttoEnd:
-    - 307
-    - 310
-  p1_Fold_Panel2_on_3:
-    StarttoEnd:
-    - 316
-    - 319
-  p1_Fold_Panel3_on_4:
-    StarttoEnd:
-    - 325
-    - 328
-  p1_Fold_Panel4_on_5:
-    StarttoEnd:
-    - 334
-    - 337
-  p1_Hinge_Middle_Panel_Screw1:
-    StarttoEnd:
-    - 210
+    - 208
     - 214
-  p1_Hinge_Middle_Panel_Screw2:
+  p1_re-pick_panel:
+    StarttoEnd:
+    - 218
+    - 222
+  p1_resent_panel:
     StarttoEnd:
     - 214
     - 218
+H2:
+  p1_Attach_and_Hold_Hinge_on_Panel12:
+    StarttoEnd:
+    - 311
+    - 314
+  p1_Attach_and_Hold_Hinge_on_Panel23:
+    StarttoEnd:
+    - 319
+    - 322
+  p1_Attach_and_Hold_Hinge_on_Panel34:
+    StarttoEnd:
+    - 335
+    - 338
+  p1_Attach_and_Hold_Hinge_on_Panel45:
+    StarttoEnd:
+    - 327
+    - 330
+  p1_Extern_Comp1_for_Panel3_joining1:
+    StarttoEnd:
+    - 431
+    - 435
+  p1_Extern_Comp1_for_Panel3_joining2:
+    StarttoEnd:
+    - 423
+    - 427
+  p1_Extern_Comp1_for_Panel3_joining3:
+    StarttoEnd:
+    - 427
+    - 431
+  p1_Extern_Comp1_for_Panel3_joining4:
+    StarttoEnd:
+    - 435
+    - 439
+  p1_Extern_Comp2_for_Panel2_joining1:
+    StarttoEnd:
+    - 407
+    - 411
+  p1_Extern_Comp2_for_Panel2_joining2:
+    StarttoEnd:
+    - 403
+    - 407
+  p1_Extern_Comp2_for_Panel2_joining3:
+    StarttoEnd:
+    - 399
+    - 403
+  p1_Extern_Comp2_for_Panel2_joining4:
+    StarttoEnd:
+    - 411
+    - 415
+  p1_Extern_Comp2_for_Panel4_joining1:
+    StarttoEnd:
+    - 462
+    - 466
+  p1_Extern_Comp2_for_Panel4_joining2:
+    StarttoEnd:
+    - 454
+    - 458
+  p1_Extern_Comp2_for_Panel4_joining3:
+    StarttoEnd:
+    - 450
+    - 454
+  p1_Extern_Comp2_for_Panel4_joining4:
+    StarttoEnd:
+    - 458
+    - 462
+  p1_Hinge_Middle_Panel_Screw1:
+    StarttoEnd:
+    - 261
+    - 265
+  p1_Hinge_Middle_Panel_Screw2:
+    StarttoEnd:
+    - 265
+    - 269
   p1_Hinge_Panel_B4_Screw1:
     StarttoEnd:
-    - 121
-    - 125
+    - 282
+    - 286
   p1_Hinge_Panel_B4_Screw2:
     StarttoEnd:
-    - 125
-    - 129
+    - 286
+    - 290
   p1_Hinge_Panel_B5_Screw1:
-    StarttoEnd:
-    - 142
-    - 146
-  p1_Hinge_Panel_B5_Screw2:
-    StarttoEnd:
-    - 146
-    - 150
-  p1_Hinge_Right_Panel_Screw1:
-    StarttoEnd:
-    - 163
-    - 167
-  p1_Hinge_Right_Panel_Screw2:
-    StarttoEnd:
-    - 167
-    - 171
-  p1_Hinge_Top_Panel_Screw1:
-    StarttoEnd:
-    - 299
-    - 303
-  p1_Hinge_Top_Panel_Screw2:
     StarttoEnd:
     - 303
     - 307
-  p1_Hinge_on_Panel12_Screw1:
+  p1_Hinge_Panel_B5_Screw2:
     StarttoEnd:
-    - 343
-    - 348
-  p1_Hinge_on_Panel12_Screw2:
+    - 307
+    - 311
+  p1_Hinge_Right_Panel_Screw1:
+    StarttoEnd:
+    - 194
+    - 198
+  p1_Hinge_Right_Panel_Screw2:
+    StarttoEnd:
+    - 198
+    - 202
+  p1_Hinge_Top_Panel_Screw1:
+    StarttoEnd:
+    - 81
+    - 85
+  p1_Hinge_Top_Panel_Screw2:
+    StarttoEnd:
+    - 85
+    - 89
+  p1_Hinge_on_Panel12_Screw1:
     StarttoEnd:
     - 348
     - 353
+  p1_Hinge_on_Panel12_Screw2:
+    StarttoEnd:
+    - 314
+    - 319
   p1_Hinge_on_Panel23_Screw1:
     StarttoEnd:
     - 353
     - 358
   p1_Hinge_on_Panel23_Screw2:
     StarttoEnd:
-    - 358
-    - 363
+    - 322
+    - 327
   p1_Hinge_on_Panel34_Screw1:
     StarttoEnd:
-    - 363
-    - 368
+    - 343
+    - 348
   p1_Hinge_on_Panel34_Screw2:
     StarttoEnd:
-    - 368
-    - 373
+    - 338
+    - 343
   p1_Hinge_on_Panel45_Screw1:
     StarttoEnd:
-    - 373
-    - 378
+    - 330
+    - 335
   p1_Hinge_on_Panel45_Screw2:
     StarttoEnd:
-    - 378
-    - 383
+    - 358
+    - 363
   p1_Hold_Hinge_to_Middle_Panel:
     StarttoEnd:
-    - 207
-    - 210
+    - 258
+    - 261
   p1_Hold_Hinge_to_Panel_B4:
     StarttoEnd:
-    - 118
-    - 121
+    - 279
+    - 282
   p1_Hold_Hinge_to_Panel_B5:
     StarttoEnd:
-    - 139
-    - 142
+    - 300
+    - 303
   p1_Hold_Hinge_to_Right_Panel:
     StarttoEnd:
-    - 160
-    - 163
+    - 191
+    - 194
   p1_Hold_Hinge_to_Top_Panel:
     StarttoEnd:
-    - 296
-    - 299
+    - 78
+    - 81
