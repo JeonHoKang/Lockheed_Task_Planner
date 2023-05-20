@@ -1,182 +1,181 @@
+import sys
+from PyQt5 import QtCore, QtGui, QtWidgets
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
 from tkinter import ttk
 import tkinter as tk
-from matplotlib import style
 import matplotlib.animation as animation
-from matplotlib.figure import Figure
 from matplotlib.widgets import Button, TextBox, CheckButtons
 import math
 import numpy as np
 from matplotlib import colors
 from matplotlib import pyplot as plt
+from matplotlib.patches import Circle
 
 
-grid_len = 10
+class MainWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.list_radio = []
+        self.grid_len = 10
+        self.data = [[0]*self.grid_len]*self.grid_len
+        # Create a Matplotlib figure
+        self.fig = Figure()
+        self.canvas = FigureCanvas(self.fig)
+        self.canvas.setFixedSize(1000, 1000)
+        self.ax = self.fig.add_subplot(111)
+        self.ax.set_xlim([0, 10])
+        self.ax.set_ylim([0, 10])
+        self.cmap = colors.ListedColormap(['yellow'])
+        self.ax.pcolor(self.data, cmap=self.cmap, edgecolors='k', linewidths=3)
+        # self.ax.scatter(self.x, self.y)
+        self.ax.set_xlim([0, 10])
+        self.ax.set_ylim([0, 10])
+        self.ax.set_title('Robot Cell Layout', fontsize=14)
+        # Add a button to trigger an update
+        self.reachability = QtWidgets.QLineEdit('Value ranging from 0-2')
+        self.button_group = QtWidgets.QButtonGroup()
+        self.robot_reachability = []
+        # self.x_input.returnPressed.connect(self.process_input)
+        # Add a button to trigger an update
+        # self.y_input.returnPressed.connect(self.process_input)
+        # self.submit_button = QtWidgets.QPushButton("Submit")
+        # self.submit_button.clicked.connect(self.process_input)
+        # Set up the initial plot
+        self.x = []
+        self.y = []
+        self.theta = []
+        self.robots = []
+        # Create and add radio buttons dynamically based on the list of options
 
-data = [[0]*grid_len]*grid_len
+        self.ax.scatter(self.x, self.y)
+        layout1 = QtWidgets.QHBoxLayout()
+        layout1.addWidget(self.canvas)
+        self.layout2 = QtWidgets.QVBoxLayout()
+        self.layout2.addWidget(self.reachability)
+        self.layout3 = QtWidgets.QVBoxLayout()
+        for idx, option in enumerate(self.robots):
+            self.select_robot = QtWidgets.QRadioButton(option)
+            self.layout3.addWidget(self.select_robot)
+            self.button_group.addButton(self.select_robot, idx)
+        self.button_group.buttonClicked[int].connect(self.process_input)
+        # self.layout2.addWidget(self.submit_button)
+        container = QtWidgets.QWidget()
+        container.setLayout(layout1)
+        container.layout().addLayout(self.layout2)
+        container.layout().addLayout(self.layout3)
+        # Add the Matplotlib canvas to the PyQt window
+        self.setCentralWidget(container)
+        self.canvas.mpl_connect("button_press_event", self.manipulate_point)
 
-
-robot_x = []
-robot_y = []
-robot_th = []
-
-scale = 0.25
-LARGE_FONT = ("Verdana", 12)
-NORM_FONT = ("Helvetica", 10)
-SMALL_FONT = ("Helvetica", 8)
-
-
-def popupmsg(msg):
-    popup = tk.Tk()
-    popup.wm_title("Warning")
-    label = ttk.Label(popup, text=msg, font=NORM_FONT)
-    label.pack(side="top", fill="x", pady=10)
-    B1 = ttk.Button(popup, text="Okay", command=popup.destroy)
-    B1.pack()
-    popup.mainloop()
-
-
-def conv_cart_to_ang(angle):
-    if angle == 0:
-        angle = 0.00001
-    else:
-        angle = angle
-    dx = 1*math.cos(angle*(math.pi/180))
-    dy = 1*math.sin(angle*(math.pi/180))
-    return [dx, dy]
-
-
-def submit_x(expression):
-    """
-    Update the plotted function to the new math *expression*.
-
-    *expression* is a string using "t" as its independent variable, e.g.
-    "t ** 3".
-    """
-
-    if expression.isnumeric() == False:
-        popupmsg('not a number')
-    elif int(expression) > grid_len:
-        popupmsg('Value cannot exceed {}'.format(grid_len))
-    else:
-        expression = int(expression)
-        robot_x.append(expression)
-        plt.text(0.02, 0.6, 'x : {}'.format(robot_x), fontsize=7,
-                 transform=plt.gcf().transFigure)
-
-    print(robot_x)
-
-
-def submit_y(expression):
-    """
-    Update the plotted function to the new math *expression*.
-
-    *expression* is a string using "t" as its independent variable, e.g.
-    "t ** 3".
-    """
-    if expression.isnumeric() == False:
-        popupmsg('not a number')
-    elif int(expression) > grid_len:
-        popupmsg('Value cannot exceed {}'.format(grid_len))
-    else:
-        expression = int(expression)
-        robot_y.append(expression)
-        plt.text(0.02, 0.7, 'y : {}'.format(robot_y), fontsize=7,
-                 transform=plt.gcf().transFigure)
-
-    print(robot_y)
-
-
-def submit_theta(expression):
-    """
-    Update the plotted function to the new math *expression*.
-
-    *expression* is a string using "t" as its independent variable, e.g.
-    "t ** 3".
-    """
-    if expression.isnumeric() == False:
-        popupmsg('not a number')
-    else:
-        expression = int(expression)
-        robot_th.append(expression)
-        plt.text(0.02, 0.8, 'theta : {}'.format(robot_th), fontsize=7,
-                 transform=plt.gcf().transFigure)
-
-    print(robot_th)
-
-
-def delete_index(expression):
-
-    if expression.isnumeric() == False:
-        popupmsg('Input Robot Index')
-    elif int(expression) > grid_len:
-        popupmsg('Value cannot exceed {}'.format(len(robot_x)))
-    else:
-
-        expression = int(expression)-1
-        cmap = colors.ListedColormap(['yellow'])
-        ax.pcolor(data, cmap=cmap, edgecolors='k', linewidths=3)
-        del robot_x[expression]
-        del robot_y[expression]
-        del robot_th[expression]
-        for i in range(len(robot_x)):
-            ax.arrow(robot_x[i]-0.5, robot_y[i]-0.5, scale*conv_cart_to_ang(robot_th[i])[0],
-                     scale*conv_cart_to_ang(robot_th[i])[1], head_width=0.1, color='blue', label='robot{}'.format(i+1))
-    plt.draw()
-    # plt.text(0.02, 0.6, 'x : {}'.format(robot_x), fontsize=7,
-    #          transform=plt.gcf().transFigure)
-    # plt.text(0.02, 0.7, 'y : {}'.format(robot_y), fontsize=7,
-    #          transform=plt.gcf().transFigure)
-    # plt.text(0.02, 0.8, 'theta : {}'.format(robot_th), fontsize=7,
-    #          transform=plt.gcf().transFigure)
-
-
-fig, ax = plt.subplots(figsize=(7, 6))
-fig.subplots_adjust(bottom=0.3)
-fig.subplots_adjust(left=0.2)
-ax.set_title('Robot Cell Layout', fontsize=14)
-cmap = colors.ListedColormap(['yellow'])
-ax.pcolor(data, cmap=cmap, edgecolors='k', linewidths=3)
-
-
-class Index:
-    ind = 0
-
-    def next(self, event):
-        self.ind += 1
-        print("Number of Robots Added is : ", self.ind)
-        if abs(len(robot_x) - len(robot_y)) >= 1 or abs(len(robot_x) - len(robot_th)) >= 1 or abs(len(robot_y) - len(robot_th)) >= 1:
-            popupmsg('All three value entries need to match')
-            popupmsg('Check the left side of the graph')
+    def process_input(self, id):
+        # Get the user input and do something with it
+        selected_option = self.robots[id]
+        print("Selected Option:", selected_option)
+        robot_index = id
+        robot_reach = self.reachability.text()
+        if robot_reach == '':
+            pass
         else:
-            for i in range(len(robot_x)):
-                ax.arrow(robot_x[i]-0.5, robot_y[i]-0.5, scale*conv_cart_to_ang(robot_th[i])[0],
-                         scale*conv_cart_to_ang(robot_th[i])[1], head_width=0.1, color='blue', label='robot{}'.format(i+1))
-                # if robot_th[i] >= 180:
-                #     ax.text(robot_x[i]-0.95, robot_y[i]-0.3,
-                #             'robot{}'.format(i+1), color='blue', fontsize='medium')
-                # else:
-                #     ax.text(robot_x[i]-0.95, robot_y[i]-0.8,
-                #             'robot{}'.format(i+1), color='blue', fontsize='medium')
+            robot_reach = float(robot_reach)
+            for i in range(id+1):
+                self.robot_reachability.append(0)
+            print('lenght dfsdf', self.robot_reachability)
+            self.robot_reachability[id] = robot_reach
+            self.circle = Circle(
+                (self.x[robot_index], self.y[robot_index]), self.robot_reachability[robot_index], edgecolor='red', facecolor='None')
+            self.ax.add_patch(self.circle)
+            self.canvas.draw()
+            print(f"theta input: {robot_reach}")
+            print('xandy', self.x[robot_index], 'and', self.y[robot_index])
+            print('reachability', self.robot_reachability[robot_index])
 
-        plt.draw()
+    def conv_cart_to_ang(self, angle):
+        if angle == 0:
+            angle = 0.00001
+        else:
+            angle = angle
+        dx = 1*math.cos(angle*(math.pi/180))
+        dy = 1*math.sin(angle*(math.pi/180))
+        return [dx, dy]
+
+    def append(self, x1, y1):
+        self.x.append(x1)
+        self.y.append(y1)
+
+    def remove(self, x_idx, y_idx):
+        self.x.pop(x_idx)
+        self.y.pop(y_idx)
+
+    def add_robot_radio(self):
+        self.robots.append(f'robot{len(self.ordered_list_xy)+1}')
+        # for idx, option in enumerate(self.robots):
+        self.select_robot = QtWidgets.QRadioButton(
+            self.robots[len(self.robots)-1])
+        self.list_radio.append(self.select_robot)
+        self.layout3.addWidget(self.select_robot)
+        self.button_group.addButton(
+            self.select_robot, len(self.robots)-1)
+
+    # def delete_robot_radio(self):
+    #     self.robots.pop(f'robot{len(self.ordered_list_xy)+1}')
+    #     # for idx, option in enumerate(self.robots):
+    #     self.select_robot = QtWidgets.QRadioButton(
+    #         self.robots[len(self.robots)-1])
+    #     self.layout3.addWidget(self.select_robot)
+    #     self.button_group.deleteLater(
+    #         self.select_robot, len(self.robots)-1)
+
+    def manipulate_point(self, event):
+        x, y = event.xdata, event.ydata
+        offset = 0.5
+        x_point, y_point = math.floor(x)+offset, math.floor(y)+offset
+        self.ordered_list_xy = []
+        # data_xy = {}
+        # for data in ordered_list_xy:
+        #     data_xy['coordinate'] = data
+        xy_input = [x_point, y_point]
+        for i in range(len(self.x)):
+            self.ordered_list_xy.append([self.x[i], self.y[i]])
+        print(self.ordered_list_xy)
+        if len(self.x) > 0:
+            if xy_input in self.ordered_list_xy:
+                idx = self.ordered_list_xy.index(xy_input)
+                # self.robot_reachability.pop[idx]
+                print('--=------==----')
+                for i in range(len(self.list_radio)):
+                    print(self.list_radio[i].text())
+                print('delete node', self.list_radio[idx].text(), '-----', idx)
+                self.remove(idx, idx)
+                self.layout3.removeWidget(self.list_radio[idx])
+                self.list_radio[idx].setParent(None)
+                self.list_radio.pop(idx)
+            else:
+                print('the list constains it but not of same xy')
+                self.append(x_point, y_point)
+                self.add_robot_radio()
+        else:
+            self.append(x_point, y_point)
+            self.add_robot_radio()
+
+            print('x and y: ', self.x, ' and ', self.y)
+            print('x1 and y1: ', x_point, ' and ', y_point)
+
+        cmap = self.cmap
+        # self.ax.pcolor(self.data, cmap=cmap, edgecolors='k', linewidths=3)
+        self.ax.scatter(self.x, self.y, s=50, c='b')
+        self.ax.set_xlim([0, 10])
+        self.ax.set_ylim([0, 10])
+        self.ax.set_title('Robot Cell Layout', fontsize=14)
+        self.canvas.draw()
 
 
-callback = Index()
+def main():
+    app = QtWidgets.QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
 
-delRobot = fig.add_axes([0.81, 0.05, 0.1, 0.075])
-update_fig = fig.add_axes([0.81, 0.15, 0.1, 0.075])
-del_Robot = TextBox(delRobot, 'Del: ', textalignment="center")
-bnext = Button(update_fig, 'Update')
-axbox_x = fig.add_axes([0.11, 0.05, 0.1, 0.075])
-axbox_y = fig.add_axes([0.31, 0.05, 0.1, 0.075])
-axbox_th = fig.add_axes([0.64, 0.05, 0.1, 0.075])
-bnext.on_clicked(callback.next)
-text_box_x = TextBox(axbox_x, "Robot X: ", textalignment="center")
-text_box_y = TextBox(axbox_y, "Robot Y: ", textalignment="center")
-text_box_th = TextBox(axbox_th, "Robot Angle(Degree): ",
-                      textalignment="center")
-del_Robot.on_submit(delete_index)
-text_box_x.on_submit(submit_x)
-text_box_y.on_submit(submit_y)
-text_box_th.on_submit(submit_theta)
-plt.show()
+
+if __name__ == '__main__':
+    main()

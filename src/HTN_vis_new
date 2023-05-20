@@ -1,0 +1,207 @@
+from asyncio import get_child_watcher
+from PyQt5 import QtCore, QtGui, QtWidgets
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+import igraph as ig
+from igraph import Graph, EdgeSeq
+from tkinter import ttk
+import tkinter as tk
+import matplotlib.pyplot as plt
+import sys
+from matplotlib.figure import Figure
+import plotly.graph_objects as go
+
+_RENDER_CMD = ['dot']
+_FORMAT = 'png'
+
+
+class Value:
+    def __init__(self, task_number, label=''):
+        self.task_number = task_number
+        self.label = label
+        self._children = set()
+
+    def add_children(self, other):
+        self._children = (self, other)
+
+    def __repr__(self):
+        return f"Value(task_number={self.task_number}, label={self.label})"
+
+
+class HTN_vis(QtWidgets.QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.n_vertices = 1
+        self.edges = []
+        self.g = Graph(self.n_vertices, self.edges)
+        self.g["title"] = "Small Social Network"
+        self.labels = ['0: root']
+        self.g.vs['label'] = '0'
+        self.g.vs['name'] = self.labels
+        self.fig = Figure()
+        self.canvas = FigureCanvas(self.fig)
+        self.canvas.setFixedSize(1600, 800)
+        self.ax = self.fig.add_subplot(111)
+        ig.plot(
+            self.g,
+            target=self.ax,
+            layout="circle",  # print nodes in a circular layout
+            vertex_size=0.1
+        )
+        self.parent_node = QtWidgets.QLineEdit('Parent')
+        self.label = QtWidgets.QLineEdit('label')
+        # self.x_input.returnPressed.connect(self.process_input)
+        # Add a button to trigger an update
+        # self.y_input.returnPressed.connect(self.process_input)
+        self.submit_button = QtWidgets.QPushButton("Submit")
+        self.submit_button.clicked.connect(self.add_node_gui)
+        self.delete_node = QtWidgets.QLineEdit('delete')
+        self.delete_submit = QtWidgets.QPushButton("Delete")
+        self.delete_submit.clicked.connect(self.del_node_gui)
+        self.list_widget = QtWidgets.QListWidget()
+        layout0 = QtWidgets.QVBoxLayout()
+        layout1 = QtWidgets.QHBoxLayout()
+        layout1.addWidget(self.list_widget)
+        self.list_widget.addItems(self.labels)
+        layout1.addWidget(self.canvas)
+        layout2 = QtWidgets.QVBoxLayout()
+        layout2.addWidget(self.parent_node)
+        layout2.addWidget(self.label)
+        layout2.addWidget(self.submit_button)
+        layout3 = QtWidgets.QVBoxLayout()
+        layout3.addWidget(self.delete_node)
+        layout3.addWidget(self.delete_submit)
+        container = QtWidgets.QWidget()
+        container.setLayout(layout0)
+        container.layout().addLayout(layout1)
+        container.layout().addLayout(layout2)
+        container.layout().addLayout(layout3)
+        # Add the Matplotlib canvas to the PyQt window
+        self.setCentralWidget(container)
+
+    def process_input(self):
+        # Get the user input and do something with it
+        print("theta input:", self.parent_node.text())
+
+    def trace(self, root):
+        # builds a set of all nodes and edges in a graph
+        nodes, edges = set(), set()
+
+        def build(v):
+            if v not in nodes:
+                nodes.add(v)
+                for child in v._children:
+                    edges.add((child, v))
+                    build(child)
+        build(root)
+        return nodes, edges
+
+    def plot(self):
+        # self.g = Graph(self.n_vertices, self.edges)
+        self.g["title"] = "HTN"
+        layout = self.g.layout("rt", root=[0])
+        layout.rotate(-180)
+        ig.plot(
+            self.g,
+            layout=layout,
+            target=self.ax,
+            vertex_size=0.1,
+            showlegend=False,
+            # Set the labels as hovertext
+        )
+        self.canvas.draw()
+
+    def add_node_gui(self):
+        self.ax.clear()
+        user_input_parent = self.parent_node.text()
+        if user_input_parent.isalpha():
+            print('string')
+            pass
+        else:
+            user_input_parent = int(user_input_parent)
+            if user_input_parent > self.n_vertices-1:
+                pass
+            self.n_vertices += 1
+            print('number of vertices', self.n_vertices)
+            # self.edges.append((user_input_parent, self.n_vertices-1))
+            # self.labels.append(self.label.text())
+            self.g.add_vertices(1)
+            self.g.add_edges([(user_input_parent, self.n_vertices-1)])
+            self.g.vs[self.n_vertices -
+                      1]["label"] = f"{self.n_vertices-1}"
+            self.g.vs[self.n_vertices -
+                      1]["name"] = f"{self.n_vertices-1}: {self.label.text()}"
+            self.labels.append(self.g.vs[self.n_vertices -
+                                         1]["name"])
+            self.list_widget.clear()
+            print(self.labels)
+            self.list_widget.addItems(self.labels)
+            edge_list = self.g.get_edgelist()
+            vertex_list = self.g.vs
+            # print the resulting list of dictionaries
+            print('vertex: ', list(vertex_list))
+            print('edge: ', edge_list)
+        self.plot()
+
+    def del_node_gui(self):
+        self.ax.clear()
+        user_delete = self.delete_node.text()
+        if user_delete.isalpha():
+            print('string')
+            pass
+        else:
+            user_delete = int(user_delete)
+            if user_delete > self.n_vertices-1:
+                pass
+            # self.g.delete_edges(user_delete)
+            self.g.delete_vertices(user_delete)
+            edge_list = self.g.get_edgelist()
+            vertex_list = self.g.vs
+            self.n_vertices -= 1
+            # print the resulting list of dictionaries
+            print('vertex: ', list(vertex_list))
+            print('edge_list: ', edge_list)
+            self.labels.pop(user_delete)
+            for i in range(self.n_vertices):
+                self.g.vs[i]["label"] = f"{i}"
+                print(self.g.vs[i]["label"])
+                self.labels[i] = f"{i}: {self.labels[i][2:len(self.labels[i])]}"
+
+            self.list_widget.clear()
+            self.list_widget.addItems(self.labels)
+        self.plot()
+        # self.g = Graph(self.n_vertices, self.edges)
+        # self.g["title"] = "Small Social Network"
+        # self.labels.append(self.label.text())
+        # layout = self.g.layout("rt", root=[0])
+        # layout.rotate(-180)
+        # self.g.vs['label'] = self.labels
+        # ig.plot(
+        #     self.g,
+        #     layout=layout,
+        #     target=self.ax,
+        #     vertex_size=0.1,
+        #     showlegend=False,
+        #     hovermode="closest",
+        # )
+        # self.canvas.draw()
+
+
+def main():
+    A = Value(1, label='pick and place panel 2')
+    # print(A)
+    B = Value(2, label='task pick and place 2')
+    A.add_children(B)
+    app = QtWidgets.QApplication(sys.argv)
+    htn = HTN_vis()
+    htn.show()
+    sys.exit(app.exec_())
+
+    # Digraph_HTN = htn.draw_dot(A)
+    # app = QtWidgets.QApplication(sys.argv)
+    # window = MainWindow()
+    # window.show()
+    # sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()
