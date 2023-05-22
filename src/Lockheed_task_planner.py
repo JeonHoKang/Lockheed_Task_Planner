@@ -179,13 +179,13 @@ class HtnMilpScheduler(object):
         print(file_dir)
         with open(file_dir, "r") as data:
             try:
-                dict = yaml.safe_load(data)
+                self.dict = yaml.safe_load(data)
             except yaml.YAMLError as e:
                 print(e)
         num_products = self.num_products
         children = []
         for p in range(num_products):
-            child = DictImporter().import_(dict)
+            child = DictImporter().import_(self.dict)
             for node in PostOrderIter(child):
                 node.id = 'p{}_'.format(p+1) + node.id
             children.append(child)

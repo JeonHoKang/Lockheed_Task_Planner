@@ -274,7 +274,7 @@ children:
           - id: Middle_Panel
             type: sequential
             children:
-              - id: Pick_and_Place_Middle_Panel
+              - id: z
                 type: atomic
                 agent: ["r1"]
               - id: Component_Middle_Panel

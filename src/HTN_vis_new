@@ -9,44 +9,54 @@ import matplotlib.pyplot as plt
 import sys
 from matplotlib.figure import Figure
 import plotly.graph_objects as go
+import Lockheed_task_planner 
+import anytree
+from anytree import AnyNode, PostOrderIter
+from anytree.exporter import DictExporter
+from anytree import RenderTree  # just for nice printing
+from anytree.importer import DictImporter
+import numpy as np
 
 _RENDER_CMD = ['dot']
 _FORMAT = 'png'
+# print(data['children'][0]['children'][0]['children'][0])
 
 
-class Value:
-    def __init__(self, task_number, label=''):
-        self.task_number = task_number
-        self.label = label
-        self._children = set()
+def recui(htn):
+    if "children" in htn:
+        parent = htn['id']
+        children = htn["children"]
+        child_list = []
+        for child in children:
+            child_list.append(recui(child))
+        return child_list
+    else:
+        return htn["id"]
 
-    def add_children(self, other):
-        self._children = (self, other)
 
-    def __repr__(self):
-        return f"Value(task_number={self.task_number}, label={self.label})"
-
-
+    
 class HTN_vis(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.n_vertices = 1
         self.edges = []
+        self.render_node_to_edges()
         self.g = Graph(self.n_vertices, self.edges)
-        self.g["title"] = "Small Social Network"
-        self.labels = ['0: root']
-        self.g.vs['label'] = '0'
-        self.g.vs['name'] = self.labels
+        self.labels = []
+        # self.g.vs['label'] = '0'
+        # self.g.vs['name'] = self.labels
+        for i in range(self.n_vertices):
+            print(i)
+            self.g.vs[i]["label"] = f"{i}"
+            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]}"
+            self.labels.append(self.g.vs[i]["name"])
+        print(self.labels)
+        input()
         self.fig = Figure()
         self.canvas = FigureCanvas(self.fig)
-        self.canvas.setFixedSize(1600, 800)
+        self.canvas.setFixedSize(1500, 1000)
         self.ax = self.fig.add_subplot(111)
-        ig.plot(
-            self.g,
-            target=self.ax,
-            layout="circle",  # print nodes in a circular layout
-            vertex_size=0.1
-        )
+        self.plot()     
         self.parent_node = QtWidgets.QLineEdit('Parent')
         self.label = QtWidgets.QLineEdit('label')
         # self.x_input.returnPressed.connect(self.process_input)
@@ -78,6 +88,75 @@ class HTN_vis(QtWidgets.QMainWindow):
         # Add the Matplotlib canvas to the PyQt window
         self.setCentralWidget(container)
 
+    def render_node_to_edges(self):
+        scheduler = Lockheed_task_planner.HtnMilpScheduler()
+        scheduler.set_dir("problem_description/LM2023_problem/")
+        scheduler.import_problem("problem_description_LM2023.yaml")
+        scheduler.create_task_model()
+        htn = scheduler.import_htn()
+        self.htn_dict = scheduler.dict
+        self.htn_nodes = []
+        children = []
+        parent = []
+        node_recur = recui(self.htn_dict)
+
+        if scheduler.dict is not None:
+            task_network = DictImporter().import_(self.htn_dict)
+            for node in PostOrderIter(task_network):
+                self.htn_nodes.append(node)
+                if node.type == "atomic":
+                    children.append(node)
+                else:
+                    parent.append(node)
+
+        def has_deeper_array(arr):
+            if isinstance(arr, list):
+                for item in arr:
+                    if isinstance(item, list):
+                        return True
+                    elif isinstance(item, (tuple, set, frozenset)):
+                        if has_deeper_array(list(item)):
+                            return True
+            return False
+                
+        def convert_multi_multilayer_array_to_edges(arr):
+            edges = []
+            index = 1
+            
+            def traverse_array(node, parent_node=0):
+                nonlocal index
+                
+                for i in range(len(node) - 1, -1, -1):
+                    child_node = node[i]
+                    edges.append((parent_node, index))
+                    index += 1
+                    
+                    if isinstance(child_node, list):
+                        traverse_array(child_node, index-1)
+            
+            traverse_array(arr)
+            
+            return edges
+        
+        def extract_node_ids(tree, ids):
+            # Append the ID of the current node
+            ids.append(tree['id'])
+            
+            # Recursively process the children nodes
+            if 'children' in tree:
+                for child in tree['children']:
+                    extract_node_ids(child, ids)
+        self.node_ids = []
+        extract_node_ids(self.htn_dict, self.node_ids)
+        print(self.node_ids)
+        list_tuple_edges = convert_multi_multilayer_array_to_edges(node_recur)
+        print(list_tuple_edges)
+        input()
+        self.edges = list_tuple_edges
+        self.n_vertices = len(self.htn_nodes)
+
+        
+
     def process_input(self):
         # Get the user input and do something with it
         print("theta input:", self.parent_node.text())
@@ -100,12 +179,17 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.g["title"] = "HTN"
         layout = self.g.layout("rt", root=[0])
         layout.rotate(-180)
+        layout.fit_into((2000, 4000))
+        # layout.scale(5000)
+        layout.bounding_box(5000)
         ig.plot(
             self.g,
             layout=layout,
             target=self.ax,
-            vertex_size=0.1,
+            vertex_size=20,
             showlegend=False,
+            vertex_color = 'red'
+
             # Set the labels as hovertext
         )
         self.canvas.draw()
@@ -161,36 +245,12 @@ class HTN_vis(QtWidgets.QMainWindow):
             print('vertex: ', list(vertex_list))
             print('edge_list: ', edge_list)
             self.labels.pop(user_delete)
-            for i in range(self.n_vertices):
-                self.g.vs[i]["label"] = f"{i}"
-                print(self.g.vs[i]["label"])
-                self.labels[i] = f"{i}: {self.labels[i][2:len(self.labels[i])]}"
-
             self.list_widget.clear()
             self.list_widget.addItems(self.labels)
         self.plot()
-        # self.g = Graph(self.n_vertices, self.edges)
-        # self.g["title"] = "Small Social Network"
-        # self.labels.append(self.label.text())
-        # layout = self.g.layout("rt", root=[0])
-        # layout.rotate(-180)
-        # self.g.vs['label'] = self.labels
-        # ig.plot(
-        #     self.g,
-        #     layout=layout,
-        #     target=self.ax,
-        #     vertex_size=0.1,
-        #     showlegend=False,
-        #     hovermode="closest",
-        # )
-        # self.canvas.draw()
 
 
 def main():
-    A = Value(1, label='pick and place panel 2')
-    # print(A)
-    B = Value(2, label='task pick and place 2')
-    A.add_children(B)
     app = QtWidgets.QApplication(sys.argv)
     htn = HTN_vis()
     htn.show()
