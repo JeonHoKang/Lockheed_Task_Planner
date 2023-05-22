@@ -51,8 +51,6 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.g.vs[i]["label"] = f"{i}"
             self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]}"
             self.labels.append(self.g.vs[i]["name"])
-        print(self.labels)
-        input()
         self.fig = Figure(figsize=(100, 600))
         self.fig.set_size_inches(15, 50)
         self.canvas = FigureCanvas(self.fig)
@@ -83,7 +81,6 @@ class HTN_vis(QtWidgets.QMainWindow):
         # layout1.addWidget(self.canvas)
         scroll_area.setWidget(self.canvas)
         layout1.addWidget(scroll_area)
-        
         layout2 = QtWidgets.QVBoxLayout()
         layout2.addWidget(self.toolbar)
         layout2.addWidget(self.parent_node)
@@ -109,10 +106,13 @@ class HTN_vis(QtWidgets.QMainWindow):
         htn = scheduler.import_htn()
         self.htn_dict = scheduler.dict
         self.htn_nodes = []
+        result = dfs(self.htn_dict)
+        name_node, edge_list = create_dict_from_set(result)
+        self.node_ids = list(name_node.values())
         children = []
         parent = []
         node_recur = recui(self.htn_dict)
-
+        print(node_recur)
         if scheduler.dict is not None:
             task_network = DictImporter().import_(self.htn_dict)
             for node in PostOrderIter(task_network):
@@ -122,6 +122,7 @@ class HTN_vis(QtWidgets.QMainWindow):
                 else:
                     parent.append(node)
 
+        
         def has_deeper_array(arr):
             if isinstance(arr, list):
                 for item in arr:
@@ -159,13 +160,12 @@ class HTN_vis(QtWidgets.QMainWindow):
             if 'children' in tree:
                 for child in tree['children']:
                     extract_node_ids(child, ids)
-        self.node_ids = []
-        extract_node_ids(self.htn_dict, self.node_ids)
-        print(self.node_ids)
-        list_tuple_edges = convert_multi_multilayer_array_to_edges(node_recur)
-        print(list_tuple_edges)
-        input()
-        self.edges = list_tuple_edges
+        # self.node_ids = []
+        # extract_node_ids(self.htn_dict, self.node_ids)
+        # print(self.node_ids)
+        # list_tuple_edges = convert_multi_multilayer_array_to_edges(node_recur)
+        # print(list_tuple_edges)
+        self.edges = edge_list
         self.n_vertices = len(self.htn_nodes)
 
         
@@ -228,6 +228,8 @@ class HTN_vis(QtWidgets.QMainWindow):
                       1]["name"] = f"{self.n_vertices-1}: {self.label.text()}"
             self.labels.append(self.g.vs[self.n_vertices -
                                          1]["name"])
+            self.node_ids.append(self.g.vs[self.n_vertices -
+                                           1]["name"])
             self.list_widget.clear()
             print(self.labels)
             self.list_widget.addItems(self.labels)
@@ -256,11 +258,68 @@ class HTN_vis(QtWidgets.QMainWindow):
             # print the resulting list of dictionaries
             print('vertex: ', list(vertex_list))
             print('edge_list: ', edge_list)
-            self.labels.pop(user_delete)
-            self.list_widget.clear()
-            self.list_widget.addItems(self.labels)
+            self.node_ids.pop(user_delete)
+        self.labels = []
+        for i in range(self.n_vertices):
+            print(i)
+            self.g.vs[i]["label"] = f"{i}"
+            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]}"
+            self.labels.append(self.g.vs[i]["name"])
+            print('current labels:', self.labels)
+        self.list_widget.clear()
+        self.list_widget.addItems(self.labels)
         self.plot()
 
+def dfs(start):
+    visited = set()  # Set to track visited vertices
+    edges = []
+    stack = [start]  # Stack to keep track of vertices to visit
+
+    while stack:
+        vertex = stack.pop()  # Pop a vertex from the stack
+
+        if vertex["id"] not in visited:
+            print(vertex["id"])  # Process the vertex (in this case, print it)
+            visited.add(vertex["id"])  # Mark the vertex as visited
+
+            # Add adjacent vertices to the stack
+            if "children" in vertex:
+                for child in reversed(vertex["children"]):
+                    stack.append(child)
+                    edges.append((vertex["id"],child["id"]))
+
+    return edges
+
+def create_dict_from_set(pairs):
+    local_dict = {}
+    name_id_dict = {}
+    latest_id = -1
+    index_list = []
+    for pair in pairs:
+        parent = pair[0]
+        child = pair[1]
+        child_id = 0
+        parent_id = 0
+        if parent not in name_id_dict:
+            latest_id += 1
+            local_dict[latest_id] = parent
+            parent_id = latest_id
+            name_id_dict[parent] = parent_id
+        else:
+
+            parent_id = name_id_dict[parent]
+        
+        if child not in name_id_dict:
+            latest_id += 1
+            local_dict[latest_id] = child
+            child_id = latest_id
+            name_id_dict[child] = child_id
+        else:
+            child_id = name_id_dict[child]
+
+        index_list.append((parent_id, child_id))
+
+    return local_dict, index_list
 
 def main():
     app = QtWidgets.QApplication(sys.argv)

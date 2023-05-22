@@ -274,7 +274,7 @@ children:
           - id: Middle_Panel
             type: sequential
             children:
-              - id: z
+              - id: Pick_and_Place_Middle_Panel
                 type: atomic
                 agent: ["r1"]
               - id: Component_Middle_Panel
@@ -513,7 +513,7 @@ children:
               - id: Extern_Comp1_for_Panel3_joining4
                 type: atomic
                 agent: ['H2']
-      - id: Rotate_turn_table
+      - id: Rotate_turn_table_2
         type: sequential
         children: 
           - id: roate_turntable_180_2
