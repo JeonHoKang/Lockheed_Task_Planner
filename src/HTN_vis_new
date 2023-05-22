@@ -1,6 +1,7 @@
 from asyncio import get_child_watcher
 from PyQt5 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import igraph as ig
 from igraph import Graph, EdgeSeq
 from tkinter import ttk
@@ -52,9 +53,11 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.labels.append(self.g.vs[i]["name"])
         print(self.labels)
         input()
-        self.fig = Figure()
+        self.fig = Figure(figsize=(100, 600))
+        self.fig.set_size_inches(15, 50)
         self.canvas = FigureCanvas(self.fig)
-        self.canvas.setFixedSize(1500, 1000)
+        self.canvas.setFixedSize(10000, 800)
+        self.toolbar = NavigationToolbar(self.canvas, self)
         self.ax = self.fig.add_subplot(111)
         self.plot()     
         self.parent_node = QtWidgets.QLineEdit('Parent')
@@ -68,12 +71,21 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.delete_submit = QtWidgets.QPushButton("Delete")
         self.delete_submit.clicked.connect(self.del_node_gui)
         self.list_widget = QtWidgets.QListWidget()
+        scroll_area = QtWidgets.QScrollArea()
+        scroll_area.setWidgetResizable(True)
+        list_scroll_area = QtWidgets.QScrollArea()
+        list_scroll_area.setWidgetResizable(True)
+        list_scroll_area.setWidget(self.list_widget)
         layout0 = QtWidgets.QVBoxLayout()
         layout1 = QtWidgets.QHBoxLayout()
-        layout1.addWidget(self.list_widget)
+        layout0.addWidget(list_scroll_area)
         self.list_widget.addItems(self.labels)
-        layout1.addWidget(self.canvas)
+        # layout1.addWidget(self.canvas)
+        scroll_area.setWidget(self.canvas)
+        layout1.addWidget(scroll_area)
+        
         layout2 = QtWidgets.QVBoxLayout()
+        layout2.addWidget(self.toolbar)
         layout2.addWidget(self.parent_node)
         layout2.addWidget(self.label)
         layout2.addWidget(self.submit_button)
@@ -87,6 +99,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         container.layout().addLayout(layout3)
         # Add the Matplotlib canvas to the PyQt window
         self.setCentralWidget(container)
+
 
     def render_node_to_edges(self):
         scheduler = Lockheed_task_planner.HtnMilpScheduler()
@@ -179,19 +192,18 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.g["title"] = "HTN"
         layout = self.g.layout("rt", root=[0])
         layout.rotate(-180)
-        layout.fit_into((2000, 4000))
+        layout.fit_into((20000, 30000))
+
         # layout.scale(5000)
-        layout.bounding_box(5000)
         ig.plot(
             self.g,
             layout=layout,
             target=self.ax,
-            vertex_size=20,
+            vertex_size=100,
             showlegend=False,
-            vertex_color = 'red'
-
-            # Set the labels as hovertext
-        )
+            vertex_color = 'yellow',
+            vertex_label_size=9
+                            )
         self.canvas.draw()
 
     def add_node_gui(self):
