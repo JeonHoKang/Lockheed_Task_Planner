@@ -144,8 +144,7 @@ class HTN_vis(QtWidgets.QMainWindow):
                 constraint_list.append('Leaf')
             else:
                 self.color_list.append('yellow')
-                constraint_list.append(node.type)
-                
+                constraint_list.append(node.type)           
         return self.color_list, constraint_list
     
     def process_input(self):
@@ -285,9 +284,7 @@ def create_dict_from_set(pairs):
             local_dict[latest_id] = parent
             parent_id = latest_id
             name_id_dict[parent] = parent_id
-            
-            
-            
+        
         else:
             parent_id = name_id_dict[parent]
         
