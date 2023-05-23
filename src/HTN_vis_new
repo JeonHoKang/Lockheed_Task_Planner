@@ -42,6 +42,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.n_vertices = 1
         self.edges = []
         self.color_list = []
+        self.constraint_list = []
         self.render_node_to_edges()
         self.g = Graph(self.n_vertices, self.edges)
         self.labels = []
@@ -51,7 +52,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         for i in range(self.n_vertices):
             print(i)
             self.g.vs[i]["label"] = f"{i}"
-            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]}"
+            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/node type: {self.constraint_list[i]}"
             self.labels.append(self.g.vs[i]["name"])
         self.fig = Figure(figsize=(100, 600))
         self.fig.set_size_inches(15, 50)
@@ -112,17 +113,18 @@ class HTN_vis(QtWidgets.QMainWindow):
         name_node, edge_list = create_dict_from_set(result)
         # self.color_list = list(color_dict.values())
         self.node_ids = list(name_node.values())
-        self.color_list = self.get_color_list()
+        self.color_list, self.constraint_list = self.get_color_constraint_list()
         self.edges = edge_list
         self.n_vertices = len(self.htn_nodes)
 
-    def get_color_list(self):
+    def get_color_constraint_list(self):
         scheduler = Lockheed_task_planner.HtnMilpScheduler()
         scheduler.set_dir("problem_description/LM2023_problem/")
         scheduler.import_problem("problem_description_LM2023.yaml")
         scheduler.create_task_model()
         htn = scheduler.import_htn()
         self.htn_dict = scheduler.dict
+        constraint_list= []
         children = []
         parent = []
         if scheduler.dict is not None:
@@ -131,14 +133,20 @@ class HTN_vis(QtWidgets.QMainWindow):
                 self.htn_nodes.append(node)
                 if node.type == "atomic":
                     children.append(node.id)
+                   
                 else:
                     parent.append(node)
+                    
+
         for j in range(len(self.node_ids)):
             if self.node_ids[j] in children:
                 self.color_list.append('red')
+                constraint_list.append('Leaf')
             else:
                 self.color_list.append('yellow')
-        return self.color_list
+                constraint_list.append(node.type)
+                
+        return self.color_list, constraint_list
     
     def process_input(self):
         # Get the user input and do something with it
@@ -236,7 +244,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         for i in range(self.n_vertices):
             print(i)
             self.g.vs[i]["label"] = f"{i}"
-            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]}"
+            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/node type: {self.constraint_list[i]}"
             self.labels.append(self.g.vs[i]["name"])
             print('current labels:', self.labels)
         self.list_widget.clear()
