@@ -46,9 +46,6 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.render_node_to_edges()
         self.g = Graph(self.n_vertices, self.edges)
         self.labels = []
-        
-        # self.g.vs['label'] = '0'
-        # self.g.vs['name'] = self.labels
         for i in range(self.n_vertices):
             print(i)
             self.g.vs[i]["label"] = f"{i}"
@@ -63,9 +60,6 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.plot()     
         self.parent_node = QtWidgets.QLineEdit('Parent')
         self.label = QtWidgets.QLineEdit('label')
-        # self.x_input.returnPressed.connect(self.process_input)
-        # Add a button to trigger an update
-        # self.y_input.returnPressed.connect(self.process_input)
         self.submit_button = QtWidgets.QPushButton("Submit")
         self.submit_button.clicked.connect(self.add_node_gui)
         self.delete_node = QtWidgets.QLineEdit('delete')
@@ -102,32 +96,30 @@ class HTN_vis(QtWidgets.QMainWindow):
 
 
     def render_node_to_edges(self):
-        scheduler = Lockheed_task_planner.HtnMilpScheduler()
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("problem_description_LM2023.yaml")
-        scheduler.create_task_model()
-        htn = scheduler.import_htn()
-        self.htn_dict = scheduler.dict
+        """Create nodes, edges, colors and constraint lists based on the dictionary using the class method"""
+        self.scheduler = Lockheed_task_planner.HtnMilpScheduler()
+        self.scheduler.set_dir("problem_description/LM2023_problem/")
+        self.scheduler.import_problem("problem_description_LM2023.yaml")
+        self.scheduler.create_task_model()
+        self.htn = self.scheduler.import_htn()
+        self.htn_dict = self.scheduler.dict
         self.htn_nodes = []
-        result = dfs(self.htn_dict)
-        name_node, edge_list = create_dict_from_set(result)
+        self.pairs_with_name, self.node_list_from_dict = dfs(self.htn_dict)
+        self.name_node, self.edge_list = create_dict_from_set(self.pairs_with_name)
         # self.color_list = list(color_dict.values())
-        self.node_ids = list(name_node.values())
+        self.node_ids = list(self.name_node.values())
         self.color_list, self.constraint_list = self.get_color_constraint_list()
-        self.edges = edge_list
+        self.edges = self.edge_list
         self.n_vertices = len(self.htn_nodes)
-
+        
     def get_color_constraint_list(self):
-        scheduler = Lockheed_task_planner.HtnMilpScheduler()
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("problem_description_LM2023.yaml")
-        scheduler.create_task_model()
-        htn = scheduler.import_htn()
-        self.htn_dict = scheduler.dict
+        '''get color and constraint from the nodes and edges'''
+        htn_dict = self.htn_dict
         constraint_list= []
         children = []
         parent = []
-        if scheduler.dict is not None:
+        color_list = []
+        if htn_dict is not None:
             task_network = DictImporter().import_(self.htn_dict)
             for node in PostOrderIter(task_network):
                 self.htn_nodes.append(node)
@@ -136,20 +128,17 @@ class HTN_vis(QtWidgets.QMainWindow):
                    
                 else:
                     parent.append(node)
-                    
-
-        for j in range(len(self.node_ids)):
-            if self.node_ids[j] in children:
-                self.color_list.append('red')
+                
+        for j in range(len(self.node_list_from_dict)):
+            current_node = self.node_list_from_dict[j]
+            node_id = current_node['id']
+            if node_id in children:
+                color_list.append('red')
                 constraint_list.append('Leaf')
             else:
-                self.color_list.append('yellow')
-                constraint_list.append(node.type)           
-        return self.color_list, constraint_list
-    
-    def process_input(self):
-        # Get the user input and do something with it
-        print("theta input:", self.parent_node.text())
+                color_list.append('yellow')
+                constraint_list.append(current_node['type'])           
+        return color_list, constraint_list
 
     def trace(self, root):
         # builds a set of all nodes and edges in a graph
@@ -255,19 +244,21 @@ def dfs(start):
     edges = []
     stack = [start]  # Stack to keep track of vertices to visit
     type_list = []
+    list_nodes = []
     while stack:
         vertex = stack.pop()  # Pop a vertex from the stack
 
         if vertex["id"] not in visited:
             print(vertex["id"])  # Process the vertex (in this case, print it)
             visited.append(vertex["id"])  # Mark the vertex as visited
-
+            list_nodes.append(vertex)
             # Add adjacent vertices to the stack
             if "children" in vertex:
                 for child in reversed(vertex["children"]):
                     stack.append(child)
                     edges.append((vertex["id"], child["id"]))
-    return edges
+    return edges, list_nodes
+
 
 def create_dict_from_set(pairs):
     local_dict = {}

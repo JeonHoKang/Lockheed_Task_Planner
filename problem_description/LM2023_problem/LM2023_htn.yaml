@@ -25,7 +25,7 @@ children:
                       - id: Screw_Operation_Top_P_C3
                         type: independent
                         children:
-                          - id: Screw1_Top_P_C3
+                          - id: Screw1_Top_P_C3 
                             type: atomic
                             agent: ["r3"]
                           - id: Screw2_Top_P_C3
