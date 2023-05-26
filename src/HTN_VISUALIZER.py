@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import sys
 from matplotlib.figure import Figure
 import plotly.graph_objects as go
-import Lockheed_task_planner 
+import Lockheed_task_planner
 import anytree
 from anytree import AnyNode, PostOrderIter
 from anytree.exporter import DictExporter
@@ -35,7 +35,6 @@ def recui(htn):
         return htn["id"]
 
 
-    
 class HTN_vis(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -43,6 +42,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.edges = []
         self.color_list = []
         self.constraint_list = []
+        self.node_ids = []
         self.render_node_to_edges()
         self.g = Graph(self.n_vertices, self.edges)
         self.labels = []
@@ -57,7 +57,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.canvas.setFixedSize(10000, 800)
         self.toolbar = NavigationToolbar(self.canvas, self)
         self.ax = self.fig.add_subplot(111)
-        self.plot()     
+        self.plot()
         self.parent_node = QtWidgets.QLineEdit('Parent')
         self.label = QtWidgets.QLineEdit('label')
         self.submit_button = QtWidgets.QPushButton("Submit")
@@ -94,7 +94,6 @@ class HTN_vis(QtWidgets.QMainWindow):
         # Add the Matplotlib canvas to the PyQt window
         self.setCentralWidget(container)
 
-
     def render_node_to_edges(self):
         """Create nodes, edges, colors and constraint lists based on the dictionary using the class method"""
         self.scheduler = Lockheed_task_planner.HtnMilpScheduler()
@@ -103,44 +102,20 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.scheduler.create_task_model()
         self.htn = self.scheduler.import_htn()
         self.htn_dict = self.scheduler.dict
-        self.htn_nodes = []
-        self.pairs_with_name, self.node_list_from_dict = dfs(self.htn_dict)
-        self.name_node, self.edge_list = create_dict_from_set(self.pairs_with_name)
-        # self.color_list = list(color_dict.values())
-        self.node_ids = list(self.name_node.values())
-        self.color_list, self.constraint_list = self.get_color_constraint_list()
-        self.edges = self.edge_list
-        self.n_vertices = len(self.htn_nodes)
-        
-    def get_color_constraint_list(self):
-        '''get color and constraint from the nodes and edges'''
-        htn_dict = self.htn_dict
-        constraint_list= []
-        children = []
-        parent = []
-        color_list = []
-        current_node_list = []
-        if htn_dict is not None:
-            task_network = DictImporter().import_(self.htn_dict)
-            for node in PostOrderIter(task_network):
-                self.htn_nodes.append(node)
-                if node.type == "atomic":
-                    children.append(node.id)
-                   
-                else:
-                    parent.append(node.id)
-                # Bug here : node_list_from_dict
-        for j in range(len(self.node_list_from_dict)):
-            current_node = list(self.name_node.values())
-            current_node_list.append(current_node)
-            # node_id = current_node['id']
-            if current_node[j] in children:
-                color_list.append('red')
-                constraint_list.append('Leaf')
+        self.pairs_with_name, self.pairs_with_full_node = dfs(self.htn_dict)
+        self.name_node, self.edge_list = create_dict_from_list(
+            self.pairs_with_name)
+        self.id_sequence = create_dict_list_from_pairs(self.pairs_with_full_node)
+        self.id_seqence_list = list(self.id_sequence.values())
+        for i in range(len(self.id_seqence_list)):
+            self.node_ids.append(self.id_seqence_list[i]['id'])
+            self.constraint_list.append(self.id_seqence_list[i]['type'])
+            if self.constraint_list[i] == 'atomic':
+                self.color_list.append('red')
             else:
-                color_list.append('yellow')
-                constraint_list.append('sequential')           
-        return color_list, constraint_list
+                self.color_list.append('yellow')
+        self.edges = self.edge_list
+        self.n_vertices = len(self.node_ids)
 
     def trace(self, root):
         # builds a set of all nodes and edges in a graph
@@ -171,7 +146,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             showlegend=False,
             vertex_color=self.color_list,
             vertex_label_size=9
-                            )
+        )
         self.canvas.draw()
 
     def add_node_gui(self):
@@ -241,28 +216,29 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.list_widget.addItems(self.labels)
         self.plot()
 
+
 def dfs(start):
     visited = []  # Set to track visited vertices
     edges = []
     stack = [start]  # Stack to keep track of vertices to visit
     type_list = []
-    list_nodes = []
+    full_id = []
     while stack:
         vertex = stack.pop()  # Pop a vertex from the stack
 
         if vertex["id"] not in visited:
             print(vertex["id"])  # Process the vertex (in this case, print it)
             visited.append(vertex["id"])  # Mark the vertex as visited
-            list_nodes.append(vertex)
             # Add adjacent vertices to the stack
             if "children" in vertex:
                 for child in reversed(vertex["children"]):
                     stack.append(child)
                     edges.append((vertex["id"], child["id"]))
-    return edges, list_nodes
+                    full_id.append((vertex, child))
+    return edges, full_id
 
 
-def create_dict_from_set(pairs):
+def create_dict_from_list(pairs):
     local_dict = {}
     name_id_dict = {}
     latest_id = -1
@@ -277,10 +253,10 @@ def create_dict_from_set(pairs):
             local_dict[latest_id] = parent
             parent_id = latest_id
             name_id_dict[parent] = parent_id
-        
+
         else:
             parent_id = name_id_dict[parent]
-        
+
         if child not in name_id_dict:
             latest_id += 1
             local_dict[latest_id] = child
@@ -293,17 +269,43 @@ def create_dict_from_set(pairs):
 
     return local_dict, index_list
 
+def create_dict_list_from_pairs(pairs):
+    local_dict = {}
+    name_id_dict = {}
+    latest_id = -1
+    index_list = []
+    for pair in pairs:
+        parent = pair[0]
+        child = pair[1]
+        child_id = 0
+        parent_id = 0
+        if parent['id'] not in name_id_dict:
+            latest_id += 1
+            local_dict[latest_id] = parent
+            parent_id = latest_id
+            name_id_dict[parent['id']] = parent_id
+        else:
+            parent_id = name_id_dict[parent['id']]
+
+        if child['id'] not in name_id_dict:
+            latest_id += 1
+            local_dict[latest_id] = child
+            child_id = latest_id
+            name_id_dict[child['id']] = child_id
+        else:
+            child_id = name_id_dict[child['id']]
+
+        index_list.append((parent_id, child_id))
+
+    return local_dict
+
+
+
 def main():
     app = QtWidgets.QApplication(sys.argv)
     htn = HTN_vis()
     htn.show()
     sys.exit(app.exec_())
-
-    # Digraph_HTN = htn.draw_dot(A)
-    # app = QtWidgets.QApplication(sys.argv)
-    # window = MainWindow()
-    # window.show()
-    # sys.exit(app.exec_())
 
 
 if __name__ == '__main__':
