@@ -49,7 +49,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         for i in range(self.n_vertices):
             print(i)
             self.g.vs[i]["label"] = f"{i}"
-            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/node type: {self.constraint_list[i]}"
+            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/agent: {self.constraint_list[i]}"
             self.labels.append(self.g.vs[i]["name"])
         self.fig = Figure(figsize=(100, 600))
         self.fig.set_size_inches(15, 50)
@@ -60,6 +60,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.plot()
         self.parent_node = QtWidgets.QLineEdit('Parent')
         self.label = QtWidgets.QLineEdit('label')
+        self.node_type = QtWidgets.QLineEdit('type or agent')
         self.submit_button = QtWidgets.QPushButton("Submit")
         self.submit_button.clicked.connect(self.add_node_gui)
         self.delete_node = QtWidgets.QLineEdit('delete')
@@ -82,6 +83,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         layout2.addWidget(self.toolbar)
         layout2.addWidget(self.parent_node)
         layout2.addWidget(self.label)
+        layout2.addWidget(self.node_type)
         layout2.addWidget(self.submit_button)
         layout3 = QtWidgets.QVBoxLayout()
         layout3.addWidget(self.delete_node)
@@ -105,7 +107,8 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.pairs_with_name, self.pairs_with_full_node = dfs(self.htn_dict)
         self.name_node, self.edge_list = create_dict_from_list(
             self.pairs_with_name)
-        self.id_sequence = create_dict_list_from_pairs(self.pairs_with_full_node)
+        self.id_sequence = create_dict_list_from_pairs(
+            self.pairs_with_full_node)
         self.id_seqence_list = list(self.id_sequence.values())
         for i in range(len(self.id_seqence_list)):
             self.node_ids.append(self.id_seqence_list[i]['id'])
@@ -116,19 +119,6 @@ class HTN_vis(QtWidgets.QMainWindow):
                 self.color_list.append('yellow')
         self.edges = self.edge_list
         self.n_vertices = len(self.node_ids)
-
-    def trace(self, root):
-        # builds a set of all nodes and edges in a graph
-        nodes, edges = set(), set()
-
-        def build(v):
-            if v not in nodes:
-                nodes.add(v)
-                for child in v._children:
-                    edges.add((child, v))
-                    build(child)
-        build(root)
-        return nodes, edges
 
     def plot(self):
         # self.g = Graph(self.n_vertices, self.edges)
@@ -152,6 +142,7 @@ class HTN_vis(QtWidgets.QMainWindow):
     def add_node_gui(self):
         self.ax.clear()
         user_input_parent = self.parent_node.text()
+        user_input_node_type = self.node_type.text()
         if user_input_parent.isalpha():
             print('string')
             pass
@@ -167,14 +158,24 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.g.add_edges([(user_input_parent, self.n_vertices-1)])
             self.g.vs[self.n_vertices -
                       1]["label"] = f"{self.n_vertices-1}"
-            self.g.vs[self.n_vertices -
-                      1]["name"] = f"{self.n_vertices-1}: {self.label.text()}"
             self.labels.append(self.g.vs[self.n_vertices -
                                          1]["name"])
             self.node_ids.append(self.g.vs[self.n_vertices -
                                            1]["name"])
             self.color_list[user_input_parent] = 'yellow'
             self.color_list.append('red')
+            self.constraint_list.append(user_input_node_type)
+            self.g.vs[self.n_vertices -
+                      1]["name"] = f"{self.n_vertices-1}: {self.label.text()} - constraint/node type: {self.constraint_list[self.n_vertices-1]}"
+            user_new_node = {}
+            user_new_node['id'] = self.label.text()
+            user_new_node['type'] = self.node_type.text()
+            if user_new_node['type'] != 'atomic':
+                user_new_node['children'] = []
+            else:
+                # consider putting color here
+                user_new_node['agent'] = []
+            self.id_sequence[self.n_vertices-1] = user_new_node
             self.list_widget.clear()
             print(self.labels)
             self.list_widget.addItems(self.labels)
@@ -183,6 +184,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             # print the resulting list of dictionaries
             print('vertex: ', list(vertex_list))
             print('edge: ', edge_list)
+            print('new node is: ', self.id_sequence)
         self.plot()
 
     def del_node_gui(self):
@@ -209,7 +211,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         for i in range(self.n_vertices):
             print(i)
             self.g.vs[i]["label"] = f"{i}"
-            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/node type: {self.constraint_list[i]}"
+            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/agent: {self.constraint_list[i]}"
             self.labels.append(self.g.vs[i]["name"])
             print('current labels:', self.labels)
         self.list_widget.clear()
@@ -269,6 +271,7 @@ def create_dict_from_list(pairs):
 
     return local_dict, index_list
 
+
 def create_dict_list_from_pairs(pairs):
     local_dict = {}
     name_id_dict = {}
@@ -298,7 +301,6 @@ def create_dict_list_from_pairs(pairs):
         index_list.append((parent_id, child_id))
 
     return local_dict
-
 
 
 def main():
