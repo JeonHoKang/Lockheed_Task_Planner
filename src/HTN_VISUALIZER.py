@@ -119,6 +119,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         children = []
         parent = []
         color_list = []
+        current_node_list = []
         if htn_dict is not None:
             task_network = DictImporter().import_(self.htn_dict)
             for node in PostOrderIter(task_network):
@@ -127,17 +128,18 @@ class HTN_vis(QtWidgets.QMainWindow):
                     children.append(node.id)
                    
                 else:
-                    parent.append(node)
-                
+                    parent.append(node.id)
+                # Bug here : node_list_from_dict
         for j in range(len(self.node_list_from_dict)):
-            current_node = self.node_list_from_dict[j]
-            node_id = current_node['id']
-            if node_id in children:
+            current_node = list(self.name_node.values())
+            current_node_list.append(current_node)
+            # node_id = current_node['id']
+            if current_node[j] in children:
                 color_list.append('red')
                 constraint_list.append('Leaf')
             else:
                 color_list.append('yellow')
-                constraint_list.append(current_node['type'])           
+                constraint_list.append('sequential')           
         return color_list, constraint_list
 
     def trace(self, root):
