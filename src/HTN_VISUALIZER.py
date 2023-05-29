@@ -44,7 +44,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         for i in range(self.n_vertices):
             print(i)
             self.g.vs[i]["label"] = f"{i}"
-            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/agent: {self.constraint_list[i]}"
+            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
             self.labels.append(self.g.vs[i]["name"])
         self.fig = Figure(figsize=(100, 600))
         self.fig.set_size_inches(15, 50)
@@ -142,6 +142,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.list_widget.addItems(self.labels)
         # layout1.addWidget(self.canvas)
         scroll_area.setWidget(self.canvas)
+        scroll_area.setFixedWidth(1300)
         layout1.addWidget(scroll_area)
         layout2 = QtWidgets.QVBoxLayout()
         layout2.addWidget(self.toolbar)
@@ -181,7 +182,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             if self.constraint_list[i] != 'atomic':
                 self.color_list.append('yellow')
             else:
-                self.color_list.append('red')
+                self.color_list.append('cyan')
 
         self.edges = self.edge_list
         self.n_vertices = len(self.node_ids)
@@ -240,7 +241,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.labels = []
             for i in range(self.n_vertices):
                 self.g.vs[i]["label"] = f"{i}"
-                self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/agent: {self.constraint_list[i]}"
+                self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
                 self.labels.append(self.g.vs[i]["name"])
             self.list_widget.clear()
             self.list_widget.addItems(self.labels)
@@ -264,7 +265,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.labels = []
             for i in range(self.n_vertices):
                 self.g.vs[i]["label"] = f"{i}"
-                self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/agent: {self.constraint_list[i]}"
+                self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
                 self.labels.append(self.g.vs[i]["name"])
             self.list_widget.clear()
             self.list_widget.addItems(self.labels)
