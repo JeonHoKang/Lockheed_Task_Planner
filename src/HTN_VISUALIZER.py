@@ -43,7 +43,13 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.color_list = []
         self.constraint_list = []
         self.node_ids = []
-        self.render_node_to_edges()
+        self.scheduler = Lockheed_task_planner.HtnMilpScheduler()
+        self.scheduler.set_dir("problem_description/LM2023_problem/")
+        self.scheduler.import_problem("problem_description_LM2023.yaml")
+        self.scheduler.create_task_model()
+        self.htn = self.scheduler.import_htn()
+        self.htn_dict = self.scheduler.dict
+        self.render_node_to_edges(self.htn_dict)
         self.g = Graph(self.n_vertices, self.edges)
         self.labels = []
         for i in range(self.n_vertices):
@@ -60,7 +66,9 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.plot()
         self.parent_node = QtWidgets.QLineEdit('Parent')
         self.label = QtWidgets.QLineEdit('label')
-        self.node_type = QtWidgets.QLineEdit('type or agent')
+        self.node_type = QtWidgets.QLineEdit('node type')
+        self.agent_type = QtWidgets.QLineEdit('agent type')
+        self.order_number = QtWidgets.QLineEdit('Froom left to right(0~)')
         self.submit_button = QtWidgets.QPushButton("Submit")
         self.submit_button.clicked.connect(self.add_node_gui)
         self.delete_node = QtWidgets.QLineEdit('delete')
@@ -84,6 +92,8 @@ class HTN_vis(QtWidgets.QMainWindow):
         layout2.addWidget(self.parent_node)
         layout2.addWidget(self.label)
         layout2.addWidget(self.node_type)
+        layout2.addWidget(self.order_number)
+        layout2.addWidget(self.agent_type)
         layout2.addWidget(self.submit_button)
         layout3 = QtWidgets.QVBoxLayout()
         layout3.addWidget(self.delete_node)
@@ -96,27 +106,25 @@ class HTN_vis(QtWidgets.QMainWindow):
         # Add the Matplotlib canvas to the PyQt window
         self.setCentralWidget(container)
 
-    def render_node_to_edges(self):
+    def render_node_to_edges(self, htn_dict):
         """Create nodes, edges, colors and constraint lists based on the dictionary using the class method"""
-        self.scheduler = Lockheed_task_planner.HtnMilpScheduler()
-        self.scheduler.set_dir("problem_description/LM2023_problem/")
-        self.scheduler.import_problem("problem_description_LM2023.yaml")
-        self.scheduler.create_task_model()
-        self.htn = self.scheduler.import_htn()
-        self.htn_dict = self.scheduler.dict
-        self.pairs_with_name, self.pairs_with_full_node = dfs(self.htn_dict)
+        self.pairs_with_name, self.pairs_with_full_node = dfs(htn_dict)
         self.name_node, self.edge_list = create_dict_from_list(
             self.pairs_with_name)
         self.id_sequence = create_dict_list_from_pairs(
             self.pairs_with_full_node)
         self.id_seqence_list = list(self.id_sequence.values())
+        self.node_ids = []
+        self.constraint_list = []
+        self.color_list = []
         for i in range(len(self.id_seqence_list)):
             self.node_ids.append(self.id_seqence_list[i]['id'])
             self.constraint_list.append(self.id_seqence_list[i]['type'])
-            if self.constraint_list[i] == 'atomic':
-                self.color_list.append('red')
-            else:
+            if self.constraint_list[i] != 'atomic':
                 self.color_list.append('yellow')
+            else:
+                self.color_list.append('red')
+
         self.edges = self.edge_list
         self.n_vertices = len(self.node_ids)
 
@@ -143,48 +151,40 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.ax.clear()
         user_input_parent = self.parent_node.text()
         user_input_node_type = self.node_type.text()
-        if user_input_parent.isalpha():
+        order_child = self.order_number.text()
+
+        # self.id_seqence_list
+        # self.htn_dict
+        if user_input_parent.isalpha() or order_child.isalpha():
             print('string')
             pass
         else:
             user_input_parent = int(user_input_parent)
             if user_input_parent > self.n_vertices-1:
                 pass
-            self.n_vertices += 1
+            # self.n_vertices += 1
             print('number of vertices', self.n_vertices)
-            # self.edges.append((user_input_parent, self.n_vertices-1))
-            # self.labels.append(self.label.text())
-            self.g.add_vertices(1)
-            self.g.add_edges([(user_input_parent, self.n_vertices-1)])
-            self.g.vs[self.n_vertices -
-                      1]["label"] = f"{self.n_vertices-1}"
-            self.labels.append(self.g.vs[self.n_vertices -
-                                         1]["name"])
-            self.node_ids.append(self.g.vs[self.n_vertices -
-                                           1]["name"])
-            self.color_list[user_input_parent] = 'yellow'
-            self.color_list.append('red')
-            self.constraint_list.append(user_input_node_type)
-            self.g.vs[self.n_vertices -
-                      1]["name"] = f"{self.n_vertices-1}: {self.label.text()} - constraint/node type: {self.constraint_list[self.n_vertices-1]}"
             user_new_node = {}
             user_new_node['id'] = self.label.text()
             user_new_node['type'] = self.node_type.text()
             if user_new_node['type'] != 'atomic':
                 user_new_node['children'] = []
             else:
-                # consider putting color here
-                user_new_node['agent'] = []
+                user_new_node['agent'] = self.agent_type.text()
             self.id_sequence[self.n_vertices-1] = user_new_node
+            target_id = self.id_seqence_list[user_input_parent]['id']
+            type = user_input_node_type
+            insert_element(self.htn_dict, target_id, type,
+                           user_new_node, order_child)
+            self.render_node_to_edges(self.htn_dict)
+            self.g = Graph(self.n_vertices, self.edges)
+            self.labels = []
+            for i in range(self.n_vertices):
+                self.g.vs[i]["label"] = f"{i}"
+                self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/agent: {self.constraint_list[i]}"
+                self.labels.append(self.g.vs[i]["name"])
             self.list_widget.clear()
-            print(self.labels)
             self.list_widget.addItems(self.labels)
-            edge_list = self.g.get_edgelist()
-            vertex_list = self.g.vs
-            # print the resulting list of dictionaries
-            print('vertex: ', list(vertex_list))
-            print('edge: ', edge_list)
-            print('new node is: ', self.id_sequence)
         self.plot()
 
     def del_node_gui(self):
@@ -198,25 +198,38 @@ class HTN_vis(QtWidgets.QMainWindow):
             if user_delete > self.n_vertices-1:
                 pass
             # self.g.delete_edges(user_delete)
-            self.g.delete_vertices(user_delete)
-            edge_list = self.g.get_edgelist()
-            vertex_list = self.g.vs
-            self.n_vertices -= 1
-            # print the resulting list of dictionaries
-            print('vertex: ', list(vertex_list))
-            print('edge_list: ', edge_list)
-            self.node_ids.pop(user_delete)
-            self.color_list.pop(user_delete)
-        self.labels = []
-        for i in range(self.n_vertices):
-            print(i)
-            self.g.vs[i]["label"] = f"{i}"
-            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/agent: {self.constraint_list[i]}"
-            self.labels.append(self.g.vs[i]["name"])
-            print('current labels:', self.labels)
-        self.list_widget.clear()
-        self.list_widget.addItems(self.labels)
+            delete_element(
+                self.htn_dict, self.id_seqence_list[user_delete]['id'])
+            self.render_node_to_edges(self.htn_dict)
+            self.g = Graph(self.n_vertices, self.edges)
+            self.labels = []
+            for i in range(self.n_vertices):
+                self.g.vs[i]["label"] = f"{i}"
+                self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/agent: {self.constraint_list[i]}"
+                self.labels.append(self.g.vs[i]["name"])
+            self.list_widget.clear()
+            self.list_widget.addItems(self.labels)
         self.plot()
+        #     # print the resulting list of dictionaries
+        #     self.node_ids.pop(user_delete)
+        #     self.color_list.pop(user_delete)
+        #     parent_node = []
+        #     # Development in progress
+        #     for j in range(self.n_vertices):
+        #         if user_delete in self.edges[j]:
+        #             print(self.edges[j])
+        #             parent_node.append(self.edges[j][1])
+        #             break
+        # self.labels = []
+        # for i in range(self.n_vertices):
+        #     print(i)
+        #     self.g.vs[i]["label"] = f"{i}"
+        #     self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/agent: {self.constraint_list[i]}"
+        #     self.labels.append(self.g.vs[i]["name"])
+        #     print('current labels:', self.labels)
+        # self.list_widget.clear()
+        # self.list_widget.addItems(self.labels)
+        # self.plot()
 
 
 def dfs(start):
@@ -238,6 +251,40 @@ def dfs(start):
                     edges.append((vertex["id"], child["id"]))
                     full_id.append((vertex, child))
     return edges, full_id
+
+
+def insert_element(dictionary, target_id, type, new_element, input_order_number):
+    input_order_number = int(input_order_number)
+    node_type = type
+    if dictionary['id'] == target_id:
+        if 'children' not in dictionary:
+            dictionary['children'] = []
+            del dictionary['agent']
+            dictionary['type'] = node_type
+            dictionary['children'].append(new_element)
+        else:
+            if len(dictionary['children'])+1 < input_order_number:
+                pass
+            else:
+                dictionary['children'].insert(input_order_number, new_element)
+
+    else:
+        if 'children' in dictionary:
+            for child in dictionary['children']:
+                insert_element(child, target_id, node_type,
+                               new_element, input_order_number)
+
+
+def delete_element(dictionary, target_id, parent=None):
+    if dictionary['id'] == target_id:
+        delete_index = parent['children'].index(dictionary)
+        parent['children'].pop(delete_index)
+    else:
+        if 'children' in dictionary:
+            parent = None
+            for child in dictionary['children']:
+                parent = dictionary
+                delete_element(child, target_id, parent=parent)
 
 
 def create_dict_from_list(pairs):
