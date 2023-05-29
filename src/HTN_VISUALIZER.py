@@ -4,14 +4,11 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import igraph as ig
 from igraph import Graph, EdgeSeq
-from tkinter import ttk
-import tkinter as tk
 import matplotlib.pyplot as plt
 import sys
 from matplotlib.figure import Figure
 import plotly.graph_objects as go
 import Lockheed_task_planner
-import anytree
 from anytree import AnyNode, PostOrderIter
 from anytree.exporter import DictExporter
 from anytree import RenderTree  # just for nice printing
@@ -20,22 +17,11 @@ import numpy as np
 
 _RENDER_CMD = ['dot']
 _FORMAT = 'png'
-# print(data['children'][0]['children'][0]['children'][0])
-
-
-def recui(htn):
-    if "children" in htn:
-        parent = htn['id']
-        children = htn["children"]
-        child_list = []
-        for child in children:
-            child_list.append(recui(child))
-        return child_list
-    else:
-        return htn["id"]
 
 
 class HTN_vis(QtWidgets.QMainWindow):
+    ''' Visualize HTN based on the tree structured dictionary'''
+
     def __init__(self):
         super().__init__()
         self.n_vertices = 1
@@ -43,13 +29,16 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.color_list = []
         self.constraint_list = []
         self.node_ids = []
+        # From the scheduler, import htn and dictionary
         self.scheduler = Lockheed_task_planner.HtnMilpScheduler()
         self.scheduler.set_dir("problem_description/LM2023_problem/")
         self.scheduler.import_problem("problem_description_LM2023.yaml")
         self.scheduler.create_task_model()
         self.htn = self.scheduler.import_htn()
+        # main htn dictionary
         self.htn_dict = self.scheduler.dict
         self.render_node_to_edges(self.htn_dict)
+        # declare first igraph instance
         self.g = Graph(self.n_vertices, self.edges)
         self.labels = []
         for i in range(self.n_vertices):
@@ -64,14 +53,79 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.toolbar = NavigationToolbar(self.canvas, self)
         self.ax = self.fig.add_subplot(111)
         self.plot()
-        self.parent_node = QtWidgets.QLineEdit('Parent')
-        self.label = QtWidgets.QLineEdit('label')
-        self.node_type = QtWidgets.QLineEdit('node type')
-        self.agent_type = QtWidgets.QLineEdit('agent type')
-        self.order_number = QtWidgets.QLineEdit('Froom left to right(0~)')
+        # First parent node input container
+        self.parent_node_container = QtWidgets.QWidget()
+        self.text_layout_1 = QtWidgets.QHBoxLayout(self.parent_node_container)
+        self.text_label1 = QtWidgets.QLabel(
+            'Parent Node: ', self.parent_node_container)
+        self.parent_node = QtWidgets.QLineEdit()
+        self.parent_node.setPlaceholderText('Parent in integer number')
+        self.text_layout_1.addWidget(self.text_label1)
+        self.text_layout_1.addWidget(self.parent_node)
+        # end of container maker
+        self.label_container = QtWidgets.QWidget()
+        self.text_layout_2 = QtWidgets.QHBoxLayout(self.label_container)
+        self.text_label2 = QtWidgets.QLabel(
+            'Task Node name: ', self.parent_node_container)
+        self.label = QtWidgets.QLineEdit()
+        self.label.setPlaceholderText('Name of the node')
+        self.text_layout_2.addWidget(self.text_label2)
+        self.text_layout_2.addWidget(self.label)
+        # End of container
+        self.node_type_container = QtWidgets.QWidget()
+        self.text_layout_3 = QtWidgets.QHBoxLayout(self.node_type_container)
+        self.text_label3 = QtWidgets.QLabel(
+            'New node type: ', self.node_type_container)
+        self.node_type = QtWidgets.QLineEdit()
+        self.node_type.setPlaceholderText('Type of the node you are adding')
+        self.text_layout_3.addWidget(self.text_label3)
+        self.text_layout_3.addWidget(self.node_type)
+        # End of container
+        self.parent_type_container = QtWidgets.QWidget()
+        # self.parent_type_container.setFixedSize(100, 400)
+        self.text_layout_4 = QtWidgets.QHBoxLayout(self.parent_type_container)
+        self.text_label4 = QtWidgets.QLabel(
+            'Parent node type: ', self.parent_type_container)
+        self.parent_node_type = QtWidgets.QLineEdit()
+        self.parent_node_type.setPlaceholderText('Type of the parent node')
+        self.text_layout_4.addWidget(self.text_label4)
+        self.text_layout_4.addWidget(self.parent_node_type)
+        # End of container
+        self.agent_type_container = QtWidgets.QWidget()
+        self.text_layout_5 = QtWidgets.QHBoxLayout(self.agent_type_container)
+        self.text_label5 = QtWidgets.QLabel(
+            'Agent name: ', self.agent_type_container)
+        self.agent_type = QtWidgets.QLineEdit()
+        self.agent_type.setPlaceholderText(
+            'if atoomic, input agent id')
+        self.text_layout_5.addWidget(self.text_label5)
+        self.text_layout_5.addWidget(self.agent_type)
+        # End of container
+
+        self.order_number_container = QtWidgets.QWidget()
+        self.text_layout_6 = QtWidgets.QHBoxLayout(self.order_number_container)
+        self.text_label6 = QtWidgets.QLabel(
+            'Input index from 0 : ', self.order_number_container)
+        self.order_number = QtWidgets.QLineEdit()
+        self.order_number.setPlaceholderText(
+            'From left to right(0~)')
+        self.text_layout_6.addWidget(self.text_label6)
+        self.text_layout_6.addWidget(self.order_number)
+        # End of container
+
+        self.delete_node_container = QtWidgets.QWidget()
+        self.text_layout_7 = QtWidgets.QHBoxLayout(self.delete_node_container)
+        self.text_label7 = QtWidgets.QLabel(
+            'Delete node: ', self.delete_node_container)
+        self.delete_node = QtWidgets.QLineEdit()
+        self.delete_node.setPlaceholderText(
+            'Delete node in integer')
+        self.text_layout_7.addWidget(self.text_label7)
+        self.text_layout_7.addWidget(self.delete_node)
+        # End of container
+
         self.submit_button = QtWidgets.QPushButton("Submit")
         self.submit_button.clicked.connect(self.add_node_gui)
-        self.delete_node = QtWidgets.QLineEdit('delete')
         self.delete_submit = QtWidgets.QPushButton("Delete")
         self.delete_submit.clicked.connect(self.del_node_gui)
         self.list_widget = QtWidgets.QListWidget()
@@ -89,14 +143,15 @@ class HTN_vis(QtWidgets.QMainWindow):
         layout1.addWidget(scroll_area)
         layout2 = QtWidgets.QVBoxLayout()
         layout2.addWidget(self.toolbar)
-        layout2.addWidget(self.parent_node)
-        layout2.addWidget(self.label)
-        layout2.addWidget(self.node_type)
-        layout2.addWidget(self.order_number)
-        layout2.addWidget(self.agent_type)
+        layout2.addWidget(self.parent_node_container)
+        layout2.addWidget(self.parent_type_container)
+        layout2.addWidget(self.label_container)
+        layout2.addWidget(self.node_type_container)
+        layout2.addWidget(self.order_number_container)
+        layout2.addWidget(self.agent_type_container)
         layout2.addWidget(self.submit_button)
         layout3 = QtWidgets.QVBoxLayout()
-        layout3.addWidget(self.delete_node)
+        layout3.addWidget(self.delete_node_container)
         layout3.addWidget(self.delete_submit)
         container = QtWidgets.QWidget()
         container.setLayout(layout0)
@@ -129,7 +184,10 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.n_vertices = len(self.node_ids)
 
     def plot(self):
-        # self.g = Graph(self.n_vertices, self.edges)
+        '''
+        Plotting functionality
+        '''
+        # general style configuration
         self.g["title"] = "HTN"
         layout = self.g.layout("rt", root=[0])
         layout.rotate(-180)
@@ -153,8 +211,6 @@ class HTN_vis(QtWidgets.QMainWindow):
         user_input_node_type = self.node_type.text()
         order_child = self.order_number.text()
 
-        # self.id_seqence_list
-        # self.htn_dict
         if user_input_parent.isalpha() or order_child.isalpha():
             print('string')
             pass
@@ -166,15 +222,15 @@ class HTN_vis(QtWidgets.QMainWindow):
             print('number of vertices', self.n_vertices)
             user_new_node = {}
             user_new_node['id'] = self.label.text()
-            user_new_node['type'] = self.node_type.text()
+            user_new_node['type'] = user_input_node_type
             if user_new_node['type'] != 'atomic':
                 user_new_node['children'] = []
             else:
                 user_new_node['agent'] = self.agent_type.text()
             self.id_sequence[self.n_vertices-1] = user_new_node
             target_id = self.id_seqence_list[user_input_parent]['id']
-            type = user_input_node_type
-            insert_element(self.htn_dict, target_id, type,
+            parent_input_node_type = self.parent_node_type
+            insert_element(self.htn_dict, target_id, parent_input_node_type,
                            user_new_node, order_child)
             self.render_node_to_edges(self.htn_dict)
             self.g = Graph(self.n_vertices, self.edges)
@@ -210,26 +266,6 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.list_widget.clear()
             self.list_widget.addItems(self.labels)
         self.plot()
-        #     # print the resulting list of dictionaries
-        #     self.node_ids.pop(user_delete)
-        #     self.color_list.pop(user_delete)
-        #     parent_node = []
-        #     # Development in progress
-        #     for j in range(self.n_vertices):
-        #         if user_delete in self.edges[j]:
-        #             print(self.edges[j])
-        #             parent_node.append(self.edges[j][1])
-        #             break
-        # self.labels = []
-        # for i in range(self.n_vertices):
-        #     print(i)
-        #     self.g.vs[i]["label"] = f"{i}"
-        #     self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - constraint/agent: {self.constraint_list[i]}"
-        #     self.labels.append(self.g.vs[i]["name"])
-        #     print('current labels:', self.labels)
-        # self.list_widget.clear()
-        # self.list_widget.addItems(self.labels)
-        # self.plot()
 
 
 def dfs(start):
