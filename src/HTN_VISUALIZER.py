@@ -53,6 +53,8 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.toolbar = NavigationToolbar(self.canvas, self)
         self.ax = self.fig.add_subplot(111)
         self.plot()
+        self.sub_container = QtWidgets.QWidget()
+        self.sub_main_layout = QtWidgets.QHBoxLayout(self.sub_container)
         # First parent node input container
         self.parent_node_container = QtWidgets.QWidget()
         self.text_layout_1 = QtWidgets.QHBoxLayout(self.parent_node_container)
@@ -134,7 +136,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         list_scroll_area = QtWidgets.QScrollArea()
         list_scroll_area.setWidgetResizable(True)
         list_scroll_area.setWidget(self.list_widget)
-        layout0 = QtWidgets.QVBoxLayout()
+        layout0 = QtWidgets.QHBoxLayout()
         layout1 = QtWidgets.QHBoxLayout()
         layout0.addWidget(list_scroll_area)
         self.list_widget.addItems(self.labels)
@@ -150,14 +152,15 @@ class HTN_vis(QtWidgets.QMainWindow):
         layout2.addWidget(self.order_number_container)
         layout2.addWidget(self.agent_type_container)
         layout2.addWidget(self.submit_button)
-        layout3 = QtWidgets.QVBoxLayout()
-        layout3.addWidget(self.delete_node_container)
-        layout3.addWidget(self.delete_submit)
+        layout2.setContentsMargins(0, 0, 0, 0)
+        # layout3 = QtWidgets.QVBoxLayout()
+        layout2.addWidget(self.delete_node_container)
+        layout2.addWidget(self.delete_submit)
         container = QtWidgets.QWidget()
         container.setLayout(layout0)
         container.layout().addLayout(layout1)
         container.layout().addLayout(layout2)
-        container.layout().addLayout(layout3)
+        # container.layout().addLayout(layout3)
         # Add the Matplotlib canvas to the PyQt window
         self.setCentralWidget(container)
 
@@ -229,7 +232,7 @@ class HTN_vis(QtWidgets.QMainWindow):
                 user_new_node['agent'] = self.agent_type.text()
             self.id_sequence[self.n_vertices-1] = user_new_node
             target_id = self.id_seqence_list[user_input_parent]['id']
-            parent_input_node_type = self.parent_node_type
+            parent_input_node_type = self.parent_node_type.text()
             insert_element(self.htn_dict, target_id, parent_input_node_type,
                            user_new_node, order_child)
             self.render_node_to_edges(self.htn_dict)
