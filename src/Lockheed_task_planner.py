@@ -25,11 +25,13 @@ from anytree import AnyNode, PostOrderIter
 from anytree.exporter import DictExporter
 from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
+from Agent import Agent
+from Task import Task
 
 
 class HtnMilpScheduler(object):
     def __init__(self) -> None:
-        self.htn_model = None
+        self.multi_product_htn = None
         self.all_diff_constraints = []
         self.h_dur_constraints = []
         self.r_dur_constraints = []
@@ -51,9 +53,10 @@ class HtnMilpScheduler(object):
         self.task_end_vars = None
         self.task_interval_vars = None
         self.problem_description = None
-        self.htn_model = None
         self.problem_dir = None
         self.num_products = 1
+        self.agent_team_model = {}
+        self.multi_product_dict = {}
 
     def set_dir(self, dir):
         """Sets the problem instance directory"""
@@ -68,12 +71,23 @@ class HtnMilpScheduler(object):
                 # load the yaml file
                 # Converts yaml document to python object
                 self.problem_description = yaml.safe_load(stream)
+                print('done')
             # Printing dictionary
             except yaml.YAMLError as e:
                 print(e)
 
+    def load_agent_model(self):
+        """Loads agent model from yaml file"""
+        agents = self.problem_description['agents']
+        agents.append('X')
+        for agent_id in agents:
+            self.agent_team_model[agent_id] = Agent(
+                agent_id)
+
     def create_task_model(self):
         """Creates a task model with the existing HTN"""
+        self.load_agent_model()
+        self.agent_team_model['X'].set_agent_state('unavailable')
         task_model_yaml = self.problem_description["task_model_id"]
         file_dir = self.problem_dir + task_model_yaml
         self.task_model = {}
@@ -100,6 +114,16 @@ class HtnMilpScheduler(object):
 
             except yaml.YAMLError as e:
                 print(e)
+        self.create_task_object(self.task_model)
+
+    def create_task_object(self, tasks):
+        task_model = {}
+        for key, value in tasks.items():
+            task_id = key
+            agent_model = value['agent_model']
+            duration_model = value['duration_model']
+            task_model[key] = Task(task_id, agent_model, duration_model)
+        return task_model
 
     def visualize(self, t_assignment):
         fig, gnt = plt.subplots(figsize=(60, 10))
@@ -173,6 +197,12 @@ class HtnMilpScheduler(object):
         plt.show()
 
     def import_htn(self, print_htn=True):  # HTN import
+        def edit_tree(dictionary, product_num):
+            dictionary['id'] = f"p{product_num}_{dictionary['id']}"
+            if 'children' in dictionary:
+                for child in dictionary['children']:
+                    edit_tree(child, product_num)
+
         combined_dict = {}
         htn_model_yaml = self.problem_description["htn_model_id"]  # HTN id
         file_dir = self.problem_dir + htn_model_yaml  # directory + htn_model
@@ -184,18 +214,23 @@ class HtnMilpScheduler(object):
                 print(e)
         num_products = self.num_products
         children = []
+        self.multi_product_dict = {}
+        self.multi_product_dict['id'] = 'Multi-product Sat Assem'
+        self.multi_product_dict['type'] = 'independent'
+        self.multi_product_dict['children'] = []
         for p in range(num_products):
-            child = DictImporter().import_(self.dict)
-            for node in PostOrderIter(child):
-                node.id = 'p{}_'.format(p+1) + node.id
-            children.append(child)
+            product_htn = copy.deepcopy(self.dict)
+            edit_tree(product_htn, p+1)
+            self.multi_product_dict['children'].append(product_htn)
+
         # For multi-product formulation, we introduce a task root at the highest
         # hiararchy
-        root = AnyNode(id="TASK_ROOT", type='parallel', children=children)
-        self.htn_model = root
+        # root = AnyNode(id="TASK_ROOT", type='parallel', children=children)
+        self.multi_product_htn = DictImporter().import_(self.multi_product_dict)
+
         if print_htn:
-            print(RenderTree(root))
-        return self.htn_model
+            print(RenderTree(self.multi_product_htn))
+        return self.multi_product_htn
 
     def generate_sequential_task_constraints(self, atomic_action_groups):
         model = self.model
@@ -251,7 +286,7 @@ class HtnMilpScheduler(object):
                     count = count + 1
 
     def create_task_network(self):
-        htn = self.htn_model
+        htn = self.multi_product_htn
         multi_product_index = 0
         if htn == None:
             raise Exception("no htn loaded")

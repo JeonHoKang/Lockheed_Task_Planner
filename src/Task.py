@@ -1,10 +1,12 @@
 class Task:
 
-    def __init__(self, task_id, agent_id):
+    def __init__(self, task_id, agents_model, duration_model):
         self.task_id = task_id
-
-        self.task_state = None
-
+        self.agent_id = agents_model
+        self.duration_model = duration_model
+        # for agent in range(len(agent_id)):
+        #     self.duration_model['agent'] =
+        self.task_state = 'unattempted'
         self.agent_types = None
         self.task_agent_uncertainty_models = {}
         self.max_time = None

@@ -14,6 +14,7 @@ from anytree.exporter import DictExporter
 from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 import numpy as np
+import contingency_manager
 
 _RENDER_CMD = ['dot']
 _FORMAT = 'png'
@@ -34,9 +35,11 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.scheduler.set_dir("problem_description/LM2023_problem/")
         self.scheduler.import_problem("problem_description_LM2023.yaml")
         self.scheduler.create_task_model()
+        self.contingency_manager = contingency_manager.Contingency_Manager()
+        self.contingency_htn = self.contingency_manager.contingency_htn
         self.htn = self.scheduler.import_htn()
         # main htn dictionary
-        self.htn_dict = self.scheduler.dict
+        self.htn_dict = self.scheduler.multi_product_dict
         self.render_node_to_edges(self.htn_dict)
         # declare first igraph instance
         self.g = Graph(self.n_vertices, self.edges)
