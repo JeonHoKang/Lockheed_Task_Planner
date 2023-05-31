@@ -292,17 +292,11 @@ class HtnMilpScheduler(object):
             raise Exception("no htn loaded")
 
         constraint_nodes = []
-
         constraint_nodes.append(htn)
-        indepdendent_action_groups = []
-        indepdendent_action_groups1 = []
-        indepdendent_action_groups2 = []
         atomic_action_groups1 = [[] for i in range(self.num_products)]
         while constraint_nodes:
             node = constraint_nodes.pop(0)
-            print("node:", node)
             node_children = node.children
-            print("node:", node_children)
             atomic_action_groups = []
             for node_child in node_children:
                 if node_child.type == "atomic":
@@ -320,7 +314,6 @@ class HtnMilpScheduler(object):
             if node.type == "parallel":
                 continue
             elif node.type == "sequential":
-                print("seq")
                 self.generate_sequential_task_constraints(atomic_action_groups)
             elif node.type == "independent":
                 self.generate_independent_task_constraints(
@@ -328,9 +321,6 @@ class HtnMilpScheduler(object):
             else:
                 raise Exception(
                     "Unknown node type encountered in HTN:" + node.type)
-        print('moment of truth')
-        print(atomic_action_groups1)
-        print(np.shape(atomic_action_groups1))
         # If we have only two products wo only check once
         for k in range(self.num_products):
             # hence it will be num_products
@@ -343,11 +333,6 @@ class HtnMilpScheduler(object):
                     else:
                         self.generate_multiproduct_task_contrasints(
                             atomic_action_groups1[k-1], atomic_action_groups1[k-1+j])
-                        print('a')
-                        print(k-1)
-                        print('b')
-                        print(k-1+j)
-                        input()
                 multi_product_index -= 1
 
     def generate_model(self):

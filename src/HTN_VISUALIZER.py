@@ -30,6 +30,8 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.color_list = []
         self.constraint_list = []
         self.node_ids = []
+        self.radio_options = ['sequential',
+                              'parallel', 'independent', 'atomic']
         # From the scheduler, import htn and dictionary
         self.scheduler = Lockheed_task_planner.HtnMilpScheduler()
         self.scheduler.set_dir("problem_description/LM2023_problem/")
@@ -78,23 +80,32 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.text_layout_2.addWidget(self.label)
         # End of container
         self.node_type_container = QtWidgets.QWidget()
-        self.text_layout_3 = QtWidgets.QHBoxLayout(self.node_type_container)
+        self.text_layout_3 = QtWidgets.QVBoxLayout(self.node_type_container)
         self.text_label3 = QtWidgets.QLabel(
             'New node type: ', self.node_type_container)
-        self.node_type = QtWidgets.QLineEdit()
-        self.node_type.setPlaceholderText('Type of the node you are adding')
+        self.button_group1 = QtWidgets.QButtonGroup()
         self.text_layout_3.addWidget(self.text_label3)
-        self.text_layout_3.addWidget(self.node_type)
+        self.child_type_radio = []
+        for idx, option in enumerate(self.radio_options):
+            self.select_child_type = QtWidgets.QRadioButton(option)
+            self.child_type_radio.append(self.select_child_type)
+            self.text_layout_3.addWidget(self.select_child_type)
+            self.button_group1.addButton(self.select_child_type, idx)
         # End of container
         self.parent_type_container = QtWidgets.QWidget()
         # self.parent_type_container.setFixedSize(100, 400)
-        self.text_layout_4 = QtWidgets.QHBoxLayout(self.parent_type_container)
+        self.text_layout_4 = QtWidgets.QVBoxLayout(self.parent_type_container)
         self.text_label4 = QtWidgets.QLabel(
             'Parent node type: ', self.parent_type_container)
-        self.parent_node_type = QtWidgets.QLineEdit()
-        self.parent_node_type.setPlaceholderText('Type of the parent node')
         self.text_layout_4.addWidget(self.text_label4)
-        self.text_layout_4.addWidget(self.parent_node_type)
+        self.button_group2 = QtWidgets.QButtonGroup()
+        self.parent_type_radio = []
+        for idx, option in enumerate(self.radio_options):
+            self.select_parent_type = QtWidgets.QRadioButton(option)
+            self.parent_type_radio.append(self.select_parent_type)
+            self.text_layout_4.addWidget(self.select_parent_type)
+            self.button_group2.addButton(self.select_parent_type, idx)
+
         # End of container
         self.agent_type_container = QtWidgets.QWidget()
         self.text_layout_5 = QtWidgets.QHBoxLayout(self.agent_type_container)
@@ -102,7 +113,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             'Agent name: ', self.agent_type_container)
         self.agent_type = QtWidgets.QLineEdit()
         self.agent_type.setPlaceholderText(
-            'if atoomic, input agent id')
+            'if atomic, input agent id')
         self.text_layout_5.addWidget(self.text_label5)
         self.text_layout_5.addWidget(self.agent_type)
         # End of container
@@ -154,6 +165,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         layout2.addWidget(self.label_container)
         layout2.addWidget(self.node_type_container)
         layout2.addWidget(self.order_number_container)
+
         layout2.addWidget(self.agent_type_container)
         layout2.addWidget(self.submit_button)
         layout2.setContentsMargins(0, 0, 0, 0)
@@ -215,7 +227,17 @@ class HTN_vis(QtWidgets.QMainWindow):
     def add_node_gui(self):
         self.ax.clear()
         user_input_parent = self.parent_node.text()
-        user_input_node_type = self.node_type.text()
+        for index, radio_button in enumerate(self.child_type_radio):
+            if radio_button.isChecked():
+                child_selected_index = index
+                break
+
+        for index, radio_button in enumerate(self.parent_type_radio):
+            if radio_button.isChecked():
+                parent_selected_index = index
+                break
+        parent_node_type = self.radio_options[parent_selected_index]
+        child_node_type = self.radio_options[child_selected_index]
         order_child = self.order_number.text()
 
         if user_input_parent.isalpha() or order_child.isalpha():
@@ -229,14 +251,14 @@ class HTN_vis(QtWidgets.QMainWindow):
             print('number of vertices', self.n_vertices)
             user_new_node = {}
             user_new_node['id'] = self.label.text()
-            user_new_node['type'] = user_input_node_type
+            user_new_node['type'] = child_node_type
             if user_new_node['type'] != 'atomic':
                 user_new_node['children'] = []
             else:
                 user_new_node['agent'] = self.agent_type.text()
             self.id_sequence[self.n_vertices-1] = user_new_node
             target_id = self.id_seqence_list[user_input_parent]['id']
-            parent_input_node_type = self.parent_node_type.text()
+            parent_input_node_type = parent_node_type
             insert_element(self.htn_dict, target_id, parent_input_node_type,
                            user_new_node, order_child)
             self.render_node_to_edges(self.htn_dict)
