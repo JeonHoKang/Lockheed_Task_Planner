@@ -26,16 +26,12 @@ class Task:
 
     def __repr__(self) -> str:
         if self.task_state == "unattempted":
-            exp_next_state = ''
             robot = ''
         elif self.task_state != 'inprogress':
-            exp_next_state = ''
             robot = self.agent
         else:
-            exp_next_state = '->E:' + self.det_next_state + \
-                "(" + str(self.expected_task_duration) + ")"
             robot = self.agent
-        return self.task_id + ':' + str(self.task_state) + exp_next_state + ':' + robot
+        return self.task_id + ':' + str(self.task_state) + + ':' + self.agent_id
 
     def set_task_state(self, state):
         if state not in ['unattempted', "inprogress", 'succeeded', 'failed']:

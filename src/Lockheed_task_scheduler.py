@@ -57,7 +57,8 @@ class HtnMilpScheduler(object):
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-
+        self.contingency = False
+        self.contingency_name = ''
     def set_dir(self, dir):
         """Sets the problem instance directory"""
         self.problem_dir = dir
@@ -71,7 +72,6 @@ class HtnMilpScheduler(object):
                 # load the yaml file
                 # Converts yaml document to python object
                 self.problem_description = yaml.safe_load(stream)
-                print('done')
             # Printing dictionary
             except yaml.YAMLError as e:
                 print(e)
@@ -114,7 +114,7 @@ class HtnMilpScheduler(object):
 
             except yaml.YAMLError as e:
                 print(e)
-        self.create_task_object(self.task_model)
+        self.task_object = self.create_task_object(self.task_model)
 
     def create_task_object(self, tasks):
         task_model = {}
@@ -189,8 +189,6 @@ class HtnMilpScheduler(object):
         list_yticks.append(first_y_tick+y_tick_gap*len(list_ytick_labels))
         gnt.set_yticklabels(list_ytick_labels)
         gnt.set_yticks(list_yticks)
-        print(list_ytick_labels)
-        input()
         # Setting Y-axis limits
         gnt.set_ylim(0, list_yticks[len(list_yticks)-1])
         plt.savefig("gant1.png")
@@ -206,7 +204,6 @@ class HtnMilpScheduler(object):
         combined_dict = {}
         htn_model_yaml = self.problem_description["htn_model_id"]  # HTN id
         file_dir = self.problem_dir + htn_model_yaml  # directory + htn_model
-        print(file_dir)
         with open(file_dir, "r") as data:
             try:
                 self.dict = yaml.safe_load(data)
@@ -353,22 +350,23 @@ class HtnMilpScheduler(object):
         agent_end_vars = {}
         agent_interval_vars = {}
         agent_makespan_vars = {}
-        for agent in prob["agents"]:
+        agent_teams = list(self.agent_team_model.keys())
+        for agent in agent_teams:
             agent_decision_variables[agent] = {}
             agent_dur_constraints[agent] = {}
             agent_start_vars[agent] = {}
             agent_end_vars[agent] = {}
             agent_interval_vars[agent] = {}
-
-        for task in self.task_model.keys():
-
-            for agent in prob["agents"]:
+        task_list = self.task_object.keys()
+        if self.contingency:
+                self.task_object[self.contingency_name].set_task_state('failed')
+        for task in task_list:
+            for agent in agent_teams:
                 if agent not in self.task_model[task]["agent_model"]:
                     continue
-                agent_decision_variables[agent][task] = self.model.NewBoolVar(
-                    'x' + agent + '[' + task + ']')
-                print(agent_decision_variables[agent][task])
-
+                if self.agent_team_model[agent].agent_state == 'available' and self.task_object[task].task_state == 'unattempted':
+                    agent_decision_variables[agent][task] = self.model.NewBoolVar(
+                        'x' + agent + '[' + task + ']')
         # Create Start End Duration Interval Variables
 
         starts = []
@@ -379,13 +377,10 @@ class HtnMilpScheduler(object):
         for task in self.task_model.keys():
             dur = 0
             for agent, agent_dur_model in self.task_model[task]["duration_model"].items():
-                print(agent_dur_model)
                 task_dur = max(dur, agent_dur_model['mean'])
             self.horizon = self.horizon+task_dur
-        print("Horizon : ", self.horizon)
 
         for task in self.task_model.keys():
-
             # Define Main Start End , Duration and interval variables
             start = self.model.NewIntVar(0, self.horizon, 'start_' + task)
             duration = self.model.NewIntVar(
@@ -406,8 +401,6 @@ class HtnMilpScheduler(object):
                     continue
                 agent_dur_constraints[agent][task] = self.model.Add(
                     self.task_model[task]["duration_model"][agent]["mean"] == duration).OnlyEnforceIf(agent_decision_variables[agent][task])
-                # print(self.task_model[task]["duration_model"][agent]["mean"])
-
                 agent_start_vars[agent][task] = self.model.NewIntVar(
                     0, self.horizon, 'start_on_' + task + agent)
                 agent_end_vars[agent][task] = self.model.NewIntVar(
@@ -448,12 +441,11 @@ class HtnMilpScheduler(object):
 
         #### Create Solver and Solve ####
         solver = self.solver
-        solver.parameters.num_search_workers = 8
+        solver.parameters.num_search_workers = 9
         solver.parameters.max_time_in_seconds = 10
         status = solver.Solve(self.model)
 
         if status == cp_model.OPTIMAL:
-            print("here")
             print(solver.Value(self.makespan))
             print(solver.WallTime())
         elif status == cp_model.FEASIBLE:
@@ -483,16 +475,7 @@ class HtnMilpScheduler(object):
                         self.task_end_vars[task_id])])
                     visual_t_assignmnent[val].append((solver.Value(self.task_start_vars[task_id]), solver.Value(
                         self.task_end_vars[task_id])-solver.Value(self.task_start_vars[task_id])))
-                    # assigned_items = t_assignment[val][task_id]["StarttoEnd"][0]
-            # if t_assignment[
-            #         print(val, ':', t_assignment[val][task_id]["StarttoEnd"])
 
-                    #     if t_assignment[val][task_id]["StarttoEnd"][length][0] < t_assignment[val][task_id]["StarttoEnd"][length+1][0]:
-                    #         new_element = t_assignment[val][task_id]["StarttoEnd"][length]
-                    #         next_element = t_assignment[val][task_id]["StarttoEnd"][length+1]
-                    #         t_assignment[val][task_id]["StarttoEnd"][length] =  next_element
-                    #         t_assignment[val][task_id]["StarttoEnd"][length+1] = new_element
-        print('task', self.task_id)
         self.visualize(visual_t_assignmnent)
         self.export_yaml(t_assignment)
         print(t_assignment)
@@ -501,14 +484,22 @@ class HtnMilpScheduler(object):
         task_allocation = {}
         task_allocation = t_assignment
         print(task_allocation)
-        with open(r'{}\task_allocation.yaml'.format(self.problem_dir), 'w') as file:
-            documents = yaml.dump(task_allocation, file, sort_keys=False)
+        if self.contingency:
+             with open(r'{}\task_allocation_cont2.yaml'.format(self.problem_dir), 'w') as file:
+                documents = yaml.dump(task_allocation, file, sort_keys=False)
+        else:
+            with open(r'{}\task_allocation.yaml'.format(self.problem_dir), 'w') as file:
+                documents = yaml.dump(task_allocation, file, sort_keys=False)
 
 
 def main():
     scheduler = HtnMilpScheduler()
-    scheduler.set_dir("problem_description/LM2023_problem/")
-    scheduler.import_problem("problem_description_LM2023.yaml")
+    if scheduler.contingency:
+        scheduler.set_dir("problem_description/LM2023_problem/")
+        scheduler.import_problem("cont_problem_description_LM2023.yaml")
+    else:
+        scheduler.set_dir("problem_description/LM2023_problem/")
+        scheduler.import_problem("problem_description_LM2023.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------model created-------------')

@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import sys
 from matplotlib.figure import Figure
 import plotly.graph_objects as go
-import Lockheed_task_planner
+import Lockheed_task_scheduler
 from anytree import AnyNode, PostOrderIter
 from anytree.exporter import DictExporter
 from anytree import RenderTree  # just for nice printing
@@ -33,7 +33,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.radio_options = ['sequential',
                               'parallel', 'independent', 'atomic']
         # From the scheduler, import htn and dictionary
-        self.scheduler = Lockheed_task_planner.HtnMilpScheduler()
+        self.scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
         self.scheduler.set_dir("problem_description/LM2023_problem/")
         self.scheduler.import_problem("problem_description_LM2023.yaml")
         self.scheduler.create_task_model()

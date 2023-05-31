@@ -1,5 +1,5 @@
 import yaml
-import Lockheed_task_planner
+import Lockheed_task_scheduler
 import anytree
 from anytree import AnyNode, PostOrderIter, find_by_attr
 from anytree.exporter import DictExporter
@@ -35,7 +35,7 @@ class Contingency_Manager(object):
         super().__init__()
         contingency_occur = 1
         # print(data['children'][0]['children'][0]['children'][0])
-        scheduler = Lockheed_task_planner.HtnMilpScheduler()
+        scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
         scheduler.set_dir("problem_description/LM2023_problem/")
         scheduler.import_problem("problem_description_LM2023.yaml")
         scheduler.create_task_model()
