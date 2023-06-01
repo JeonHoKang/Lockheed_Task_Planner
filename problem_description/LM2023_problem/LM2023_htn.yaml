@@ -14,7 +14,7 @@ children:
                 type: atomic
                 agent: ["r1"]
               - id: Component_Top_Panel
-                type: parallel
+                type: independent
                 children:
                   - id: Top_P_C3
                     type: sequential
@@ -125,7 +125,7 @@ children:
                 type: atomic
                 agent: ["r1"]
               - id: Component_Right_Panel
-                type: parallel
+                type: independent
                 children:
                   - id: Right_P_C1_1
                     type: sequential
@@ -278,7 +278,7 @@ children:
                 type: atomic
                 agent: ["r1"]
               - id: Component_Middle_Panel
-                type: parallel
+                type: independent
                 children:
                   - id: Middle_P_C4
                     type: sequential

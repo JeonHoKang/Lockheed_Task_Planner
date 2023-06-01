@@ -59,6 +59,7 @@ class HtnMilpScheduler(object):
         self.multi_product_dict = {}
         self.contingency = False
         self.contingency_name = ''
+        self.contingency_node = None
     def set_dir(self, dir):
         """Sets the problem instance directory"""
         self.problem_dir = dir
@@ -338,7 +339,7 @@ class HtnMilpScheduler(object):
             raise Exception("No problem description imported")
         else:
             prob = self.problem_description
-
+        htn_nodes = list(anytree.PostOrderIter(self.multi_product_htn))
         ### Create Task Assignment Agent Decision Variables ###
         agent_decision_variables = {}  # agent Decision Variables
         agent_dur_constraints = {}
@@ -357,9 +358,67 @@ class HtnMilpScheduler(object):
             agent_start_vars[agent] = {}
             agent_end_vars[agent] = {}
             agent_interval_vars[agent] = {}
-        task_list = self.task_object.keys()
+        task_list = list(self.task_object.keys())
+        unavailable_agent = 'r1'
+
         if self.contingency:
-                self.task_object[self.contingency_name].set_task_state('failed')
+            self.task_object[self.contingency_name].set_task_state('failed')
+            self.contingency_node = self.task_object[self.contingency_name]
+        self.agent_team_model[unavailable_agent].set_agent_state('unavailable')
+
+        def find_contingency_nodes(unavailable_agent):
+            contingency_nodes = []
+            for node in htn_nodes:
+                if node.type != 'atomic':
+                    continue
+                if self.contingency_node is not None:
+                    contingency_nodes.append(self.contingency_node)
+                if unavailable_agent is not None:
+                    if unavailable_agent in node.agent:
+                        contingency_nodes.append(node)
+            return contingency_nodes
+        contingency_node_list = find_contingency_nodes(unavailable_agent)
+        # From the found contingency list move upward on tree to set all the children infeasible
+        def 
+        # for task in task_list:
+        #     for agent in agent_teams:
+        #         if agent not in self.task_model[task]["agent_model"]:
+        #             continue
+        #         if self.agent_team_model[agent].agent_state != 'available' or self.task_object[task].task_state not in ['unattempted', "inprogress", 'succeeded']:
+        #             for nodes in htn_nodes:  # for nodes in the htn
+        #                 if nodes.id == task:  # find the node id
+        #                     parent = nodes.parent  # and set parent
+
+        #             while parent.type == 'sequential':
+        #                 list_children = []  # list children of the parent
+        #                 unavail_idx = 0  # initialize
+        #                 # for children nodes of the parent
+        #                 for m in range(len(parent.children)):
+        #                     # attach to the list of children
+        #                     list_children.append(parent.children[m].id)
+        #                 if task in list_children:  # if parent type is sequential
+        #                     # then find the unavailable one and find index
+        #                     unavail_idx = list_children.index(task)+1
+        #                 else:
+        #                     unavail_idx = 0
+        #                 for l in range(unavail_idx, len(list_children)-1):
+        #                     if parent.children[l].type == 'atomic':
+        #                         self.task_object[list_children[l]
+        #                                          ].set_task_state('infeasible')
+        #                     else:
+        #                         children = []
+        #                         children.append(parent.children[l])
+        #                         while children:
+        #                             node = children.pop(0)
+        #                             if node.type == 'atomic':
+        #                                 self.task_object[node.id].set_task_state(
+        #                                     'infeasible')
+        #                             else:
+        #                                 node_children = list(node.children)
+        #                                 [children.append(node_children[j])
+        #                                  for j in range(len(node_children))]
+        #                 parent = parent.parent
+
         for task in task_list:
             for agent in agent_teams:
                 if agent not in self.task_model[task]["agent_model"]:
@@ -373,6 +432,7 @@ class HtnMilpScheduler(object):
         ends = []
         intervals = []
 
+        # calculate the horizon for the entire plan
         self.horizon = 0
         for task in self.task_model.keys():
             dur = 0
@@ -380,6 +440,7 @@ class HtnMilpScheduler(object):
                 task_dur = max(dur, agent_dur_model['mean'])
             self.horizon = self.horizon+task_dur
 
+        # Task varriables
         for task in self.task_model.keys():
             # Define Main Start End , Duration and interval variables
             start = self.model.NewIntVar(0, self.horizon, 'start_' + task)
@@ -398,6 +459,10 @@ class HtnMilpScheduler(object):
             self.task_interval_vars[task] = interval
             for agent in prob["agents"]:
                 if agent not in self.task_model[task]["duration_model"].keys():
+                    continue
+                if self.agent_team_model[agent].agent_state == 'unavailable':
+                    continue
+                if self.task_object[task].task_state != 'unattempted':
                     continue
                 agent_dur_constraints[agent][task] = self.model.Add(
                     self.task_model[task]["duration_model"][agent]["mean"] == duration).OnlyEnforceIf(agent_decision_variables[agent][task])
@@ -434,15 +499,18 @@ class HtnMilpScheduler(object):
         #### Define Objective ####
         self.model.Minimize(o)
         for task in self.task_model.keys():
-            print([agent_decision_variables[agent][task]
-                  for agent in self.task_model[task]["agent_model"]])
-            self.all_diff_constraints.append(self.model.Add(sum(
-                [agent_decision_variables[agent][task] for agent in self.task_model[task]["agent_model"]]) == 1))
+            for agent in self.task_model[task]['agent_model']:
+                if self.task_object[task].task_state != 'unattempted' or self.agent_team_model[agent].agent_state != 'available':
+                    continue
+                else:
+                    print(agent_decision_variables[agent][task])
+                    self.all_diff_constraints.append(self.model.Add(sum(
+                        [agent_decision_variables[agent][task] for agent in self.task_model[task]["agent_model"]]) == 1))
 
         #### Create Solver and Solve ####
         solver = self.solver
-        solver.parameters.num_search_workers = 9
-        solver.parameters.max_time_in_seconds = 10
+        solver.parameters.num_search_workers = len(self.agent_team_model)
+        solver.parameters.max_time_in_seconds = 12
         status = solver.Solve(self.model)
 
         if status == cp_model.OPTIMAL:
@@ -485,7 +553,7 @@ class HtnMilpScheduler(object):
         task_allocation = t_assignment
         print(task_allocation)
         if self.contingency:
-             with open(r'{}\task_allocation_cont2.yaml'.format(self.problem_dir), 'w') as file:
+            with open(r'{}\task_allocation_cont2.yaml'.format(self.problem_dir), 'w') as file:
                 documents = yaml.dump(task_allocation, file, sort_keys=False)
         else:
             with open(r'{}\task_allocation.yaml'.format(self.problem_dir), 'w') as file:

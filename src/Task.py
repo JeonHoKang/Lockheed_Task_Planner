@@ -11,7 +11,6 @@ class Task:
         self.task_agent_uncertainty_models = {}
         self.max_time = None
         self.nominal_duration = None
-
         self.det_next_state = None  # Used in State representation
         self.expected_task_duration = None  # Used in State representation
         self.hidden_expected_task_duration = None
@@ -34,6 +33,6 @@ class Task:
         return self.task_id + ':' + str(self.task_state) + + ':' + self.agent_id
 
     def set_task_state(self, state):
-        if state not in ['unattempted', "inprogress", 'succeeded', 'failed']:
+        if state not in ['unattempted', "inprogress", 'succeeded', 'failed', 'infeasible']:
             raise Exception
         self.task_state = state
