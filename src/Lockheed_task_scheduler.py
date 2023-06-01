@@ -58,8 +58,9 @@ class HtnMilpScheduler(object):
         self.agent_team_model = {}
         self.multi_product_dict = {}
         self.contingency = False
-        self.contingency_name = ''
+        self.contingency_name = 'p1_a2'
         self.contingency_node = None
+
     def set_dir(self, dir):
         """Sets the problem instance directory"""
         self.problem_dir = dir
@@ -333,6 +334,66 @@ class HtnMilpScheduler(object):
                             atomic_action_groups1[k-1], atomic_action_groups1[k-1+j])
                 multi_product_index -= 1
 
+    def dfs(self, start):
+        visited = []  # Set to track visited vertices
+        edges = []
+        stack = [start]  # Stack to keep track of vertices to visit
+        type_list = []
+        full_id = []
+        while stack:
+            vertex = stack.pop()  # Pop a vertex from the stack
+
+            if vertex.id not in visited:
+                # Process the vertex (in this case, print it)
+                print(vertex.id)
+                visited.append(vertex.id)  # Mark the vertex as visited
+
+                # Add adjacent vertices to the stack
+                if vertex.is_leaf != True:
+                    for child in reversed(vertex.children):
+                        stack.append(child)
+                else:
+                    self.task_object[vertex.id].set_task_state('infeasible')
+
+    def set_dependencies_infeasible(self, node):
+        list_siblings = list(node.parent.children)
+        idx = list_siblings.index(node)+1
+        parent = node.parent
+        child = node
+        # for element in list_siblings[idx:len(list_siblings)]:
+        #     if element.is_leaf:
+        #         self.task_object[element.id].set_task_state('infeasible')
+        #     else:
+        #         self.dfs(element)
+        while parent.is_root != True:
+            if parent.type == 'sequential':
+                parent_siblings = list(parent.children)
+                parent_idx = parent_siblings.index(child)+1
+                for element in parent_siblings[parent_idx:len(parent_siblings)]:
+                    if element.is_leaf:
+                        self.task_object[element.id].set_task_state(
+                            'infeasible')
+                    else:
+                        self.dfs(element)
+            child = parent
+            parent = parent.parent
+#  for element in list_siblings[idx:len(list_siblings)]:
+#             if element.is_leaf:
+#                 self.task_object[element.id].set_task_state('infeasible')
+#             else:
+#                 self.dfs(element)
+#         while parent.parent.is_root != True:
+#             if parent.parent.type == 'sequential':
+#                 parent_siblings = list(parent.parent.children)
+#                 parent_idx = parent_siblings.index(parent)+1
+#                 for element in parent_siblings[parent_idx:len(parent_siblings)]:
+#                     if element.is_leaf:
+#                         self.task_object[element.id].set_task_state(
+#                             'infeasible')
+#                     else:
+#                         self.dfs(element)
+#             parent = parent.parent
+
     def generate_model(self):
         self.model = cp_model.CpModel()
         if self.problem_description == None:
@@ -347,6 +408,7 @@ class HtnMilpScheduler(object):
         self.task_start_vars = {}
         self.task_end_vars = {}
         self.task_interval_vars = {}
+        task_object = self.task_object
         agent_start_vars = {}
         agent_end_vars = {}
         agent_interval_vars = {}
@@ -359,27 +421,34 @@ class HtnMilpScheduler(object):
             agent_end_vars[agent] = {}
             agent_interval_vars[agent] = {}
         task_list = list(self.task_object.keys())
-        unavailable_agent = 'r1'
+        unavailable_agent = False
 
         if self.contingency:
             self.task_object[self.contingency_name].set_task_state('failed')
             self.contingency_node = self.task_object[self.contingency_name]
-        self.agent_team_model[unavailable_agent].set_agent_state('unavailable')
+        if unavailable_agent:
+            self.agent_team_model[unavailable_agent].set_agent_state(
+                'unavailable')
+        self.task_object[self.contingency_name].set_task_state('failed')
 
         def find_contingency_nodes(unavailable_agent):
             contingency_nodes = []
             for node in htn_nodes:
                 if node.type != 'atomic':
                     continue
-                if self.contingency_node is not None:
-                    contingency_nodes.append(self.contingency_node)
-                if unavailable_agent is not None:
+                if self.contingency_name != '':
+                    for node in htn_nodes:
+                        if node.id == self.contingency_name:
+                            contingency_nodes.append(node)
+                if unavailable_agent:
                     if unavailable_agent in node.agent:
                         contingency_nodes.append(node)
             return contingency_nodes
         contingency_node_list = find_contingency_nodes(unavailable_agent)
         # From the found contingency list move upward on tree to set all the children infeasible
-        def 
+
+        for node in contingency_node_list:
+            self.set_dependencies_infeasible(node)
         # for task in task_list:
         #     for agent in agent_teams:
         #         if agent not in self.task_model[task]["agent_model"]:
@@ -566,8 +635,8 @@ def main():
         scheduler.set_dir("problem_description/LM2023_problem/")
         scheduler.import_problem("cont_problem_description_LM2023.yaml")
     else:
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("problem_description_LM2023.yaml")
+        scheduler.set_dir("problem_description/toy_problem/")
+        scheduler.import_problem("problem_description_toy.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------model created-------------')
