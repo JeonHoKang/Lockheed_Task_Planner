@@ -370,6 +370,8 @@ class HtnMilpScheduler(object):
                 parent_siblings = list(parent.children)
                 parent_idx = parent_siblings.index(child)+1
                 for element in parent_siblings[parent_idx:len(parent_siblings)]:
+                    if element.id == "contingency_plan":
+                        continue
                     if element.is_leaf:
                         self.task_object[element.id].set_task_state(
                             'infeasible')

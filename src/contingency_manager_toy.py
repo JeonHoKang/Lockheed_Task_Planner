@@ -36,11 +36,11 @@ class Contingency_Manager(object):
         contingency_occur = 1
         # print(data['children'][0]['children'][0]['children'][0])
         scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("problem_description_LM2023.yaml")
+        scheduler.set_dir("problem_description/toy_problem/")
+        scheduler.import_problem("problem_description_toy.yaml")
         scheduler.create_task_model()
         htn = scheduler.import_htn()
-        self.contingency_name = 'p1_Pick_and_Place_Middle_Panel'
+        self.contingency_name = 'p1_a3'
         self.htn_dict = scheduler.multi_product_dict
         self.contingency_node = search_tree(
             self.htn_dict, self.contingency_name)
@@ -48,6 +48,7 @@ class Contingency_Manager(object):
         self.Add_Handle_Node(
             self.htn_dict, self.contingency_node, self.contingency_plan)
         self.generate_task_model()
+        self.yaml_export()
         self.contingency_htn = self.htn_dict
 
     def geneate_contingency_plan(self):
@@ -68,10 +69,10 @@ class Contingency_Manager(object):
         protocol4['id'] = 'notify execution monitor'
         for node in contingency_planning_node['children']:
             node['type'] = 'atomic'
-        protocol1['agent'] = ['H1']
-        protocol2['agent'] = ['H1']
-        protocol3['agent'] = ['H1']
-        protocol4['agent'] = ['H1']
+        protocol1['agent'] = ['H']
+        protocol2['agent'] = ['H']
+        protocol3['agent'] = ['H']
+        protocol4['agent'] = ['H']
 
         return contingency_planning_node
 
@@ -97,21 +98,21 @@ class Contingency_Manager(object):
         exporter = DictExporter()
         htn_dict = exporter.export(self.htn_dict)
         # Save the updated data to the YAML file
-        with open("problem_description/LM2023_problem/problem_description_LM2023.yaml", "r") as file:
+        with open("problem_description/toy_problem/problem_description_toy.yaml", "r") as file:
             yaml_dict = yaml.safe_load(file)
             yaml_dict['num_tasks'] = yaml_dict['num_tasks'] + \
                 len(self.contingency_plan['children'])-1
             yaml_dict['agents'] = yaml_dict['agents']
-            yaml_dict['task_model_id'] = 'cont_task_model_LM2023.yaml'
-            yaml_dict['htn_model_id'] = 'cont_LM2023_htn.yaml'
-        with open('problem_description/LM2023_problem/cont_LM2023_htn.yaml', 'w') as file:
+            yaml_dict['task_model_id'] = 'cont_task_model_toy.yaml'
+            yaml_dict['htn_model_id'] = 'cont_toy_prob.yaml'
+        with open('problem_description/toy_problem/cont_toy_prob.yaml', 'w') as file:
             yaml.safe_dump(htn_dict, file, sort_keys=False)
 
-        with open('problem_description/LM2023_problem/cont_problem_description_LM2023.yaml', 'w') as file:
+        with open('problem_description/toy_problem/cont_problem_description_LM2023.yaml', 'w') as file:
             yaml.safe_dump(yaml_dict, file, sort_keys=False)
 
     def generate_task_model(self):
-        with open("problem_description/LM2023_problem/task_model_LM2023.yaml", "r") as file:
+        with open("problem_description/toy_problem/task_model_toy.yaml", "r") as file:
             task_model_dict = yaml.safe_load(file)
             print('check')
             # list_task_models = list(task_model_dict.keys())
@@ -124,7 +125,7 @@ class Contingency_Manager(object):
                 for agent in task_nodes['agent']:
                     task_model_dict[task_nodes['id']]['duration_model'] = {
                         agent: {'id': 'det', 'mean': 6}}
-        with open('problem_description/LM2023_problem/cont_task_model_LM2023.yaml', 'w') as file:
+        with open('problem_description/toy_problem/cont_task_model_toy.yaml', 'w') as file:
             yaml.safe_dump(task_model_dict, file)
 
 
