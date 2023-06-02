@@ -14,7 +14,7 @@ from anytree.exporter import DictExporter
 from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 import numpy as np
-import contingency_manager
+import contingency_manager_toy
 
 _RENDER_CMD = ['dot']
 _FORMAT = 'png'
@@ -37,8 +37,10 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.scheduler.set_dir("problem_description/LM2023_problem/")
         self.scheduler.import_problem("problem_description_LM2023.yaml")
         self.scheduler.create_task_model()
-        self.contingency_manager = contingency_manager.Contingency_Manager()
+        self.task_object = self.scheduler.task_object
+        self.contingency_manager = contingency_manager_toy.Contingency_Manager()
         self.contingency_htn = self.contingency_manager.contingency_htn
+        self.contingency_node = self.contingency_manager.contingency_node
         self.htn = self.scheduler.import_htn()
         # main htn dictionary
         self.htn_dict = self.scheduler.multi_product_dict
@@ -198,7 +200,9 @@ class HTN_vis(QtWidgets.QMainWindow):
                 self.color_list.append('yellow')
             else:
                 self.color_list.append('cyan')
-
+        if self.contingency_node in self.id_seqence_list:
+            self.color_list[self.id_seqence_list.index(
+                self.contingency_node)] = 'red'
         self.edges = self.edge_list
         self.n_vertices = len(self.node_ids)
 

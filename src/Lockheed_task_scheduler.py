@@ -57,7 +57,7 @@ class HtnMilpScheduler(object):
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-        self.contingency = True
+        self.contingency = False
         self.contingency_name = 'p1_a2'
         self.contingency_node = None
         self.unavailable_agent_Bool = False
@@ -122,7 +122,8 @@ class HtnMilpScheduler(object):
                     for c, agents in enumerate(self.task_model1):
                         task_model_index = (c+1)+len(self.task_model1)*(i)
                         if self.list_task_model1[c][:8] == 'recovery':
-                                self.task_model[self.list_task_model1[c]] = self.task_model1[self.list_task_model1[c]]
+                            self.task_model[self.list_task_model1[c]
+                                            ] = self.task_model1[self.list_task_model1[c]]
                         else:
                             self.task_model["p{}_".format(i+1)
                                             + self.list_task_model1[c]] = self.task_model1[self.list_task_model1[c]]
