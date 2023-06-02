@@ -42,7 +42,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.htn = self.scheduler.import_htn()
         # main htn dictionary
         self.htn_dict = self.scheduler.multi_product_dict
-        self.render_node_to_edges(self.htn_dict)
+        self.render_node_to_edges(self.contingency_htn)
         # declare first igraph instance
         self.g = Graph(self.n_vertices, self.edges)
         self.labels = []
@@ -210,14 +210,14 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.g["title"] = "HTN"
         layout = self.g.layout("rt", root=[0])
         layout.rotate(-180)
-        layout.fit_into((20000, 30000))
+        # layout.fit_into((20000, 30000))
 
         # layout.scale(5000)
         ig.plot(
             self.g,
             layout=layout,
             target=self.ax,
-            vertex_size=100,
+            vertex_size=0.5,
             showlegend=False,
             vertex_color=self.color_list,
             vertex_label_size=9

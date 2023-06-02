@@ -40,35 +40,35 @@ a6:
     H:
       id: det
       mean: 18
-check for component:
-  agent_model:
-  - H
-  duration_model:
-    H:
-      id: det
-      mean: 6
-check orientation:
-  agent_model:
-  - H
-  duration_model:
-    H:
-      id: det
-      mean: 6
-notify execution monitor:
-  agent_model:
-  - H
-  duration_model:
-    H:
-      id: det
-      mean: 6
-p1_a3-recovery:
+recovery-a2:
   agent_model:
   - r2
   duration_model:
     r2:
       id: det
       mean: 6
-pick component:
+recovery-check for component:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 6
+recovery-check orientation:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 6
+recovery-notify execution monitor:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 6
+recovery-pick component:
   agent_model:
   - H
   duration_model:

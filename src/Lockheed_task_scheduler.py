@@ -57,9 +57,11 @@ class HtnMilpScheduler(object):
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-        self.contingency = False
+        self.contingency = True
         self.contingency_name = 'p1_a2'
         self.contingency_node = None
+        self.unavailable_agent_Bool = False
+        self.unavailable_agent = ''
 
     def set_dir(self, dir):
         """Sets the problem instance directory"""
@@ -101,18 +103,29 @@ class HtnMilpScheduler(object):
                 self.list_task_model1 = list(self.task_model1)
                 for product in range(self.num_products):
                     for i in range(len(self.task_model1)):
-                        cur_leaf_node = (product)*len(self.task_model1)+(i+1)
+                        # just indexing how long this is
+                        cur_leaf_node = (product) * \
+                            len(self.task_model1)+(i+1)
                         if cur_leaf_node <= len(self.task_model1):
-                            self.task_model['p1_' +
-                                            self.list_task_model1[i]] = {}
+                            if self.list_task_model1[i][:8] == 'recovery':
+                                self.task_model[self.list_task_model1[i]] = {}
+                            else:
+                                self.task_model['p1_' +
+                                                self.list_task_model1[i]] = {}
                         elif cur_leaf_node > len(self.task_model1):
-                            self.task_model['p{}_'.format(
-                                product+1)+self.list_task_model1[i]] = {}
+                            if self.list_task_model1[i][:8] == 'recovery':
+                                self.task_model[self.list_task_model1[i]] = {}
+                            else:
+                                self.task_model['p{}_'.format(
+                                    product+1)+self.list_task_model1[i]] = {}
                 for i in range(self.num_products):
                     for c, agents in enumerate(self.task_model1):
                         task_model_index = (c+1)+len(self.task_model1)*(i)
-                        self.task_model["p{}_".format(i+1)
-                                        + self.list_task_model1[c]] = self.task_model1[self.list_task_model1[c]]
+                        if self.list_task_model1[c][:8] == 'recovery':
+                                self.task_model[self.list_task_model1[c]] = self.task_model1[self.list_task_model1[c]]
+                        else:
+                            self.task_model["p{}_".format(i+1)
+                                            + self.list_task_model1[c]] = self.task_model1[self.list_task_model1[c]]
 
             except yaml.YAMLError as e:
                 print(e)
@@ -213,19 +226,23 @@ class HtnMilpScheduler(object):
                 print(e)
         num_products = self.num_products
         children = []
-        self.multi_product_dict = {}
-        self.multi_product_dict['id'] = 'Multi-product Sat Assem'
-        self.multi_product_dict['type'] = 'independent'
-        self.multi_product_dict['children'] = []
-        for p in range(num_products):
-            product_htn = copy.deepcopy(self.dict)
-            edit_tree(product_htn, p+1)
-            self.multi_product_dict['children'].append(product_htn)
 
-        # For multi-product formulation, we introduce a task root at the highest
-        # hiararchy
-        # root = AnyNode(id="TASK_ROOT", type='parallel', children=children)
-        self.multi_product_htn = DictImporter().import_(self.multi_product_dict)
+        if self.contingency:
+            self.multi_product_htn = DictImporter().import_(self.dict)
+            self.multi_product_dict = self.dict
+        else:
+            self.multi_product_dict = {}
+            self.multi_product_dict['id'] = 'Multi-product Sat Assem'
+            self.multi_product_dict['type'] = 'independent'
+            self.multi_product_dict['children'] = []
+            for p in range(num_products):
+                product_htn = copy.deepcopy(self.dict)
+                edit_tree(product_htn, p+1)
+                self.multi_product_dict['children'].append(product_htn)
+
+                # For multi-product formulation, we introduce a task root at the highest
+                # hiararchy
+                self.multi_product_htn = DictImporter().import_(self.multi_product_dict)
 
         if print_htn:
             print(RenderTree(self.multi_product_htn))
@@ -379,22 +396,6 @@ class HtnMilpScheduler(object):
                         self.dfs(element)
             child = parent
             parent = parent.parent
-#  for element in list_siblings[idx:len(list_siblings)]:
-#             if element.is_leaf:
-#                 self.task_object[element.id].set_task_state('infeasible')
-#             else:
-#                 self.dfs(element)
-#         while parent.parent.is_root != True:
-#             if parent.parent.type == 'sequential':
-#                 parent_siblings = list(parent.parent.children)
-#                 parent_idx = parent_siblings.index(parent)+1
-#                 for element in parent_siblings[parent_idx:len(parent_siblings)]:
-#                     if element.is_leaf:
-#                         self.task_object[element.id].set_task_state(
-#                             'infeasible')
-#                     else:
-#                         self.dfs(element)
-#             parent = parent.parent
 
     def generate_model(self):
         self.model = cp_model.CpModel()
@@ -423,15 +424,14 @@ class HtnMilpScheduler(object):
             agent_end_vars[agent] = {}
             agent_interval_vars[agent] = {}
         task_list = list(self.task_object.keys())
-        unavailable_agent = False
 
         if self.contingency:
             self.task_object[self.contingency_name].set_task_state('failed')
             self.contingency_node = self.task_object[self.contingency_name]
-        if unavailable_agent:
-            self.agent_team_model[unavailable_agent].set_agent_state(
+        if self.contingency and self.unavailable_agent_Bool:
+            self.agent_team_model[self.unavailable_agent_Bool].set_agent_state(
                 'unavailable')
-        self.task_object[self.contingency_name].set_task_state('failed')
+        # self.task_object[self.contingency_name].set_task_state('failed')
 
         def find_contingency_nodes(unavailable_agent):
             contingency_nodes = []
@@ -446,49 +446,12 @@ class HtnMilpScheduler(object):
                     if unavailable_agent in node.agent:
                         contingency_nodes.append(node)
             return contingency_nodes
-        contingency_node_list = find_contingency_nodes(unavailable_agent)
-        # From the found contingency list move upward on tree to set all the children infeasible
-
-        for node in contingency_node_list:
-            self.set_dependencies_infeasible(node)
-        # for task in task_list:
-        #     for agent in agent_teams:
-        #         if agent not in self.task_model[task]["agent_model"]:
-        #             continue
-        #         if self.agent_team_model[agent].agent_state != 'available' or self.task_object[task].task_state not in ['unattempted', "inprogress", 'succeeded']:
-        #             for nodes in htn_nodes:  # for nodes in the htn
-        #                 if nodes.id == task:  # find the node id
-        #                     parent = nodes.parent  # and set parent
-
-        #             while parent.type == 'sequential':
-        #                 list_children = []  # list children of the parent
-        #                 unavail_idx = 0  # initialize
-        #                 # for children nodes of the parent
-        #                 for m in range(len(parent.children)):
-        #                     # attach to the list of children
-        #                     list_children.append(parent.children[m].id)
-        #                 if task in list_children:  # if parent type is sequential
-        #                     # then find the unavailable one and find index
-        #                     unavail_idx = list_children.index(task)+1
-        #                 else:
-        #                     unavail_idx = 0
-        #                 for l in range(unavail_idx, len(list_children)-1):
-        #                     if parent.children[l].type == 'atomic':
-        #                         self.task_object[list_children[l]
-        #                                          ].set_task_state('infeasible')
-        #                     else:
-        #                         children = []
-        #                         children.append(parent.children[l])
-        #                         while children:
-        #                             node = children.pop(0)
-        #                             if node.type == 'atomic':
-        #                                 self.task_object[node.id].set_task_state(
-        #                                     'infeasible')
-        #                             else:
-        #                                 node_children = list(node.children)
-        #                                 [children.append(node_children[j])
-        #                                  for j in range(len(node_children))]
-        #                 parent = parent.parent
+        if self.contingency:
+            contingency_node_list = find_contingency_nodes(
+                self.unavailable_agent)
+            # From the found contingency list move upward on tree to set all the children infeasible
+            for node in contingency_node_list:
+                self.set_dependencies_infeasible(node)
 
         for task in task_list:
             for agent in agent_teams:
@@ -634,8 +597,8 @@ class HtnMilpScheduler(object):
 def main():
     scheduler = HtnMilpScheduler()
     if scheduler.contingency:
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("cont_problem_description_LM2023.yaml")
+        scheduler.set_dir("problem_description/toy_problem/")
+        scheduler.import_problem("cont_problem_description_toy.yaml")
     else:
         scheduler.set_dir("problem_description/toy_problem/")
         scheduler.import_problem("problem_description_toy.yaml")

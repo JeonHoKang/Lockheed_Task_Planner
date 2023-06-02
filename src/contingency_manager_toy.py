@@ -40,7 +40,7 @@ class Contingency_Manager(object):
         scheduler.import_problem("problem_description_toy.yaml")
         scheduler.create_task_model()
         htn = scheduler.import_htn()
-        self.contingency_name = 'p1_a3'
+        self.contingency_name = 'p1_a2'
         self.htn_dict = scheduler.multi_product_dict
         self.contingency_node = search_tree(
             self.htn_dict, self.contingency_name)
@@ -48,8 +48,8 @@ class Contingency_Manager(object):
         self.Add_Handle_Node(
             self.htn_dict, self.contingency_node, self.contingency_plan)
         self.generate_task_model()
-        self.yaml_export()
         self.contingency_htn = self.htn_dict
+        self.yaml_export()
 
     def geneate_contingency_plan(self):
         contingency_planning_node = {}
@@ -60,13 +60,13 @@ class Contingency_Manager(object):
         protocol3 = {}
         protocol4 = {}
         original_task = copy.deepcopy(self.contingency_node)
-        original_task['id'] = self.contingency_node['id'] + '-recovery'
+        original_task['id'] = 'recovery-' + self.contingency_node['id'][3:]
         contingency_planning_node['children'] = [
             protocol1, protocol2, protocol3, protocol4, original_task]
-        protocol1['id'] = 'check for component'
-        protocol2['id'] = 'pick component'
-        protocol3['id'] = 'check orientation'
-        protocol4['id'] = 'notify execution monitor'
+        protocol1['id'] = 'recovery-check for component'
+        protocol2['id'] = 'recovery-pick component'
+        protocol3['id'] = 'recovery-check orientation'
+        protocol4['id'] = 'recovery-notify execution monitor'
         for node in contingency_planning_node['children']:
             node['type'] = 'atomic'
         protocol1['agent'] = ['H']
@@ -95,8 +95,8 @@ class Contingency_Manager(object):
                        contingency_plan)
 
     def yaml_export(self):
-        exporter = DictExporter()
-        htn_dict = exporter.export(self.htn_dict)
+        # exporter = DictExporter()
+        # htn_dict = exporter.export(self.htn_dict)
         # Save the updated data to the YAML file
         with open("problem_description/toy_problem/problem_description_toy.yaml", "r") as file:
             yaml_dict = yaml.safe_load(file)
@@ -106,9 +106,9 @@ class Contingency_Manager(object):
             yaml_dict['task_model_id'] = 'cont_task_model_toy.yaml'
             yaml_dict['htn_model_id'] = 'cont_toy_prob.yaml'
         with open('problem_description/toy_problem/cont_toy_prob.yaml', 'w') as file:
-            yaml.safe_dump(htn_dict, file, sort_keys=False)
+            yaml.safe_dump(self.htn_dict, file, sort_keys=False)
 
-        with open('problem_description/toy_problem/cont_problem_description_LM2023.yaml', 'w') as file:
+        with open('problem_description/toy_problem/cont_problem_description_toy.yaml', 'w') as file:
             yaml.safe_dump(yaml_dict, file, sort_keys=False)
 
     def generate_task_model(self):

@@ -1,0 +1,8 @@
+num_tasks: 10
+num_agents: 3
+agents:
+- r1
+- r2
+- H
+task_model_id: cont_task_model_toy.yaml
+htn_model_id: cont_toy_prob.yaml
