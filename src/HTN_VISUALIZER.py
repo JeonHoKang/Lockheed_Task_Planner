@@ -39,12 +39,12 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.scheduler.create_task_model()
         self.task_object = self.scheduler.task_object
         self.contingency_manager = contingency_manager_toy.Contingency_Manager()
-        self.contingency_htn = self.contingency_manager.contingency_htn
-        self.contingency_node = self.contingency_manager.contingency_node
         self.htn = self.scheduler.import_htn()
         # main htn dictionary
         self.htn_dict = self.scheduler.multi_product_dict
         if self.contingency_manager.contingency == True:
+            self.contingency_htn = self.contingency_manager.contingency_htn_dict
+            self.contingency_node = self.contingency_manager.contingency_node
             self.render_node_to_edges(self.contingency_htn)
         else:
             self.render_node_to_edges(self.htn_dict)

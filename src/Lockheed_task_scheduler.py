@@ -52,7 +52,7 @@ class HtnMilpScheduler(object):
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-        self.contingency = True
+        self.contingency = False
         self.contingency_name = 'p1_a2'
         self.contingency_node = None
         self.unavailable_agent_Bool = False
@@ -140,12 +140,13 @@ class HtnMilpScheduler(object):
     def visualize(self, t_assignment):
         window = tk.Tk()
         window.title("Gant Chart - Multi-Robot SChedule")
-        frame = ttk.Frame(window)
+        frame = ttk.Frame(window, width=100)
         frame.pack(pady=10)
         # Create the graph frame
         graph_frame = ttk.Frame(frame)
         graph_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
-        fig, gnt = plt.subplots(figsize=(60, 10))
+        fig, gnt = plt.subplots(figsize=(100, 5))
+        fig.set_figwidth(30)
         # delcare colors for the charts
         blue = 'tab:blue'
         brown = 'tab:brown'
@@ -235,11 +236,20 @@ class HtnMilpScheduler(object):
         scrollbar.config(command=listbox.yview)
         # Configure the scrollbar to work with the listbox
         scrollbar2.config(command=listbox.xview)
+
         for i, label in enumerate(list_labels):
             listbox.insert(tk.END, f"{i+1}: {label}")
         canvas = FigureCanvasTkAgg(fig, master=frame)
         canvas.draw()
-        canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        scrollbar_canvas = tk.Scrollbar(
+            frame, orient=tk.HORIZONTAL, command=canvas.get_tk_widget().xview)
+        canvas.get_tk_widget().configure(xscrollcommand=scrollbar_canvas.set)
+        canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH,
+                                    expand=True)
+        scrollbar_canvas.pack(fill=tk.X, side=tk.BOTTOM)
+        canvas.get_tk_widget().configure(scrollregion=canvas.get_tk_widget().bbox("all"))
+
+        # Add the Scrollbar to the window
         window.mainloop()
         # plt.show()
         if self.contingency:
@@ -689,11 +699,11 @@ class NoTagNoQuotesDumper(yaml.Dumper):
 def main():
     scheduler = HtnMilpScheduler()
     if scheduler.contingency:
-        scheduler.set_dir("problem_description/toy_problem/")
-        scheduler.import_problem("cont_problem_description_toy.yaml")
+        scheduler.set_dir("problem_description/LM2023_problem/")
+        scheduler.import_problem("cont_problem_description_LM2023.yaml")
     else:
-        scheduler.set_dir("problem_description/toy_problem/")
-        scheduler.import_problem("problem_description_toy.yaml")
+        scheduler.set_dir("problem_description/LM2023_problem/")
+        scheduler.import_problem("problem_description_LM2023.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------Initialized-------------')

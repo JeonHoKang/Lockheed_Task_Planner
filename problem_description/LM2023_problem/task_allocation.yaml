@@ -1,469 +1,605 @@
-r1: {}
-r2:
-  p1_Pick_Place_Right_P_C1_1:
-    StarttoEnd:
-    - 90
-    - 95
-  p1_Pick_and_Place_Right_P_C1_2:
-    StarttoEnd:
-    - 107
-    - 112
-  p1_Pick_and_Place_Right_P_C1_3:
-    StarttoEnd:
-    - 124
-    - 129
-  p1_Pick_and_Place_Right_P_C2:
-    StarttoEnd:
-    - 141
-    - 146
-  p1_Pick_and_Place_Right_P_C5:
-    StarttoEnd:
-    - 158
-    - 163
-  p1_Pick_and_Place_Middle_P_C4:
-    StarttoEnd:
-    - 214
-    - 219
-  p1_Pick_and_Place_Top_P_C3:
-    StarttoEnd:
-    - 0
-    - 5
-  p1_Pick_and_Place_Top_P_C6:
-    StarttoEnd:
-    - 17
-    - 22
-  p1_Pick_and_Place_Top_P_C7:
-    StarttoEnd:
-    - 52
-    - 57
-r3:
-  p1_Screw1_Right_P_C1_1_Screw:
-    StarttoEnd:
-    - 95
-    - 98
-  p1_Screw2_Right_P_C1_1_Screw:
-    StarttoEnd:
-    - 98
-    - 101
-  p1_Screw3_Right_P_C1_1_Screw:
-    StarttoEnd:
-    - 101
-    - 104
-  p1_Screw4_Right_P_C1_1_Screw:
-    StarttoEnd:
-    - 104
-    - 107
-  p1_Screw1_Right_P_C1_1:
-    StarttoEnd:
-    - 112
-    - 115
-  p1_Screw2_Right_P_C1_1:
-    StarttoEnd:
-    - 115
-    - 118
-  p1_Screw3_Right_P_C1_1:
-    StarttoEnd:
-    - 118
-    - 121
-  p1_Screw4_Right_P_C1_1:
-    StarttoEnd:
-    - 121
-    - 124
-  p1_Screw1_Right_P_C1_3:
-    StarttoEnd:
-    - 129
-    - 132
-  p1_Screw2_Right_P_C1_3:
-    StarttoEnd:
-    - 132
-    - 135
-  p1_Screw3_Right_P_C1_3:
-    StarttoEnd:
-    - 135
-    - 138
-  p1_Screw4_Right_P_C1_3:
-    StarttoEnd:
-    - 138
-    - 141
-  p1_Screw1_B1_Right_P_C2:
-    StarttoEnd:
-    - 146
-    - 149
-  p1_Screw2_B1_Right_P_C2:
-    StarttoEnd:
-    - 149
-    - 152
-  p1_Screw3_B1_Right_P_C2:
-    StarttoEnd:
-    - 152
-    - 155
-  p1_Screw4_B1_Right_P_C2:
-    StarttoEnd:
-    - 155
-    - 158
-  p1_Screw1_B1_Right_P_C5:
-    StarttoEnd:
-    - 163
-    - 166
-  p1_Screw2_B1_Right_P_C5:
-    StarttoEnd:
-    - 166
-    - 169
-  p1_Screw3_B1_Right_P_C5:
-    StarttoEnd:
-    - 169
-    - 172
-  p1_Screw4_B1_Right_P_C5:
-    StarttoEnd:
-    - 172
-    - 175
-  p1_Screw5_B1_Right_P_C5:
-    StarttoEnd:
-    - 175
-    - 178
-  p1_Screw6_B1_Right_P_C5:
-    StarttoEnd:
-    - 178
-    - 181
-  p1_Screw7_B1_Right_P_C5:
-    StarttoEnd:
-    - 181
-    - 184
-  p1_Screw8_B1_Right_P_C5:
-    StarttoEnd:
-    - 184
-    - 187
-  p1_Screw9_B1_Right_P_C5:
-    StarttoEnd:
-    - 187
-    - 190
-  p1_Screw10_B1_Right_P_C5:
-    StarttoEnd:
-    - 190
-    - 193
-  p1_Screw1_B2_Middle_P_C4:
-    StarttoEnd:
-    - 219
-    - 222
-  p1_Screw2_B2_Middle_P_C4:
-    StarttoEnd:
-    - 222
-    - 225
-  p1_Screw3_B2_Middle_P_C4:
-    StarttoEnd:
-    - 225
-    - 228
-  p1_Screw4_B2_Middle_P_C4:
-    StarttoEnd:
-    - 228
-    - 231
-  p1_Screw1_Top_P_C3:
-    StarttoEnd:
-    - 5
-    - 8
-  p1_Screw2_Top_P_C3:
-    StarttoEnd:
-    - 8
-    - 11
-  p1_Screw3_Top_P_C3:
-    StarttoEnd:
-    - 11
-    - 14
-  p1_Screw4_Top_P_C3:
-    StarttoEnd:
-    - 14
-    - 17
-  p1_Screw1_Top_P_C6:
-    StarttoEnd:
-    - 22
-    - 25
-  p1_Screw2_Top_P_C6:
-    StarttoEnd:
-    - 25
-    - 28
-  p1_Screw3_Top_P_C6:
-    StarttoEnd:
-    - 28
-    - 31
-  p1_Screw4_Top_P_C6:
-    StarttoEnd:
-    - 31
-    - 34
-  p1_Screw5_Top_P_C6:
-    StarttoEnd:
-    - 34
-    - 37
-  p1_Screw6_Top_P_C6:
-    StarttoEnd:
-    - 37
-    - 40
-  p1_Screw7_Top_P_C6:
-    StarttoEnd:
-    - 40
-    - 43
-  p1_Screw8_Top_P_C6:
-    StarttoEnd:
-    - 43
-    - 46
-  p1_Screw9_Top_P_C6:
-    StarttoEnd:
-    - 46
-    - 49
-  p1_Screw10_Top_P_C6:
-    StarttoEnd:
-    - 49
-    - 52
-  p1_Screw1_Top_P_C7:
-    StarttoEnd:
-    - 57
-    - 60
-  p1_Screw2_Top_P_C7:
-    StarttoEnd:
-    - 60
-    - 63
-  p1_Screw3_Top_P_C7:
-    StarttoEnd:
-    - 63
-    - 66
-  p1_Screw4_Top_P_C7:
-    StarttoEnd:
-    - 66
-    - 69
-r4:
-  p1_Mount_Right_Panel_on_the_Fixture:
-    StarttoEnd:
-    - 193
-    - 203
-  p1_Mount_Middle_Panel_on_the_Fixture:
-    StarttoEnd:
-    - 231
-    - 241
-  p1_Mount_Panel_B4_on_the_Fixture:
-    StarttoEnd:
-    - 252
-    - 262
-  p1_Mount_Panel_B5_on_the_Fixture:
-    StarttoEnd:
-    - 273
-    - 283
-  p1_Pick_Extern_Comp1_for_Panel1:
-    StarttoEnd:
-    - 346
-    - 351
-  p1_Fix_Extern_Comp1_for_Panel1:
-    StarttoEnd:
-    - 351
-    - 354
-  p1_Extern_Comp1_for_Panel1_joining1:
-    StarttoEnd:
-    - 354
-    - 358
-  p1_Extern_Comp1_for_Panel1_joining2:
-    StarttoEnd:
-    - 358
-    - 362
-  p1_Extern_Comp1_for_Panel1_joining3:
-    StarttoEnd:
-    - 362
-    - 366
-  p1_Extern_Comp1_for_Panel1_joining4:
-    StarttoEnd:
-    - 366
-    - 370
-r5:
-  p1_Pick_Extern_Comp2_for_Panel2:
-    StarttoEnd:
-    - 374
-    - 379
-  p1_Fix_Extern_Comp2_for_Panel2:
-    StarttoEnd:
-    - 379
-    - 382
-  p1_Pick_Extern_Comp1_for_Panel3:
-    StarttoEnd:
-    - 398
-    - 403
-  p1_Fix_Extern_Comp1_for_Panel3:
-    StarttoEnd:
-    - 403
-    - 406
-  p1_Pick_Extern_Comp2_for_Panel4:
-    StarttoEnd:
-    - 425
-    - 430
-  p1_Fix_Extern_Comp2_for_Panel4:
-    StarttoEnd:
-    - 430
-    - 433
-TT:
-  p1_roate_turntable_180:
-    StarttoEnd:
-    - 370
-    - 374
-  p1_roate_turntable_180_2:
-    StarttoEnd:
-    - 422
-    - 425
-H1:
-  p1_Mount_Top_Panel_on_the_Fixture:
-    StarttoEnd:
-    - 69
-    - 79
-H2:
-  p1_Hold_Hinge_to_Right_Panel:
-    StarttoEnd:
-    - 203
-    - 206
-  p1_Hinge_Right_Panel_Screw1:
-    StarttoEnd:
-    - 206
-    - 210
-  p1_Hinge_Right_Panel_Screw2:
-    StarttoEnd:
-    - 210
-    - 214
-  p1_Hold_Hinge_to_Middle_Panel:
-    StarttoEnd:
-    - 241
-    - 244
-  p1_Hinge_Middle_Panel_Screw1:
-    StarttoEnd:
-    - 244
-    - 248
-  p1_Hinge_Middle_Panel_Screw2:
-    StarttoEnd:
-    - 248
-    - 252
-  p1_Hold_Hinge_to_Top_Panel:
-    StarttoEnd:
-    - 79
-    - 82
-  p1_Hinge_Top_Panel_Screw1:
-    StarttoEnd:
-    - 82
-    - 86
-  p1_Hinge_Top_Panel_Screw2:
-    StarttoEnd:
-    - 86
-    - 90
-  p1_Hold_Hinge_to_Panel_B4:
-    StarttoEnd:
-    - 262
-    - 265
-  p1_Hinge_Panel_B4_Screw1:
-    StarttoEnd:
-    - 265
-    - 269
-  p1_Hinge_Panel_B4_Screw2:
-    StarttoEnd:
-    - 269
-    - 273
-  p1_Hold_Hinge_to_Panel_B5:
-    StarttoEnd:
-    - 283
-    - 286
-  p1_Hinge_Panel_B5_Screw1:
-    StarttoEnd:
-    - 286
-    - 290
-  p1_Hinge_Panel_B5_Screw2:
-    StarttoEnd:
-    - 290
-    - 294
-  p1_Attach_and_Hold_Hinge_on_Panel12:
-    StarttoEnd:
-    - 294
-    - 297
-  p1_Hinge_on_Panel12_Screw1:
-    StarttoEnd:
-    - 306
-    - 311
-  p1_Hinge_on_Panel12_Screw2:
-    StarttoEnd:
-    - 311
-    - 316
-  p1_Attach_and_Hold_Hinge_on_Panel23:
-    StarttoEnd:
-    - 297
-    - 300
-  p1_Hinge_on_Panel23_Screw1:
-    StarttoEnd:
-    - 316
-    - 321
-  p1_Hinge_on_Panel23_Screw2:
-    StarttoEnd:
-    - 321
-    - 326
-  p1_Attach_and_Hold_Hinge_on_Panel34:
-    StarttoEnd:
-    - 300
-    - 303
-  p1_Hinge_on_Panel34_Screw1:
-    StarttoEnd:
-    - 326
-    - 331
-  p1_Hinge_on_Panel34_Screw2:
-    StarttoEnd:
-    - 331
-    - 336
-  p1_Attach_and_Hold_Hinge_on_Panel45:
-    StarttoEnd:
-    - 303
-    - 306
-  p1_Hinge_on_Panel45_Screw1:
-    StarttoEnd:
-    - 336
-    - 341
-  p1_Hinge_on_Panel45_Screw2:
-    StarttoEnd:
-    - 341
-    - 346
-  p1_Extern_Comp2_for_Panel2_joining1:
-    StarttoEnd:
-    - 382
-    - 386
-  p1_Extern_Comp2_for_Panel2_joining2:
-    StarttoEnd:
-    - 386
-    - 390
-  p1_Extern_Comp2_for_Panel2_joining3:
-    StarttoEnd:
-    - 390
-    - 394
-  p1_Extern_Comp2_for_Panel2_joining4:
-    StarttoEnd:
-    - 394
-    - 398
-  p1_Extern_Comp1_for_Panel3_joining1:
-    StarttoEnd:
-    - 406
-    - 410
-  p1_Extern_Comp1_for_Panel3_joining2:
-    StarttoEnd:
-    - 410
-    - 414
-  p1_Extern_Comp1_for_Panel3_joining3:
-    StarttoEnd:
-    - 414
-    - 418
-  p1_Extern_Comp1_for_Panel3_joining4:
-    StarttoEnd:
-    - 418
-    - 422
-  p1_Extern_Comp2_for_Panel4_joining1:
-    StarttoEnd:
-    - 433
-    - 437
-  p1_Extern_Comp2_for_Panel4_joining2:
-    StarttoEnd:
-    - 437
-    - 441
-  p1_Extern_Comp2_for_Panel4_joining3:
-    StarttoEnd:
-    - 441
-    - 445
-  p1_Extern_Comp2_for_Panel4_joining4:
-    StarttoEnd:
-    - 445
-    - 449
-X: {}
+- task_id: p1_Pick_and_Place_Top_Panel
+  agent: r1
+  agent_specific_order: 1
+  start: 0
+  end: 5
+- task_id: p1_Pick_and_Place_Top_P_C3
+  agent: r2
+  agent_specific_order: 1
+  start: 5
+  end: 10
+- task_id: p1_Screw1_Top_P_C3
+  agent: r3
+  agent_specific_order: 1
+  start: 10
+  end: 13
+- task_id: p1_Screw2_Top_P_C3
+  agent: r3
+  agent_specific_order: 2
+  start: 13
+  end: 16
+- task_id: p1_Screw3_Top_P_C3
+  agent: r3
+  agent_specific_order: 3
+  start: 16
+  end: 19
+- task_id: p1_Screw4_Top_P_C3
+  agent: r3
+  agent_specific_order: 4
+  start: 19
+  end: 22
+- task_id: p1_Pick_and_Place_Top_P_C6
+  agent: r2
+  agent_specific_order: 2
+  start: 22
+  end: 27
+- task_id: p1_Screw1_Top_P_C6
+  agent: r3
+  agent_specific_order: 5
+  start: 27
+  end: 30
+- task_id: p1_Screw2_Top_P_C6
+  agent: r3
+  agent_specific_order: 6
+  start: 30
+  end: 33
+- task_id: p1_Screw3_Top_P_C6
+  agent: r3
+  agent_specific_order: 7
+  start: 33
+  end: 36
+- task_id: p1_Screw4_Top_P_C6
+  agent: r3
+  agent_specific_order: 8
+  start: 36
+  end: 39
+- task_id: p1_Screw5_Top_P_C6
+  agent: r3
+  agent_specific_order: 9
+  start: 39
+  end: 42
+- task_id: p1_Screw6_Top_P_C6
+  agent: r3
+  agent_specific_order: 10
+  start: 42
+  end: 45
+- task_id: p1_Screw7_Top_P_C6
+  agent: r3
+  agent_specific_order: 11
+  start: 45
+  end: 48
+- task_id: p1_Screw8_Top_P_C6
+  agent: r3
+  agent_specific_order: 12
+  start: 48
+  end: 51
+- task_id: p1_Screw9_Top_P_C6
+  agent: r3
+  agent_specific_order: 13
+  start: 51
+  end: 54
+- task_id: p1_Screw10_Top_P_C6
+  agent: r3
+  agent_specific_order: 14
+  start: 54
+  end: 57
+- task_id: p1_Pick_and_Place_Top_P_C7
+  agent: r2
+  agent_specific_order: 3
+  start: 57
+  end: 62
+- task_id: p1_Screw1_Top_P_C7
+  agent: r3
+  agent_specific_order: 15
+  start: 62
+  end: 65
+- task_id: p1_Screw2_Top_P_C7
+  agent: r3
+  agent_specific_order: 16
+  start: 65
+  end: 68
+- task_id: p1_Screw3_Top_P_C7
+  agent: r3
+  agent_specific_order: 17
+  start: 68
+  end: 71
+- task_id: p1_Screw4_Top_P_C7
+  agent: r3
+  agent_specific_order: 18
+  start: 71
+  end: 74
+- task_id: p1_Move_Top_Panel_to_the_Side
+  agent: r1
+  agent_specific_order: 2
+  start: 74
+  end: 78
+- task_id: p1_Mount_Top_Panel_on_the_Fixture
+  agent: H1
+  agent_specific_order: 1
+  start: 78
+  end: 88
+- task_id: p1_Hold_Hinge_to_Top_Panel
+  agent: H2
+  agent_specific_order: 1
+  start: 88
+  end: 91
+- task_id: p1_Hinge_Top_Panel_Screw1
+  agent: H2
+  agent_specific_order: 2
+  start: 91
+  end: 95
+- task_id: p1_Hinge_Top_Panel_Screw2
+  agent: H2
+  agent_specific_order: 3
+  start: 95
+  end: 99
+- task_id: p1_Pick_and_Place_Right_Panel
+  agent: r1
+  agent_specific_order: 3
+  start: 99
+  end: 104
+- task_id: p1_Pick_Place_Right_P_C1_1
+  agent: r2
+  agent_specific_order: 4
+  start: 104
+  end: 109
+- task_id: p1_Screw1_Right_P_C1_1_Screw
+  agent: r3
+  agent_specific_order: 19
+  start: 109
+  end: 112
+- task_id: p1_Screw2_Right_P_C1_1_Screw
+  agent: r3
+  agent_specific_order: 20
+  start: 112
+  end: 115
+- task_id: p1_Screw3_Right_P_C1_1_Screw
+  agent: r3
+  agent_specific_order: 21
+  start: 115
+  end: 118
+- task_id: p1_Screw4_Right_P_C1_1_Screw
+  agent: r3
+  agent_specific_order: 22
+  start: 118
+  end: 121
+- task_id: p1_Pick_and_Place_Right_P_C1_2
+  agent: r2
+  agent_specific_order: 5
+  start: 121
+  end: 126
+- task_id: p1_Screw1_Right_P_C1_1
+  agent: r3
+  agent_specific_order: 23
+  start: 126
+  end: 129
+- task_id: p1_Screw2_Right_P_C1_1
+  agent: r3
+  agent_specific_order: 24
+  start: 129
+  end: 132
+- task_id: p1_Screw3_Right_P_C1_1
+  agent: r3
+  agent_specific_order: 25
+  start: 132
+  end: 135
+- task_id: p1_Screw4_Right_P_C1_1
+  agent: r3
+  agent_specific_order: 26
+  start: 135
+  end: 138
+- task_id: p1_Pick_and_Place_Right_P_C1_3
+  agent: r2
+  agent_specific_order: 6
+  start: 138
+  end: 143
+- task_id: p1_Screw1_Right_P_C1_3
+  agent: r3
+  agent_specific_order: 27
+  start: 143
+  end: 146
+- task_id: p1_Screw2_Right_P_C1_3
+  agent: r3
+  agent_specific_order: 28
+  start: 146
+  end: 149
+- task_id: p1_Screw3_Right_P_C1_3
+  agent: r3
+  agent_specific_order: 29
+  start: 149
+  end: 152
+- task_id: p1_Screw4_Right_P_C1_3
+  agent: r3
+  agent_specific_order: 30
+  start: 152
+  end: 155
+- task_id: p1_Pick_and_Place_Right_P_C2
+  agent: r2
+  agent_specific_order: 7
+  start: 155
+  end: 160
+- task_id: p1_Screw1_B1_Right_P_C2
+  agent: r3
+  agent_specific_order: 31
+  start: 160
+  end: 163
+- task_id: p1_Screw2_B1_Right_P_C2
+  agent: r3
+  agent_specific_order: 32
+  start: 163
+  end: 166
+- task_id: p1_Screw3_B1_Right_P_C2
+  agent: r3
+  agent_specific_order: 33
+  start: 166
+  end: 169
+- task_id: p1_Screw4_B1_Right_P_C2
+  agent: r3
+  agent_specific_order: 34
+  start: 169
+  end: 172
+- task_id: p1_Pick_and_Place_Right_P_C5
+  agent: r2
+  agent_specific_order: 8
+  start: 172
+  end: 177
+- task_id: p1_Screw1_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 35
+  start: 177
+  end: 180
+- task_id: p1_Screw2_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 36
+  start: 180
+  end: 183
+- task_id: p1_Screw3_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 37
+  start: 183
+  end: 186
+- task_id: p1_Screw4_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 38
+  start: 186
+  end: 189
+- task_id: p1_Screw5_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 39
+  start: 189
+  end: 192
+- task_id: p1_Screw6_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 40
+  start: 192
+  end: 195
+- task_id: p1_Screw7_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 41
+  start: 195
+  end: 198
+- task_id: p1_Screw8_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 42
+  start: 198
+  end: 201
+- task_id: p1_Screw9_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 43
+  start: 201
+  end: 204
+- task_id: p1_Screw10_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 44
+  start: 204
+  end: 207
+- task_id: p1_Move_Right_Panel_to_the_lift
+  agent: r1
+  agent_specific_order: 4
+  start: 207
+  end: 211
+- task_id: p1_Mount_Right_Panel_on_the_Fixture
+  agent: r4
+  agent_specific_order: 1
+  start: 211
+  end: 221
+- task_id: p1_Hold_Hinge_to_Right_Panel
+  agent: H2
+  agent_specific_order: 4
+  start: 221
+  end: 224
+- task_id: p1_Hinge_Right_Panel_Screw1
+  agent: H2
+  agent_specific_order: 5
+  start: 224
+  end: 228
+- task_id: p1_Hinge_Right_Panel_Screw2
+  agent: H2
+  agent_specific_order: 6
+  start: 228
+  end: 232
+- task_id: p1_Pick_and_Place_Middle_Panel
+  agent: r1
+  agent_specific_order: 5
+  start: 232
+  end: 237
+- task_id: p1_Pick_and_Place_Middle_P_C4
+  agent: r2
+  agent_specific_order: 9
+  start: 237
+  end: 242
+- task_id: p1_Screw1_B2_Middle_P_C4
+  agent: r3
+  agent_specific_order: 45
+  start: 242
+  end: 245
+- task_id: p1_Screw2_B2_Middle_P_C4
+  agent: r3
+  agent_specific_order: 46
+  start: 245
+  end: 248
+- task_id: p1_Screw3_B2_Middle_P_C4
+  agent: r3
+  agent_specific_order: 47
+  start: 248
+  end: 251
+- task_id: p1_Screw4_B2_Middle_P_C4
+  agent: r3
+  agent_specific_order: 48
+  start: 251
+  end: 254
+- task_id: p1_Move_Middle_Panel_to_the_lift
+  agent: r1
+  agent_specific_order: 6
+  start: 254
+  end: 258
+- task_id: p1_Mount_Middle_Panel_on_the_Fixture
+  agent: r4
+  agent_specific_order: 2
+  start: 258
+  end: 268
+- task_id: p1_Hold_Hinge_to_Middle_Panel
+  agent: H2
+  agent_specific_order: 7
+  start: 268
+  end: 271
+- task_id: p1_Hinge_Middle_Panel_Screw1
+  agent: H2
+  agent_specific_order: 8
+  start: 271
+  end: 275
+- task_id: p1_Hinge_Middle_Panel_Screw2
+  agent: H2
+  agent_specific_order: 9
+  start: 275
+  end: 279
+- task_id: p1_Mount_Panel_B4_on_the_Fixture
+  agent: r4
+  agent_specific_order: 3
+  start: 279
+  end: 289
+- task_id: p1_Hold_Hinge_to_Panel_B4
+  agent: H2
+  agent_specific_order: 10
+  start: 289
+  end: 292
+- task_id: p1_Hinge_Panel_B4_Screw1
+  agent: H2
+  agent_specific_order: 11
+  start: 292
+  end: 296
+- task_id: p1_Hinge_Panel_B4_Screw2
+  agent: H2
+  agent_specific_order: 12
+  start: 296
+  end: 300
+- task_id: p1_Mount_Panel_B5_on_the_Fixture
+  agent: r4
+  agent_specific_order: 4
+  start: 300
+  end: 310
+- task_id: p1_Hold_Hinge_to_Panel_B5
+  agent: H2
+  agent_specific_order: 13
+  start: 310
+  end: 313
+- task_id: p1_Hinge_Panel_B5_Screw1
+  agent: H2
+  agent_specific_order: 14
+  start: 313
+  end: 317
+- task_id: p1_Hinge_Panel_B5_Screw2
+  agent: H2
+  agent_specific_order: 15
+  start: 317
+  end: 321
+- task_id: p1_Attach_and_Hold_Hinge_on_Panel12
+  agent: H2
+  agent_specific_order: 16
+  start: 321
+  end: 324
+- task_id: p1_Attach_and_Hold_Hinge_on_Panel23
+  agent: H2
+  agent_specific_order: 17
+  start: 324
+  end: 327
+- task_id: p1_Attach_and_Hold_Hinge_on_Panel34
+  agent: H2
+  agent_specific_order: 18
+  start: 327
+  end: 330
+- task_id: p1_Attach_and_Hold_Hinge_on_Panel45
+  agent: H2
+  agent_specific_order: 19
+  start: 330
+  end: 333
+- task_id: p1_Hinge_on_Panel12_Screw1
+  agent: H2
+  agent_specific_order: 20
+  start: 333
+  end: 338
+- task_id: p1_Hinge_on_Panel12_Screw2
+  agent: H2
+  agent_specific_order: 21
+  start: 338
+  end: 343
+- task_id: p1_Hinge_on_Panel23_Screw1
+  agent: H2
+  agent_specific_order: 22
+  start: 343
+  end: 348
+- task_id: p1_Hinge_on_Panel23_Screw2
+  agent: H2
+  agent_specific_order: 23
+  start: 348
+  end: 353
+- task_id: p1_Hinge_on_Panel34_Screw1
+  agent: H2
+  agent_specific_order: 24
+  start: 353
+  end: 358
+- task_id: p1_Hinge_on_Panel34_Screw2
+  agent: H2
+  agent_specific_order: 25
+  start: 358
+  end: 363
+- task_id: p1_Hinge_on_Panel45_Screw1
+  agent: H2
+  agent_specific_order: 26
+  start: 363
+  end: 368
+- task_id: p1_Hinge_on_Panel45_Screw2
+  agent: H2
+  agent_specific_order: 27
+  start: 368
+  end: 373
+- task_id: p1_Pick_Extern_Comp1_for_Panel1
+  agent: r4
+  agent_specific_order: 5
+  start: 373
+  end: 378
+- task_id: p1_Fix_Extern_Comp1_for_Panel1
+  agent: r4
+  agent_specific_order: 6
+  start: 378
+  end: 381
+- task_id: p1_Extern_Comp1_for_Panel1_joining1
+  agent: r4
+  agent_specific_order: 7
+  start: 381
+  end: 385
+- task_id: p1_Extern_Comp1_for_Panel1_joining2
+  agent: r4
+  agent_specific_order: 8
+  start: 385
+  end: 389
+- task_id: p1_Extern_Comp1_for_Panel1_joining3
+  agent: r4
+  agent_specific_order: 9
+  start: 389
+  end: 393
+- task_id: p1_Extern_Comp1_for_Panel1_joining4
+  agent: r4
+  agent_specific_order: 10
+  start: 393
+  end: 397
+- task_id: p1_roate_turntable_180
+  agent: TT
+  agent_specific_order: 1
+  start: 397
+  end: 401
+- task_id: p1_Pick_Extern_Comp2_for_Panel2
+  agent: r5
+  agent_specific_order: 1
+  start: 401
+  end: 406
+- task_id: p1_Fix_Extern_Comp2_for_Panel2
+  agent: r5
+  agent_specific_order: 2
+  start: 406
+  end: 409
+- task_id: p1_Extern_Comp2_for_Panel2_joining1
+  agent: H2
+  agent_specific_order: 28
+  start: 409
+  end: 413
+- task_id: p1_Extern_Comp2_for_Panel2_joining2
+  agent: H2
+  agent_specific_order: 29
+  start: 413
+  end: 417
+- task_id: p1_Extern_Comp2_for_Panel2_joining3
+  agent: H2
+  agent_specific_order: 30
+  start: 417
+  end: 421
+- task_id: p1_Extern_Comp2_for_Panel2_joining4
+  agent: H2
+  agent_specific_order: 31
+  start: 421
+  end: 425
+- task_id: p1_Pick_Extern_Comp1_for_Panel3
+  agent: r5
+  agent_specific_order: 3
+  start: 425
+  end: 430
+- task_id: p1_Fix_Extern_Comp1_for_Panel3
+  agent: r5
+  agent_specific_order: 4
+  start: 430
+  end: 433
+- task_id: p1_Extern_Comp1_for_Panel3_joining1
+  agent: H2
+  agent_specific_order: 32
+  start: 433
+  end: 437
+- task_id: p1_Extern_Comp1_for_Panel3_joining2
+  agent: H2
+  agent_specific_order: 33
+  start: 437
+  end: 441
+- task_id: p1_Extern_Comp1_for_Panel3_joining3
+  agent: H2
+  agent_specific_order: 34
+  start: 441
+  end: 445
+- task_id: p1_Extern_Comp1_for_Panel3_joining4
+  agent: H2
+  agent_specific_order: 35
+  start: 445
+  end: 449
+- task_id: p1_roate_turntable_180_2
+  agent: TT
+  agent_specific_order: 2
+  start: 449
+  end: 452
+- task_id: p1_Pick_Extern_Comp2_for_Panel4
+  agent: r5
+  agent_specific_order: 5
+  start: 452
+  end: 457
+- task_id: p1_Fix_Extern_Comp2_for_Panel4
+  agent: r5
+  agent_specific_order: 6
+  start: 457
+  end: 460
+- task_id: p1_Extern_Comp2_for_Panel4_joining1
+  agent: H2
+  agent_specific_order: 36
+  start: 460
+  end: 464
+- task_id: p1_Extern_Comp2_for_Panel4_joining2
+  agent: H2
+  agent_specific_order: 37
+  start: 464
+  end: 468
+- task_id: p1_Extern_Comp2_for_Panel4_joining3
+  agent: H2
+  agent_specific_order: 38
+  start: 468
+  end: 472
+- task_id: p1_Extern_Comp2_for_Panel4_joining4
+  agent: H2
+  agent_specific_order: 39
+  start: 472
+  end: 476

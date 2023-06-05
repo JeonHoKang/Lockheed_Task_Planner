@@ -33,6 +33,7 @@ def search_tree(dictionary, node_id):
 class Contingency_Manager(object):
     def __init__(self):
         super().__init__()
+        self.contingency = False
         contingency_occur = 1
         # print(data['children'][0]['children'][0]['children'][0])
         scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
@@ -50,7 +51,6 @@ class Contingency_Manager(object):
         self.generate_task_model()
         self.contingency_htn_dict = self.htn_dict
         self.yaml_export
-        self.contingency = True
 
     def geneate_contingency_plan(self):
         contingency_planning_node = {}

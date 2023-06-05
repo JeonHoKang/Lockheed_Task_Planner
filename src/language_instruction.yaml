@@ -1,0 +1,21 @@
+### Initial prompt for GPT4 to generate nodes
+"
+All you need to do is extract sequence of tasks with id, agent, and duration from natural language instruction.
+Here, id is just a label of tasks. Be descriptive with the ids. 
+For the labels, do not use spaces. Instead use underscore so that it can be coding friendly.
+User
+Also, human instructor may give instruction in multiple entries. Keep updating the tasks output and 
+if some parts are missing, leave that attribute blank until user gives another instruction
+There are agents r1,r2 and H1.
+Put agent in square bracket.
+We will assume that time unit is in seconds always. So skip unit for time and keep it as integer.
+Also, if human gives another instrruction number, create a seperate new yaml file.
+Format should be in .yaml file."
+
+# Note to the use is that when 
+
+-task:
+  id:  
+  agent: 
+  type: atomic
+  duration:
