@@ -600,6 +600,36 @@ class HtnMilpScheduler(object):
                 schedule_yaml[agent] = 'None Scheduled yet'
 
         if self.contingency:
+            with open(r'{}\contingency_visualize_helper_text.yaml'.format(self.problem_dir), 'w') as file:
+                documents = yaml.dump(schedule_yaml, file, sort_keys=False)
+        else:
+            with open(r'{}\visualize_helper_text.yaml'.format(self.problem_dir), 'w') as file:
+                documents = yaml.dump(
+                    schedule_yaml, file, sort_keys=False, Dumper=NoTagNoQuotesDumper)
+        self.export_schedule_text(t_assignment)
+
+    def export_schedule_text(self, t_assignment):
+        task_allocation = t_assignment
+        print(task_allocation)
+        schedule_yaml = []
+        for agent, assignment in list(task_allocation.items()):
+            for count in range(len(assignment)):
+                for task, (start, end) in assignment[count].items():
+                    schedule_yaml.append({
+                        'task_id': task, 'agent': agent, 'agent_specific_order': count+1, 'start': start, 'end': end})
+
+        schedule_yaml = sorted(
+            schedule_yaml, key=lambda x: x['start'])
+
+        # for schedule in schedule_yaml.values():
+        #     given_values = schedule.values()
+        # for element in assignment:
+        #     for task, (start, end) in element.items():
+        #         schedule_yaml[agent][task] = {'start': start, 'end': end}
+        # if schedule_yaml[agent] == {}:
+        #     schedule_yaml[agent] = 'None Scheduled yet'
+
+        if self.contingency:
             with open(r'{}\task_allocation_cont.yaml'.format(self.problem_dir), 'w') as file:
                 documents = yaml.dump(schedule_yaml, file, sort_keys=False)
         else:
