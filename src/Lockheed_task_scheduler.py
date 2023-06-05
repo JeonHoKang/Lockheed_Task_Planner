@@ -27,6 +27,7 @@ from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 from Agent import Agent
 from Task import Task
+import mplcursors
 
 
 class HtnMilpScheduler(object):
@@ -62,6 +63,7 @@ class HtnMilpScheduler(object):
         self.contingency_node = None
         self.unavailable_agent_Bool = False
         self.unavailable_agent = ''
+        self.sorted_assignment = {}
 
     def set_dir(self, dir):
         """Sets the problem instance directory"""
@@ -163,7 +165,6 @@ class HtnMilpScheduler(object):
         # First y-tick
         first_y_tick = 15
         # y-tick gap
-        y_tick_gap = 10
         # init ticks and lable
         list_ytick_labels = []
         list_yticks = []
@@ -188,27 +189,33 @@ class HtnMilpScheduler(object):
 
         # Setting graph attribute
         gnt.grid(True)
-
-        print('t_assignment', t_assignment)
+        y_tick_gap = 10
         # Declaring a bar in schedule
         for c, agent in enumerate(self.agent_id):  # for count and agent names
             # plot bar chart
-            if color_idx >= 9:
-                color_idx = 0
-            gnt.broken_barh(t_assignment[agent], (10*(c+1), 9),
-                            facecolors=(list_colors))
+            for assignment in t_assignment[agent]:
+                for task, (start, end) in assignment.items():
+                    if color_idx >= 9:
+                        color_idx = 0
+                    duration = end-start
+                    gnt.broken_barh([(start, duration)], (10*(c+1), 9),
+                                    facecolors=(list_colors[color_idx]))
+                    gnt.text((start+end)/2, 10*(c+1)+4.5,
+                             task, ha='center', va='center')
+                    color_idx += 1
             # append to the y ticks
             list_ytick_labels.append(agent)
             list_yticks.append(first_y_tick+y_tick_gap*c)
-            color_idx += 2
+
+        gnt.set_title('Task Assignment')
         # se final ytick
         list_yticks.append(first_y_tick+y_tick_gap*len(list_ytick_labels))
         gnt.set_yticklabels(list_ytick_labels)
         gnt.set_yticks(list_yticks)
         # Setting Y-axis limits
         gnt.set_ylim(0, list_yticks[len(list_yticks)-1])
-        plt.savefig("gant1.png")
         plt.show()
+        plt.savefig("gant1.png")
 
     def import_htn(self, print_htn=True):  # HTN import
         def edit_tree(dictionary, product_num):
@@ -558,12 +565,12 @@ class HtnMilpScheduler(object):
             print("no solution found")
 
         t_assignment = {}
-        visual_t_assignmnent = {}
+        visual_t_assignment = {}
         self.agent_id = []
         self.task_id = []
         for agent_id, tasks in agent_decision_variables.items():
             self.agent_id.append(agent_id)
-            visual_t_assignmnent[agent_id] = []
+            visual_t_assignment[agent_id] = []
             t_assignment[agent_id] = {}
 
         task_count = 0
@@ -576,23 +583,51 @@ class HtnMilpScheduler(object):
                     t_assignment[val][task_id] = {}
                     t_assignment[val][task_id]["StarttoEnd"] = list([solver.Value(self.task_start_vars[task_id]), solver.Value(
                         self.task_end_vars[task_id])])
-                    visual_t_assignmnent[val].append((solver.Value(self.task_start_vars[task_id]), solver.Value(
-                        self.task_end_vars[task_id])-solver.Value(self.task_start_vars[task_id])))
-
-        self.visualize(visual_t_assignmnent)
-        self.export_yaml(t_assignment)
+                    visual_t_assignment[val].append({task_id: (solver.Value(self.task_start_vars[task_id]), solver.Value(
+                        self.task_end_vars[task_id]))})
+                prev_task = task_id
+        # t_assignment = dict(sorted(t_assignment.items(), key=lambda x: list(x[1].items())))
+        # t_assignment = (dict(sorted(v.items(), key=lambda x: x[1])) for k, v in t_assignment.items())
+        # print(t_assignment)
+        sorted_t_assignment = {}
+        for agent in self.agent_id:
+            assignment = visual_t_assignment[agent]
+            sorted_t_assignment[agent] = sorted(
+                assignment, key=lambda x: list(x.values())[0][0])
+        self.visualize(sorted_t_assignment)
+        self.export_yaml(sorted_t_assignment)
         print(t_assignment)
 
     def export_yaml(self, t_assignment):
-        task_allocation = {}
         task_allocation = t_assignment
         print(task_allocation)
+        schedule_yaml = {}
+        for agent, assignment in task_allocation.items():
+            schedule_yaml[agent] = {}
+            for element in assignment:
+                for task, (start, end) in element.items():
+                    schedule_yaml[agent][task] = {'start': start, 'end': end}
         if self.contingency:
             with open(r'{}\task_allocation_cont2.yaml'.format(self.problem_dir), 'w') as file:
-                documents = yaml.dump(task_allocation, file, sort_keys=False)
+                documents = yaml.dump(schedule_yaml, file, sort_keys=False)
         else:
             with open(r'{}\task_allocation.yaml'.format(self.problem_dir), 'w') as file:
-                documents = yaml.dump(task_allocation, file, sort_keys=False)
+                documents = yaml.dump(
+                    schedule_yaml, file, sort_keys=False, Dumper=NoTagNoQuotesDumper)
+
+
+class NoTagNoQuotesDumper(yaml.Dumper):
+    def represent_data(self, data):
+        if isinstance(data, tuple):
+            return self.represent_sequence('tag:yaml.org,2002:seq', data, flow_style=True)
+        return super().represent_data(data)
+
+    def represent_scalar(self, tag, value, style=None):
+        if style is None:
+            style = self.default_style
+        if tag == 'tag:yaml.org,2002:str' and '\n' in value:
+            style = '|'
+        return super().represent_scalar(tag, value, style)
 
 
 def main():
