@@ -16,4 +16,4 @@ class Agent:
             self.agent_state = state
 
     def __repr__(self) -> str:
-        return self.agent_id + "-"+self.agent_state+":"+str(self.agent_task) + "type: " + self.agent_type
+        return f'Agent(id={self.agent_id}, state={self.agent_state})'

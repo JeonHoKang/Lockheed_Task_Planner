@@ -34,19 +34,11 @@ class HtnMilpScheduler(object):
     def __init__(self) -> None:
         self.multi_product_htn = None
         self.all_diff_constraints = []
-        self.h_dur_constraints = []
-        self.r_dur_constraints = []
-        self.h_durations = None
-        self.r_durations = None
-        self.task_spec = None
         self.model = None
-        self.agent_d_vars = None
-        self.num_tasks = None
         self.durations = []
         self.starts = []
         self.ends = []
         self.objective = None
-        self.makespans = []
         self.solver = cp_model.CpSolver()
         self.makespan = None
         self.start_var = None
@@ -89,50 +81,50 @@ class HtnMilpScheduler(object):
         for agent_id in agents:
             self.agent_team_model[agent_id] = Agent(
                 agent_id)
+        self.agent_team_model['X'].set_agent_state('unavailable')
 
     def create_task_model(self):
         """Creates a task model with the existing HTN"""
         self.load_agent_model()
-        self.agent_team_model['X'].set_agent_state('unavailable')
         task_model_yaml = self.problem_description["task_model_id"]
         file_dir = self.problem_dir + task_model_yaml
-        self.task_model = {}
+        task_model = {}
         with open(file_dir, 'r') as stream:
             try:
                 # Converts yaml document to python object
-                self.task_model1 = yaml.safe_load(stream)
+                task_model1 = yaml.safe_load(stream)
                 # for ease of manipulation convert the task model1 to the list
-                self.list_task_model1 = list(self.task_model1)
+                list_task_model = list(task_model1)
                 for product in range(self.num_products):
-                    for i in range(len(self.task_model1)):
+                    for i in range(len(task_model1)):
                         # just indexing how long this is
                         cur_leaf_node = (product) * \
-                            len(self.task_model1)+(i+1)
-                        if cur_leaf_node <= len(self.task_model1):
-                            if self.list_task_model1[i][:8] == 'recovery':
-                                self.task_model[self.list_task_model1[i]] = {}
+                            len(task_model1)+(i+1)
+                        if cur_leaf_node <= len(task_model1):
+                            if list_task_model[i][:8] == 'recovery':
+                                task_model[list_task_model[i]] = {}
                             else:
-                                self.task_model['p1_' +
-                                                self.list_task_model1[i]] = {}
-                        elif cur_leaf_node > len(self.task_model1):
-                            if self.list_task_model1[i][:8] == 'recovery':
-                                self.task_model[self.list_task_model1[i]] = {}
+                                task_model['p1_' +
+                                           list_task_model[i]] = {}
+                        elif cur_leaf_node > len(task_model1):
+                            if list_task_model[i][:8] == 'recovery':
+                                task_model[list_task_model[i]] = {}
                             else:
-                                self.task_model['p{}_'.format(
-                                    product+1)+self.list_task_model1[i]] = {}
+                                task_model['p{}_'.format(
+                                    product+1)+list_task_model[i]] = {}
                 for i in range(self.num_products):
-                    for c, agents in enumerate(self.task_model1):
-                        task_model_index = (c+1)+len(self.task_model1)*(i)
-                        if self.list_task_model1[c][:8] == 'recovery':
-                            self.task_model[self.list_task_model1[c]
-                                            ] = self.task_model1[self.list_task_model1[c]]
+                    for c, agents in enumerate(task_model1):
+                        task_model_index = (c+1)+len(task_model1)*(i)
+                        if list_task_model[c][:8] == 'recovery':
+                            task_model[list_task_model[c]
+                                       ] = task_model1[list_task_model[c]]
                         else:
-                            self.task_model["p{}_".format(i+1)
-                                            + self.list_task_model1[c]] = self.task_model1[self.list_task_model1[c]]
+                            task_model["p{}_".format(i+1)
+                                       + list_task_model[c]] = task_model1[list_task_model[c]]
 
             except yaml.YAMLError as e:
                 print(e)
-        self.task_object = self.create_task_object(self.task_model)
+        self.task_object = self.create_task_object(task_model)
 
     def create_task_object(self, tasks):
         task_model = {}
@@ -406,11 +398,13 @@ class HtnMilpScheduler(object):
             parent = parent.parent
 
     def generate_model(self):
-        self.model = cp_model.CpModel()
         if self.problem_description == None:
             raise Exception("No problem description imported")
         else:
             prob = self.problem_description
+        self.model = cp_model.CpModel()
+        task_object = self.task_object
+        task_list = list(self.task_object.keys())
         htn_nodes = list(anytree.PostOrderIter(self.multi_product_htn))
         ### Create Task Assignment Agent Decision Variables ###
         agent_decision_variables = {}  # agent Decision Variables
@@ -419,7 +413,6 @@ class HtnMilpScheduler(object):
         self.task_start_vars = {}
         self.task_end_vars = {}
         self.task_interval_vars = {}
-        task_object = self.task_object
         agent_start_vars = {}
         agent_end_vars = {}
         agent_interval_vars = {}
@@ -431,7 +424,6 @@ class HtnMilpScheduler(object):
             agent_start_vars[agent] = {}
             agent_end_vars[agent] = {}
             agent_interval_vars[agent] = {}
-        task_list = list(self.task_object.keys())
 
         if self.contingency:
             self.task_object[self.contingency_name].set_task_state('failed')
@@ -439,7 +431,6 @@ class HtnMilpScheduler(object):
         if self.contingency and self.unavailable_agent_Bool:
             self.agent_team_model[self.unavailable_agent_Bool].set_agent_state(
                 'unavailable')
-        # self.task_object[self.contingency_name].set_task_state('failed')
 
         def find_contingency_nodes(unavailable_agent):
             contingency_nodes = []
@@ -454,6 +445,7 @@ class HtnMilpScheduler(object):
                     if unavailable_agent in node.agent:
                         contingency_nodes.append(node)
             return contingency_nodes
+
         if self.contingency:
             contingency_node_list = find_contingency_nodes(
                 self.unavailable_agent)
@@ -463,7 +455,7 @@ class HtnMilpScheduler(object):
 
         for task in task_list:
             for agent in agent_teams:
-                if agent not in self.task_model[task]["agent_model"]:
+                if agent not in task_object[task].agent_id:
                     continue
                 if self.agent_team_model[agent].agent_state == 'available' and self.task_object[task].task_state == 'unattempted':
                     agent_decision_variables[agent][task] = self.model.NewBoolVar(
@@ -476,14 +468,14 @@ class HtnMilpScheduler(object):
 
         # calculate the horizon for the entire plan
         self.horizon = 0
-        for task in self.task_model.keys():
+        for task in task_object.keys():
             dur = 0
-            for agent, agent_dur_model in self.task_model[task]["duration_model"].items():
+            for agent, agent_dur_model in self.task_object[task].duration_model.items():
                 task_dur = max(dur, agent_dur_model['mean'])
             self.horizon = self.horizon+task_dur
 
         # Task varriables
-        for task in self.task_model.keys():
+        for task in task_object.keys():
             # Define Main Start End , Duration and interval variables
             start = self.model.NewIntVar(0, self.horizon, 'start_' + task)
             duration = self.model.NewIntVar(
@@ -500,14 +492,14 @@ class HtnMilpScheduler(object):
             intervals.append(interval)
             self.task_interval_vars[task] = interval
             for agent in prob["agents"]:
-                if agent not in self.task_model[task]["duration_model"].keys():
+                if agent not in self.task_object[task].duration_model.keys():
                     continue
                 if self.agent_team_model[agent].agent_state == 'unavailable':
                     continue
                 if self.task_object[task].task_state != 'unattempted':
                     continue
                 agent_dur_constraints[agent][task] = self.model.Add(
-                    self.task_model[task]["duration_model"][agent]["mean"] == duration).OnlyEnforceIf(agent_decision_variables[agent][task])
+                    self.task_object[task].duration_model[agent]['mean'] == duration).OnlyEnforceIf(agent_decision_variables[agent][task])
                 agent_start_vars[agent][task] = self.model.NewIntVar(
                     0, self.horizon, 'start_on_' + task + agent)
                 agent_end_vars[agent][task] = self.model.NewIntVar(
@@ -538,16 +530,17 @@ class HtnMilpScheduler(object):
         self.model.Add(o == 10*t+s)
         self.objective = o
         self.makespan = t
+
         #### Define Objective ####
         self.model.Minimize(o)
-        for task in self.task_model.keys():
-            for agent in self.task_model[task]['agent_model']:
+        for task in self.task_object.keys():
+            for agent in self.task_object[task].agent_id:
                 if self.task_object[task].task_state != 'unattempted' or self.agent_team_model[agent].agent_state != 'available':
                     continue
                 else:
                     print(agent_decision_variables[agent][task])
                     self.all_diff_constraints.append(self.model.Add(sum(
-                        [agent_decision_variables[agent][task] for agent in self.task_model[task]["agent_model"]]) == 1))
+                        [agent_decision_variables[agent][task] for agent in self.task_object[task].agent_id]) == 1))
 
         #### Create Solver and Solve ####
         solver = self.solver
@@ -586,9 +579,6 @@ class HtnMilpScheduler(object):
                     visual_t_assignment[val].append({task_id: (solver.Value(self.task_start_vars[task_id]), solver.Value(
                         self.task_end_vars[task_id]))})
                 prev_task = task_id
-        # t_assignment = dict(sorted(t_assignment.items(), key=lambda x: list(x[1].items())))
-        # t_assignment = (dict(sorted(v.items(), key=lambda x: x[1])) for k, v in t_assignment.items())
-        # print(t_assignment)
         sorted_t_assignment = {}
         for agent in self.agent_id:
             assignment = visual_t_assignment[agent]
@@ -596,7 +586,6 @@ class HtnMilpScheduler(object):
                 assignment, key=lambda x: list(x.values())[0][0])
         self.visualize(sorted_t_assignment)
         self.export_yaml(sorted_t_assignment)
-        print(t_assignment)
 
     def export_yaml(self, t_assignment):
         task_allocation = t_assignment
@@ -640,7 +629,7 @@ def main():
         scheduler.import_problem("problem_description_toy.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
-    print('--------model created-------------')
+    print('--------Initialized-------------')
     scheduler.generate_model()
 
 
