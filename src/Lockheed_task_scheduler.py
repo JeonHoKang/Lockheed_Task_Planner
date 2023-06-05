@@ -596,8 +596,11 @@ class HtnMilpScheduler(object):
             for element in assignment:
                 for task, (start, end) in element.items():
                     schedule_yaml[agent][task] = {'start': start, 'end': end}
+            if schedule_yaml[agent] == {}:
+                schedule_yaml[agent] = 'None Scheduled yet'
+
         if self.contingency:
-            with open(r'{}\task_allocation_cont2.yaml'.format(self.problem_dir), 'w') as file:
+            with open(r'{}\task_allocation_cont.yaml'.format(self.problem_dir), 'w') as file:
                 documents = yaml.dump(schedule_yaml, file, sort_keys=False)
         else:
             with open(r'{}\task_allocation.yaml'.format(self.problem_dir), 'w') as file:
