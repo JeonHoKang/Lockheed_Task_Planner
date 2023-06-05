@@ -1,0 +1,40 @@
+- task_id: p1_a3
+  agent: r2
+  agent_specific_order: 1
+  start: 0
+  end: 4
+- task_id: p1_a1
+  agent: r1
+  agent_specific_order: 1
+  start: 4
+  end: 10
+- task_id: recovery-check for component
+  agent: H
+  agent_specific_order: 1
+  start: 10
+  end: 16
+- task_id: recovery-pick component
+  agent: H
+  agent_specific_order: 2
+  start: 16
+  end: 22
+- task_id: recovery-check orientation
+  agent: H
+  agent_specific_order: 3
+  start: 22
+  end: 28
+- task_id: recovery-notify execution monitor
+  agent: H
+  agent_specific_order: 4
+  start: 28
+  end: 34
+- task_id: recovery-a2
+  agent: r2
+  agent_specific_order: 2
+  start: 34
+  end: 40
+- task_id: p1_a4
+  agent: r2
+  agent_specific_order: 3
+  start: 40
+  end: 72

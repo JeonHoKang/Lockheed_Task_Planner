@@ -48,8 +48,9 @@ class Contingency_Manager(object):
         self.Add_Handle_Node(
             self.htn_dict, self.contingency_node, self.contingency_plan)
         self.generate_task_model()
-        self.contingency_htn = self.htn_dict
+        self.contingency_htn_dict = self.htn_dict
         self.yaml_export
+        self.contingency = True
 
     def geneate_contingency_plan(self):
         contingency_planning_node = {}

@@ -44,7 +44,10 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.htn = self.scheduler.import_htn()
         # main htn dictionary
         self.htn_dict = self.scheduler.multi_product_dict
-        self.render_node_to_edges(self.contingency_htn)
+        if self.contingency_manager.contingency == True:
+            self.render_node_to_edges(self.contingency_htn)
+        else:
+            self.render_node_to_edges(self.htn_dict)
         # declare first igraph instance
         self.g = Graph(self.n_vertices, self.edges)
         self.labels = []

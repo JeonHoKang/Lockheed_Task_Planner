@@ -8,7 +8,10 @@ Task allocation problem
 
 """
 
-
+import tkinter as tk
+from tkinter import ttk
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from pyexpat import model
 from sched import scheduler
 from tkinter import Variable
@@ -27,7 +30,6 @@ from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 from Agent import Agent
 from Task import Task
-import mplcursors
 
 
 class HtnMilpScheduler(object):
@@ -50,7 +52,7 @@ class HtnMilpScheduler(object):
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-        self.contingency = False
+        self.contingency = True
         self.contingency_name = 'p1_a2'
         self.contingency_node = None
         self.unavailable_agent_Bool = False
@@ -136,6 +138,13 @@ class HtnMilpScheduler(object):
         return task_model
 
     def visualize(self, t_assignment):
+        window = tk.Tk()
+        window.title("Gant Chart - Multi-Robot SChedule")
+        frame = ttk.Frame(window)
+        frame.pack(pady=10)
+        # Create the graph frame
+        graph_frame = ttk.Frame(frame)
+        graph_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
         fig, gnt = plt.subplots(figsize=(60, 10))
         # delcare colors for the charts
         blue = 'tab:blue'
@@ -182,6 +191,8 @@ class HtnMilpScheduler(object):
         # Setting graph attribute
         gnt.grid(True)
         y_tick_gap = 10
+        list_labels = []
+        task_index = 1
         # Declaring a bar in schedule
         for c, agent in enumerate(self.agent_id):  # for count and agent names
             # plot bar chart
@@ -193,7 +204,9 @@ class HtnMilpScheduler(object):
                     gnt.broken_barh([(start, duration)], (10*(c+1), 9),
                                     facecolors=(list_colors[color_idx]))
                     gnt.text((start+end)/2, 10*(c+1)+4.5,
-                             task, ha='center', va='center')
+                             task_index, ha='center', va='center')
+                    list_labels.append(task)
+                    task_index += 1
                     color_idx += 1
             # append to the y ticks
             list_ytick_labels.append(agent)
@@ -206,8 +219,33 @@ class HtnMilpScheduler(object):
         gnt.set_yticks(list_yticks)
         # Setting Y-axis limits
         gnt.set_ylim(0, list_yticks[len(list_yticks)-1])
-        plt.show()
-        plt.savefig("gant1.png")
+
+        listbox_frame = ttk.Frame(frame)
+        listbox_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        scrollbar = ttk.Scrollbar(listbox_frame)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        scrollbar2 = ttk.Scrollbar(
+            listbox_frame, orient=tk.HORIZONTAL)
+        scrollbar2.pack(side=tk.BOTTOM, fill=tk.X)
+
+        # listbox_font = Font(size=12)
+        listbox = tk.Listbox(
+            listbox_frame, yscrollcommand=scrollbar.set, xscrollcommand=scrollbar2.set, font='Aerial', width=20)
+        listbox.pack(side=tk.LEFT, fill=tk.BOTH)
+        scrollbar.config(command=listbox.yview)
+        # Configure the scrollbar to work with the listbox
+        scrollbar2.config(command=listbox.xview)
+        for i, label in enumerate(list_labels):
+            listbox.insert(tk.END, f"{i+1}: {label}")
+        canvas = FigureCanvasTkAgg(fig, master=frame)
+        canvas.draw()
+        canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        window.mainloop()
+        # plt.show()
+        if self.contingency:
+            plt.savefig("contingency_gant.png")
+        else:
+            plt.savefig("gant.png")
 
     def import_htn(self, print_htn=True):  # HTN import
         def edit_tree(dictionary, product_num):
@@ -590,12 +628,16 @@ class HtnMilpScheduler(object):
     def export_yaml(self, t_assignment):
         task_allocation = t_assignment
         print(task_allocation)
+        i = 1
         schedule_yaml = {}
         for agent, assignment in task_allocation.items():
             schedule_yaml[agent] = {}
             for element in assignment:
                 for task, (start, end) in element.items():
-                    schedule_yaml[agent][task] = {'start': start, 'end': end}
+                    schedule_yaml[agent][i] = {}
+                    schedule_yaml[agent][i][task] = {
+                        'start': start, 'end': end}
+                    i += 1
             if schedule_yaml[agent] == {}:
                 schedule_yaml[agent] = 'None Scheduled yet'
 
@@ -620,14 +662,6 @@ class HtnMilpScheduler(object):
 
         schedule_yaml = sorted(
             schedule_yaml, key=lambda x: x['start'])
-
-        # for schedule in schedule_yaml.values():
-        #     given_values = schedule.values()
-        # for element in assignment:
-        #     for task, (start, end) in element.items():
-        #         schedule_yaml[agent][task] = {'start': start, 'end': end}
-        # if schedule_yaml[agent] == {}:
-        #     schedule_yaml[agent] = 'None Scheduled yet'
 
         if self.contingency:
             with open(r'{}\task_allocation_cont.yaml'.format(self.problem_dir), 'w') as file:
