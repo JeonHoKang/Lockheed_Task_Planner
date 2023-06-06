@@ -831,11 +831,11 @@ Screw9_Top_P_C6:
     r3:
       id: det
       mean: 3
-recovery-Pick_and_Place_Top_Panel:
+recovery-Pick_and_Place_Right_P_C1_2:
   agent_model:
-  - r1
+  - r2
   duration_model:
-    r1:
+    r2:
       id: det
       mean: 6
 recovery-check for component:

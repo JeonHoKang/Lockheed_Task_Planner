@@ -41,7 +41,7 @@ class Contingency_Manager(object):
         scheduler.import_problem("problem_description_LM2023.yaml")
         scheduler.create_task_model()
         htn = scheduler.import_htn()
-        self.contingency_name = 'p1_Pick_and_Place_Top_Panel'
+        self.contingency_name = 'p1_Pick_and_Place_Right_P_C1_2'
         self.htn_dict = scheduler.multi_product_dict
         self.contingency_node = search_tree(
             self.htn_dict, self.contingency_name)

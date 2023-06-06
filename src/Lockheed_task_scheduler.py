@@ -52,11 +52,11 @@ class HtnMilpScheduler(object):
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-        self.contingency = True
-        self.contingency_name = 'p1_Pick_and_Place_Top_Panel'
+        self.contingency = False
+        self.contingency_name = 'p1_Pick_and_Place_Right_P_C1_2'
         self.contingency_node = None
         self.unavailable_agent_Bool = True
-        self.unavailable_agent = 'r1'
+        self.unavailable_agent = 'r3'
         self.sorted_assignment = {}
 
     def set_dir(self, dir):
@@ -475,7 +475,7 @@ class HtnMilpScheduler(object):
         if self.contingency:
             self.task_object[self.contingency_name].set_task_state('failed')
             self.contingency_node = self.task_object[self.contingency_name]
-        if self.contingency and self.unavailable_agent_Bool:
+        if self.unavailable_agent_Bool:
             self.agent_team_model[self.unavailable_agent].set_agent_state(
                 'unavailable')
 
@@ -484,16 +484,15 @@ class HtnMilpScheduler(object):
             for node in htn_nodes:
                 if node.type != 'atomic':
                     continue
-                elif self.contingency_name != '':
-                    for node in htn_nodes:
-                        if node.id == self.contingency_name:
-                            contingency_nodes.append(node)
-                elif unavailable_agent:
+                if self.contingency_name != '':
+                    if node.id == self.contingency_name:
+                        contingency_nodes.append(node)
+                if self.unavailable_agent_Bool:
                     if unavailable_agent in node.agent:
                         contingency_nodes.append(node)
             return contingency_nodes
 
-        if self.contingency:
+        if self.contingency or self.unavailable_agent_Bool:
             contingency_node_list = find_contingency_nodes(
                 self.unavailable_agent)
             # From the found contingency list move upward on tree to set all the children infeasible

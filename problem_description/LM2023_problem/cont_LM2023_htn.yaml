@@ -17,29 +17,6 @@ children:
           type: atomic
           agent:
           - r1
-        - id: contingency_plan
-          type: sequential
-          children:
-          - id: recovery-check for component
-            type: atomic
-            agent:
-            - H1
-          - id: recovery-pick component
-            type: atomic
-            agent:
-            - H1
-          - id: recovery-check orientation
-            type: atomic
-            agent:
-            - H1
-          - id: recovery-notify execution monitor
-            type: atomic
-            agent:
-            - H1
-          - id: recovery-Pick_and_Place_Top_Panel
-            type: atomic
-            agent:
-            - r1
         - id: p1_Component_Top_Panel
           type: independent
           children:
@@ -214,6 +191,29 @@ children:
               type: atomic
               agent:
               - r2
+            - id: contingency_plan
+              type: sequential
+              children:
+              - id: recovery-check for component
+                type: atomic
+                agent:
+                - H1
+              - id: recovery-pick component
+                type: atomic
+                agent:
+                - H1
+              - id: recovery-check orientation
+                type: atomic
+                agent:
+                - H1
+              - id: recovery-notify execution monitor
+                type: atomic
+                agent:
+                - H1
+              - id: recovery-Pick_and_Place_Right_P_C1_2
+                type: atomic
+                agent:
+                - r2
             - id: p1_Screw_Operation_Right_P_C1_2
               type: independent
               children:
