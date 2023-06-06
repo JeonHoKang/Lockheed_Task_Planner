@@ -203,7 +203,7 @@ class HTN_vis(QtWidgets.QMainWindow):
                 self.color_list.append('yellow')
             else:
                 self.color_list.append('cyan')
-        if self.contingency_node in self.id_seqence_list:
+        if self.contingency_manager.contingency and self.contingency_node in self.id_seqence_list:
             self.color_list[self.id_seqence_list.index(
                 self.contingency_node)] = 'red'
         self.edges = self.edge_list

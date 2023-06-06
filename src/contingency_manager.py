@@ -12,28 +12,10 @@ import copy
 # ------- While ROS node is running ------
 
 
-def search_tree(dictionary, node_id):
-    if dictionary['id'] == node_id:
-        contingency_node = dictionary
-        return contingency_node
-    else:
-        res = []
-        if 'children' in dictionary:
-            for child in dictionary['children']:
-                parent = dictionary
-                res.append(search_tree(child, node_id))
-        else:
-            return None
-
-        for element in res:
-            if element:
-                return element
-
-
 class Contingency_Manager(object):
     def __init__(self):
         super().__init__()
-        self.contingency = True
+        self.contingency = False
         contingency_occur = 1
         # print(data['children'][0]['children'][0]['children'][0])
         scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
@@ -43,7 +25,7 @@ class Contingency_Manager(object):
         htn = scheduler.import_htn()
         self.contingency_name = 'p1_Pick_and_Place_Right_P_C1_2'
         self.htn_dict = scheduler.multi_product_dict
-        self.contingency_node = search_tree(
+        self.contingency_node = self.search_tree(
             self.htn_dict, self.contingency_name)
         self.contingency_plan = self.geneate_contingency_plan()
         self.Add_Handle_Node(
@@ -51,6 +33,23 @@ class Contingency_Manager(object):
         self.generate_task_model()
         self.contingency_htn_dict = self.htn_dict
         self.yaml_export()
+
+    def search_tree(self, dictionary, node_id):
+        if dictionary['id'] == node_id:
+            contingency_node = dictionary
+            return contingency_node
+        else:
+            res = []
+            if 'children' in dictionary:
+                for child in dictionary['children']:
+                    parent = dictionary
+                    res.append(self.search_tree(child, node_id))
+            else:
+                return None
+
+            for element in res:
+                if element:
+                    return element
 
     def geneate_contingency_plan(self):
         contingency_planning_node = {}
