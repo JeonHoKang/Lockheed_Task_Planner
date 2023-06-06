@@ -33,7 +33,7 @@ def search_tree(dictionary, node_id):
 class Contingency_Manager(object):
     def __init__(self):
         super().__init__()
-        self.contingency = False
+        self.contingency = True
         contingency_occur = 1
         # print(data['children'][0]['children'][0]['children'][0])
         scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
@@ -41,7 +41,7 @@ class Contingency_Manager(object):
         scheduler.import_problem("problem_description_LM2023.yaml")
         scheduler.create_task_model()
         htn = scheduler.import_htn()
-        self.contingency_name = 'p1_Pick_and_Place_Middle_Panel'
+        self.contingency_name = 'p1_Pick_and_Place_Top_Panel'
         self.htn_dict = scheduler.multi_product_dict
         self.contingency_node = search_tree(
             self.htn_dict, self.contingency_name)
@@ -50,7 +50,7 @@ class Contingency_Manager(object):
             self.htn_dict, self.contingency_node, self.contingency_plan)
         self.generate_task_model()
         self.contingency_htn_dict = self.htn_dict
-        self.yaml_export
+        self.yaml_export()
 
     def geneate_contingency_plan(self):
         contingency_planning_node = {}
@@ -115,7 +115,6 @@ class Contingency_Manager(object):
     def generate_task_model(self):
         with open("problem_description/LM2023_problem/task_model_LM2023.yaml", "r") as file:
             task_model_dict = yaml.safe_load(file)
-            print('check')
             # list_task_models = list(task_model_dict.keys())
             # for i, tasks in enumerate(list_task_models):
             #     if tasks == self.contingency_name:

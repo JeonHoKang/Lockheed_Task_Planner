@@ -52,11 +52,11 @@ class HtnMilpScheduler(object):
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-        self.contingency = False
-        self.contingency_name = 'p1_a2'
+        self.contingency = True
+        self.contingency_name = 'p1_Pick_and_Place_Top_Panel'
         self.contingency_node = None
-        self.unavailable_agent_Bool = False
-        self.unavailable_agent = ''
+        self.unavailable_agent_Bool = True
+        self.unavailable_agent = 'r1'
         self.sorted_assignment = {}
 
     def set_dir(self, dir):
@@ -410,7 +410,6 @@ class HtnMilpScheduler(object):
 
             if vertex.id not in visited:
                 # Process the vertex (in this case, print it)
-                print(vertex.id)
                 visited.append(vertex.id)  # Mark the vertex as visited
 
                 # Add adjacent vertices to the stack
@@ -477,7 +476,7 @@ class HtnMilpScheduler(object):
             self.task_object[self.contingency_name].set_task_state('failed')
             self.contingency_node = self.task_object[self.contingency_name]
         if self.contingency and self.unavailable_agent_Bool:
-            self.agent_team_model[self.unavailable_agent_Bool].set_agent_state(
+            self.agent_team_model[self.unavailable_agent].set_agent_state(
                 'unavailable')
 
         def find_contingency_nodes(unavailable_agent):
@@ -485,11 +484,11 @@ class HtnMilpScheduler(object):
             for node in htn_nodes:
                 if node.type != 'atomic':
                     continue
-                if self.contingency_name != '':
+                elif self.contingency_name != '':
                     for node in htn_nodes:
                         if node.id == self.contingency_name:
                             contingency_nodes.append(node)
-                if unavailable_agent:
+                elif unavailable_agent:
                     if unavailable_agent in node.agent:
                         contingency_nodes.append(node)
             return contingency_nodes
@@ -586,7 +585,6 @@ class HtnMilpScheduler(object):
                 if self.task_object[task].task_state != 'unattempted' or self.agent_team_model[agent].agent_state != 'available':
                     continue
                 else:
-                    print(agent_decision_variables[agent][task])
                     self.all_diff_constraints.append(self.model.Add(sum(
                         [agent_decision_variables[agent][task] for agent in self.task_object[task].agent_id]) == 1))
 
@@ -617,7 +615,6 @@ class HtnMilpScheduler(object):
         task_count = 0
         for agent_id, tasks in agent_decision_variables.items():
             for task_id, vars in tasks.items():
-                # print(agent_decision_variables[agent_id][task_id])
                 if solver.Value(agent_decision_variables[agent_id][task_id]) == 1:
                     val = agent_id
                     self.task_id.append(task_id)
@@ -637,7 +634,6 @@ class HtnMilpScheduler(object):
 
     def export_yaml(self, t_assignment):
         task_allocation = t_assignment
-        print(task_allocation)
         i = 1
         schedule_yaml = {}
         for agent, assignment in task_allocation.items():

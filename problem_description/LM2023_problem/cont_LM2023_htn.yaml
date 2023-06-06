@@ -1,5 +1,5 @@
-id: TASK_ROOT
-type: parallel
+id: Multi-product Sat Assem
+type: independent
 children:
 - id: p1_sat_assem_htn
   type: sequential
@@ -17,8 +17,31 @@ children:
           type: atomic
           agent:
           - r1
+        - id: contingency_plan
+          type: sequential
+          children:
+          - id: recovery-check for component
+            type: atomic
+            agent:
+            - H1
+          - id: recovery-pick component
+            type: atomic
+            agent:
+            - H1
+          - id: recovery-check orientation
+            type: atomic
+            agent:
+            - H1
+          - id: recovery-notify execution monitor
+            type: atomic
+            agent:
+            - H1
+          - id: recovery-Pick_and_Place_Top_Panel
+            type: atomic
+            agent:
+            - r1
         - id: p1_Component_Top_Panel
-          type: parallel
+          type: independent
           children:
           - id: p1_Top_P_C3
             type: sequential
@@ -156,7 +179,7 @@ children:
           agent:
           - r1
         - id: p1_Component_Right_Panel
-          type: parallel
+          type: independent
           children:
           - id: p1_Right_P_C1_1
             type: sequential
@@ -341,87 +364,65 @@ children:
       - id: p1_Middle_Panel
         type: sequential
         children:
-        - id: contingency_handler
-          type: sequential
+        - id: p1_Pick_and_Place_Middle_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p1_Component_Middle_Panel
+          type: independent
           children:
-          - id: p1_check_for_panel
-            type: atomic
-            agent:
-            - H1
-          - id: p1_get_panel
-            type: atomic
-            agent:
-            - H1
-          - id: p1_resent_panel
-            type: atomic
-            agent:
-            - H1
-          - id: p1_re-pick_panel
-            type: atomic
-            agent:
-            - H1
-          - id: p1_Pick_and_Place_Middle_Panel
-            type: atomic
-            agent:
-            - r1
-        - id: original tasks
-          type: sequential
-          children:
-          - id: p1_Component_Middle_Panel
-            type: parallel
-            children:
-            - id: p1_Middle_P_C4
-              type: sequential
-              children:
-              - id: p1_Pick_and_Place_Middle_P_C4
-                type: atomic
-                agent:
-                - r2
-              - id: p1_Screw_Operation_Middle_P_C4
-                type: independent
-                children:
-                - id: p1_Screw1_B2_Middle_P_C4
-                  type: atomic
-                  agent:
-                  - r3
-                - id: p1_Screw2_B2_Middle_P_C4
-                  type: atomic
-                  agent:
-                  - r3
-                - id: p1_Screw3_B2_Middle_P_C4
-                  type: atomic
-                  agent:
-                  - r3
-                - id: p1_Screw4_B2_Middle_P_C4
-                  type: atomic
-                  agent:
-                  - r3
-          - id: p1_Move_Middle_Panel_to_the_lift
-            type: atomic
-            agent:
-            - r1
-          - id: p1_Mount_Middle_Panel_on_the_Fixture
-            type: atomic
-            agent:
-            - r4
-          - id: p1_Hinge_Middle_Panel
+          - id: p1_Middle_P_C4
             type: sequential
             children:
-            - id: p1_Hold_Hinge_to_Middle_Panel
+            - id: p1_Pick_and_Place_Middle_P_C4
+              type: atomic
+              agent:
+              - r2
+            - id: p1_Screw_Operation_Middle_P_C4
+              type: independent
+              children:
+              - id: p1_Screw1_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw2_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw3_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw4_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+        - id: p1_Move_Middle_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p1_Mount_Middle_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p1_Hinge_Middle_Panel
+          type: sequential
+          children:
+          - id: p1_Hold_Hinge_to_Middle_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p1_Hinge_Screw_Operation_Middle_Panel
+            type: independent
+            children:
+            - id: p1_Hinge_Middle_Panel_Screw1
               type: atomic
               agent:
               - H2
-            - id: p1_Hinge_Screw_Operation_Middle_Panel
-              type: independent
-              children:
-              - id: p1_Hinge_Middle_Panel_Screw1
-                type: atomic
-                agent:
-                - H2
-              - id: p1_Hinge_Middle_Panel_Screw2
-                type: atomic
-                agent:
-                - H2
+            - id: p1_Hinge_Middle_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
     - id: p1_Panel_without_assem
       type: independent
       children:
@@ -650,7 +651,7 @@ children:
           type: atomic
           agent:
           - H2
-    - id: p1_Rotate_turn_table
+    - id: p1_Rotate_turn_table_2
       type: sequential
       children:
       - id: p1_roate_turntable_180_2

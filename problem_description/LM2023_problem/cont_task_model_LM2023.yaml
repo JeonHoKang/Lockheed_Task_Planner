@@ -831,7 +831,7 @@ Screw9_Top_P_C6:
     r3:
       id: det
       mean: 3
-recovery-Pick_and_Place_Middle_Panel:
+recovery-Pick_and_Place_Top_Panel:
   agent_model:
   - r1
   duration_model:
