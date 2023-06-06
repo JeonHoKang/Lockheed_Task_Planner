@@ -10,26 +10,20 @@ Task allocation problem
 
 import tkinter as tk
 from tkinter import ttk
-from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from pyexpat import model
-from sched import scheduler
-from tkinter import Variable
-from xml.sax.handler import DTDHandler
-from ortools.linear_solver import pywraplp
-import numpy as np
 from ortools.sat.python import cp_model
 import copy
 import matplotlib.pyplot as plt
 import itertools
 import yaml
 import anytree
-from anytree import AnyNode, PostOrderIter
-from anytree.exporter import DictExporter
 from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 from Agent import Agent
 from Task import Task
+# import numpy as np
+# from anytree import AnyNode, PostOrderIter
+# from anytree.exporter import DictExporter
 
 
 class HtnMilpScheduler(object):
@@ -478,6 +472,10 @@ class HtnMilpScheduler(object):
         if self.unavailable_agent_Bool:
             self.agent_team_model[self.unavailable_agent].set_agent_state(
                 'unavailable')
+
+        # self.task_object['p1_Pick_and_Place_Top_Panel'].set_task_state(
+        #     'succeeded')
+        # print(self.task_object['p1_Pick_and_Place_Top_Panel'].task_state)
 
         def find_contingency_nodes(unavailable_agent):
             contingency_nodes = []
