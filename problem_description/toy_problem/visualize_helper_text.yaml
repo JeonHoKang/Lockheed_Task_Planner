@@ -1,22 +1,28 @@
 r1:
-  p1_a1:
-    start: 4
-    end: 10
+  1:
+    p1_a1:
+      start: 4
+      end: 10
 r2:
-  p1_a3:
-    start: 0
-    end: 4
-  p1_a2:
-    start: 10
-    end: 16
-  p1_a4:
-    start: 16
-    end: 48
+  2:
+    p1_a3:
+      start: 0
+      end: 4
+  3:
+    p1_a2:
+      start: 10
+      end: 16
+  4:
+    p1_a4:
+      start: 16
+      end: 48
 H:
-  p1_a5:
-    start: 48
-    end: 66
-  p1_a6:
-    start: 66
-    end: 84
+  5:
+    p1_a5:
+      start: 48
+      end: 66
+  6:
+    p1_a6:
+      start: 66
+      end: 84
 X: None Scheduled yet

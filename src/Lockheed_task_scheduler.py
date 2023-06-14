@@ -47,10 +47,10 @@ class HtnMilpScheduler(object):
         self.agent_team_model = {}
         self.multi_product_dict = {}
         self.contingency = False
-        self.contingency_name = 'p1_Pick_and_Place_Right_P_C1_2'
+        self.contingency_name = 'p1_a2'
         self.contingency_node = None
-        self.unavailable_agent_Bool = True
-        self.unavailable_agent = 'r3'
+        self.unavailable_agent_Bool = False
+        self.unavailable_agent = 'r1'
         self.sorted_assignment = {}
 
     def set_dir(self, dir):
@@ -502,7 +502,7 @@ class HtnMilpScheduler(object):
                 if agent not in task_object[task].agent_id:
                     continue
                 if self.agent_team_model[agent].agent_state == 'available' and self.task_object[task].task_state == 'unattempted':
-                    agent_decision_variables[agent][task] = self.model.NewBoolVar(
+                    agent_decision_variables[agent][task]ed = self.model.NewBoolVar(
                         'x' + agent + '[' + task + ']')
         # Create Start End Duration Interval Variables
 
@@ -692,11 +692,11 @@ class NoTagNoQuotesDumper(yaml.Dumper):
 def main():
     scheduler = HtnMilpScheduler()
     if scheduler.contingency:
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("cont_problem_description_LM2023.yaml")
+        scheduler.set_dir("problem_description/toy_problem/")
+        scheduler.import_problem("cont_problem_description_toy.yaml")
     else:
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("problem_description_LM2023.yaml")
+        scheduler.set_dir("problem_description/toy_problem/")
+        scheduler.import_problem("problem_description_toy.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------Initialized-------------')
