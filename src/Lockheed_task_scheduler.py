@@ -65,7 +65,7 @@ class HtnMilpScheduler(object):
         # Get the directory where problem is located
         file_dir = self.problem_dir + prob_description_yaml
         # open the file directory
-        with open(file_dir, 'r', encoding='UTF-8') as stream:
+        with open(file_dir, 'r') as stream:
             try:
                 # load the yaml file
                 # Converts yaml document to python object
@@ -661,18 +661,35 @@ class HtnMilpScheduler(object):
         self.export_schedule_text(t_assignment)
 
     def export_schedule_text(self, t_assignment):
+        """
+        Format ROS service
+        - id 
+        - agent
+        - order that the agent is performing the task
+        - sequential constraint id
+
+        """
         task_allocation = t_assignment
-        print(task_allocation)
+        # print(task_allocation)
         schedule_yaml = []
         for agent, assignment in list(task_allocation.items()):
-            for count in range(len(assignment)):
-                for task, (start, end) in assignment[count].items():
+            for count, assign in enumerate(assignment):
+                for task, (start, end) in assign.items():
                     schedule_yaml.append({
-                        'task_id': task, 'agent': agent, 'agent_specific_order': count+1, 'start': start, 'end': end})
+                        'task_id': task, 'agent': agent, 'agent_specific_order': count+1, 'sequential_dependencies': '', 'start': start, 'end': end})
 
         schedule_yaml = sorted(
             schedule_yaml, key=lambda x: x['start'])
+        
+        prev_schedule = None
+        for i, schedule in enumerate(schedule_yaml):
+            if prev_schedule is None:
+                prev_schedule = schedule_yaml[i]
+            elif schedule['start'] >= prev_schedule['end']:
+                schedule['sequential_dependencies'] = prev_schedule['task_id']
+                prev_schedule = schedule_yaml[i]
 
+        print(schedule_yaml)
         if self.contingency:
             with open(r'{}\task_allocation_cont.yaml'.format(self.problem_dir), 'w') as file:
                 documents = yaml.dump(schedule_yaml, file, sort_keys=False)
@@ -683,6 +700,9 @@ class HtnMilpScheduler(object):
 
 
 class NoTagNoQuotesDumper(yaml.Dumper):
+    """
+    Export yaml file in the desired format - without string tag etc
+    """
     def represent_data(self, data):
         if isinstance(data, tuple):
             return self.represent_sequence('tag:yaml.org,2002:seq', data, flow_style=True)
@@ -697,6 +717,9 @@ class NoTagNoQuotesDumper(yaml.Dumper):
 
 
 def main():
+    """
+    Main 
+    """
     scheduler = HtnMilpScheduler()
     if scheduler.contingency:
         scheduler.set_dir("problem_description/toy_problem/")
