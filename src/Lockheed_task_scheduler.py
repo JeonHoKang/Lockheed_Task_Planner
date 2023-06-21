@@ -7,14 +7,13 @@ Neel Dhanaraj
 Task allocation problem
 
 """
-
+import copy
+import itertools
 import tkinter as tk
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from ortools.sat.python import cp_model
-import copy
 import matplotlib.pyplot as plt
-import itertools
 import yaml
 import anytree
 from anytree import RenderTree  # just for nice printing
@@ -27,6 +26,9 @@ from Task import Task
 
 
 class HtnMilpScheduler(object):
+    """
+    Uses MILP to generate schedule
+    """
     def __init__(self) -> None:
         self.multi_product_htn = None
         self.all_diff_constraints = []
@@ -49,26 +51,28 @@ class HtnMilpScheduler(object):
         self.contingency = False
         self.contingency_name = 'p1_a2'
         self.contingency_node = None
-        self.unavailable_agent_Bool = False
+        self.unavailable_agent_bool = False
         self.unavailable_agent = 'r1'
         self.sorted_assignment = {}
 
-    def set_dir(self, dir):
+    def set_dir(self, problem_dir):
         """Sets the problem instance directory"""
-        self.problem_dir = dir
+        self.problem_dir = problem_dir
 
     def import_problem(self, prob_description_yaml):
+        """Imports a problem description"""
+
         # Get the directory where problem is located
         file_dir = self.problem_dir + prob_description_yaml
         # open the file directory
-        with open(file_dir, 'r') as stream:
+        with open(file_dir, 'r', encoding='UTF-8') as stream:
             try:
                 # load the yaml file
                 # Converts yaml document to python object
                 self.problem_description = yaml.safe_load(stream)
             # Printing dictionary
-            except yaml.YAMLError as e:
-                print(e)
+            except yaml.YAMLError as dict_e:
+                print(dict_e)
 
     def load_agent_model(self):
         """Loads agent model from yaml file"""
@@ -123,6 +127,9 @@ class HtnMilpScheduler(object):
         self.task_object = self.create_task_object(task_model)
 
     def create_task_object(self, tasks):
+        '''
+        Creates a class object task for each task models
+        '''
         task_model = {}
         for key, value in tasks.items():
             task_id = key
@@ -346,7 +353,7 @@ class HtnMilpScheduler(object):
     def create_task_network(self):
         htn = self.multi_product_htn
         multi_product_index = 0
-        if htn == None:
+        if htn is None:
             raise Exception("no htn loaded")
 
         constraint_nodes = []
@@ -469,7 +476,7 @@ class HtnMilpScheduler(object):
         if self.contingency:
             self.task_object[self.contingency_name].set_task_state('failed')
             self.contingency_node = self.task_object[self.contingency_name]
-        if self.unavailable_agent_Bool:
+        if self.unavailable_agent_bool:
             self.agent_team_model[self.unavailable_agent].set_agent_state(
                 'unavailable')
 
@@ -485,12 +492,12 @@ class HtnMilpScheduler(object):
                 if self.contingency_name != '':
                     if node.id == self.contingency_name:
                         contingency_nodes.append(node)
-                if self.unavailable_agent_Bool:
+                if self.unavailable_agent_bool:
                     if unavailable_agent in node.agent:
                         contingency_nodes.append(node)
             return contingency_nodes
 
-        if self.contingency or self.unavailable_agent_Bool:
+        if self.contingency or self.unavailable_agent_bool:
             contingency_node_list = find_contingency_nodes(
                 self.unavailable_agent)
             # From the found contingency list move upward on tree to set all the children infeasible
@@ -502,7 +509,7 @@ class HtnMilpScheduler(object):
                 if agent not in task_object[task].agent_id:
                     continue
                 if self.agent_team_model[agent].agent_state == 'available' and self.task_object[task].task_state == 'unattempted':
-                    agent_decision_variables[agent][task]ed = self.model.NewBoolVar(
+                    agent_decision_variables[agent][task] = self.model.NewBoolVar(
                         'x' + agent + '[' + task + ']')
         # Create Start End Duration Interval Variables
 

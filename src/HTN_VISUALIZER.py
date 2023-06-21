@@ -7,7 +7,6 @@ from igraph import Graph, EdgeSeq
 import matplotlib.pyplot as plt
 import sys
 from matplotlib.figure import Figure
-import plotly.graph_objects as go
 import Lockheed_task_scheduler
 from anytree import AnyNode, PostOrderIter
 from anytree.exporter import DictExporter

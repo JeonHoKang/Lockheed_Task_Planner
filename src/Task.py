@@ -36,3 +36,6 @@ class Task:
         if state not in ['unattempted', "inprogress", 'succeeded', 'failed', 'infeasible']:
             raise Exception
         self.task_state = state
+
+
+#unattempted, inprogress, succeeded, failed.
