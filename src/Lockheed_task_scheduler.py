@@ -686,6 +686,8 @@ class HtnMilpScheduler(object):
             if prev_schedule is None:
                 prev_schedule = schedule_yaml[i]
             elif schedule['start'] >= prev_schedule['end']:
+                
+            elif schedule['start'] >= prev_schedule['end']:
                 schedule['sequential_dependencies'] = prev_schedule['task_id']
                 prev_schedule = schedule_yaml[i]
 
