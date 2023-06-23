@@ -13,7 +13,7 @@ from anytree.exporter import DictExporter
 from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 import numpy as np
-import contingency_manager_toy
+import contingency_manager
 
 _RENDER_CMD = ['dot']
 _FORMAT = 'png'
@@ -33,11 +33,11 @@ class HTN_vis(QtWidgets.QMainWindow):
                               'parallel', 'independent', 'atomic']
         # From the scheduler, import htn and dictionary
         self.scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
-        self.scheduler.set_dir("problem_description/toy_problem/")
-        self.scheduler.import_problem("problem_description_toy.yaml")
+        self.scheduler.set_dir("problem_description/LM2023_problem/")
+        self.scheduler.import_problem("problem_description_LM2023.yaml")
         self.scheduler.create_task_model()
         self.task_object = self.scheduler.task_object
-        self.contingency_manager = contingency_manager_toy.Contingency_Manager()
+        self.contingency_manager = contingency_manager.Contingency_Manager()
         self.htn = self.scheduler.import_htn()
         # main htn dictionary
         self.htn_dict = self.scheduler.multi_product_dict

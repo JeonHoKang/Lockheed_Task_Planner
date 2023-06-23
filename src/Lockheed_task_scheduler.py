@@ -685,7 +685,6 @@ class HtnMilpScheduler(object):
         for i, schedule in enumerate(schedule_yaml):
             if prev_schedule is None:
                 prev_schedule = schedule_yaml[i]
-            elif schedule['start'] >= prev_schedule['end']:
                 
             elif schedule['start'] >= prev_schedule['end']:
                 schedule['sequential_dependencies'] = prev_schedule['task_id']
@@ -727,8 +726,8 @@ def main():
         scheduler.set_dir("problem_description/toy_problem/")
         scheduler.import_problem("cont_problem_description_toy.yaml")
     else:
-        scheduler.set_dir("problem_description/toy_problem/")
-        scheduler.import_problem("problem_description_toy.yaml")
+        scheduler.set_dir("problem_description/LM2023_problem/")
+        scheduler.import_problem("problem_description_LM2023.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------Initialized-------------')
