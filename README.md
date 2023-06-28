@@ -5,4 +5,4 @@ Refer to the use of OR-Tools from [https://developers.google.com/optimization]
 
 Example: 
 
-![Example Schedule](gant1.png)
+![Example Schedule](gant.png)
