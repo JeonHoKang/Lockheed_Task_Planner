@@ -61,19 +61,18 @@ class Contingency_Manager(object):
         protocol4 = {}
         original_task = copy.deepcopy(self.contingency_node)
         original_task['id'] = 'recovery-' + self.contingency_node['id'][3:]
-        contingency_planning_node['children'] = [
-            protocol1, protocol2, protocol3, protocol4, original_task]
         protocol1['id'] = 'recovery-check for component'
         protocol2['id'] = 'recovery-pick component'
         protocol3['id'] = 'recovery-check orientation'
         protocol4['id'] = 'recovery-notify execution monitor'
-        for node in contingency_planning_node['children']:
-            node['type'] = 'atomic'
         protocol1['agent'] = ['H1']
         protocol2['agent'] = ['H1']
         protocol3['agent'] = ['H1']
         protocol4['agent'] = ['H1']
-
+        for node in contingency_planning_node['children']:
+            node['type'] = 'atomic'
+        contingency_planning_node['children'] = [
+            protocol1, protocol2, protocol3, protocol4, original_task]
         return contingency_planning_node
 
     def Add_Handle_Node(self, htn_dictionary, failed_task, contingency_plan):

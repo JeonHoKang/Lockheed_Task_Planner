@@ -1,0 +1,93 @@
+a1:
+  agent_model: ["r1"]
+  duration_model: 
+    r1:
+      id: det
+      mean: 6
+    # r2:
+    #   id: det
+    #   mean: 6
+    # H: 
+    #   id: det
+    #   mean: 8
+
+a2:
+  agent_model: ["r2"]
+  duration_model: 
+    # r1:
+    #   id: det
+    #   mean: 6
+    r2:
+      id: det
+      mean: 6
+    # H: 
+    #   id: det
+    #   mean: 8
+
+a3:
+  agent_model: ["r2"]
+  duration_model: 
+    # r1:
+    #   id: det
+    #   mean: 4
+    r2:
+      id: det
+      mean: 4
+    # H: 
+    #   id: det
+    #   mean: 10
+
+a4:
+  agent_model: ["r2"]
+  duration_model: 
+    # r1:
+    #   id: det
+    #   mean: 32
+    r2:
+      id: det
+      mean: 32
+    # H: 
+    #   id: det
+    #   mean: 48
+
+a5:
+  agent_model: ["H"]
+  duration_model: 
+    H: 
+      id: det
+      mean: 18
+
+a6:
+  agent_model: ["H"]
+  duration_model: 
+    H: 
+      id: det
+      mean: 18
+
+# a7:
+#   agent_model: ["r1","r2","H"]
+#   duration_model: 
+#     r1:
+#       id: det
+#       mean: 16
+#     r2:
+#       id: det
+#       mean: 16
+#     H: 
+#       id: det
+#       mean: 24
+
+# a8:
+#   agent_model: ["H"]
+#   duration_model: 
+#     H: 
+#       id: det
+#       mean: 18
+
+# a9:
+#   agent_model: ["H"]
+#   duration_model: 
+#     H: 
+#       id: det
+#       mean: 24
+
