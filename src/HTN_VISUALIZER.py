@@ -1,5 +1,5 @@
 from asyncio import get_child_watcher
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import igraph as ig
@@ -13,7 +13,7 @@ from anytree.exporter import DictExporter
 from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 import numpy as np
-import contingency_manager_toy
+import contingency_manager as contingency_manager
 
 _RENDER_CMD = ['dot']
 _FORMAT = 'png'
@@ -33,11 +33,11 @@ class HTN_vis(QtWidgets.QMainWindow):
                               'parallel', 'independent', 'atomic']
         # From the scheduler, import htn and dictionary
         self.scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
-        self.scheduler.set_dir("problem_description/toy_problem/")
-        self.scheduler.import_problem("problem_description_toy.yaml")
+        self.scheduler.set_dir("problem_description/ATV_Assembly/")
+        self.scheduler.import_problem("problem_description_ATV.yaml")
         self.scheduler.create_task_model()
         self.task_object = self.scheduler.task_object
-        self.contingency_manager = contingency_manager_toy.Contingency_Manager()
+        self.contingency_manager = contingency_manager.Contingency_Manager()
         self.htn = self.scheduler.import_htn()
         # main htn dictionary
         self.htn_dict = self.scheduler.multi_product_dict
@@ -55,10 +55,10 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.g.vs[i]["label"] = f"{i}"
             self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
             self.labels.append(self.g.vs[i]["name"])
-        self.fig = Figure(figsize=(100, 600))
-        self.fig.set_size_inches(15, 50)
+        self.fig = Figure(figsize=(400, 600))
+        # self.fig.set_size_inches(30, 60)
         self.canvas = FigureCanvas(self.fig)
-        self.canvas.setFixedSize(10000, 800)
+        # self.canvas.setFixedSize(1000, 1400)
         self.toolbar = NavigationToolbar(self.canvas, self)
         self.ax = self.fig.add_subplot(111)
         self.plot()
@@ -149,8 +149,6 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.delete_submit = QtWidgets.QPushButton("Delete")
         self.delete_submit.clicked.connect(self.del_node_gui)
         self.list_widget = QtWidgets.QListWidget()
-        scroll_area = QtWidgets.QScrollArea()
-        scroll_area.setWidgetResizable(True)
         list_scroll_area = QtWidgets.QScrollArea()
         list_scroll_area.setWidgetResizable(True)
         list_scroll_area.setWidget(self.list_widget)
@@ -159,7 +157,10 @@ class HTN_vis(QtWidgets.QMainWindow):
         layout0.addWidget(list_scroll_area)
         self.list_widget.addItems(self.labels)
         # layout1.addWidget(self.canvas)
+        scroll_area = QtWidgets.QScrollArea()
+        scroll_area.setWidgetResizable(True)
         scroll_area.setWidget(self.canvas)
+        list_scroll_area.setFixedWidth(200)
         scroll_area.setFixedWidth(1300)
         layout1.addWidget(scroll_area)
         layout2 = QtWidgets.QVBoxLayout()
@@ -228,6 +229,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             vertex_color=self.color_list,
             vertex_label_size=9
         )
+
         self.canvas.draw()
 
     def add_node_gui(self):
@@ -425,7 +427,7 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     htn = HTN_vis()
     htn.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 
 if __name__ == '__main__':

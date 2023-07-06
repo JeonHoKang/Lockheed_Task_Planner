@@ -1,37 +1,178 @@
-id: toy_prob
+id: ATV_assembly
 type: sequential
 children: 
-  - id: sub_task_1
-    type: independent
+  - id: main_body_assembly
+    type: sequential
     children: 
-      - id: sub_task_2
+      - id: frame_assembly
         type: sequential
         children:
-        - id: a1
-          type: atomic
-          agent: ["r1"]
-      - id: sub_task_3
-        type: independent
+        - id: front_frame
+          type: sequential
+          children:
+            - id: pick_front_frame
+              type: atomic
+              agent: ['r1']
+            - id: place_front_frame_on_deck
+              type: atomic
+              agent: ['r1']
+        - id: rear_frame
+          type: sequential
+          children:
+            - id: pick_rear_frame
+              type: atomic
+              agent: ['r2']
+            - id: place_rear_frame_on_deck
+              type: atomic
+              agent: ['r2']
+            - id: joint_front_and_rear_frame
+              type: parallel
+              children:
+                - id: front_and_rear_insert_screw1
+                  type: atomic
+                  agent: ['H']
+                - id: fasten_bolt_on_front_and_rear_screw1
+                  type: atomic
+                  agent: ['H']
+                - id: front_and_rear_insert_screw2
+                  type: atomic
+                  agent: ['H']
+                - id: fasten_bolt_on_front_and_rear_screw2
+                  type: atomic
+                  agent: ['H']
+                - id: front_and_rear_insert_screw3
+                  type: atomic
+                  agent: ['H']
+                - id: fasten_bolt_on_front_and_rear_screw3
+                  type: atomic
+                  agent: ['H']
+                - id: front_and_rear_insert_screw4
+                  type: atomic
+                  agent: ['H']
+                - id: fasten_bolt_on_front_and_rear_screw4
+                  type: atomic
+                  agent: ['H']
+      - id: Engine
+        type: sequential
         children:
-        - id: a2
+        - id: pick_engine
           type: atomic
           agent: ["r2"]
-        - id: a3
+        - id: insert_engine_on_main_body_assembly
           type: atomic
           agent: ["r2"]
-        - id: a4
+        - id: wiring_harness_engine
           type: atomic
-          agent: ["r2"]
-  - id: sub_task_4
-    type: sequential
+          agent: ["H"]
+  - id: Attachments_to_main_body
+    type: parallel
     children:
-      - id: a5
-        type: atomic
-        agent: ["H"]
-      - id: a6
-        type: atomic
-        agent: ["H"]
-
-    
-
+      - id: wheel_assembly
+        type: parallel
+        children:
+          - id: front_left_wheel_assembly
+            type: sequential
+            children: 
+              - id: pick_front_left_wheel
+                type: atomic
+                agent: ["r1"]
+              - id: joining_front_left_wheel
+                type: parallel
+                children:
+                  - id: scew_bolt_for_front_left_wheel1
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_front_left_wheel2
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_front_left_wheel3
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_front_left_wheel4
+                    type: atomic
+                    agent: ['H']
+          - id: front_right_wheel_assembly
+            type: sequential
+            children: 
+              - id: pick_front_right_wheel
+                type: atomic
+                agent: ["r1"]
+              - id: joining_front_right_wheel
+                type: parallel
+                children:
+                  - id: scew_bolt_for_front_right_wheel1
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_front_right_wheel2
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_front_right_wheel3
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_front_right_wheel4
+                    type: atomic
+                    agent: ['H']
+          - id: rear_left_wheel_assembly
+            type: sequential
+            children: 
+              - id: pick_rear_left_wheel
+                type: atomic
+                agent: ["r1"]
+              - id: joining_rear_left_wheel
+                type: parallel
+                children:
+                  - id: scew_bolt_for_rear_left_wheel1
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_rear_left_wheel2
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_rear_left_wheel3
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_rear_left_wheel4
+                    type: atomic
+                    agent: ['H']
+          - id: front_rear_wheel_assembly
+            type: sequential
+            children: 
+              - id: pick_rear_right_wheel
+                type: atomic
+                agent: ["r1"]
+              - id: joining_front_wheel
+                type: parallel
+                children:
+                  - id: scew_bolt_for_rear_right_wheel1
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_rear_right_wheel2
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_rear_right_wheel3
+                    type: atomic
+                    agent: ['H']
+                  - id: scew_bolt_for_rear_right_wheel4
+                    type: atomic
+                    agent: ['H']
+      - id: Handle_assembly
+        type: sequential
+        children:
+          - id: Pick_Handle_bar
+            type: atomic
+            agent: ["r2"]
+          - id: Joining_handle_to_main_body
+            type: parallel
+            children:
+              - id: fasten_bolt_on_main_body_to_handle1
+                type: atomic
+                agent: ['r3']
+              - id: fasten_bolt_on_main_body_to_handle2
+                type: atomic
+                agent: ['r3']
+              - id: fasten_bolt_on_main_body_to_handle3
+                type: atomic
+                agent: ['r3']
+              - id: fasten_bolt_on_main_body_to_handle4
+                type: atomic
+                # agent: ['r3']
   

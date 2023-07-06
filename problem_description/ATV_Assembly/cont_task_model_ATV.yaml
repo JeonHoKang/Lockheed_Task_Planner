@@ -1,0 +1,315 @@
+Pick_Handle_bar:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 12
+fasten_bolt_on_front_and_rear_screw1:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 18
+fasten_bolt_on_front_and_rear_screw2:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 18
+fasten_bolt_on_front_and_rear_screw3:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 18
+fasten_bolt_on_front_and_rear_screw4:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 6
+fasten_bolt_on_main_body_to_handle1:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+fasten_bolt_on_main_body_to_handle2:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+fasten_bolt_on_main_body_to_handle3:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+fasten_bolt_on_main_body_to_handle4:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+front_and_rear_insert_screw1:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 18
+front_and_rear_insert_screw2:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 18
+front_and_rear_insert_screw3:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 18
+front_and_rear_insert_screw4:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 9
+insert_engine_on_main_body_assembly:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 18
+pick_engine:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 16
+pick_front_frame:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 10
+pick_front_left_wheel:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 10
+pick_front_right_wheel:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 10
+pick_rear_frame:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 10
+pick_rear_left_wheel:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 10
+pick_rear_right_wheel:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 10
+place_front_frame_on_deck:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+place_rear_frame_on_deck:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 10
+recovery-check for component:
+  agent_model:
+  - H1
+  duration_model:
+    H1:
+      id: det
+      mean: 6
+recovery-check orientation:
+  agent_model:
+  - H1
+  duration_model:
+    H1:
+      id: det
+      mean: 6
+recovery-notify execution monitor:
+  agent_model:
+  - H1
+  duration_model:
+    H1:
+      id: det
+      mean: 6
+recovery-pick component:
+  agent_model:
+  - H1
+  duration_model:
+    H1:
+      id: det
+      mean: 6
+recovery-pick_front_frame:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 6
+scew_bolt_for_front_left_wheel1:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 10
+scew_bolt_for_front_left_wheel2:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 10
+scew_bolt_for_front_left_wheel3:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 10
+scew_bolt_for_front_left_wheel4:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 10
+scew_bolt_for_front_right_wheel1:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 10
+scew_bolt_for_front_right_wheel2:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 10
+scew_bolt_for_front_right_wheel3:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 10
+scew_bolt_for_front_right_wheel4:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 10
+scew_bolt_for_rear_left_wheel1:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 10
+scew_bolt_for_rear_left_wheel2:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 10
+scew_bolt_for_rear_left_wheel3:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 10
+scew_bolt_for_rear_left_wheel4:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 10
+scew_bolt_for_rear_right_wheel1:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 10
+scew_bolt_for_rear_right_wheel2:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 10
+scew_bolt_for_rear_right_wheel3:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 10
+scew_bolt_for_rear_right_wheel4:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 10
+wiring_harness_engine:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 24

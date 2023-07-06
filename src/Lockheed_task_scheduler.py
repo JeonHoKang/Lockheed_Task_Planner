@@ -49,7 +49,7 @@ class HtnMilpScheduler(object):
         self.agent_team_model = {}
         self.multi_product_dict = {}
         self.contingency = False
-        self.contingency_name = 'p1_a2'
+        self.contingency_name = 'p1_pick_front_frame'
         self.contingency_node = None
         self.unavailable_agent_bool = False
         self.unavailable_agent = 'r1'
@@ -141,13 +141,13 @@ class HtnMilpScheduler(object):
     def visualize(self, t_assignment):
         window = tk.Tk()
         window.title("Gant Chart - Multi-Robot SChedule")
-        frame = ttk.Frame(window, width=100)
+        frame = ttk.Frame(window, width=200)
         frame.pack(pady=10)
         # Create the graph frame
         graph_frame = ttk.Frame(frame)
         graph_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
-        fig, gnt = plt.subplots(figsize=(100, 5))
-        fig.set_figwidth(30)
+        fig, gnt = plt.subplots(figsize=(200, 5))
+        fig.set_figwidth(60)
         # delcare colors for the charts
         blue = 'tab:blue'
         brown = 'tab:brown'
@@ -164,7 +164,7 @@ class HtnMilpScheduler(object):
                        green, gray, red, olive, purple, cyan, brown]
         color_idx = 0
         # x step size
-        x_step = 15
+        x_step = 25
         # First y-tick
         first_y_tick = 15
         # y-tick gap
@@ -722,11 +722,11 @@ def main():
     """
     scheduler = HtnMilpScheduler()
     if scheduler.contingency:
-        scheduler.set_dir("problem_description/toy_problem/")
-        scheduler.import_problem("cont_problem_description_toy.yaml")
+        scheduler.set_dir("problem_description/ATV_Assembly/")
+        scheduler.import_problem("cont_problem_description_ATV.yaml")
     else:
-        scheduler.set_dir("problem_description/toy_problem/")
-        scheduler.import_problem("problem_description_toy.yaml")
+        scheduler.set_dir("problem_description/ATV_Assembly/")
+        scheduler.import_problem("problem_description_ATV.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------Initialized-------------')

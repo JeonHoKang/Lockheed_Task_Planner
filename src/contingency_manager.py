@@ -19,11 +19,11 @@ class Contingency_Manager(object):
         contingency_occur = 1
         # print(data['children'][0]['children'][0]['children'][0])
         scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("problem_description_LM2023.yaml")
+        scheduler.set_dir("problem_description/ATV_Assembly/")
+        scheduler.import_problem("problem_description_ATV.yaml")
         scheduler.create_task_model()
         htn = scheduler.import_htn()
-        self.contingency_name = 'p1_Pick_and_Place_Right_P_C1_2'
+        self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel3'
         self.htn_dict = scheduler.multi_product_dict
         self.contingency_node = self.search_tree(
             self.htn_dict, self.contingency_name)
@@ -55,24 +55,51 @@ class Contingency_Manager(object):
         contingency_planning_node = {}
         contingency_planning_node['id'] = 'contingency_plan'
         contingency_planning_node['type'] = 'sequential'
+        
         protocol1 = {}
         protocol2 = {}
         protocol3 = {}
         protocol4 = {}
+        protocol5 = {}
+        protocol6 = {}
+        protocol7 = {}
+        protocol8 = {}
+        protocol9 = {}
+        protocol10 = {}
         original_task = copy.deepcopy(self.contingency_node)
-        original_task['id'] = 'recovery-' + self.contingency_node['id'][3:]
-        protocol1['id'] = 'recovery-check for component'
-        protocol2['id'] = 'recovery-pick component'
-        protocol3['id'] = 'recovery-check orientation'
-        protocol4['id'] = 'recovery-notify execution monitor'
-        protocol1['agent'] = ['H1']
-        protocol2['agent'] = ['H1']
-        protocol3['agent'] = ['H1']
-        protocol4['agent'] = ['H1']
-        for node in contingency_planning_node['children']:
-            node['type'] = 'atomic'
         contingency_planning_node['children'] = [
             protocol1, protocol2, protocol3, protocol4, original_task]
+        original_task['id'] = 'recovery-' + self.contingency_node['id'][3:]
+        protocol1['id'] = 'recovery-unscrew_operation'
+        protocol1['type'] = 'parallel'
+        protocol1['children'] = [protocol5,protocol6,protocol7]
+        protocol2['id'] = 'recovery-remove_rear_left_wheel'
+        protocol2['type'] = 'atomic'
+        protocol2['agent'] = ['r2']
+        protocol3['id'] = 'recovery-rescrew_operation'
+        protocol3['type'] = 'parallel'
+        protocol3['children'] = [protocol8,protocol9,protocol10]
+        protocol4['id'] = 'recovery-notify execution monitor'
+        protocol4['type'] = 'atomic'
+        protocol4['agent'] = ['H1']
+        protocol5['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol5['type'] = 'atomic'
+        protocol5['agent'] = ['r3']
+        protocol6['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol6['type'] = 'atomic'
+        protocol6['agent'] = ['r3']
+        protocol7['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol7['type'] = 'atomic'
+        protocol7['agent'] = ['r3']
+        protocol8['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol8['type'] = 'atomic'
+        protocol8['agent'] = ['r3']
+        protocol9['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol9['type'] = 'atomic'
+        protocol9['agent'] = ['r3']
+        protocol10['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol10['type'] = 'atomic'
+        protocol10['agent'] = ['r3']
         return contingency_planning_node
 
     def Add_Handle_Node(self, htn_dictionary, failed_task, contingency_plan):
@@ -97,33 +124,34 @@ class Contingency_Manager(object):
         # exporter = DictExporter()
         # htn_dict = exporter.export(self.htn_dict)
         # Save the updated data to the YAML file
-        with open("problem_description/LM2023_problem/problem_description_LM2023.yaml", "r") as file:
+        with open("problem_description/ATV_Assembly/problem_description_ATV.yaml", "r") as file:
             yaml_dict = yaml.safe_load(file)
             yaml_dict['num_tasks'] = yaml_dict['num_tasks'] + \
                 len(self.contingency_plan['children'])-1
             yaml_dict['agents'] = yaml_dict['agents']
-            yaml_dict['task_model_id'] = 'cont_task_model_LM2023.yaml'
-            yaml_dict['htn_model_id'] = 'cont_LM2023_htn.yaml'
-        with open('problem_description/LM2023_problem/cont_LM2023_htn.yaml', 'w') as file:
+            yaml_dict['task_model_id'] = 'cont_task_model_ATV.yaml'
+            yaml_dict['htn_model_id'] = 'cont_ATV_Assembly_htn.yaml'
+        with open('problem_description/ATV_Assembly/cont_ATV_Assembly_htn.yaml', 'w') as file:
             yaml.safe_dump(self.htn_dict, file, sort_keys=False)
 
-        with open('problem_description/LM2023_problem/cont_problem_description_LM2023.yaml', 'w') as file:
+        with open('problem_description/ATV_Assembly/cont_problem_description_ATV.yaml', 'w') as file:
             yaml.safe_dump(yaml_dict, file, sort_keys=False)
 
     def generate_task_model(self):
-        with open("problem_description/LM2023_problem/task_model_LM2023.yaml", "r") as file:
+        with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
             task_model_dict = yaml.safe_load(file)
             # list_task_models = list(task_model_dict.keys())
             # for i, tasks in enumerate(list_task_models):
             #     if tasks == self.contingency_name:
             #         task_model_dict['']
             for task_nodes in self.contingency_plan['children']:
-                task_model_dict[task_nodes['id']] = {'agent_model':
-                                                     task_nodes['agent']}
+                if task_nodes['type'] == 'atomic':
+                    task_model_dict[task_nodes['id']] = {'agent_model':
+                                                        task_nodes['agent']}
                 for agent in task_nodes['agent']:
                     task_model_dict[task_nodes['id']]['duration_model'] = {
                         agent: {'id': 'det', 'mean': 6}}
-        with open('problem_description/LM2023_problem/cont_task_model_LM2023.yaml', 'w') as file:
+        with open('problem_description/ATV_Assembly/cont_task_model_ATV.yaml', 'w') as file:
             yaml.safe_dump(task_model_dict, file)
 
 
