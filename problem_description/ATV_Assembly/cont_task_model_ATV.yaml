@@ -159,20 +159,6 @@ place_rear_frame_on_deck:
     r2:
       id: det
       mean: 10
-recovery-check for component:
-  agent_model:
-  - H1
-  duration_model:
-    H1:
-      id: det
-      mean: 6
-recovery-check orientation:
-  agent_model:
-  - H1
-  duration_model:
-    H1:
-      id: det
-      mean: 6
 recovery-notify execution monitor:
   agent_model:
   - H1
@@ -180,18 +166,18 @@ recovery-notify execution monitor:
     H1:
       id: det
       mean: 6
-recovery-pick component:
+recovery-remove_rear_left_wheel:
   agent_model:
-  - H1
+  - r2
   duration_model:
-    H1:
+    r2:
       id: det
       mean: 6
-recovery-pick_front_frame:
+recovery-scew_bolt_for_rear_left_wheel3:
   agent_model:
-  - r1
+  - H
   duration_model:
-    r1:
+    H:
       id: det
       mean: 6
 scew_bolt_for_front_left_wheel1:

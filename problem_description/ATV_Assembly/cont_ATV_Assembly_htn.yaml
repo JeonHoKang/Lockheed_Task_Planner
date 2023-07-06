@@ -17,29 +17,6 @@ children:
           type: atomic
           agent:
           - r1
-        - id: contingency_plan
-          type: sequential
-          children:
-          - id: recovery-check for component
-            agent:
-            - H1
-            type: atomic
-          - id: recovery-pick component
-            agent:
-            - H1
-            type: atomic
-          - id: recovery-check orientation
-            agent:
-            - H1
-            type: atomic
-          - id: recovery-notify execution monitor
-            agent:
-            - H1
-            type: atomic
-          - id: recovery-pick_front_frame
-            type: atomic
-            agent:
-            - r1
         - id: p1_place_front_frame_on_deck
           type: atomic
           agent:
@@ -185,6 +162,66 @@ children:
             type: atomic
             agent:
             - H
+          - id: contingency_plan
+            type: sequential
+            children:
+            - id: recovery-unscrew_operation
+              type: parallel
+              children:
+              - id: recovery-unscrew_rear_left_wheel_screw1
+                type: atomic
+                agent:
+                - r3
+              - id: recovery-unscrew_rear_left_wheel_screw2
+                type: atomic
+                agent:
+                - r3
+              - id: recovery-unscrew_rear_left_wheel_screw3
+                type: atomic
+                agent:
+                - r3
+            - id: recovery-remove_rear_left_wheel
+              type: atomic
+              agent:
+              - r2
+            - id: recovery_new_wheel
+              type: sequential
+              children:
+              - id: recovery-search_new_wheel
+                type: atomic
+                agent:
+                - H1
+              - id: recovery-pick_new_wheel
+                type: atomic
+                agent:
+                - H1
+              - id: recovery-place_new_wheel
+                type: atomic
+                agent:
+                - r2
+            - id: recovery-resrew_operation
+              type: sequential
+              children:
+              - id: recovery-rescrew_rear_left_wheel_screw1
+                type: atomic
+                agent:
+                - r3
+              - id: recovery-rescrew_rear_left_wheel_screw2
+                type: atomic
+                agent:
+                - r3
+              - id: recovery-rescrew_rear_left_wheel_screw3
+                type: atomic
+                agent:
+                - r3
+            - id: recovery-notify execution monitor
+              type: atomic
+              agent:
+              - H1
+            - id: recovery-scew_bolt_for_rear_left_wheel3
+              type: atomic
+              agent:
+              - H
           - id: p1_scew_bolt_for_rear_left_wheel4
             type: atomic
             agent:

@@ -15,7 +15,7 @@ import Lockheed_task_scheduler
 class Contingency_Manager(object):
     def __init__(self):
         super().__init__()
-        self.contingency = False
+        self.contingency = True
         contingency_occur = 1
         # print(data['children'][0]['children'][0]['children'][0])
         scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
@@ -55,7 +55,7 @@ class Contingency_Manager(object):
         contingency_planning_node = {}
         contingency_planning_node['id'] = 'contingency_plan'
         contingency_planning_node['type'] = 'sequential'
-        
+        list_protocol = []
         protocol1 = {}
         protocol2 = {}
         protocol3 = {}
@@ -66,9 +66,16 @@ class Contingency_Manager(object):
         protocol8 = {}
         protocol9 = {}
         protocol10 = {}
+        protocol11 = {}
+        protocol12 = {}
+        protocol13 = {}
+        protocol13 = {}
+        protocol14 = {}
+        # for i in range(14):
+        #     list_protocol.append(protocol'{}'.format(i+1))
         original_task = copy.deepcopy(self.contingency_node)
         contingency_planning_node['children'] = [
-            protocol1, protocol2, protocol3, protocol4, original_task]
+            protocol1, protocol2, protocol3, protocol4, protocol14, original_task]
         original_task['id'] = 'recovery-' + self.contingency_node['id'][3:]
         protocol1['id'] = 'recovery-unscrew_operation'
         protocol1['type'] = 'parallel'
@@ -76,30 +83,42 @@ class Contingency_Manager(object):
         protocol2['id'] = 'recovery-remove_rear_left_wheel'
         protocol2['type'] = 'atomic'
         protocol2['agent'] = ['r2']
-        protocol3['id'] = 'recovery-rescrew_operation'
-        protocol3['type'] = 'parallel'
-        protocol3['children'] = [protocol8,protocol9,protocol10]
-        protocol4['id'] = 'recovery-notify execution monitor'
-        protocol4['type'] = 'atomic'
-        protocol4['agent'] = ['H1']
+        protocol3['id'] = 'recovery_new_wheel'
+        protocol3['type'] = 'sequential'
+        protocol3['children'] = [protocol8, protocol9, protocol10]
+        protocol4['id'] = 'recovery-resrew_operation'
+        protocol4['type'] = 'sequential'
+        protocol4['children'] = [protocol11,protocol12,protocol13]
         protocol5['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
         protocol5['type'] = 'atomic'
         protocol5['agent'] = ['r3']
-        protocol6['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol6['id'] = 'recovery-unscrew_rear_left_wheel_screw2'
         protocol6['type'] = 'atomic'
         protocol6['agent'] = ['r3']
-        protocol7['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol7['id'] = 'recovery-unscrew_rear_left_wheel_screw3'
         protocol7['type'] = 'atomic'
         protocol7['agent'] = ['r3']
-        protocol8['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol8['id'] = 'recovery-search_new_wheel'
         protocol8['type'] = 'atomic'
-        protocol8['agent'] = ['r3']
-        protocol9['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol8['agent'] = ['H1']
+        protocol9['id'] = 'recovery-pick_new_wheel'
         protocol9['type'] = 'atomic'
-        protocol9['agent'] = ['r3']
-        protocol10['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
+        protocol9['agent'] = ['H1']
+        protocol10['id'] = 'recovery-place_new_wheel'
         protocol10['type'] = 'atomic'
-        protocol10['agent'] = ['r3']
+        protocol10['agent'] = ['r2']
+        protocol11['id'] = 'recovery-rescrew_rear_left_wheel_screw1'
+        protocol11['type'] = 'atomic'
+        protocol11['agent'] = ['r3']
+        protocol12['id'] = 'recovery-rescrew_rear_left_wheel_screw2'
+        protocol12['type'] = 'atomic'
+        protocol12['agent'] = ['r3']
+        protocol13['id'] = 'recovery-rescrew_rear_left_wheel_screw3'
+        protocol13['type'] = 'atomic'
+        protocol13['agent'] = ['r3']
+        protocol14['id'] = 'recovery-notify execution monitor'
+        protocol14['type'] = 'atomic'
+        protocol14['agent'] = ['H1']
         return contingency_planning_node
 
     def Add_Handle_Node(self, htn_dictionary, failed_task, contingency_plan):
@@ -148,9 +167,9 @@ class Contingency_Manager(object):
                 if task_nodes['type'] == 'atomic':
                     task_model_dict[task_nodes['id']] = {'agent_model':
                                                         task_nodes['agent']}
-                for agent in task_nodes['agent']:
-                    task_model_dict[task_nodes['id']]['duration_model'] = {
-                        agent: {'id': 'det', 'mean': 6}}
+                    for agent in task_nodes['agent']:
+                        task_model_dict[task_nodes['id']]['duration_model'] = {
+                            agent: {'id': 'det', 'mean': 6}}
         with open('problem_description/ATV_Assembly/cont_task_model_ATV.yaml', 'w') as file:
             yaml.safe_dump(task_model_dict, file)
 
