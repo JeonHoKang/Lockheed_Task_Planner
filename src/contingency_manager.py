@@ -1,10 +1,10 @@
 import copy
 import yaml
-# import anytree
-# from anytree import AnyNode, PostOrderIter, find_by_attr
+import anytree
+from anytree import AnyNode, PostOrderIter, find_by_attr
 # from anytree.exporter import DictExporter
 # from anytree import RenderTree  # just for nice printing
-# from anytree.importer import DictImporter
+from anytree.importer import DictImporter
 # from anytree.exporter import DictExporter
 import Lockheed_task_scheduler
 
@@ -15,12 +15,15 @@ import Lockheed_task_scheduler
 class Contingency_Manager(object):
     def __init__(self):
         super().__init__()
-        self.contingency = True
+        self.contingency = False
         contingency_occur = 1
         # print(data['children'][0]['children'][0]['children'][0])
         scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
-        scheduler.set_dir("problem_description/ATV_Assembly/")
-        scheduler.import_problem("problem_description_ATV.yaml")
+        self.problem_dir = "problem_description/ATV_Assembly/"
+        problem = "problem_description_ATV.yaml"
+        self.policies_file = "contingency_policies.yaml"
+        scheduler.set_dir(self.problem_dir)
+        scheduler.import_problem(problem)
         scheduler.create_task_model()
         htn = scheduler.import_htn()
         self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel3'
@@ -51,74 +54,37 @@ class Contingency_Manager(object):
                 if element:
                     return element
 
+
+    def import_policies(self, policy_yaml):
+        """Imports a problem description"""
+
+        # Get the directory where problem is located
+        file_dir = self.problem_dir + policy_yaml
+        # open the file directory
+        with open(file_dir, 'r') as stream:
+            try:
+                # load the yaml file
+                # Converts yaml document to python object
+                policies_dict = yaml.safe_load(stream)
+                print('')
+            # Printing dictionary
+            except yaml.YAMLError as dict_e:
+                print(dict_e)
+        return policies_dict
+
     def geneate_contingency_plan(self):
         contingency_planning_node = {}
+        dict_policies = self.import_policies(self.policies_file)
+        current_contingency = {}
+        for policy in dict_policies:
+            if self.contingency_name == policy['contingency_id']:
+                current_contingency = policy['situations'][0]['policy']
         contingency_planning_node['id'] = 'contingency_plan'
         contingency_planning_node['type'] = 'sequential'
-        list_protocol = []
-        protocol1 = {}
-        protocol2 = {}
-        protocol3 = {}
-        protocol4 = {}
-        protocol5 = {}
-        protocol6 = {}
-        protocol7 = {}
-        protocol8 = {}
-        protocol9 = {}
-        protocol10 = {}
-        protocol11 = {}
-        protocol12 = {}
-        protocol13 = {}
-        protocol13 = {}
-        protocol14 = {}
-        # for i in range(14):
-        #     list_protocol.append(protocol'{}'.format(i+1))
+        contingency_planning_node['children'] = current_contingency
         original_task = copy.deepcopy(self.contingency_node)
-        contingency_planning_node['children'] = [
-            protocol1, protocol2, protocol3, protocol4, protocol14, original_task]
         original_task['id'] = 'recovery-' + self.contingency_node['id'][3:]
-        protocol1['id'] = 'recovery-unscrew_operation'
-        protocol1['type'] = 'parallel'
-        protocol1['children'] = [protocol5,protocol6,protocol7]
-        protocol2['id'] = 'recovery-remove_rear_left_wheel'
-        protocol2['type'] = 'atomic'
-        protocol2['agent'] = ['r2']
-        protocol3['id'] = 'recovery_new_wheel'
-        protocol3['type'] = 'sequential'
-        protocol3['children'] = [protocol8, protocol9, protocol10]
-        protocol4['id'] = 'recovery-resrew_operation'
-        protocol4['type'] = 'sequential'
-        protocol4['children'] = [protocol11,protocol12,protocol13]
-        protocol5['id'] = 'recovery-unscrew_rear_left_wheel_screw1'
-        protocol5['type'] = 'atomic'
-        protocol5['agent'] = ['r3']
-        protocol6['id'] = 'recovery-unscrew_rear_left_wheel_screw2'
-        protocol6['type'] = 'atomic'
-        protocol6['agent'] = ['r3']
-        protocol7['id'] = 'recovery-unscrew_rear_left_wheel_screw3'
-        protocol7['type'] = 'atomic'
-        protocol7['agent'] = ['r3']
-        protocol8['id'] = 'recovery-search_new_wheel'
-        protocol8['type'] = 'atomic'
-        protocol8['agent'] = ['H1']
-        protocol9['id'] = 'recovery-pick_new_wheel'
-        protocol9['type'] = 'atomic'
-        protocol9['agent'] = ['H1']
-        protocol10['id'] = 'recovery-place_new_wheel'
-        protocol10['type'] = 'atomic'
-        protocol10['agent'] = ['r2']
-        protocol11['id'] = 'recovery-rescrew_rear_left_wheel_screw1'
-        protocol11['type'] = 'atomic'
-        protocol11['agent'] = ['r3']
-        protocol12['id'] = 'recovery-rescrew_rear_left_wheel_screw2'
-        protocol12['type'] = 'atomic'
-        protocol12['agent'] = ['r3']
-        protocol13['id'] = 'recovery-rescrew_rear_left_wheel_screw3'
-        protocol13['type'] = 'atomic'
-        protocol13['agent'] = ['r3']
-        protocol14['id'] = 'recovery-notify execution monitor'
-        protocol14['type'] = 'atomic'
-        protocol14['agent'] = ['H1']
+        contingency_planning_node['children'].append(original_task)
         return contingency_planning_node
 
     def Add_Handle_Node(self, htn_dictionary, failed_task, contingency_plan):
@@ -163,16 +129,17 @@ class Contingency_Manager(object):
             # for i, tasks in enumerate(list_task_models):
             #     if tasks == self.contingency_name:
             #         task_model_dict['']
-            for task_nodes in self.contingency_plan['children']:
-                if task_nodes['type'] == 'atomic':
-                    task_model_dict[task_nodes['id']] = {'agent_model':
-                                                        task_nodes['agent']}
-                    for agent in task_nodes['agent']:
-                        task_model_dict[task_nodes['id']]['duration_model'] = {
-                            agent: {'id': 'det', 'mean': 6}}
+            contingency_plan_anytree = DictImporter().import_(self.contingency_plan)
+            contingency_leaf = list(anytree.PostOrderIter(contingency_plan_anytree, filter_=lambda node: node.is_leaf))
+            for task_nodes in contingency_leaf:
+                    task_model_dict[task_nodes.id] = {'agent_model':
+                                                        task_nodes.agent}
+                    for agent in task_nodes.agent:
+                        task_model_dict[task_nodes.id]['duration_model'] = {
+                            agent: {'id': 'det', 'mean': 9}}
         with open('problem_description/ATV_Assembly/cont_task_model_ATV.yaml', 'w') as file:
             yaml.safe_dump(task_model_dict, file)
-
+    
 
 def main():
     contingency_handling = Contingency_Manager()

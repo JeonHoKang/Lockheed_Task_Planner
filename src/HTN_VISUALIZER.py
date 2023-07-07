@@ -1,5 +1,5 @@
 from asyncio import get_child_watcher
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import igraph as ig
@@ -55,10 +55,10 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.g.vs[i]["label"] = f"{i}"
             self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
             self.labels.append(self.g.vs[i]["name"])
-        self.fig = Figure(figsize=(400, 600))
-        # self.fig.set_size_inches(30, 60)
+        self.fig = plt.figure(figsize=(100, 20), dpi=100)
+        self.fig.set_size_inches(40, 80)
         self.canvas = FigureCanvas(self.fig)
-        # self.canvas.setFixedSize(1000, 1400)
+        self.canvas.setFixedSize(3000, 1000) # comment this out when using with mac
         self.toolbar = NavigationToolbar(self.canvas, self)
         self.ax = self.fig.add_subplot(111)
         self.plot()
@@ -217,17 +217,19 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.g["title"] = "HTN"
         layout = self.g.layout("rt", root=[0])
         layout.rotate(-180)
-        # layout.fit_into((20000, 30000))
 
         # layout.scale(5000)
         ig.plot(
             self.g,
             layout=layout,
             target=self.ax,
-            vertex_size=0.5,
+            vertex_size=0.8,
             showlegend=False,
             vertex_color=self.color_list,
-            vertex_label_size=9
+            vertex_label_size = 9,
+            margin = 50,
+            line_width = 0.5,
+            marker_size = 1
         )
 
         self.canvas.draw()

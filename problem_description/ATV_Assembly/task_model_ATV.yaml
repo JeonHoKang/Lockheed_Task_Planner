@@ -129,9 +129,9 @@ wiring_harness_engine:
       mean: 24
 
 pick_front_left_wheel:
-  agent_model: ["r3"]
+  agent_model: ["r1"]
   duration_model: 
-    r3: 
+    r1: 
       id: det
       mean: 10
 
@@ -172,31 +172,31 @@ pick_front_right_wheel:
       mean: 10
 
 scew_bolt_for_front_right_wheel1:
-  agent_model: ["H"]
+  agent_model: ["r3"]
   duration_model: 
-    H: 
+    r3: 
       id: det
       mean: 10
 
 scew_bolt_for_front_right_wheel2:
-  agent_model: ["H"]
+  agent_model: ["r3"]
   duration_model: 
-    H: 
+    r3: 
       id: det
       mean: 10
 
 scew_bolt_for_front_right_wheel3:
-  agent_model: ["H"]
+  agent_model: ["r3"]
   duration_model: 
-    H: 
+    r3: 
       id: det
       mean: 10
 
 
 scew_bolt_for_front_right_wheel4:
-  agent_model: ["H"]
+  agent_model: ["r3"]
   duration_model: 
-    H: 
+    r3: 
       id: det
       mean: 10
 
@@ -230,9 +230,9 @@ scew_bolt_for_rear_left_wheel3:
 
 
 scew_bolt_for_rear_left_wheel4:
-  agent_model: ["H"]
+  agent_model: ["r3"]
   duration_model: 
-    H: 
+    r3: 
       id: det
       mean: 10
 
@@ -244,31 +244,31 @@ pick_rear_right_wheel:
       mean: 10
 
 scew_bolt_for_rear_right_wheel1:
-  agent_model: ["H"]
+  agent_model: ["r3"]
   duration_model: 
-    H: 
+    r3: 
       id: det
       mean: 10
 
 scew_bolt_for_rear_right_wheel2:
-  agent_model: ["H"]
+  agent_model: ["r3"]
   duration_model: 
-    H: 
+    r3: 
       id: det
       mean: 10
 
 scew_bolt_for_rear_right_wheel3:
-  agent_model: ["H"]
+  agent_model: ["r3"]
   duration_model: 
-    H: 
+    r3: 
       id: det
       mean: 10
 
 
 scew_bolt_for_rear_right_wheel4:
-  agent_model: ["H"]
+  agent_model: ["r3"]
   duration_model: 
-    H: 
+    r3: 
       id: det
       mean: 10
 
@@ -302,6 +302,132 @@ fasten_bolt_on_main_body_to_handle3:
 
 
 fasten_bolt_on_main_body_to_handle4:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+
+pick_lower_body_frame:
+  agent_model: ["r1"]
+  duration_model: 
+    r1: 
+      id: det
+      mean: 6
+
+hold_lower_body_frame_in_place:
+  agent_model: ["r1"]
+  duration_model: 
+    r1: 
+      id: det
+      mean: 3
+
+screw_lower_body_frame_to_main1:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+
+screw_lower_body_frame_to_main2:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+  
+screw_lower_body_frame_to_main3:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+  
+pick_upper_body_frame:
+  agent_model: ["r1"]
+  duration_model: 
+    r1: 
+      id: det
+      mean: 8
+  
+hold_upper_body_frame_in_place:
+  agent_model: ["r1"]
+  duration_model: 
+    r1: 
+      id: det
+      mean: 4
+
+screw_upper_body_frame_to_main1:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+
+screw_upper_body_frame_to_main2:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+
+screw_upper_body_frame_to_main3:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+
+screw_upper_body_frame_to_lower_frame1:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+
+screw_upper_body_frame_to_lower_frame2:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+
+screw_upper_body_frame_to_lower_frame3:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+
+pick_trunk_skeleton:
+  agent_model: ["r1"]
+  duration_model: 
+    r1: 
+      id: det
+      mean: 5
+
+hold_pick_trunk_skeleton_on_external_frame:
+  agent_model: ["r1"]
+  duration_model: 
+    r1: 
+      id: det
+      mean: 3
+
+screw_upper_trunk_skeleton_to_frame1:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+
+screw_upper_trunk_skeleton_to_frame2:
+  agent_model: ["r3"]
+  duration_model: 
+    r3: 
+      id: det
+      mean: 8
+
+screw_upper_trunk_skeleton_to_frame3:
   agent_model: ["r3"]
   duration_model: 
     r3: 

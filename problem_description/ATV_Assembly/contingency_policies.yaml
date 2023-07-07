@@ -1,0 +1,80 @@
+- contingency_id: p1_scew_bolt_for_rear_left_wheel3
+  situations:
+    - situation1: defective_wheel
+      policy:
+        - id: recovery-unscrew_operation
+          type: parallel
+          children: 
+            - id: recovery-unscrew_rear_left_wheel_screw1
+              type: atomic
+              agent: ['r3']
+            - id: recovery-unscrew_rear_left_wheel_screw2
+              type: atomic
+              agent: ['r3']
+            - id: recovery-unscrew_rear_left_wheel_screw3
+              type: atomic
+              agent: ['r3']
+        - id: recovery-remove_rear_left_wheel
+          type: atomic
+          agent: ['r2']
+        - id: recovery_new_wheel
+          type: sequential
+          children:
+            - id: recovery-search_new_wheel
+              type: atomic
+              agent: ['r1']
+            - id: recovery-pick_new_wheel
+              type: atomic
+              agent: ['r1']
+            - id: recovery-place_new_wheel
+              type: atomic
+              agent: ['r1']
+        - id: recovery-resrew_operation
+          type: sequential
+          children:
+            - id: recovery-rescrew_rear_left_wheel_screw1
+              type: atomic
+              agent: ['r3']
+            - id: recovery-rescrew_rear_left_wheel_screw2
+              type: atomic
+              agent: ['r3']
+            - id: recovery-rescrew_rear_left_wheel_screw3
+              type: atomic
+              agent: ['r3']
+        - id: recovery_notify_execution_monitor
+          type: atomic
+          agent: ['H']
+    - situation2: screw_stuck
+- contingency_id: 'p1_scew_bolt_for_rear_left_wheel1'
+  situations:
+    - situation1: defective_wheel
+      policy:
+        - id: recovery-unscrew_operation
+          type: parallel
+          children: 
+            - id: recovery-unscrew_rear_left_wheel_screw1
+              type: atomic
+              agent: ['r3']
+            - id: recovery-unscrew_rear_left_wheel_screw2
+              type: atomic
+              agent: ['r3']
+            - id: recovery-unscrew_rear_left_wheel_screw3
+              type: atomic
+              agent: ['r3']
+- contingency_id: p1_hold_upper_body_frame_in_place
+  situations:
+    - situation1: broken_part
+      policy:
+        - id: remove_broken_pieces
+          type: atomic
+          agent: ['r1']
+        - id: new_upper_body_frame
+          type: sequential
+          children:
+            - id: search_for_new_part
+              type: atomic
+              agent: ['H']
+            - id: pick_new_part
+              type: atomic
+              agent: ['r1']
+            

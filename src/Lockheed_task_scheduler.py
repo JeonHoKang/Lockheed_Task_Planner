@@ -205,8 +205,11 @@ class HtnMilpScheduler(object):
                     duration = end-start
                     gnt.broken_barh([(start, duration)], (10*(c+1), 9),
                                     facecolors=(list_colors[color_idx]))
+                    font_size = 6
                     gnt.text((start+end)/2, 10*(c+1)+4.5,
-                             task_index, ha='center', va='center')
+                             f'T{task_index}', ha='center', va='center',fontsize=font_size)
+                    
+
                     list_labels.append(task)
                     task_index += 1
                     color_idx += 1

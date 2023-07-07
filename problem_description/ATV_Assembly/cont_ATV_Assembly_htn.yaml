@@ -35,38 +35,50 @@ children:
         - id: p1_joint_front_and_rear_frame
           type: parallel
           children:
-          - id: p1_front_and_rear_insert_screw1
-            type: atomic
-            agent:
-            - H
-          - id: p1_fasten_bolt_on_front_and_rear_screw1
-            type: atomic
-            agent:
-            - H
-          - id: p1_front_and_rear_insert_screw2
-            type: atomic
-            agent:
-            - H
-          - id: p1_fasten_bolt_on_front_and_rear_screw2
-            type: atomic
-            agent:
-            - H
-          - id: p1_front_and_rear_insert_screw3
-            type: atomic
-            agent:
-            - H
-          - id: p1_fasten_bolt_on_front_and_rear_screw3
-            type: atomic
-            agent:
-            - H
-          - id: p1_front_and_rear_insert_screw4
-            type: atomic
-            agent:
-            - H
-          - id: p1_fasten_bolt_on_front_and_rear_screw4
-            type: atomic
-            agent:
-            - H
+          - id: p1_fasten_front_and_rear1
+            type: sequential
+            children:
+            - id: p1_front_and_rear_insert_screw1
+              type: atomic
+              agent:
+              - H
+            - id: p1_fasten_bolt_on_front_and_rear_screw1
+              type: atomic
+              agent:
+              - H
+          - id: p1_fasten_front_and_rear2
+            type: sequential
+            children:
+            - id: p1_front_and_rear_insert_screw2
+              type: atomic
+              agent:
+              - H
+            - id: p1_fasten_bolt_on_front_and_rear_screw2
+              type: atomic
+              agent:
+              - H
+          - id: p1_fasten_front_and_rear3
+            type: sequential
+            children:
+            - id: p1_front_and_rear_insert_screw3
+              type: atomic
+              agent:
+              - H
+            - id: p1_fasten_bolt_on_front_and_rear_screw3
+              type: atomic
+              agent:
+              - H
+          - id: p1_fasten_front_and_rear4
+            type: sequential
+            children:
+            - id: p1_front_and_rear_insert_screw4
+              type: atomic
+              agent:
+              - H
+            - id: p1_fasten_bolt_on_front_and_rear_screw4
+              type: atomic
+              agent:
+              - H
     - id: p1_Engine
       type: sequential
       children:
@@ -101,19 +113,19 @@ children:
           - id: p1_scew_bolt_for_front_left_wheel1
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_front_left_wheel2
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_front_left_wheel3
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_front_left_wheel4
             type: atomic
             agent:
-            - H
+            - r3
       - id: p1_front_right_wheel_assembly
         type: sequential
         children:
@@ -127,19 +139,19 @@ children:
           - id: p1_scew_bolt_for_front_right_wheel1
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_front_right_wheel2
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_front_right_wheel3
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_front_right_wheel4
             type: atomic
             agent:
-            - H
+            - r3
       - id: p1_rear_left_wheel_assembly
         type: sequential
         children:
@@ -153,15 +165,15 @@ children:
           - id: p1_scew_bolt_for_rear_left_wheel1
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_rear_left_wheel2
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_rear_left_wheel3
             type: atomic
             agent:
-            - H
+            - r3
           - id: contingency_plan
             type: sequential
             children:
@@ -190,15 +202,15 @@ children:
               - id: recovery-search_new_wheel
                 type: atomic
                 agent:
-                - H1
+                - r1
               - id: recovery-pick_new_wheel
                 type: atomic
                 agent:
-                - H1
+                - r1
               - id: recovery-place_new_wheel
                 type: atomic
                 agent:
-                - r2
+                - r1
             - id: recovery-resrew_operation
               type: sequential
               children:
@@ -214,51 +226,51 @@ children:
                 type: atomic
                 agent:
                 - r3
-            - id: recovery-notify execution monitor
-              type: atomic
-              agent:
-              - H1
-            - id: recovery-scew_bolt_for_rear_left_wheel3
+            - id: recovery_notify_execution_monitor
               type: atomic
               agent:
               - H
+            - id: recovery-scew_bolt_for_rear_left_wheel3
+              type: atomic
+              agent:
+              - r3
           - id: p1_scew_bolt_for_rear_left_wheel4
             type: atomic
             agent:
-            - H
-      - id: p1_front_rear_wheel_assembly
+            - r3
+      - id: p1_reat_right_wheel_assembly
         type: sequential
         children:
         - id: p1_pick_rear_right_wheel
           type: atomic
           agent:
           - r1
-        - id: p1_joining_front_wheel
+        - id: p1_joining_rear_right_wheel
           type: parallel
           children:
           - id: p1_scew_bolt_for_rear_right_wheel1
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_rear_right_wheel2
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_rear_right_wheel3
             type: atomic
             agent:
-            - H
+            - r3
           - id: p1_scew_bolt_for_rear_right_wheel4
             type: atomic
             agent:
-            - H
+            - r3
     - id: p1_Handle_assembly
       type: sequential
       children:
       - id: p1_Pick_Handle_bar
         type: atomic
         agent:
-        - r2
+        - r1
       - id: p1_Joining_handle_to_main_body
         type: parallel
         children:
@@ -276,3 +288,101 @@ children:
           - r3
         - id: p1_fasten_bolt_on_main_body_to_handle4
           type: atomic
+          agent:
+          - r3
+  - id: p1_external_frame
+    type: sequential
+    children:
+    - id: p1_lower_body_frame
+      type: sequential
+      children:
+      - id: p1_pick_lower_body_frame
+        type: atomic
+        agent:
+        - r1
+      - id: p1_hold_lower_body_frame_in_place
+        type: atomic
+        agent:
+        - r1
+      - id: p1_joining_lower_body_frame_to_main
+        type: independent
+        children:
+        - id: p1_screw_lower_body_frame_to_main1
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_lower_body_frame_to_main2
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_lower_body_frame_to_main3
+          type: atomic
+          agent:
+          - r3
+    - id: p1_upper_body_frame
+      type: sequential
+      children:
+      - id: p1_pick_upper_body_frame
+        type: atomic
+        agent:
+        - r1
+      - id: p1_hold_upper_body_frame_in_place
+        type: atomic
+        agent:
+        - r1
+      - id: p1_joining_upper_body_frame_to_main
+        type: independent
+        children:
+        - id: p1_screw_upper_body_frame_to_main1
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_body_frame_to_main2
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_body_frame_to_main3
+          type: atomic
+          agent:
+          - r3
+      - id: p1_joining_upper_body_frame_to_lower_frame
+        type: independent
+        children:
+        - id: p1_screw_upper_body_frame_to_lower_frame1
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_body_frame_to_lower_frame2
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_body_frame_to_lower_frame3
+          type: atomic
+          agent:
+          - r3
+    - id: p1_trunk_skeleton
+      type: sequential
+      children:
+      - id: p1_pick_trunk_skeleton
+        type: atomic
+        agent:
+        - r1
+      - id: p1_hold_pick_trunk_skeleton_on_external_frame
+        type: atomic
+        agent:
+        - r1
+      - id: p1_joining_upper_trunk_skeleton_to_frame
+        type: independent
+        children:
+        - id: p1_screw_upper_trunk_skeleton_to_frame1
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_trunk_skeleton_to_frame2
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_trunk_skeleton_to_frame3
+          type: atomic
+          agent:
+          - r3
