@@ -12,10 +12,10 @@ import Lockheed_task_scheduler
 # ------- While ROS node is running ------
 
 
-class Contingency_Manager(object):
+class ContingencyManager(object):
     def __init__(self):
         super().__init__()
-        self.contingency = False
+        self.contingency = True
         contingency_occur = 1
         # print(data['children'][0]['children'][0]['children'][0])
         scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
@@ -28,6 +28,7 @@ class Contingency_Manager(object):
         htn = scheduler.import_htn()
         self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel3'
         self.htn_dict = scheduler.multi_product_dict
+        self.product_htn_anytree = scheduler.multi_product_htn
         self.contingency_node = self.search_tree(
             self.htn_dict, self.contingency_name)
         self.contingency_plan = self.geneate_contingency_plan()
@@ -54,10 +55,8 @@ class Contingency_Manager(object):
                 if element:
                     return element
 
-
     def import_policies(self, policy_yaml):
         """Imports a problem description"""
-
         # Get the directory where problem is located
         file_dir = self.problem_dir + policy_yaml
         # open the file directory
@@ -75,20 +74,62 @@ class Contingency_Manager(object):
     def geneate_contingency_plan(self):
         contingency_planning_node = {}
         dict_policies = self.import_policies(self.policies_file)
-        current_contingency = {}
-        for policy in dict_policies:
-            if self.contingency_name == policy['contingency_id']:
-                current_contingency = policy['situations'][0]['policy']
+        current_contingency_policy = {}
+        contingency_policy_list = []
+        enm_notification_node = {}
+        operations_list  = set()
+        contingency_list = ["broken_upper_body_frame", "engine_leaking"]
         contingency_planning_node['id'] = 'contingency_plan'
         contingency_planning_node['type'] = 'sequential'
-        contingency_planning_node['children'] = current_contingency
+        contingency_planning_node['children'] = []
+        enm_notification_node['id'] = 'recovery-notify_execution_monitor'
+        enm_notification_node['type'] = 'atomic'
+        enm_notification_node['agent'] = ['H']
+        for cont in contingency_list:
+            current_contingency_policy = dict_policies[cont]
+            contingency_policy_list.append(current_contingency_policy)
+            operations_list.add(current_contingency_policy['operation_id'])
+        policy_in_order = self.search_hierarchy(operations_list)
+        for task in list(policy_in_order.values()):
+            for item in contingency_policy_list:
+                if task.id[3:] == item['operation_id']:
+                    contingency_planning_node['children'].append(item['policy'])
         original_task = copy.deepcopy(self.contingency_node)
         original_task['id'] = 'recovery-' + self.contingency_node['id'][3:]
+        contingency_planning_node['children'].append(enm_notification_node)
         contingency_planning_node['children'].append(original_task)
         return contingency_planning_node
 
-    def Add_Handle_Node(self, htn_dictionary, failed_task, contingency_plan):
+    def search_hierarchy(self, handling_list):
+        def check_parent_type(contingency_list):
+            joined_policy = {}
+            original_node1 = copy.deepcopy(contingency_list[0])
+            original_node2 = copy.deepcopy(contingency_list[1])
+            while contingency_list[0].is_root != True:
+                if contingency_list[0].parent == contingency_list[1].parent:
+                    source_node = contingency_list[0].parent # check for commmon parent and check for its type
+                    source_child_node = source_node.children
+                # set to parent
+                    index1 = source_child_node.index(contingency_list[0])
+                    index2 = source_child_node.index(contingency_list[1])
+                    joined_policy[index1] = original_node1
+                    joined_policy[index2] = original_node2
+                    joined_policy = dict(sorted(joined_policy.items()))
+                    break
+                contingency_list[0] = contingency_list[0].parent
+                contingency_list[1] = contingency_list[1].parent
+            return joined_policy
+        
+        contingency_product = []
+        for task in handling_list: # task in operations that went wrong
+            for descent in self.product_htn_anytree.descendants:
+                if descent.id[3:] == task:
+                    contingency_product.append(descent)
+        ordered_policy = check_parent_type(contingency_product)
+        return ordered_policy
 
+    def Add_Handle_Node(self, htn_dictionary, failed_task, contingency_plan):
+        """Adds the handling nodes into the current contingency"""
         def insert_element(dictionary, failed_task, contingency_plan, parent=None):
             target_node = failed_task
             if dictionary['id'] == target_node['id']:
@@ -142,7 +183,7 @@ class Contingency_Manager(object):
     
 
 def main():
-    contingency_handling = Contingency_Manager()
+    contingency_handling = ContingencyManager()
 
     print('-------initialized contingency manager-------')
 

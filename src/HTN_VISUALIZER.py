@@ -37,11 +37,11 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.scheduler.import_problem("problem_description_ATV.yaml")
         self.scheduler.create_task_model()
         self.task_object = self.scheduler.task_object
-        self.contingency_manager = contingency_manager.Contingency_Manager()
+        self.contingency_manager = contingency_manager.ContingencyManager()
         self.htn = self.scheduler.import_htn()
         # main htn dictionary
         self.htn_dict = self.scheduler.multi_product_dict
-        if self.contingency_manager.contingency == True:
+        if self.contingency_manager.contingency:
             self.contingency_htn = self.contingency_manager.contingency_htn_dict
             self.contingency_node = self.contingency_manager.contingency_node
             self.render_node_to_edges(self.contingency_htn)
@@ -223,13 +223,13 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.g,
             layout=layout,
             target=self.ax,
-            vertex_size=0.8,
+            vertex_size=0.6,
             showlegend=False,
             vertex_color=self.color_list,
-            vertex_label_size = 9,
-            margin = 50,
-            line_width = 0.5,
-            marker_size = 1
+            vertex_label_size=9,
+            margin=50,
+            line_width=0.5,
+            marker_size=1
         )
 
         self.canvas.draw()

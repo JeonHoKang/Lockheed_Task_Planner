@@ -145,7 +145,7 @@ children:
                   - id: scew_bolt_for_rear_left_wheel4
                     type: atomic
                     agent: ['r3']
-          - id: reat_right_wheel_assembly
+          - id: rear_right_wheel_assembly
             type: sequential
             children: 
               - id: pick_rear_right_wheel

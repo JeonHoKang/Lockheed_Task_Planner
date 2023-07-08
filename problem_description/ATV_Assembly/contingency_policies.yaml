@@ -1,80 +1,102 @@
-- contingency_id: p1_scew_bolt_for_rear_left_wheel3
-  situations:
-    - situation1: defective_wheel
-      policy:
-        - id: recovery-unscrew_operation
-          type: parallel
-          children: 
-            - id: recovery-unscrew_rear_left_wheel_screw1
-              type: atomic
-              agent: ['r3']
-            - id: recovery-unscrew_rear_left_wheel_screw2
-              type: atomic
-              agent: ['r3']
-            - id: recovery-unscrew_rear_left_wheel_screw3
-              type: atomic
-              agent: ['r3']
-        - id: recovery-remove_rear_left_wheel
-          type: atomic
-          agent: ['r2']
-        - id: recovery_new_wheel
-          type: sequential
-          children:
-            - id: recovery-search_new_wheel
-              type: atomic
-              agent: ['r1']
-            - id: recovery-pick_new_wheel
-              type: atomic
-              agent: ['r1']
-            - id: recovery-place_new_wheel
-              type: atomic
-              agent: ['r1']
-        - id: recovery-resrew_operation
-          type: sequential
-          children:
-            - id: recovery-rescrew_rear_left_wheel_screw1
-              type: atomic
-              agent: ['r3']
-            - id: recovery-rescrew_rear_left_wheel_screw2
-              type: atomic
-              agent: ['r3']
-            - id: recovery-rescrew_rear_left_wheel_screw3
-              type: atomic
-              agent: ['r3']
-        - id: recovery_notify_execution_monitor
-          type: atomic
-          agent: ['H']
-    - situation2: screw_stuck
-- contingency_id: 'p1_scew_bolt_for_rear_left_wheel1'
-  situations:
-    - situation1: defective_wheel
-      policy:
-        - id: recovery-unscrew_operation
-          type: parallel
-          children: 
-            - id: recovery-unscrew_rear_left_wheel_screw1
-              type: atomic
-              agent: ['r3']
-            - id: recovery-unscrew_rear_left_wheel_screw2
-              type: atomic
-              agent: ['r3']
-            - id: recovery-unscrew_rear_left_wheel_screw3
-              type: atomic
-              agent: ['r3']
-- contingency_id: p1_hold_upper_body_frame_in_place
-  situations:
-    - situation1: broken_part
-      policy:
-        - id: remove_broken_pieces
-          type: atomic
-          agent: ['r1']
-        - id: new_upper_body_frame
-          type: sequential
-          children:
-            - id: search_for_new_part
-              type: atomic
-              agent: ['H']
-            - id: pick_new_part
-              type: atomic
-              agent: ['r1']
-            
+defective_rear_left_wheel:
+  part_id: rear_left_wheel
+  operation_id: pick_rear_left_wheel
+  policy:
+    id: recovery-defective_rear_left_wheel
+    type: sequential
+    children:
+      - id: recovery-unscrew_operation
+        type: parallel
+        children: 
+          - id: recovery-unscrew_rear_left_wheel_screw1
+            type: atomic
+            agent: ['r3']
+          - id: recovery-unscrew_rear_left_wheel_screw2
+            type: atomic
+            agent: ['r3']
+          - id: recovery-unscrew_rear_left_wheel_screw3
+            type: atomic
+            agent: ['r3']
+      - id: recovery-remove_rear_left_wheel
+        type: atomic
+        agent: ['r2']
+      - id: recovery_new_wheel
+        type: sequential
+        children:
+          - id: recovery-search_new_wheel
+            type: atomic
+            agent: ['r1']
+          - id: recovery-pick_new_wheel
+            type: atomic
+            agent: ['r1']
+          - id: recovery-place_new_wheel
+            type: atomic
+            agent: ['r1']
+      - id: recovery-resrew_operation
+        type: sequential
+        children:
+          - id: recovery-rescrew_rear_left_wheel_screw1
+            type: atomic
+            agent: ['r3']
+          - id: recovery-rescrew_rear_left_wheel_screw2
+            type: atomic
+            agent: ['r3']
+          - id: recovery-rescrew_rear_left_wheel_screw3
+            type: atomic
+            agent: ['r3']
+
+rear_left_wheel_screw1_stuck: 
+  part_id: rear_left_wheel_screw1
+  operation_id: scew_bolt_for_rear_left_wheel1
+  policy:
+    id: recovery-rear_left_wheel_screw1_stuck
+    type: sequential
+    children:
+      - id: recovery-unscrew_screw1
+        type: atomic
+        agent: ['r3']
+      - id: recovery-rescrew_screw1
+        type: atomic
+        agent: ['r3']
+
+broken_upper_body_frame:
+  part_id: upper_body_frame
+  operation_id: pick_upper_body_frame
+  policy:
+    id: recovery_broken_upper_body_frame
+    type: sequential
+    children:
+      - id: recovery-remove_broken_pieces
+        type: atomic
+        agent: ['r1']
+      - id: recovery-new_upper_body_frame
+        type: sequential
+        children:
+          - id: recovery-search_for_new_part
+            type: atomic
+            agent: ['H']
+          - id: recovery-pick_new_part
+            type: atomic
+            agent: ['r1']
+engine_leaking:
+  part_id: engine
+  operation_id: pick_engine
+  policy:
+    id: recovery-engine_leaking
+    type: sequential
+    children:
+      - id: recovery-undo
+        type: atomic
+        agent: ['H'] # should this done by the human? or should this be done by the mrta
+      - id: recovery-new_engine
+        type: sequential
+        children:
+          - id: recovery-search_new_engine
+            type: atomic
+            agent: ['H']
+          - id: recovery-pick_new_engine
+            type: atomic
+            agent: ['r1']
+      - id: recovery-redo
+        type: atomic
+        agent: ['H']

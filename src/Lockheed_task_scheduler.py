@@ -48,7 +48,7 @@ class HtnMilpScheduler(object):
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-        self.contingency = False
+        self.contingency = True
         self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel3'
         self.contingency_node = None
         self.unavailable_agent_bool = False
