@@ -201,6 +201,13 @@ place_rear_frame_on_deck:
     r2:
       id: det
       mean: 10
+recovery-abort_task_pick_upper_body_frame:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
 recovery-notify_execution_monitor:
   agent_model:
   - H
@@ -208,60 +215,25 @@ recovery-notify_execution_monitor:
     H:
       id: det
       mean: 9
-recovery-pick_new_engine:
+recovery-pick_upper_body_frame:
   agent_model:
   - r1
   duration_model:
     r1:
       id: det
       mean: 9
-recovery-pick_new_part:
-  agent_model:
-  - r1
-  duration_model:
-    r1:
-      id: det
-      mean: 9
-recovery-redo:
-  agent_model:
-  - H
-  duration_model:
-    H:
-      id: det
-      mean: 9
-recovery-remove_broken_pieces:
-  agent_model:
-  - r1
-  duration_model:
-    r1:
-      id: det
-      mean: 9
-recovery-scew_bolt_for_rear_left_wheel3:
+recovery-rescrew_screw1:
   agent_model:
   - r3
   duration_model:
     r3:
       id: det
       mean: 9
-recovery-search_for_new_part:
+recovery-unscrew_screw1:
   agent_model:
-  - H
+  - r3
   duration_model:
-    H:
-      id: det
-      mean: 9
-recovery-search_new_engine:
-  agent_model:
-  - H
-  duration_model:
-    H:
-      id: det
-      mean: 9
-recovery-undo:
-  agent_model:
-  - H
-  duration_model:
-    H:
+    r3:
       id: det
       mean: 9
 scew_bolt_for_front_left_wheel1:

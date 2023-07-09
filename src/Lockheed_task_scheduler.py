@@ -48,8 +48,8 @@ class HtnMilpScheduler(object):
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-        self.contingency = True
-        self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel3'
+        self.contingency = False
+        self.contingency_name = 'p1_pick_upper_body_frame'
         self.contingency_node = None
         self.unavailable_agent_bool = False
         self.unavailable_agent = 'r1'
@@ -284,7 +284,7 @@ class HtnMilpScheduler(object):
             self.multi_product_dict = self.dict
         else:
             self.multi_product_dict = {}
-            self.multi_product_dict['id'] = 'Multi-product Sat Assem'
+            self.multi_product_dict['id'] = 'Multi_Product_Assembly'
             self.multi_product_dict['type'] = 'independent'
             self.multi_product_dict['children'] = []
             for p in range(num_products):

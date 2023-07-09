@@ -26,7 +26,8 @@ class ContingencyManager(object):
         scheduler.import_problem(problem)
         scheduler.create_task_model()
         htn = scheduler.import_htn()
-        self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel3'
+        self.htn_object = scheduler.task_object
+        self.contingency_name = 'p1_pick_upper_body_frame'
         self.htn_dict = scheduler.multi_product_dict
         self.product_htn_anytree = scheduler.multi_product_htn
         self.contingency_node = self.search_tree(
@@ -77,56 +78,105 @@ class ContingencyManager(object):
         current_contingency_policy = {}
         contingency_policy_list = []
         enm_notification_node = {}
+        abort_current_task = {}
         operations_list  = set()
-        contingency_list = ["broken_upper_body_frame", "engine_leaking"]
+        merged_policy = {}
+        contingency_list = ["broken_upper_body_frame", "engine_leaking", "rear_left_wheel_screw1_stuck"]
+        # contingency_list = ["broken_upper_body_frame"]
         contingency_planning_node['id'] = 'contingency_plan'
-        contingency_planning_node['type'] = 'sequential'
+        contingency_planning_node['type'] = 'parallel'
         contingency_planning_node['children'] = []
         enm_notification_node['id'] = 'recovery-notify_execution_monitor'
         enm_notification_node['type'] = 'atomic'
         enm_notification_node['agent'] = ['H']
+        # abort current task is to free and abort from the node that does not add value to the assembly
+        abort_current_task['id'] = f'recovery-abort_task_{self.contingency_node["id"][3:]}'
+        abort_current_task['type'] = 'atomic'
+        abort_current_task['agent'] = self.contingency_node['agent']
+        contingency_planning_node['children'].append(abort_current_task)
         for cont in contingency_list:
             current_contingency_policy = dict_policies[cont]
             contingency_policy_list.append(current_contingency_policy)
             operations_list.add(current_contingency_policy['operation_id'])
-        policy_in_order = self.search_hierarchy(operations_list)
-        for task in list(policy_in_order.values()):
+        contingency_product = self.search_anytree_node(operations_list) # get Anynode object of the operation
+        if len(contingency_list) > 1: # if it is an occurance of multi-layer contingency
+            policy_in_order = self.search_hierarchy(contingency_product)
+        else: # if it is an occurance of single contingency
+            policy_in_order = {1: contingency_product[0]}
+
+        for common_parent, task_list in list(policy_in_order.items()):
             for item in contingency_policy_list:
-                if task.id[3:] == item['operation_id']:
-                    contingency_planning_node['children'].append(item['policy'])
+                for task in task_list: #________You need to finally merge the tasks____________________
+                    if common_parent.type != 'sequential' and task.id[3:] == item['operation_id']:
+                        merged_policy['id'] = f'Contingency_{common_parent.type}'
+                        merged_policy['type'] = common_parent.type
+                        merged_policy['children'] = []
+                        merged_policy['children'].append(item['policy'])
+                    # elif common_parent.type == 'sequential' and task.id[3:] == item['operation_id']:
+                    #     merged_policy['id'] = item['id']
+                    #     merged_policy['type'] = common_parent.type
+                    #     merged_policy['children'].append(item['policy'])
+        contingency_planning_node['children'].append(merged_policy)
         original_task = copy.deepcopy(self.contingency_node)
         original_task['id'] = 'recovery-' + self.contingency_node['id'][3:]
         contingency_planning_node['children'].append(enm_notification_node)
         contingency_planning_node['children'].append(original_task)
         return contingency_planning_node
 
-    def search_hierarchy(self, handling_list):
-        def check_parent_type(contingency_list):
-            joined_policy = {}
-            original_node1 = copy.deepcopy(contingency_list[0])
-            original_node2 = copy.deepcopy(contingency_list[1])
-            while contingency_list[0].is_root != True:
-                if contingency_list[0].parent == contingency_list[1].parent:
-                    source_node = contingency_list[0].parent # check for commmon parent and check for its type
-                    source_child_node = source_node.children
-                # set to parent
-                    index1 = source_child_node.index(contingency_list[0])
-                    index2 = source_child_node.index(contingency_list[1])
-                    joined_policy[index1] = original_node1
-                    joined_policy[index2] = original_node2
-                    joined_policy = dict(sorted(joined_policy.items()))
-                    break
-                contingency_list[0] = contingency_list[0].parent
-                contingency_list[1] = contingency_list[1].parent
-            return joined_policy
-        
-        contingency_product = []
-        for task in handling_list: # task in operations that went wrong
+    def search_anytree_node(self, nodes):
+        """Check for nodes within a tree"""
+        contingency_product = []   
+        for task in nodes:
             for descent in self.product_htn_anytree.descendants:
                 if descent.id[3:] == task:
                     contingency_product.append(descent)
-        ordered_policy = check_parent_type(contingency_product)
-        return ordered_policy
+        return contingency_product
+    
+    def search_hierarchy(self, contingency_product):
+        """ Checks the type of common parent shared by multiple contingency"""
+        def check_in_order_dfs(node, target_names, result_list):
+            if node is None:
+                return
+
+            for child in node.children:
+                check_in_order_dfs(child, target_names, result_list)
+
+            if node in target_names:
+                result_list.append(node)
+            
+        def check_for_common_parent(node1, node2):
+            flag = False # found flag to break out of the loop
+            shallower_node = node1
+            deeper_node = node2
+            reset_to_original = copy.deepcopy(deeper_node)
+            # for each ancestors of the higher node
+            for ancestor in list(reversed(shallower_node.ancestors)): # is revered because of ordering from lower to high
+                while deeper_node.is_root != True: # check each one of the parent of deeper node
+                    if deeper_node.parent.id == ancestor.id: # if found
+                        flag = True # flag that will break all loops
+                        source_node = deeper_node.parent # check for commmon parent and check for its type
+                        source_child_node = source_node.children
+                    deeper_node = deeper_node.parent
+                deeper_node = reset_to_original
+                if flag: # if found then also break the for loop
+                    break
+            return source_node
+        # common_parent_list = set()
+        joined_policy = {}
+        original_node = []
+        contingency_in_order = []
+        for i in range(len(contingency_product)):
+            original_node.append({'node':copy.deepcopy(contingency_product[i])})
+        for node in original_node:
+            node['len_anc'] = node['node'].depth
+        original_node_sorted = sorted(original_node, key=lambda x: x['len_anc'])
+        print('original_node')
+        check_in_order_dfs(self.product_htn_anytree, contingency_product, contingency_in_order)
+        for i in range(len(contingency_in_order)):
+            for j in range(i+1, len(contingency_in_order)):
+                parent_type = check_for_common_parent(contingency_in_order[i],contingency_in_order[j])
+                joined_policy[parent_type] = [contingency_in_order[i],contingency_in_order[j]]
+        return joined_policy
 
     def Add_Handle_Node(self, htn_dictionary, failed_task, contingency_plan):
         """Adds the handling nodes into the current contingency"""

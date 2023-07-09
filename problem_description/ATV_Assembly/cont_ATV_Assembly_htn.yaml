@@ -1,4 +1,4 @@
-id: Multi-product Sat Assem
+id: Multi_Product_Assembly
 type: independent
 children:
 - id: p1_ATV_assembly
@@ -79,24 +79,174 @@ children:
               type: atomic
               agent:
               - H
-    - id: p1_Engine
-      type: sequential
+    - id: p1_Attachments_to_main_body
+      type: parallel
       children:
-      - id: p1_pick_engine
-        type: atomic
-        agent:
-        - r2
-      - id: p1_insert_engine_on_main_body_assembly
-        type: atomic
-        agent:
-        - r2
-      - id: p1_wiring_harness_engine
-        type: atomic
-        agent:
-        - H
-  - id: p1_Attachments_to_main_body
+      - id: p1_Engine
+        type: sequential
+        children:
+        - id: p1_pick_engine
+          type: atomic
+          agent:
+          - r2
+        - id: p1_insert_engine_on_main_body_assembly
+          type: atomic
+          agent:
+          - r2
+        - id: p1_wiring_harness_engine
+          type: atomic
+          agent:
+          - H
+      - id: p1_Handle_assembly
+        type: sequential
+        children:
+        - id: p1_Pick_Handle_bar
+          type: atomic
+          agent:
+          - r1
+        - id: p1_Joining_handle_to_main_body
+          type: parallel
+          children:
+          - id: p1_fasten_bolt_on_main_body_to_handle1
+            type: atomic
+            agent:
+            - r3
+          - id: p1_fasten_bolt_on_main_body_to_handle2
+            type: atomic
+            agent:
+            - r3
+          - id: p1_fasten_bolt_on_main_body_to_handle3
+            type: atomic
+            agent:
+            - r3
+          - id: p1_fasten_bolt_on_main_body_to_handle4
+            type: atomic
+            agent:
+            - r3
+  - id: p1_external_add_ons
     type: parallel
     children:
+    - id: p1_lower_body_frame
+      type: sequential
+      children:
+      - id: p1_pick_lower_body_frame
+        type: atomic
+        agent:
+        - r1
+      - id: p1_hold_lower_body_frame_in_place
+        type: atomic
+        agent:
+        - r1
+      - id: p1_joining_lower_body_frame_to_main
+        type: independent
+        children:
+        - id: p1_screw_lower_body_frame_to_main1
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_lower_body_frame_to_main2
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_lower_body_frame_to_main3
+          type: atomic
+          agent:
+          - r3
+    - id: p1_upper_body_frame
+      type: sequential
+      children:
+      - id: p1_pick_upper_body_frame
+        type: atomic
+        agent: &id001
+        - r1
+      - id: contingency_plan
+        type: parallel
+        children:
+        - id: recovery-abort_task_pick_upper_body_frame
+          type: atomic
+          agent: *id001
+        - id: Contingency_parallel
+          type: parallel
+          children:
+          - id: recovery-rear_left_wheel_screw1_stuck
+            type: sequential
+            children:
+            - id: recovery-unscrew_screw1
+              type: atomic
+              agent:
+              - r3
+            - id: recovery-rescrew_screw1
+              type: atomic
+              agent:
+              - r3
+        - id: recovery-notify_execution_monitor
+          type: atomic
+          agent:
+          - H
+        - id: recovery-pick_upper_body_frame
+          type: atomic
+          agent:
+          - r1
+      - id: p1_hold_upper_body_frame_in_place
+        type: atomic
+        agent:
+        - r1
+      - id: p1_joining_upper_body_frame_to_main
+        type: independent
+        children:
+        - id: p1_screw_upper_body_frame_to_main1
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_body_frame_to_main2
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_body_frame_to_main3
+          type: atomic
+          agent:
+          - r3
+      - id: p1_joining_upper_body_frame_to_lower_frame
+        type: independent
+        children:
+        - id: p1_screw_upper_body_frame_to_lower_frame1
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_body_frame_to_lower_frame2
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_body_frame_to_lower_frame3
+          type: atomic
+          agent:
+          - r3
+    - id: p1_trunk_skeleton
+      type: sequential
+      children:
+      - id: p1_pick_trunk_skeleton
+        type: atomic
+        agent:
+        - r1
+      - id: p1_hold_pick_trunk_skeleton_on_external_frame
+        type: atomic
+        agent:
+        - r1
+      - id: p1_joining_upper_trunk_skeleton_to_frame
+        type: independent
+        children:
+        - id: p1_screw_upper_trunk_skeleton_to_frame1
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_trunk_skeleton_to_frame2
+          type: atomic
+          agent:
+          - r3
+        - id: p1_screw_upper_trunk_skeleton_to_frame3
+          type: atomic
+          agent:
+          - r3
     - id: p1_wheel_assembly
       type: parallel
       children:
@@ -174,57 +324,6 @@ children:
             type: atomic
             agent:
             - r3
-          - id: contingency_plan
-            type: sequential
-            children:
-            - id: recovery-engine_leaking
-              type: sequential
-              children:
-              - id: recovery-undo
-                type: atomic
-                agent:
-                - H
-              - id: recovery-new_engine
-                type: sequential
-                children:
-                - id: recovery-search_new_engine
-                  type: atomic
-                  agent:
-                  - H
-                - id: recovery-pick_new_engine
-                  type: atomic
-                  agent:
-                  - r1
-              - id: recovery-redo
-                type: atomic
-                agent:
-                - H
-            - id: recovery_broken_upper_body_frame
-              type: sequential
-              children:
-              - id: recovery-remove_broken_pieces
-                type: atomic
-                agent:
-                - r1
-              - id: recovery-new_upper_body_frame
-                type: sequential
-                children:
-                - id: recovery-search_for_new_part
-                  type: atomic
-                  agent:
-                  - H
-                - id: recovery-pick_new_part
-                  type: atomic
-                  agent:
-                  - r1
-            - id: recovery-notify_execution_monitor
-              type: atomic
-              agent:
-              - H
-            - id: recovery-scew_bolt_for_rear_left_wheel3
-              type: atomic
-              agent:
-              - r3
           - id: p1_scew_bolt_for_rear_left_wheel4
             type: atomic
             agent:
@@ -255,125 +354,3 @@ children:
             type: atomic
             agent:
             - r3
-    - id: p1_Handle_assembly
-      type: sequential
-      children:
-      - id: p1_Pick_Handle_bar
-        type: atomic
-        agent:
-        - r1
-      - id: p1_Joining_handle_to_main_body
-        type: parallel
-        children:
-        - id: p1_fasten_bolt_on_main_body_to_handle1
-          type: atomic
-          agent:
-          - r3
-        - id: p1_fasten_bolt_on_main_body_to_handle2
-          type: atomic
-          agent:
-          - r3
-        - id: p1_fasten_bolt_on_main_body_to_handle3
-          type: atomic
-          agent:
-          - r3
-        - id: p1_fasten_bolt_on_main_body_to_handle4
-          type: atomic
-          agent:
-          - r3
-  - id: p1_external_frame
-    type: sequential
-    children:
-    - id: p1_lower_body_frame
-      type: sequential
-      children:
-      - id: p1_pick_lower_body_frame
-        type: atomic
-        agent:
-        - r1
-      - id: p1_hold_lower_body_frame_in_place
-        type: atomic
-        agent:
-        - r1
-      - id: p1_joining_lower_body_frame_to_main
-        type: independent
-        children:
-        - id: p1_screw_lower_body_frame_to_main1
-          type: atomic
-          agent:
-          - r3
-        - id: p1_screw_lower_body_frame_to_main2
-          type: atomic
-          agent:
-          - r3
-        - id: p1_screw_lower_body_frame_to_main3
-          type: atomic
-          agent:
-          - r3
-    - id: p1_upper_body_frame
-      type: sequential
-      children:
-      - id: p1_pick_upper_body_frame
-        type: atomic
-        agent:
-        - r1
-      - id: p1_hold_upper_body_frame_in_place
-        type: atomic
-        agent:
-        - r1
-      - id: p1_joining_upper_body_frame_to_main
-        type: independent
-        children:
-        - id: p1_screw_upper_body_frame_to_main1
-          type: atomic
-          agent:
-          - r3
-        - id: p1_screw_upper_body_frame_to_main2
-          type: atomic
-          agent:
-          - r3
-        - id: p1_screw_upper_body_frame_to_main3
-          type: atomic
-          agent:
-          - r3
-      - id: p1_joining_upper_body_frame_to_lower_frame
-        type: independent
-        children:
-        - id: p1_screw_upper_body_frame_to_lower_frame1
-          type: atomic
-          agent:
-          - r3
-        - id: p1_screw_upper_body_frame_to_lower_frame2
-          type: atomic
-          agent:
-          - r3
-        - id: p1_screw_upper_body_frame_to_lower_frame3
-          type: atomic
-          agent:
-          - r3
-    - id: p1_trunk_skeleton
-      type: sequential
-      children:
-      - id: p1_pick_trunk_skeleton
-        type: atomic
-        agent:
-        - r1
-      - id: p1_hold_pick_trunk_skeleton_on_external_frame
-        type: atomic
-        agent:
-        - r1
-      - id: p1_joining_upper_trunk_skeleton_to_frame
-        type: independent
-        children:
-        - id: p1_screw_upper_trunk_skeleton_to_frame1
-          type: atomic
-          agent:
-          - r3
-        - id: p1_screw_upper_trunk_skeleton_to_frame2
-          type: atomic
-          agent:
-          - r3
-        - id: p1_screw_upper_trunk_skeleton_to_frame3
-          type: atomic
-          agent:
-          - r3
