@@ -84,7 +84,8 @@ class ContingencyManager(object):
         second_merged_policy = {}
         third_merged_policy = {}
         # contingency_list = ["broken_upper_body_frame", "engine_leaking", "rear_left_wheel_screw1_stuck"]
-        contingency_list = ["broken_upper_body_frame"]
+        contingency_list = ["broken_upper_body_frame", "rear_left_wheel_screw1_stuck"]
+        # contingency_list = ["broken_upper_body_frame"]
         contingency_planning_node['id'] = 'contingency_plan'
         contingency_planning_node['type'] = 'parallel'
         contingency_planning_node['children'] = []
@@ -101,42 +102,42 @@ class ContingencyManager(object):
             contingency_policy_list.append(current_contingency_policy)
             operations_list.add(current_contingency_policy['operation_id'])
         contingency_product = self.search_anytree_node(operations_list) # get Anynode object of the operation
-        if len(contingency_list) > 1: # if it is an occurance of multi-layer contingency
+        if len(contingency_list) > 2: # if it is an occurance of multi-layer contingency
             policy_in_order = self.search_hierarchy(contingency_product)
             prev_parent_policy = None
             prev_policy_pair = None
             for i in range(len(policy_in_order)):
                 if i+1 < len(policy_in_order): # how many policies should we be able to handle?
-                    if len(policy_in_order) > 2:
-                        print(f'{i}---->{i+1} {policy_in_order[i]["parent"].type == policy_in_order[i+1]["parent"].type}')
-                        check_different_constraint = policy_in_order[i]["parent"].type == policy_in_order[i+1]["parent"].type
-                        if check_different_constraint == True:
+                    print(f'{i}---->{i+1} {policy_in_order[i]["parent"].type == policy_in_order[i+1]["parent"].type}')
+                    check_different_constraint = policy_in_order[i]["parent"].type == policy_in_order[i+1]["parent"].type
+                    if check_different_constraint == True:
+                        merged_policy['id'] = f'Contingency_{policy_in_order[0]["parent"].id}'
+                        merged_policy['type'] = policy_in_order[0]["parent"].type
+                        merged_policy['children'] = [policy_in_order[0]["policies"].pop(0)]
+                    if check_different_constraint == False:
+                        if merged_policy != {}:
+                            merged_policy['children'].append(second_merged_policy)
+                            second_merged_policy['id'] = f'Contingency_{policy_in_order[len(policy_in_order)-1]["parent"].id}'
+                            second_merged_policy['type'] = policy_in_order[len(policy_in_order)-1]["parent"].type
+                            second_merged_policy['children'] = policy_in_order[len(policy_in_order)-1]["policies"]
+                        else:
                             merged_policy['id'] = f'Contingency_{policy_in_order[0]["parent"].id}'
                             merged_policy['type'] = policy_in_order[0]["parent"].type
-                            merged_policy['children'] = [policy_in_order[0]["policies"].pop(0)]
-                        if check_different_constraint == False:
-                            if merged_policy != {}:
-                                merged_policy['children'].append(second_merged_policy)
-                                second_merged_policy['id'] = f'Contingency_{policy_in_order[2]["parent"].id}'
-                                second_merged_policy['type'] = policy_in_order[2]["parent"].type
-                                second_merged_policy['children'] = policy_in_order[2]["policies"]
-                            else:
-                                merged_policy['id'] = f'Contingency_{policy_in_order[0]["parent"].id}'
-                                merged_policy['type'] = policy_in_order[0]["parent"].type
-                                merged_policy['children'] = [policy_in_order[0]["policies"]]
-            # for policy_pair in policy_in_order:
-            #     for policy in policy_pair['policies']:
-            #         for item in contingency_policy_list:
-            # for i in range(len(policy_in_order)):
-            #     for j in range(i+1, len(policy_in_order)):
-            #         # if policy_in_order[i] 
-            # merged_policy['id'] = f'Contingency_{policy_in_order[0]["parent"].id}'
-            # merged_policy['type'] = policy_pair["parent"].type
-            # merged_policy['children'] = [policy_pair["policies"].pop(0)]
-        else: # if it is an occurance of single contingency
+                            merged_policy['children'] = [policy_in_order[0]["policies"]]
+        elif len(contingency_list) == 2:
+            policy_in_order = self.search_hierarchy(contingency_product)
+            recovery_policy_pair = policy_in_order[0]["policies"]
+            merged_policy['id'] = f'recovery-{policy_in_order[0]["parent"].id}'
+            merged_policy['type'] = policy_in_order[0]["parent"].type
+            merged_policy['children'] = []
+            for policy in recovery_policy_pair:
+                for item in contingency_policy_list:
+                    if policy.id[3:] == item['operation_id']:
+                        merged_policy['children'].append(item['policy'])
+        elif len(contingency_list) == 1: # if it is an occurance of single contingency
             for item in contingency_policy_list:
-                if contingency_product[0].id[3:] == item:
-                    merged_policy = contingency_product
+                if contingency_product[0].id[3:] == item['operation_id']:
+                    merged_policy = item['policy']
 
         contingency_planning_node['children'].append(merged_policy)
         original_task = copy.deepcopy(self.contingency_node)

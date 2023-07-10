@@ -215,7 +215,21 @@ recovery-notify_execution_monitor:
     H:
       id: det
       mean: 9
+recovery-pick_new_part:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
 recovery-pick_upper_body_frame:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-remove_broken_pieces:
   agent_model:
   - r1
   duration_model:
@@ -227,6 +241,13 @@ recovery-rescrew_screw1:
   - r3
   duration_model:
     r3:
+      id: det
+      mean: 9
+recovery-search_for_new_part:
+  agent_model:
+  - H
+  duration_model:
+    H:
       id: det
       mean: 9
 recovery-unscrew_screw1:
