@@ -57,7 +57,7 @@ class TreeToolSet:
         else:
             if 'children' in dictionary:
                 for child in dictionary['children']:
-                    insert_element(child, target_id, node_type,
+                    self.insert_element(child, target_id, node_type,
                                 new_element, input_order_number)
 
 
@@ -70,7 +70,7 @@ class TreeToolSet:
                 parent = None
                 for child in dictionary['children']:
                     parent = dictionary
-                    delete_element(child, target_id, parent=parent)
+                    self.delete_element(child, target_id, parent=parent)
 
 
     def create_dict_from_list(self, pairs):
