@@ -49,7 +49,7 @@ class HtnMilpScheduler(object):
         self.agent_team_model = {}
         self.multi_product_dict = {}
         self.contingency = False
-        self.contingency_name = 'p1_pick_upper_body_frame'
+        self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel1'
         self.contingency_node = None
         self.unavailable_agent_bool = False
         self.unavailable_agent = 'r1'
@@ -73,6 +73,21 @@ class HtnMilpScheduler(object):
             # Printing dictionary
             except yaml.YAMLError as dict_e:
                 print(dict_e)
+
+    # def update_task_model(self):
+    #     # with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
+    #     task_model_dict = {}
+    #     contingency_plan_anytree = DictImporter().import_(self.dict)
+    #     contingency_leaf = list(anytree.PostOrderIter(contingency_plan_anytree, filter_=lambda node: node.is_leaf))
+    #     for task_nodes in contingency_leaf:
+    #             task_model_dict[task_nodes.id] = {'agent_model':
+    #                                                 task_nodes.agent}
+    #             for agent in task_nodes.agent:
+    #                 task_model_dict[task_nodes.id]['duration_model'] = {
+    #                     agent: {'id': 'det', 'mean': 9}}
+    #     with open('problem_description/ATV_Assembly/cont_task_model_ATV.yaml2', 'w') as file:
+    #         yaml.safe_dump(task_model_dict, file)
+    #     print("------synchronize_task_model yaml file-------")
 
     def load_agent_model(self):
         """Loads agent model from yaml file"""
@@ -732,6 +747,8 @@ def main():
         scheduler.import_problem("problem_description_ATV.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
+    # scheduler.update_task_model()
+
     print('--------Initialized-------------')
     scheduler.generate_model()
 

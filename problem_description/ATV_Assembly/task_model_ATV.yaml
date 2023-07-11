@@ -24,6 +24,61 @@ place_front_frame_on_deck:
     #   id: det
     #   mean: 8
 
+pick_battery_assembly:
+  agent_model: ["r2"]
+  duration_model: 
+    r2:
+      id: det
+      mean: 8
+    # r2:
+    #   id: det
+    #   mean: 6
+    # H: 
+    #   id: det
+    #   mean: 8
+
+place_battery_assembly:
+  agent_model: ["r2"]
+  duration_model: 
+    r2:
+      id: det
+      mean: 12
+    # r2:
+    #   id: det
+    #   mean: 6
+    # H: 
+    #   id: det
+    #   mean: 8
+
+
+screw_battery_assembly_to_front_frame1:
+  agent_model: ["r3"]
+  duration_model: 
+    r3:
+      id: det
+      mean: 6
+
+screw_battery_assembly_to_front_frame2:
+  agent_model: ["r3"]
+  duration_model: 
+    r3:
+      id: det
+      mean: 6
+
+screw_battery_assembly_to_front_frame3:
+  agent_model: ["r3"]
+  duration_model: 
+    r3:
+      id: det
+      mean: 6
+
+screw_battery_assembly_to_front_frame4:
+  agent_model: ["r3"]
+  duration_model: 
+    r3:
+      id: det
+      mean: 6
+
 pick_rear_frame:
   agent_model: ["r2"]
   duration_model: 

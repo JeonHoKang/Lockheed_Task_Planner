@@ -85,7 +85,7 @@ engine_leaking:
     id: recovery-engine_leaking
     type: sequential
     children:
-      - id: recovery-undo
+      - id: recovery-engine_undo
         type: atomic
         agent: ['H'] # should this done by the human? or should this be done by the mrta
       - id: recovery-new_engine
@@ -100,3 +100,69 @@ engine_leaking:
       - id: recovery-redo
         type: atomic
         agent: ['H']
+
+trunk_skeleton_missing:
+  part_id: trunk_skeleton
+  operation_id: pick_trunk_skeleton
+  policy:
+    id: recovery-trunk_skeleton_missing
+    type: sequential
+    children:
+      - id: recovery-notify_human_for_new_part
+        type: atomic
+        agent: ['r1']
+      - id: recovery-new_trunk_skeleton
+        type: sequential
+        children:
+          - id: recovery-wait_for_new_part
+            type: atomic
+            agent: ['r1']
+          - id: recovery-locate_new_part
+            type: atomic
+            agent: ['r1']
+
+handle_bolt3_missing:
+  part_id: hadle_bolt3
+  operation_id: fasten_bolt_on_main_body_to_handle3
+  policy:
+    id: recovery-missing_handle_bolt3
+    type: sequential
+    children:
+      - id: recovery-nofify_human_for_new_bolt
+        type: atomic
+        agent: ['r3']
+      - id: recovery_locate_new_part
+        type: atomic
+        agent: ['r3']
+
+
+shorted_battery:
+  part_id: battery
+  operation_id: pick_battery_assembly
+  policy:
+    id: recovery-shorted_battery
+    type: sequential
+    children:
+      - id: recovery-shorted_battery_undo
+        type: atomic
+        agent: ['H']
+      - id: recovery-locate_new_battery
+        type: atomic
+        agent: ['r2']
+
+defective_front_right_wheel:
+  part_id: front_right_wheel
+  operation_id: pick_front_right_wheel
+  policy:
+    id: recovery-defective_front_right_wheel
+    type: sequential
+    children:
+      - id: recovery-front_right_wheel_undo
+        type: atomic
+        agent: ['H']
+      - id: recovery-search_new_wheel
+        type: atomic
+        agent: ['r2']
+      - id: recovery_pick_new_wheel
+        type: atomic
+        agent: ['r2']

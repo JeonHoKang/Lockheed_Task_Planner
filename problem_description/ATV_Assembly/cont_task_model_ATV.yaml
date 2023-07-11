@@ -117,6 +117,13 @@ insert_engine_on_main_body_assembly:
     r2:
       id: det
       mean: 18
+pick_battery_assembly:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 8
 pick_engine:
   agent_model:
   - r2
@@ -187,6 +194,13 @@ pick_upper_body_frame:
     r1:
       id: det
       mean: 8
+place_battery_assembly:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 12
 place_front_frame_on_deck:
   agent_model:
   - r1
@@ -201,11 +215,25 @@ place_rear_frame_on_deck:
     r2:
       id: det
       mean: 10
-recovery-abort_task_pick_upper_body_frame:
+recovery-abort_task_scew_bolt_for_rear_left_wheel1:
   agent_model:
-  - r1
+  - r3
   duration_model:
-    r1:
+    r3:
+      id: det
+      mean: 9
+recovery-engine_undo:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 9
+recovery-front_right_wheel_undo:
+  agent_model:
+  - H
+  duration_model:
+    H:
       id: det
       mean: 9
 recovery-notify_execution_monitor:
@@ -215,6 +243,13 @@ recovery-notify_execution_monitor:
     H:
       id: det
       mean: 9
+recovery-pick_new_engine:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
 recovery-pick_new_part:
   agent_model:
   - r1
@@ -222,11 +257,11 @@ recovery-pick_new_part:
     r1:
       id: det
       mean: 9
-recovery-pick_upper_body_frame:
+recovery-redo:
   agent_model:
-  - r1
+  - H
   duration_model:
-    r1:
+    H:
       id: det
       mean: 9
 recovery-remove_broken_pieces:
@@ -236,7 +271,7 @@ recovery-remove_broken_pieces:
     r1:
       id: det
       mean: 9
-recovery-rescrew_screw1:
+recovery-scew_bolt_for_rear_left_wheel1:
   agent_model:
   - r3
   duration_model:
@@ -250,11 +285,25 @@ recovery-search_for_new_part:
     H:
       id: det
       mean: 9
-recovery-unscrew_screw1:
+recovery-search_new_engine:
   agent_model:
-  - r3
+  - H
   duration_model:
-    r3:
+    H:
+      id: det
+      mean: 9
+recovery-search_new_wheel:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 9
+recovery_pick_new_wheel:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
       id: det
       mean: 9
 scew_bolt_for_front_left_wheel1:
@@ -369,6 +418,34 @@ scew_bolt_for_rear_right_wheel4:
     r3:
       id: det
       mean: 10
+screw_battery_assembly_to_front_frame1:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 6
+screw_battery_assembly_to_front_frame2:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 6
+screw_battery_assembly_to_front_frame3:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 6
+screw_battery_assembly_to_front_frame4:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 6
 screw_lower_body_frame_to_main1:
   agent_model:
   - r3
