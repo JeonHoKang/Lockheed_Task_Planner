@@ -13,20 +13,22 @@ import Lockheed_task_scheduler
 
 
 class ContingencyManager(object):
+    """
+    Alters HTN to handle contingencies reactively.
+
+    """
     def __init__(self):
         super().__init__()
-        self.contingency = True
-        contingency_occur = 1
-        # print(data['children'][0]['children'][0]['children'][0])
-        scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
-        self.problem_dir = "problem_description/ATV_Assembly/"
+        scheduler = Lockheed_task_scheduler.HtnMilpScheduler() # imports scheduler
+        self.contingency = True # set whether contingency has occured
+        self.problem_dir = "problem_description/ATV_Assembly/" # 
         problem = "problem_description_ATV.yaml"
         self.policies_file = "contingency_policies.yaml"
         scheduler.set_dir(self.problem_dir)
         scheduler.import_problem(problem)
         scheduler.create_task_model()
         htn = scheduler.import_htn()
-        self.htn_object = scheduler.task_object
+        # self.htn_object = scheduler.task_object
         self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel1'
         self.htn_dict = scheduler.multi_product_dict
         self.product_htn_anytree = scheduler.multi_product_htn
@@ -35,9 +37,6 @@ class ContingencyManager(object):
         self.contingency_plan = self.geneate_contingency_plan()
         self.Add_Handle_Node(
             self.htn_dict, self.contingency_node, self.contingency_plan)
-        self.generate_task_model()
-        self.contingency_htn_dict = self.htn_dict
-        self.yaml_export()
 
     def search_tree(self, dictionary, node_id):
         if dictionary['id'] == node_id:
@@ -118,13 +117,13 @@ class ContingencyManager(object):
                     print(f'{i}---->{i+1} {policy_in_order[i]["parent"].type == policy_in_order[i+1]["parent"].type}')
                     check_different_constraint.append(policy_in_order[i]["parent"].type == policy_in_order[i+1]["parent"].type)
             if check_different_constraint[0] and check_different_constraint[1]:
-                merged_policy['id'] = f'recovery-Multi_{policy_in_order[0]["parent"].id[3:]}'
+                merged_policy['id'] = f'recovery-multi_{policy_in_order[0]["parent"].id[3:]}'
                 merged_policy['type'] = policy_in_order[0]["parent"].type
                 merged_policy['children'] = []
                 for policy in list(operation_policy_pair.values()):
                     merged_policy["children"].append(policy)
             if check_different_constraint[0] == False and check_different_constraint[1] == True:
-                second_merged_policy["id"] = f'recovery-Multi_{policy_in_order[0]["parent"].id}'
+                second_merged_policy["id"] = f'recovery-multi_{policy_in_order[0]["parent"].id}'
                 second_merged_policy["type"] = policy_in_order[0]["parent"].type
                 second_merged_policy["children"] = []
                 for policy in policy_in_order[0]["policies"]:
@@ -132,13 +131,12 @@ class ContingencyManager(object):
                 merged_policy['id'] = f'recovery-{policy_in_order[2]["parent"].id}'
                 merged_policy['type'] = policy_in_order[2]["parent"].type
                 merged_policy['children'] = [second_merged_policy]
-
                 merged_policy["children"].append(operation_policy_pair[policy_in_order[len(policy_in_order)-1]["policies"][1].id[3:]])
             elif check_different_constraint[0] == True and check_different_constraint[1] == False:
                 merged_policy['id'] = f'recovery-{policy_in_order[0]["parent"].id[3:]}'
                 merged_policy['type'] = policy_in_order[0]["parent"].type
                 merged_policy['children'] = [operation_policy_pair[policy_in_order[0]['policies'][0].id[3:]]]
-                second_merged_policy["id"] = f'recovery-Multi_{policy_in_order[2]["parent"].id[3:]}'
+                second_merged_policy["id"] = f'recovery-multi_{policy_in_order[2]["parent"].id[3:]}'
                 second_merged_policy["type"] = policy_in_order[2]["parent"].type
                 second_merged_policy["children"] = []
                 for policy in policy_in_order[len(policy_in_order)-1]["policies"]:
@@ -283,7 +281,8 @@ class ContingencyManager(object):
 
 def main():
     contingency_handling = ContingencyManager()
-
+    contingency_handling.generate_task_model() # export task_model to yaml file
+    contingency_handling.yaml_export() # Export yaml file
     print('-------initialized contingency manager-------')
 
 

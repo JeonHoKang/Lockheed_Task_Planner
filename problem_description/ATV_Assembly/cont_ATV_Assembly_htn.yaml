@@ -336,7 +336,7 @@ children:
               - id: recovery-p1_Attachments_to_main_body
                 type: parallel
                 children:
-                - id: recovery-Multi_p1_core_component
+                - id: recovery-multi_p1_core_component
                   type: sequential
                   children:
                   - id: recovery-engine_leaking

@@ -30,22 +30,23 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.constraint_list = []
         self.node_ids = []
         self.radio_options = ['sequential',
-                              'parallel', 'independent', 'atomic']
-        # From the scheduler, import htn and dictionary
-        self.scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
-        self.scheduler.set_dir("problem_description/ATV_Assembly/")
-        self.scheduler.import_problem("problem_description_ATV.yaml")
-        self.scheduler.create_task_model()
-        self.task_object = self.scheduler.task_object
-        self.contingency_manager = contingency_manager.ContingencyManager()
-        self.htn = self.scheduler.import_htn()
-        # main htn dictionary
-        self.htn_dict = self.scheduler.multi_product_dict
-        if self.contingency_manager.contingency:
+                              'parallel', 'independent', 'atomic'] # options of node types
+        self.contingency_manager = contingency_manager.ContingencyManager() # import contingency manager
+        contingency_state_msg = self.contingency_manager.contingency # get the message from contingency manager that contingency occured
+        # Determine wheter it shoould display contingency or normal htn
+        if contingency_state_msg: # if contingency occured is true
             self.contingency_htn = self.contingency_manager.contingency_htn_dict
             self.contingency_node = self.contingency_manager.contingency_node
             self.render_node_to_edges(self.contingency_htn)
-        else:
+        else: # otherwise
+            # From the scheduler, import htn and dictionary
+            self.scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
+            self.scheduler.set_dir("problem_description/ATV_Assembly/")
+            self.scheduler.import_problem("problem_description_ATV.yaml")
+            self.scheduler.create_task_model()
+            self.htn = self.scheduler.import_htn()
+            # main htn dictionary
+            self.htn_dict = self.scheduler.multi_product_dict
             self.render_node_to_edges(self.htn_dict)
         # declare first igraph instance
         self.g = Graph(self.n_vertices, self.edges)
@@ -109,7 +110,6 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.parent_type_radio.append(self.select_parent_type)
             self.text_layout_4.addWidget(self.select_parent_type)
             self.button_group2.addButton(self.select_parent_type, idx)
-
         # End of container
         self.agent_type_container = QtWidgets.QWidget()
         self.text_layout_5 = QtWidgets.QHBoxLayout(self.agent_type_container)
@@ -170,18 +170,15 @@ class HTN_vis(QtWidgets.QMainWindow):
         layout2.addWidget(self.label_container)
         layout2.addWidget(self.node_type_container)
         layout2.addWidget(self.order_number_container)
-
         layout2.addWidget(self.agent_type_container)
         layout2.addWidget(self.submit_button)
         layout2.setContentsMargins(0, 0, 0, 0)
-        # layout3 = QtWidgets.QVBoxLayout()
         layout2.addWidget(self.delete_node_container)
         layout2.addWidget(self.delete_submit)
         container = QtWidgets.QWidget()
         container.setLayout(layout0)
         container.layout().addLayout(layout1)
         container.layout().addLayout(layout2)
-        # container.layout().addLayout(layout3)
         # Add the Matplotlib canvas to the PyQt window
         self.setCentralWidget(container)
 
@@ -210,9 +207,9 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.n_vertices = len(self.node_ids)
 
     def plot(self):
-        '''
+        """
         Plotting functionality
-        '''
+        """
         # general style configuration
         self.g["title"] = "HTN"
         layout = self.g.layout("rt", root=[0])
