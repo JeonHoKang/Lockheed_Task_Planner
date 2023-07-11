@@ -1,18 +1,11 @@
-from asyncio import get_child_watcher
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import igraph as ig
-from igraph import Graph, EdgeSeq
+from igraph import Graph
 import matplotlib.pyplot as plt
 import sys
-from matplotlib.figure import Figure
 import MILP_scheduler
-from anytree import AnyNode, PostOrderIter
-from anytree.exporter import DictExporter
-from anytree import RenderTree  # just for nice printing
-from anytree.importer import DictImporter
-import numpy as np
 import contingency_manager
 from tree_toolset import TreeToolSet
 
