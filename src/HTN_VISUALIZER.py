@@ -35,7 +35,6 @@ class HTN_vis(QtWidgets.QMainWindow):
                               'parallel', 'independent', 'atomic'] # options of node types
         # self.contingency_manager = contingency_manager.ContingencyManager() # import contingency manager
         scheduler = MILP_scheduler.HtnMilpScheduler()
-
         contingency_name = scheduler.contingency_name
         self.contingency_state = scheduler.contingency
         if scheduler.contingency:

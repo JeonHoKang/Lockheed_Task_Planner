@@ -831,41 +831,34 @@ Screw9_Top_P_C6:
     r3:
       id: det
       mean: 3
-recovery-Pick_and_Place_Right_P_C1_2:
+recovery-Screw2_Top_P_C3:
   agent_model:
-  - r2
+  - r3
   duration_model:
-    r2:
+    r3:
       id: det
-      mean: 6
-recovery-check for component:
+      mean: 9
+recovery-abort_task_Screw2_Top_P_C3:
   agent_model:
-  - H1
+  - r3
   duration_model:
-    H1:
+    r3:
       id: det
-      mean: 6
-recovery-check orientation:
+      mean: 9
+recovery-notify_execution_monitor:
   agent_model:
-  - H1
+  - H
   duration_model:
-    H1:
+    H:
       id: det
-      mean: 6
-recovery-notify execution monitor:
+      mean: 9
+recovery-unscrew_rear_left_wheel_screw1:
   agent_model:
-  - H1
+  - r3
   duration_model:
-    H1:
+    r3:
       id: det
-      mean: 6
-recovery-pick component:
-  agent_model:
-  - H1
-  duration_model:
-    H1:
-      id: det
-      mean: 6
+      mean: 9
 roate_turntable_180:
   agent_model:
   - TT

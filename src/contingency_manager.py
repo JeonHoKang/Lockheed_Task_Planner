@@ -49,12 +49,7 @@ class ContingencyManager:
         second_merged_policy = {}
         third_merged_policy = {}
         check_different_constraint = []
-        # contingency_list = ["broken_upper_body_frame", "engine_leaking", "rear_left_wheel_screw1_stuck"]
-        # contingency_list = ["trunk_skeleton_missing", "engine_leaking", "rear_left_wheel_screw1_stuck"] 
-        # contingency_list = ["handle_bolt3_missing", "engine_leaking", "defective_front_right_wheel"]            
-        contingency_list = ["broken_upper_body_frame", "engine_leaking", "defective_front_right_wheel"]            
-        # contingency_list = ["broken_upper_body_frame", "rear_left_wheel_screw1_stuck"]
-        # contingency_list = ["broken_upper_body_frame"]
+        contingency_list = ["screw_stuck"]
         contingency_planning_node['id'] = 'recovery-contingency_plan'
         contingency_planning_node['type'] = 'sequential'
         contingency_planning_node['children'] = []
@@ -213,21 +208,21 @@ class ContingencyManager:
         # exporter = DictExporter()
         # htn_dict = exporter.export(self.htn_dict)
         # Save the updated data to the YAML file
-        with open("problem_description/ATV_Assembly/problem_description_ATV.yaml", "r") as file:
+        with open("problem_description/LM2023_problem/problem_description_LM2023.yaml", "r") as file:
             yaml_dict = yaml.safe_load(file)
             yaml_dict['num_tasks'] = yaml_dict['num_tasks'] + \
                 len(contingency_plan['children'])-1
             yaml_dict['agents'] = yaml_dict['agents']
-            yaml_dict['task_model_id'] = 'cont_task_model_ATV.yaml'
-            yaml_dict['htn_model_id'] = 'cont_ATV_Assembly_htn.yaml'
-        with open('problem_description/ATV_Assembly/cont_ATV_Assembly_htn.yaml', 'w') as file:
+            yaml_dict['task_model_id'] = 'cont_task_model_LM2023.yaml'
+            yaml_dict['htn_model_id'] = 'cont_LM2023_htn.yaml'
+        with open('problem_description/LM2023_problem/cont_LM2023_htn.yaml', 'w') as file:
             yaml.safe_dump(htn_dict, file, sort_keys=False)
 
-        with open('problem_description/ATV_Assembly/cont_problem_description_ATV.yaml', 'w') as file:
+        with open('problem_description/LM2023_problem/cont_problem_description_LM2023.yaml', 'w') as file:
             yaml.safe_dump(yaml_dict, file, sort_keys=False)
 
     def generate_task_model(self, contingency_task_plan):
-        with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
+        with open("problem_description/LM2023_problem/task_model_LM2023.yaml", "r") as file:
             task_model_dict = yaml.safe_load(file)
             contingency_plan_anytree = DictImporter().import_(contingency_task_plan)
             contingency_leaf = list(anytree.PostOrderIter(contingency_plan_anytree, filter_=lambda node: node.is_leaf))
@@ -237,14 +232,14 @@ class ContingencyManager:
                     for agent in task_nodes.agent:
                         task_model_dict[task_nodes.id]['duration_model'] = {
                             agent: {'id': 'det', 'mean': 9}}
-        with open('problem_description/ATV_Assembly/cont_task_model_ATV.yaml', 'w') as file:
+        with open('problem_description/LM2023_problem/cont_task_model_LM2023.yaml', 'w') as file:
             yaml.safe_dump(task_model_dict, file)
     
 
 def main():
     scheduler = MILP_scheduler.HtnMilpScheduler() # imports scheduler
-    problem_dir = "problem_description/ATV_Assembly/"
-    problem = "problem_description_ATV.yaml"
+    problem_dir = "problem_description/LM2023_problem/"
+    problem = "problem_description_LM2023.yaml"
     policies_file = "contingency_policies.yaml"
     scheduler.set_dir(problem_dir)
     scheduler.import_problem(problem)
@@ -255,7 +250,7 @@ def main():
     contingency_handling = ContingencyManager(htn_dict,product_htn_anytree)
     contingency_handling.set_problem_dir(problem_dir)
     contingency_handling.import_policies(policies_file)
-    contingency_name = 'p1_scew_bolt_for_rear_left_wheel1'
+    contingency_name = 'p1_Screw2_Top_P_C3'
     contingency_node = TreeToolSet().search_tree(
         htn_dict, contingency_name)
     contingency_plan = contingency_handling.geneate_contingency_plan(contingency_node)
