@@ -4,8 +4,6 @@ class Task:
         self.task_id = task_id
         self.agent_id = agents_model
         self.duration_model = duration_model
-        # for agent in range(len(agent_id)):
-        #     self.duration_model['agent'] =
         self.task_state = 'unattempted'
         self.agent_types = None
         self.task_agent_uncertainty_models = {}
