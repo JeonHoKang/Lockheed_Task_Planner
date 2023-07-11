@@ -1,4 +1,4 @@
 .vscode
 venv
 .idea
-__pyache__
+src/__pyache__
