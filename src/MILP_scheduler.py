@@ -20,12 +20,8 @@ from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 from Agent import Agent
 from Task import Task
-# import numpy as np
-# from anytree import AnyNode, PostOrderIter
-# from anytree.exporter import DictExporter
 
-
-class HtnMilpScheduler(object):
+class HtnMilpScheduler:
     """
     Uses MILP to generate schedule
     """
@@ -73,21 +69,6 @@ class HtnMilpScheduler(object):
             # Printing dictionary
             except yaml.YAMLError as dict_e:
                 print(dict_e)
-
-    # def update_task_model(self):
-    #     # with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
-    #     task_model_dict = {}
-    #     contingency_plan_anytree = DictImporter().import_(self.dict)
-    #     contingency_leaf = list(anytree.PostOrderIter(contingency_plan_anytree, filter_=lambda node: node.is_leaf))
-    #     for task_nodes in contingency_leaf:
-    #             task_model_dict[task_nodes.id] = {'agent_model':
-    #                                                 task_nodes.agent}
-    #             for agent in task_nodes.agent:
-    #                 task_model_dict[task_nodes.id]['duration_model'] = {
-    #                     agent: {'id': 'det', 'mean': 9}}
-    #     with open('problem_description/ATV_Assembly/cont_task_model_ATV.yaml2', 'w') as file:
-    #         yaml.safe_dump(task_model_dict, file)
-    #     print("------synchronize_task_model yaml file-------")
 
     def load_agent_model(self):
         """Loads agent model from yaml file"""
@@ -418,7 +399,7 @@ class HtnMilpScheduler(object):
                             atomic_action_groups1[k-1], atomic_action_groups1[k-1+j])
                 multi_product_index -= 1
 
-    def dfs(self, start):
+    def set_dependencies_by_dfs(self, start):
         visited = []  # Set to track visited vertices
         edges = []
         stack = [start]  # Stack to keep track of vertices to visit
@@ -443,11 +424,6 @@ class HtnMilpScheduler(object):
         idx = list_siblings.index(node)+1
         parent = node.parent
         child = node
-        # for element in list_siblings[idx:len(list_siblings)]:
-        #     if element.is_leaf:
-        #         self.task_object[element.id].set_task_state('infeasible')
-        #     else:
-        #         self.dfs(element)
         while parent.is_root != True:
             if parent.type == 'sequential':
                 parent_siblings = list(parent.children)
@@ -459,7 +435,7 @@ class HtnMilpScheduler(object):
                         self.task_object[element.id].set_task_state(
                             'infeasible')
                     else:
-                        self.dfs(element)
+                        self.set_dependencies_by_dfs(element)
             child = parent
             parent = parent.parent
 
@@ -747,8 +723,6 @@ def main():
         scheduler.import_problem("problem_description_ATV.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
-    # scheduler.update_task_model()
-
     print('--------Initialized-------------')
     scheduler.generate_model()
 

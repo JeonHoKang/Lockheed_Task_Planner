@@ -2,58 +2,25 @@ import copy
 import yaml
 import anytree
 from anytree import AnyNode, PostOrderIter, find_by_attr
-# from anytree.exporter import DictExporter
-# from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
-# from anytree.exporter import DictExporter
-import Lockheed_task_scheduler
-
+import MILP_scheduler
+from tree_toolset import TreeToolSet
 # Load the YAML file
 # ------- While ROS node is running ------
 
 
-class ContingencyManager(object):
+class ContingencyManager:
     """
     Alters HTN to handle contingencies reactively.
 
     """
-    def __init__(self):
+    def __init__(self, htn_dictionary, htn_anytree_object):
         super().__init__()
-        scheduler = Lockheed_task_scheduler.HtnMilpScheduler() # imports scheduler
         self.contingency = True # set whether contingency has occured
-        self.problem_dir = "problem_description/ATV_Assembly/" # 
-        problem = "problem_description_ATV.yaml"
-        self.policies_file = "contingency_policies.yaml"
-        scheduler.set_dir(self.problem_dir)
-        scheduler.import_problem(problem)
-        scheduler.create_task_model()
-        htn = scheduler.import_htn()
-        # self.htn_object = scheduler.task_object
-        self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel1'
-        self.htn_dict = scheduler.multi_product_dict
-        self.product_htn_anytree = scheduler.multi_product_htn
-        self.contingency_node = self.search_tree(
-            self.htn_dict, self.contingency_name)
-        self.contingency_plan = self.geneate_contingency_plan()
-        self.Add_Handle_Node(
-            self.htn_dict, self.contingency_node, self.contingency_plan)
+        self.product_htn_anytree = htn_anytree_object
 
-    def search_tree(self, dictionary, node_id):
-        if dictionary['id'] == node_id:
-            contingency_node = dictionary
-            return contingency_node
-        else:
-            res = []
-            if 'children' in dictionary:
-                for child in dictionary['children']:
-                    parent = dictionary
-                    res.append(self.search_tree(child, node_id))
-            else:
-                return None
-
-            for element in res:
-                if element:
-                    return element
+    def set_problem_dir(self, directory):
+        self.problem_dir = directory
 
     def import_policies(self, policy_yaml):
         """Imports a problem description"""
@@ -64,16 +31,15 @@ class ContingencyManager(object):
             try:
                 # load the yaml file
                 # Converts yaml document to python object
-                policies_dict = yaml.safe_load(stream)
+                self.policies_dict = yaml.safe_load(stream)
                 print('')
             # Printing dictionary
             except yaml.YAMLError as dict_e:
                 print(dict_e)
-        return policies_dict
 
-    def geneate_contingency_plan(self):
+    def geneate_contingency_plan(self, contingency_node):
         contingency_planning_node = {}
-        dict_policies = self.import_policies(self.policies_file)
+        dict_policies = self.policies_dict
         current_contingency_policy = {}
         contingency_policy_list = []
         enm_notification_node = {}
@@ -96,9 +62,9 @@ class ContingencyManager(object):
         enm_notification_node['type'] = 'atomic'
         enm_notification_node['agent'] = ['H']
         # abort current task is to free and abort from the node that does not add value to the assembly
-        abort_current_task['id'] = f'recovery-abort_task_{self.contingency_node["id"][3:]}'
+        abort_current_task['id'] = f'recovery-abort_task_{contingency_node["id"][3:]}'
         abort_current_task['type'] = 'atomic'
-        abort_current_task['agent'] = self.contingency_node['agent']
+        abort_current_task['agent'] = contingency_node['agent']
         contingency_planning_node['children'].append(abort_current_task)
         operation_policy_pair = {}
         for cont in contingency_list:
@@ -159,8 +125,8 @@ class ContingencyManager(object):
                     merged_policy = item['policy']
 
         contingency_planning_node['children'].append(merged_policy)
-        original_task = copy.deepcopy(self.contingency_node)
-        original_task['id'] = 'recovery-' + self.contingency_node['id'][3:]
+        original_task = copy.deepcopy(contingency_node)
+        original_task['id'] = 'recovery-' + contingency_node['id'][3:]
         contingency_planning_node['children'].append(enm_notification_node)
         contingency_planning_node['children'].append(original_task)
         return contingency_planning_node
@@ -243,31 +209,27 @@ class ContingencyManager(object):
         insert_element(htn_dictionary, failed_task,
                        contingency_plan)
 
-    def yaml_export(self):
+    def yaml_export(self,htn_dict, contingency_plan):
         # exporter = DictExporter()
         # htn_dict = exporter.export(self.htn_dict)
         # Save the updated data to the YAML file
         with open("problem_description/ATV_Assembly/problem_description_ATV.yaml", "r") as file:
             yaml_dict = yaml.safe_load(file)
             yaml_dict['num_tasks'] = yaml_dict['num_tasks'] + \
-                len(self.contingency_plan['children'])-1
+                len(contingency_plan['children'])-1
             yaml_dict['agents'] = yaml_dict['agents']
             yaml_dict['task_model_id'] = 'cont_task_model_ATV.yaml'
             yaml_dict['htn_model_id'] = 'cont_ATV_Assembly_htn.yaml'
         with open('problem_description/ATV_Assembly/cont_ATV_Assembly_htn.yaml', 'w') as file:
-            yaml.safe_dump(self.htn_dict, file, sort_keys=False)
+            yaml.safe_dump(htn_dict, file, sort_keys=False)
 
         with open('problem_description/ATV_Assembly/cont_problem_description_ATV.yaml', 'w') as file:
             yaml.safe_dump(yaml_dict, file, sort_keys=False)
 
-    def generate_task_model(self):
+    def generate_task_model(self, contingency_task_plan):
         with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
             task_model_dict = yaml.safe_load(file)
-            # list_task_models = list(task_model_dict.keys())
-            # for i, tasks in enumerate(list_task_models):
-            #     if tasks == self.contingency_name:
-            #         task_model_dict['']
-            contingency_plan_anytree = DictImporter().import_(self.contingency_plan)
+            contingency_plan_anytree = DictImporter().import_(contingency_task_plan)
             contingency_leaf = list(anytree.PostOrderIter(contingency_plan_anytree, filter_=lambda node: node.is_leaf))
             for task_nodes in contingency_leaf:
                     task_model_dict[task_nodes.id] = {'agent_model':
@@ -280,9 +242,27 @@ class ContingencyManager(object):
     
 
 def main():
-    contingency_handling = ContingencyManager()
-    contingency_handling.generate_task_model() # export task_model to yaml file
-    contingency_handling.yaml_export() # Export yaml file
+    scheduler = MILP_scheduler.HtnMilpScheduler() # imports scheduler
+    problem_dir = "problem_description/ATV_Assembly/"
+    problem = "problem_description_ATV.yaml"
+    policies_file = "contingency_policies.yaml"
+    scheduler.set_dir(problem_dir)
+    scheduler.import_problem(problem)
+    scheduler.create_task_model()
+    scheduler.import_htn()
+    htn_dict = scheduler.multi_product_dict
+    product_htn_anytree = scheduler.multi_product_htn
+    contingency_handling = ContingencyManager(htn_dict,product_htn_anytree)
+    contingency_handling.set_problem_dir(problem_dir)
+    contingency_handling.import_policies(policies_file)
+    contingency_name = 'p1_scew_bolt_for_rear_left_wheel1'
+    contingency_node = TreeToolSet().search_tree(
+        htn_dict, contingency_name)
+    contingency_plan = contingency_handling.geneate_contingency_plan(contingency_node)
+    contingency_handling.Add_Handle_Node(
+        htn_dict, contingency_node, contingency_plan)
+    contingency_handling.generate_task_model(contingency_plan) # export task_model to yaml file
+    contingency_handling.yaml_export(htn_dict, contingency_plan) # Export yaml file
     print('-------initialized contingency manager-------')
 
 

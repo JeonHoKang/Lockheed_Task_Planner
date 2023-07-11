@@ -7,13 +7,15 @@ from igraph import Graph, EdgeSeq
 import matplotlib.pyplot as plt
 import sys
 from matplotlib.figure import Figure
-import Lockheed_task_scheduler
+import MILP_scheduler
 from anytree import AnyNode, PostOrderIter
 from anytree.exporter import DictExporter
 from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 import numpy as np
 import contingency_manager as contingency_manager
+from tree_toolset import TreeToolSet
+
 
 _RENDER_CMD = ['dot']
 _FORMAT = 'png'
@@ -31,23 +33,25 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.node_ids = []
         self.radio_options = ['sequential',
                               'parallel', 'independent', 'atomic'] # options of node types
-        self.contingency_manager = contingency_manager.ContingencyManager() # import contingency manager
-        contingency_state_msg = self.contingency_manager.contingency # get the message from contingency manager that contingency occured
-        # Determine wheter it shoould display contingency or normal htn
-        if contingency_state_msg: # if contingency occured is true
-            self.contingency_htn = self.contingency_manager.contingency_htn_dict
-            self.contingency_node = self.contingency_manager.contingency_node
-            self.render_node_to_edges(self.contingency_htn)
-        else: # otherwise
-            # From the scheduler, import htn and dictionary
-            self.scheduler = Lockheed_task_scheduler.HtnMilpScheduler()
-            self.scheduler.set_dir("problem_description/ATV_Assembly/")
-            self.scheduler.import_problem("problem_description_ATV.yaml")
-            self.scheduler.create_task_model()
-            self.htn = self.scheduler.import_htn()
-            # main htn dictionary
-            self.htn_dict = self.scheduler.multi_product_dict
-            self.render_node_to_edges(self.htn_dict)
+        # self.contingency_manager = contingency_manager.ContingencyManager() # import contingency manager
+        scheduler = MILP_scheduler.HtnMilpScheduler()
+
+        contingency_name = scheduler.contingency_name
+        self.contingency_state = scheduler.contingency
+        if scheduler.contingency:
+            scheduler.set_dir("problem_description/ATV_Assembly/")
+            scheduler.import_problem("cont_problem_description_ATV.yaml")
+        else:
+            scheduler.set_dir("problem_description/ATV_Assembly/")
+            scheduler.import_problem("problem_description_ATV.yaml")
+        scheduler.create_task_model()
+        self.htn = scheduler.import_htn()
+        any_tree_object = scheduler.multi_product_htn
+        # main htn dictionary
+        self.htn_dict = scheduler.multi_product_dict # input 
+        contingency_handling = contingency_manager.ContingencyManager(self.htn_dict, any_tree_object)
+        self.contingency_node = TreeToolSet().search_tree(self.htn_dict, contingency_name)
+        self.render_node_to_edges(self.htn_dict)
         # declare first igraph instance
         self.g = Graph(self.n_vertices, self.edges)
         self.labels = []
@@ -184,10 +188,10 @@ class HTN_vis(QtWidgets.QMainWindow):
 
     def render_node_to_edges(self, htn_dict):
         """Create nodes, edges, colors and constraint lists based on the dictionary using the class method"""
-        self.pairs_with_name, self.pairs_with_full_node = dfs(htn_dict)
-        self.name_node, self.edge_list = create_dict_from_list(
+        self.pairs_with_name, self.pairs_with_full_node = TreeToolSet().create_pairs_with_dfs(htn_dict)
+        self.name_node, self.edge_list = TreeToolSet().create_dict_from_list(
             self.pairs_with_name)
-        self.id_sequence = create_dict_list_from_pairs(
+        self.id_sequence = TreeToolSet().create_dict_list_from_pairs(
             self.pairs_with_full_node)
         self.id_seqence_list = list(self.id_sequence.values())
         self.node_ids = []
@@ -200,7 +204,7 @@ class HTN_vis(QtWidgets.QMainWindow):
                 self.color_list.append('yellow')
             else:
                 self.color_list.append('cyan')
-        if self.contingency_manager.contingency and self.contingency_node in self.id_seqence_list:
+        if self.contingency_state and self.contingency_node in self.id_seqence_list:
             self.color_list[self.id_seqence_list.index(
                 self.contingency_node)] = 'red'
         self.edges = self.edge_list
@@ -266,7 +270,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.id_sequence[self.n_vertices-1] = user_new_node
             target_id = self.id_seqence_list[user_input_parent]['id']
             parent_input_node_type = parent_node_type
-            insert_element(self.htn_dict, target_id, parent_input_node_type,
+            TreeToolSet().insert_element(self.htn_dict, target_id, parent_input_node_type,
                            user_new_node, order_child)
             self.render_node_to_edges(self.htn_dict)
             self.g = Graph(self.n_vertices, self.edges)
@@ -290,7 +294,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             if user_delete > self.n_vertices-1:
                 pass
             # self.g.delete_edges(user_delete)
-            delete_element(
+            TreeToolSet().delete_element(
                 self.htn_dict, self.id_seqence_list[user_delete]['id'])
             self.render_node_to_edges(self.htn_dict)
             self.g = Graph(self.n_vertices, self.edges)
@@ -302,124 +306,6 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.list_widget.clear()
             self.list_widget.addItems(self.labels)
         self.plot()
-
-
-def dfs(start):
-    visited = []  # Set to track visited vertices
-    edges = []
-    stack = [start]  # Stack to keep track of vertices to visit
-    type_list = []
-    full_id = []
-    while stack:
-        vertex = stack.pop()  # Pop a vertex from the stack
-
-        if vertex["id"] not in visited:
-            print(vertex["id"])  # Process the vertex (in this case, print it)
-            visited.append(vertex["id"])  # Mark the vertex as visited
-            # Add adjacent vertices to the stack
-            if "children" in vertex:
-                for child in reversed(vertex["children"]):
-                    stack.append(child)
-                    edges.append((vertex["id"], child["id"]))
-                    full_id.append((vertex, child))
-    return edges, full_id
-
-
-def insert_element(dictionary, target_id, type, new_element, input_order_number):
-    input_order_number = int(input_order_number)
-    node_type = type
-    if dictionary['id'] == target_id:
-        if 'children' not in dictionary:
-            dictionary['children'] = []
-            del dictionary['agent']
-            dictionary['type'] = node_type
-            dictionary['children'].append(new_element)
-        else:
-            if len(dictionary['children'])+1 < input_order_number:
-                pass
-            else:
-                dictionary['children'].insert(input_order_number, new_element)
-
-    else:
-        if 'children' in dictionary:
-            for child in dictionary['children']:
-                insert_element(child, target_id, node_type,
-                               new_element, input_order_number)
-
-
-def delete_element(dictionary, target_id, parent=None):
-    if dictionary['id'] == target_id:
-        delete_index = parent['children'].index(dictionary)
-        parent['children'].pop(delete_index)
-    else:
-        if 'children' in dictionary:
-            parent = None
-            for child in dictionary['children']:
-                parent = dictionary
-                delete_element(child, target_id, parent=parent)
-
-
-def create_dict_from_list(pairs):
-    local_dict = {}
-    name_id_dict = {}
-    latest_id = -1
-    index_list = []
-    for pair in pairs:
-        parent = pair[0]
-        child = pair[1]
-        child_id = 0
-        parent_id = 0
-        if parent not in name_id_dict:
-            latest_id += 1
-            local_dict[latest_id] = parent
-            parent_id = latest_id
-            name_id_dict[parent] = parent_id
-
-        else:
-            parent_id = name_id_dict[parent]
-
-        if child not in name_id_dict:
-            latest_id += 1
-            local_dict[latest_id] = child
-            child_id = latest_id
-            name_id_dict[child] = child_id
-        else:
-            child_id = name_id_dict[child]
-
-        index_list.append((parent_id, child_id))
-
-    return local_dict, index_list
-
-
-def create_dict_list_from_pairs(pairs):
-    local_dict = {}
-    name_id_dict = {}
-    latest_id = -1
-    index_list = []
-    for pair in pairs:
-        parent = pair[0]
-        child = pair[1]
-        child_id = 0
-        parent_id = 0
-        if parent['id'] not in name_id_dict:
-            latest_id += 1
-            local_dict[latest_id] = parent
-            parent_id = latest_id
-            name_id_dict[parent['id']] = parent_id
-        else:
-            parent_id = name_id_dict[parent['id']]
-
-        if child['id'] not in name_id_dict:
-            latest_id += 1
-            local_dict[latest_id] = child
-            child_id = latest_id
-            name_id_dict[child['id']] = child_id
-        else:
-            child_id = name_id_dict[child['id']]
-
-        index_list.append((parent_id, child_id))
-
-    return local_dict
 
 
 def main():
