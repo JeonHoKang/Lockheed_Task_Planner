@@ -20,12 +20,8 @@ from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 from Agent import Agent
 from Task import Task
-# import numpy as np
-# from anytree import AnyNode, PostOrderIter
-# from anytree.exporter import DictExporter
 
-
-class HtnMilpScheduler(object):
+class HtnMilpScheduler:
     """
     Uses MILP to generate schedule
     """
@@ -49,7 +45,7 @@ class HtnMilpScheduler(object):
         self.agent_team_model = {}
         self.multi_product_dict = {}
         self.contingency = False
-        self.contingency_name = 'p1_a2'
+        self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel1'
         self.contingency_node = None
         self.unavailable_agent_bool = False
         self.unavailable_agent = 'r1'
@@ -141,13 +137,13 @@ class HtnMilpScheduler(object):
     def visualize(self, t_assignment):
         window = tk.Tk()
         window.title("Gant Chart - Multi-Robot SChedule")
-        frame = ttk.Frame(window, width=100)
+        frame = ttk.Frame(window, width=200)
         frame.pack(pady=10)
         # Create the graph frame
         graph_frame = ttk.Frame(frame)
         graph_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
-        fig, gnt = plt.subplots(figsize=(100, 5))
-        fig.set_figwidth(30)
+        fig, gnt = plt.subplots(figsize=(200, 5))
+        fig.set_figwidth(60)
         # delcare colors for the charts
         blue = 'tab:blue'
         brown = 'tab:brown'
@@ -164,7 +160,7 @@ class HtnMilpScheduler(object):
                        green, gray, red, olive, purple, cyan, brown]
         color_idx = 0
         # x step size
-        x_step = 15
+        x_step = 25
         # First y-tick
         first_y_tick = 15
         # y-tick gap
@@ -205,8 +201,11 @@ class HtnMilpScheduler(object):
                     duration = end-start
                     gnt.broken_barh([(start, duration)], (10*(c+1), 9),
                                     facecolors=(list_colors[color_idx]))
+                    font_size = 6
                     gnt.text((start+end)/2, 10*(c+1)+4.5,
-                             task_index, ha='center', va='center')
+                             f'T{task_index}', ha='center', va='center',fontsize=font_size)
+                    
+
                     list_labels.append(task)
                     task_index += 1
                     color_idx += 1
@@ -281,7 +280,7 @@ class HtnMilpScheduler(object):
             self.multi_product_dict = self.dict
         else:
             self.multi_product_dict = {}
-            self.multi_product_dict['id'] = 'Multi-product Sat Assem'
+            self.multi_product_dict['id'] = 'Multi_Product_Assembly'
             self.multi_product_dict['type'] = 'independent'
             self.multi_product_dict['children'] = []
             for p in range(num_products):
@@ -400,7 +399,7 @@ class HtnMilpScheduler(object):
                             atomic_action_groups1[k-1], atomic_action_groups1[k-1+j])
                 multi_product_index -= 1
 
-    def dfs(self, start):
+    def set_dependencies_by_dfs(self, start):
         visited = []  # Set to track visited vertices
         edges = []
         stack = [start]  # Stack to keep track of vertices to visit
@@ -425,11 +424,6 @@ class HtnMilpScheduler(object):
         idx = list_siblings.index(node)+1
         parent = node.parent
         child = node
-        # for element in list_siblings[idx:len(list_siblings)]:
-        #     if element.is_leaf:
-        #         self.task_object[element.id].set_task_state('infeasible')
-        #     else:
-        #         self.dfs(element)
         while parent.is_root != True:
             if parent.type == 'sequential':
                 parent_siblings = list(parent.children)
@@ -441,7 +435,7 @@ class HtnMilpScheduler(object):
                         self.task_object[element.id].set_task_state(
                             'infeasible')
                     else:
-                        self.dfs(element)
+                        self.set_dependencies_by_dfs(element)
             child = parent
             parent = parent.parent
 
@@ -685,7 +679,6 @@ class HtnMilpScheduler(object):
         for i, schedule in enumerate(schedule_yaml):
             if prev_schedule is None:
                 prev_schedule = schedule_yaml[i]
-                
             elif schedule['start'] >= prev_schedule['end']:
                 schedule['sequential_dependencies'] = prev_schedule['task_id']
                 prev_schedule = schedule_yaml[i]
@@ -723,8 +716,8 @@ def main():
     """
     scheduler = HtnMilpScheduler()
     if scheduler.contingency:
-        scheduler.set_dir("problem_description/toy_problem/")
-        scheduler.import_problem("cont_problem_description_toy.yaml")
+        scheduler.set_dir("problem_description/LM2023_problem/")
+        scheduler.import_problem("cont_problem_description_LM2023.yaml")
     else:
         scheduler.set_dir("problem_description/LM2023_problem/")
         scheduler.import_problem("problem_description_LM2023.yaml")
