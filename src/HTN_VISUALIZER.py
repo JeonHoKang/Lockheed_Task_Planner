@@ -1,5 +1,5 @@
 from asyncio import get_child_watcher
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import igraph as ig
@@ -60,18 +60,19 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.g.vs[i]["label"] = f"T{i}"
             self.g.vs[i]["name"] = f"T{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
             self.labels.append(self.g.vs[i]["name"])
-        self.fig = plt.figure(figsize=(100, 20), dpi=100)
-        self.fig.set_size_inches(40, 80)
+        self.fig = plt.figure(figsize=(110, 40), dpi=100)
+        # self.fig.set_size_inches(40, 80)
+        self.fig.set_size_inches(50, 90) # for qt6
         self.canvas = FigureCanvas(self.fig)
         self.canvas.setFixedSize(3000, 1000) # comment this out when using with mac
-        self.toolbar = NavigationToolbar(self.canvas, self)
+        self.toolbar = NavigationToolbar(self.canvas)
         self.ax = self.fig.add_subplot(111)
         self.plot()
         self.sub_container = QtWidgets.QWidget()
         self.sub_main_layout = QtWidgets.QHBoxLayout(self.sub_container)
         # First parent node input container
         self.parent_node_container = QtWidgets.QWidget()
-        self.text_layout_1 = QtWidgets.QHBoxLayout(self.parent_node_container)
+        self.text_layout_1 = QtWidgets.QVBoxLayout(self.parent_node_container)
         self.text_label1 = QtWidgets.QLabel(
             'Parent Node: ', self.parent_node_container)
         self.parent_node = QtWidgets.QLineEdit()
@@ -80,7 +81,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.text_layout_1.addWidget(self.parent_node)
         # end of container maker
         self.label_container = QtWidgets.QWidget()
-        self.text_layout_2 = QtWidgets.QHBoxLayout(self.label_container)
+        self.text_layout_2 = QtWidgets.QVBoxLayout(self.label_container)
         self.text_label2 = QtWidgets.QLabel(
             'Task Node name: ', self.parent_node_container)
         self.label = QtWidgets.QLineEdit()
@@ -116,7 +117,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             self.button_group2.addButton(self.select_parent_type, idx)
         # End of container
         self.agent_type_container = QtWidgets.QWidget()
-        self.text_layout_5 = QtWidgets.QHBoxLayout(self.agent_type_container)
+        self.text_layout_5 = QtWidgets.QVBoxLayout(self.agent_type_container)
         self.text_label5 = QtWidgets.QLabel(
             'Agent name: ', self.agent_type_container)
         self.agent_type = QtWidgets.QLineEdit()
@@ -127,7 +128,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         # End of container
 
         self.order_number_container = QtWidgets.QWidget()
-        self.text_layout_6 = QtWidgets.QHBoxLayout(self.order_number_container)
+        self.text_layout_6 = QtWidgets.QVBoxLayout(self.order_number_container)
         self.text_label6 = QtWidgets.QLabel(
             'Children Order Index from 0 : ', self.order_number_container)
         self.order_number = QtWidgets.QLineEdit()
@@ -164,6 +165,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         scroll_area = QtWidgets.QScrollArea()
         scroll_area.setWidgetResizable(True)
         scroll_area.setWidget(self.canvas)
+        # scroll_area.setWidgetResizable(True)
         list_scroll_area.setFixedWidth(200)
         scroll_area.setFixedWidth(1300)
         layout1.addWidget(scroll_area)
@@ -179,6 +181,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         layout2.setContentsMargins(0, 0, 0, 0)
         layout2.addWidget(self.delete_node_container)
         layout2.addWidget(self.delete_submit)
+        self.order_number_container.setFixedWidth(190)
         container = QtWidgets.QWidget()
         container.setLayout(layout0)
         container.layout().addLayout(layout1)
