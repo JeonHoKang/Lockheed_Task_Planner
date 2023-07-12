@@ -33,9 +33,9 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.node_ids = []
         self.radio_options = ['sequential',
                               'parallel', 'independent', 'atomic'] # options of node types
+        self.parent_radio_options = ['sequential', 'parallel', 'independent'] 
         # self.contingency_manager = contingency_manager.ContingencyManager() # import contingency manager
         scheduler = MILP_scheduler.HtnMilpScheduler()
-
         contingency_name = scheduler.contingency_name
         self.contingency_state = scheduler.contingency
         if scheduler.contingency:
@@ -57,8 +57,8 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.labels = []
         for i in range(self.n_vertices):
             print(i)
-            self.g.vs[i]["label"] = f"{i}"
-            self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
+            self.g.vs[i]["label"] = f"T{i}"
+            self.g.vs[i]["name"] = f"T{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
             self.labels.append(self.g.vs[i]["name"])
         self.fig = plt.figure(figsize=(100, 20), dpi=100)
         self.fig.set_size_inches(40, 80)
@@ -109,7 +109,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.text_layout_4.addWidget(self.text_label4)
         self.button_group2 = QtWidgets.QButtonGroup()
         self.parent_type_radio = []
-        for idx, option in enumerate(self.radio_options):
+        for idx, option in enumerate(self.parent_radio_options):
             self.select_parent_type = QtWidgets.QRadioButton(option)
             self.parent_type_radio.append(self.select_parent_type)
             self.text_layout_4.addWidget(self.select_parent_type)
@@ -129,7 +129,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.order_number_container = QtWidgets.QWidget()
         self.text_layout_6 = QtWidgets.QHBoxLayout(self.order_number_container)
         self.text_label6 = QtWidgets.QLabel(
-            'Input index from 0 : ', self.order_number_container)
+            'Children Order Index from 0 : ', self.order_number_container)
         self.order_number = QtWidgets.QLineEdit()
         self.order_number.setPlaceholderText(
             'From left to right(0~)')
@@ -247,7 +247,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             if radio_button.isChecked():
                 parent_selected_index = index
                 break
-        parent_node_type = self.radio_options[parent_selected_index]
+        parent_node_type = self.parent_radio_options[parent_selected_index]
         child_node_type = self.radio_options[child_selected_index]
         order_child = self.order_number.text()
 
@@ -261,7 +261,10 @@ class HTN_vis(QtWidgets.QMainWindow):
             # self.n_vertices += 1
             print('number of vertices', self.n_vertices)
             user_new_node = {}
-            user_new_node['id'] = self.label.text()
+            if TreeToolSet().search_tree(self.htn_dict, self.label.text()) is not None: # search if id already exists
+                user_new_node['id'] = f'{self.label.text()}_duplicate'  # automatically add new label
+            else:
+                user_new_node['id'] = self.label.text()
             user_new_node['type'] = child_node_type
             if user_new_node['type'] != 'atomic':
                 user_new_node['children'] = []
@@ -272,6 +275,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             parent_input_node_type = parent_node_type
             TreeToolSet().insert_element(self.htn_dict, target_id, parent_input_node_type,
                            user_new_node, order_child)
+            print(self.htn_dict)
             self.render_node_to_edges(self.htn_dict)
             self.g = Graph(self.n_vertices, self.edges)
             self.labels = []

@@ -50,7 +50,8 @@ class TreeToolSet:
                 dictionary['children'].append(new_element)
             else:
                 if len(dictionary['children'])+1 < input_order_number:
-                    pass
+                    print("exceeds the number of children - Defaulting to first child")
+                    input_order_number = 0
                 else:
                     dictionary['children'].insert(input_order_number, new_element)
 
