@@ -1,5 +1,5 @@
 from asyncio import get_child_watcher
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import igraph as ig
@@ -61,7 +61,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.fig.set_size_inches(50, 90) # for qt6
         self.canvas = FigureCanvas(self.fig)
         self.canvas.setFixedSize(3000, 1000) # comment this out when using with mac
-        self.toolbar = NavigationToolbar(self.canvas)
+        self.toolbar = NavigationToolbar(self.canvas, self)
         self.ax = self.fig.add_subplot(111)
         self.plot()
         self.sub_container = QtWidgets.QWidget()
