@@ -14,10 +14,9 @@ class ContingencyManager:
     Alters HTN to handle contingencies reactively.
 
     """
-    def __init__(self, htn_dictionary, htn_anytree_object):
+    def __init__(self):
         super().__init__()
-        self.contingency = True # set whether contingency has occured
-        self.product_htn_anytree = htn_anytree_object
+        self.contingency = False # set whether contingency has occured
 
     def set_problem_dir(self, directory):
         self.problem_dir = directory
@@ -37,7 +36,7 @@ class ContingencyManager:
             except yaml.YAMLError as dict_e:
                 print(dict_e)
 
-    def geneate_contingency_plan(self, contingency_node):
+    def geneate_contingency_plan(self, anytree_htn, contingency_node):
         contingency_planning_node = {}
         dict_policies = self.policies_dict
         current_contingency_policy = {}
@@ -73,9 +72,9 @@ class ContingencyManager:
             current_operation_id = current_contingency_policy['operation_id']
             operations_list.add(current_operation_id)
             operation_policy_pair[current_operation_id] = current_contingency_policy['policy']
-        contingency_product = self.search_anytree_node(operations_list) # get Anynode object of the operation
+        contingency_product = self.search_anytree_node(anytree_htn, operations_list) # get Anynode object of the operation
         if len(contingency_list) > 2: # if it is an occurance of multi-layer contingency
-            policy_in_order = self.search_hierarchy(contingency_product)
+            policy_in_order = self.search_hierarchy(anytree_htn, contingency_product)
             prev_parent_policy = None
             prev_policy_pair = None
             for i in range(len(policy_in_order)):
@@ -110,7 +109,7 @@ class ContingencyManager:
                 merged_policy['children'].append(second_merged_policy)
             print("merged_")
         elif len(contingency_list) == 2:
-            policy_in_order = self.search_hierarchy(contingency_product)
+            policy_in_order = self.search_hierarchy(anytree_htn, contingency_product)
             recovery_policy_pair = policy_in_order[0]["policies"]
             merged_policy['id'] = f'recovery-{policy_in_order[0]["parent"].id}'
             merged_policy['type'] = policy_in_order[0]["parent"].type
@@ -131,16 +130,16 @@ class ContingencyManager:
         contingency_planning_node['children'].append(original_task)
         return contingency_planning_node
 
-    def search_anytree_node(self, nodes):
+    def search_anytree_node(self, anytree_htn, nodes):
         """Check for nodes within a tree"""
         contingency_product = []   
         for task in nodes:
-            for descent in self.product_htn_anytree.descendants:
+            for descent in anytree_htn.descendants:
                 if descent.id[3:] == task:
                     contingency_product.append(descent)
         return contingency_product
     
-    def search_hierarchy(self, contingency_product):
+    def search_hierarchy(self, anytree_htn, contingency_product):
         """ Checks the type of common parent shared by multiple contingency"""
         def check_in_order_dfs(node, target_names, result_list):
             if node is None:
@@ -179,7 +178,7 @@ class ContingencyManager:
             node['len_anc'] = node['node'].depth
         original_node_sorted = sorted(original_node, key=lambda x: x['len_anc'])
         print('original_node')
-        check_in_order_dfs(self.product_htn_anytree, contingency_product, contingency_in_order)
+        check_in_order_dfs(anytree_htn, contingency_product, contingency_in_order)
         for i in range(len(contingency_in_order)):
             for j in range(i+1, len(contingency_in_order)):
                 joined_policy = {}
@@ -252,13 +251,13 @@ def main():
     scheduler.import_htn()
     htn_dict = scheduler.multi_product_dict
     product_htn_anytree = scheduler.multi_product_htn
-    contingency_handling = ContingencyManager(htn_dict,product_htn_anytree)
+    contingency_handling = ContingencyManager()
     contingency_handling.set_problem_dir(problem_dir)
     contingency_handling.import_policies(policies_file)
     contingency_name = 'p1_scew_bolt_for_rear_left_wheel1'
     contingency_node = TreeToolSet().search_tree(
         htn_dict, contingency_name)
-    contingency_plan = contingency_handling.geneate_contingency_plan(contingency_node)
+    contingency_plan = contingency_handling.geneate_contingency_plan(product_htn_anytree,contingency_node)
     contingency_handling.Add_Handle_Node(
         htn_dict, contingency_node, contingency_plan)
     contingency_handling.generate_task_model(contingency_plan) # export task_model to yaml file

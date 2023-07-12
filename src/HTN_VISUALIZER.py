@@ -13,7 +13,6 @@ from anytree.exporter import DictExporter
 from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 import numpy as np
-import contingency_manager as contingency_manager
 from tree_toolset import TreeToolSet
 
 
@@ -34,7 +33,6 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.radio_options = ['sequential',
                               'parallel', 'independent', 'atomic'] # options of node types
         self.parent_radio_options = ['sequential', 'parallel', 'independent'] 
-        # self.contingency_manager = contingency_manager.ContingencyManager() # import contingency manager
         scheduler = MILP_scheduler.HtnMilpScheduler()
         contingency_name = scheduler.contingency_name
         self.contingency_state = scheduler.contingency
@@ -46,10 +44,8 @@ class HTN_vis(QtWidgets.QMainWindow):
             scheduler.import_problem("problem_description_ATV.yaml")
         scheduler.create_task_model()
         self.htn = scheduler.import_htn()
-        any_tree_object = scheduler.multi_product_htn
         # main htn dictionary
         self.htn_dict = scheduler.multi_product_dict # input 
-        contingency_handling = contingency_manager.ContingencyManager(self.htn_dict, any_tree_object)
         self.contingency_node = TreeToolSet().search_tree(self.htn_dict, contingency_name)
         self.render_node_to_edges(self.htn_dict)
         # declare first igraph instance
