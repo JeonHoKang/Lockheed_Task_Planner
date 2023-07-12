@@ -219,11 +219,8 @@ class ContingencyManager:
             yaml_dict['agents'] = yaml_dict['agents']
             yaml_dict['task_model_id'] = 'cont_task_model_ATV.yaml'
             yaml_dict['htn_model_id'] = 'cont_ATV_Assembly_htn.yaml'
-        with open('problem_description/ATV_Assembly/cont_ATV_Assembly_htn.yaml', 'w') as file:
-            yaml.safe_dump(htn_dict, file, sort_keys=False)
-
-        with open('problem_description/ATV_Assembly/cont_problem_description_ATV.yaml', 'w') as file:
-            yaml.safe_dump(yaml_dict, file, sort_keys=False)
+        TreeToolSet().safe_dict_yaml_export(htn_dict, self.problem_dir, "cont_ATV_Assembly_htn.yaml")
+        TreeToolSet().safe_dict_yaml_export(yaml_dict, self.problem_dir, "cont_problem_description_ATV.yaml")
 
     def generate_task_model(self, contingency_task_plan):
         with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
@@ -236,8 +233,7 @@ class ContingencyManager:
                     for agent in task_nodes.agent:
                         task_model_dict[task_nodes.id]['duration_model'] = {
                             agent: {'id': 'det', 'mean': 9}}
-        with open('problem_description/ATV_Assembly/cont_task_model_ATV.yaml', 'w') as file:
-            yaml.safe_dump(task_model_dict, file)
+        TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "cont_task_model_ATV.yaml")
     
 
 def main():

@@ -14,7 +14,7 @@ from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 import numpy as np
 from tree_toolset import TreeToolSet
-
+import yaml
 
 _RENDER_CMD = ['dot']
 _FORMAT = 'png'
@@ -34,19 +34,27 @@ class HTN_vis(QtWidgets.QMainWindow):
                               'parallel', 'independent', 'atomic'] # options of node types
         self.parent_radio_options = ['sequential', 'parallel', 'independent'] 
         scheduler = MILP_scheduler.HtnMilpScheduler()
-        contingency_name = scheduler.contingency_name
+        
         self.contingency_state = scheduler.contingency
+        self.problem_dir = "problem_description/ATV_Assembly/"
         if scheduler.contingency:
-            scheduler.set_dir("problem_description/ATV_Assembly/")
+            contingency_name = scheduler.contingency_name
+            scheduler.set_dir(self.problem_dir)
             scheduler.import_problem("cont_problem_description_ATV.yaml")
+            scheduler.create_task_model()
+            self.htn = scheduler.import_htn()
+            # main htn dictionary
+            self.htn_dict = scheduler.multi_product_dict # input
+            self.contingency_node = TreeToolSet().search_tree(self.htn_dict, contingency_name) 
         else:
-            scheduler.set_dir("problem_description/ATV_Assembly/")
-            scheduler.import_problem("problem_description_ATV.yaml")
-        scheduler.create_task_model()
-        self.htn = scheduler.import_htn()
-        # main htn dictionary
-        self.htn_dict = scheduler.multi_product_dict # input 
-        self.contingency_node = TreeToolSet().search_tree(self.htn_dict, contingency_name)
+            htn_dir = self.problem_dir + "ATV_Assembly_Problem.yaml"
+            with open(htn_dir, "r") as data:
+                try:
+                    self.htn_dict = yaml.safe_load(data)
+                except yaml.YAMLError as e:
+                    print(e)
+
+        
         self.render_node_to_edges(self.htn_dict)
         # declare first igraph instance
         self.g = Graph(self.n_vertices, self.edges)
@@ -61,7 +69,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.fig.set_size_inches(50, 90) # for qt6
         self.canvas = FigureCanvas(self.fig)
         self.canvas.setFixedSize(3000, 1000) # comment this out when using with mac
-        self.toolbar = NavigationToolbar(self.canvas, self)
+        self.toolbar = NavigationToolbar(self.canvas, self) # self is to satisfy parent argument
         self.ax = self.fig.add_subplot(111)
         self.plot()
         self.sub_container = QtWidgets.QWidget()
@@ -123,6 +131,17 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.text_layout_5.addWidget(self.agent_type)
         # End of container
 
+        self.agent_duration_container = QtWidgets.QWidget()
+        self.text_layout_5_1 = QtWidgets.QVBoxLayout(self.agent_duration_container)
+        self.text_label5_1 = QtWidgets.QLabel(
+            'Agent duration model: ', self.agent_duration_container)
+        self.agent_duration = QtWidgets.QLineEdit()
+        self.agent_duration.setPlaceholderText(
+            'if atomic, input agent duration')
+        self.text_layout_5_1.addWidget(self.text_label5_1)
+        self.text_layout_5_1.addWidget(self.agent_duration)
+        # End of container
+
         self.order_number_container = QtWidgets.QWidget()
         self.text_layout_6 = QtWidgets.QVBoxLayout(self.order_number_container)
         self.text_label6 = QtWidgets.QLabel(
@@ -133,7 +152,6 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.text_layout_6.addWidget(self.text_label6)
         self.text_layout_6.addWidget(self.order_number)
         # End of container
-
         self.delete_node_container = QtWidgets.QWidget()
         self.text_layout_7 = QtWidgets.QHBoxLayout(self.delete_node_container)
         self.text_label7 = QtWidgets.QLabel(
@@ -173,6 +191,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         layout2.addWidget(self.node_type_container)
         layout2.addWidget(self.order_number_container)
         layout2.addWidget(self.agent_type_container)
+        layout2.addWidget(self.agent_duration_container)
         layout2.addWidget(self.submit_button)
         layout2.setContentsMargins(0, 0, 0, 0)
         layout2.addWidget(self.delete_node_container)
@@ -247,7 +266,7 @@ class HTN_vis(QtWidgets.QMainWindow):
                 parent_selected_index = index
                 break
         parent_node_type = self.parent_radio_options[parent_selected_index]
-        child_node_type = self.radio_options[child_selected_index]
+        self.child_node_type = self.radio_options[child_selected_index]
         order_child = self.order_number.text()
 
         if user_input_parent.isalpha() or order_child.isalpha():
@@ -263,27 +282,28 @@ class HTN_vis(QtWidgets.QMainWindow):
             if TreeToolSet().search_tree(self.htn_dict, self.label.text()) is not None: # search if id already exists
                 user_new_node['id'] = f'{self.label.text()}_duplicate'  # automatically add new label
             else:
-                user_new_node['id'] = self.label.text()
-            user_new_node['type'] = child_node_type
-            if user_new_node['type'] != 'atomic':
-                user_new_node['children'] = []
+                user_new_node['id'] = self.label.text() # let user pick 
+            user_new_node['type'] = self.child_node_type # new node is child node type selected
+            if user_new_node['type'] != 'atomic': # if not atomic
+                user_new_node['children'] = [] # need to have children
             else:
-                user_new_node['agent'] = self.agent_type.text()
+                user_new_node['agent'] = self.agent_type.text() # let it be agent
             self.id_sequence[self.n_vertices-1] = user_new_node
             target_id = self.id_seqence_list[user_input_parent]['id']
             parent_input_node_type = parent_node_type
             TreeToolSet().insert_element(self.htn_dict, target_id, parent_input_node_type,
                            user_new_node, order_child)
-            print(self.htn_dict)
+            TreeToolSet().dict_yaml_export(self.htn_dict, self.problem_dir, "ATV_Assembly_Problem.yaml")
             self.render_node_to_edges(self.htn_dict)
             self.g = Graph(self.n_vertices, self.edges)
             self.labels = []
             for i in range(self.n_vertices):
-                self.g.vs[i]["label"] = f"{i}"
-                self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
+                self.g.vs[i]["label"] = f"T{i}"
+                self.g.vs[i]["name"] = f"T{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
                 self.labels.append(self.g.vs[i]["name"])
             self.list_widget.clear()
             self.list_widget.addItems(self.labels)
+        self.add_task_model()
         self.plot()
 
     def del_node_gui(self):
@@ -299,24 +319,38 @@ class HTN_vis(QtWidgets.QMainWindow):
             # self.g.delete_edges(user_delete)
             TreeToolSet().delete_element(
                 self.htn_dict, self.id_seqence_list[user_delete]['id'])
+            TreeToolSet().dict_yaml_export(self.htn_dict, self.problem_dir, "ATV_Assembly_Problem.yaml")
             self.render_node_to_edges(self.htn_dict)
             self.g = Graph(self.n_vertices, self.edges)
             self.labels = []
             for i in range(self.n_vertices):
-                self.g.vs[i]["label"] = f"{i}"
-                self.g.vs[i]["name"] = f"{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
+                self.g.vs[i]["label"] = f"T{i}"
+                self.g.vs[i]["name"] = f"T{i}: {self.node_ids[i]} - type: {self.constraint_list[i]}"
                 self.labels.append(self.g.vs[i]["name"])
             self.list_widget.clear()
             self.list_widget.addItems(self.labels)
         self.plot()
 
-
+    def add_task_model(self):
+        if self.child_node_type == 'atomic':
+            with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
+                task_model_dict = yaml.safe_load(file)
+                print(task_model_dict)
+                task_model_dict[self.label.text()] = {'agent_model': [self.agent_type.text()], 'duration_model': {}}
+                task_model_dict[self.label.text()]['duration_model'][self.agent_type.text()] = {'id': 'det', 'mean': int(self.agent_duration.text())}
+            print(task_model_dict)
+            TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "task_model_ATV.yaml")
+    
+    # def delete_task_model(self):
+    #     with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
+    #         task_model_dict = yaml.safe_load(file)
+    #         print(task_model_dict)
+        # TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "cont_task_model_ATV.yaml")
 def main():
     app = QtWidgets.QApplication(sys.argv)
     htn = HTN_vis()
     htn.show()
     sys.exit(app.exec())
-
 
 if __name__ == '__main__':
     main()

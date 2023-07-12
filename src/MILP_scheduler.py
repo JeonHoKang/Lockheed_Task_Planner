@@ -20,7 +20,7 @@ from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 from Agent import Agent
 from Task import Task
-
+from tree_toolset import TreeToolSet
 class HtnMilpScheduler:
     """
     Uses MILP to generate schedule
@@ -44,7 +44,6 @@ class HtnMilpScheduler:
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-
         self.contingency = True
         self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel1'
         self.contingency_node = None
@@ -249,14 +248,13 @@ class HtnMilpScheduler:
                                     expand=True)
         scrollbar_canvas.pack(fill=tk.X, side=tk.BOTTOM)
         canvas.get_tk_widget().configure(scrollregion=canvas.get_tk_widget().bbox("all"))
-
-        # Add the Scrollbar to the window
-        window.mainloop()
-        # plt.show()
         if self.contingency:
             plt.savefig("contingency_gant.png")
         else:
             plt.savefig("gant.png")
+        # Add the Scrollbar to the window
+        window.mainloop()
+
 
     def import_htn(self, print_htn=True):  # HTN import
         def edit_tree(dictionary, product_num):
@@ -277,7 +275,7 @@ class HtnMilpScheduler:
         children = []
 
         if self.contingency:
-            self.multi_product_htn = DictImporter().import_(self.dict)
+            self.multi_product_htn = DictImporter().import_(self.dict) # to avoid duplicating p1
             self.multi_product_dict = self.dict
         else:
             self.multi_product_dict = {}
@@ -594,9 +592,11 @@ class HtnMilpScheduler:
         status = solver.Solve(self.model)
 
         if status == cp_model.OPTIMAL:
+            print("optimal solution")
             print(solver.Value(self.makespan))
             print(solver.WallTime())
         elif status == cp_model.FEASIBLE:
+            print("solution is feasible")
             print(solver.Value(self.makespan))
             print(solver.WallTime())
         else:
@@ -628,8 +628,8 @@ class HtnMilpScheduler:
             assignment = visual_t_assignment[agent]
             sorted_t_assignment[agent] = sorted(
                 assignment, key=lambda x: list(x.values())[0][0])
-        self.visualize(sorted_t_assignment)
         self.export_yaml(sorted_t_assignment)
+        self.visualize(sorted_t_assignment)
 
     def export_yaml(self, t_assignment):
         task_allocation = t_assignment
@@ -645,14 +645,12 @@ class HtnMilpScheduler:
                     i += 1
             if schedule_yaml[agent] == {}:
                 schedule_yaml[agent] = 'None Scheduled yet'
-
         if self.contingency:
-            with open(r'{}\contingency_visualize_helper_text.yaml'.format(self.problem_dir), 'w') as file:
-                documents = yaml.dump(schedule_yaml, file, sort_keys=False)
+            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "cont_visualize_helper_text.yaml")
+                
         else:
-            with open(r'{}\visualize_helper_text.yaml'.format(self.problem_dir), 'w') as file:
-                documents = yaml.dump(
-                    schedule_yaml, file, sort_keys=False, Dumper=NoTagNoQuotesDumper)
+            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "visualize_helper_text.yaml")
+
         self.export_schedule_text(t_assignment)
 
     def export_schedule_text(self, t_assignment):
@@ -686,29 +684,11 @@ class HtnMilpScheduler:
 
         print(schedule_yaml)
         if self.contingency:
-            with open(r'{}\task_allocation_cont.yaml'.format(self.problem_dir), 'w') as file:
-                documents = yaml.dump(schedule_yaml, file, sort_keys=False)
+            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "cont_task_allocation.yaml")
+                
         else:
-            with open(r'{}\task_allocation.yaml'.format(self.problem_dir), 'w') as file:
-                documents = yaml.dump(
-                    schedule_yaml, file, sort_keys=False, Dumper=NoTagNoQuotesDumper)
+            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "task_allocation.yaml")
 
-
-class NoTagNoQuotesDumper(yaml.Dumper):
-    """
-    Export yaml file in the desired format - without string tag etc
-    """
-    def represent_data(self, data):
-        if isinstance(data, tuple):
-            return self.represent_sequence('tag:yaml.org,2002:seq', data, flow_style=True)
-        return super().represent_data(data)
-
-    def represent_scalar(self, tag, value, style=None):
-        if style is None:
-            style = self.default_style
-        if tag == 'tag:yaml.org,2002:str' and '\n' in value:
-            style = '|'
-        return super().represent_scalar(tag, value, style)
 
 
 def main():
