@@ -16,8 +16,9 @@ class ContingencyManager:
     """
     def __init__(self):
         super().__init__()
-        self.contingency = True # set whether contingency has occured
-        self.contingency_name = 'p1_fasten_bolt_on_main_body_to_handle1'
+        self.contingency = False # set whether contingency has occured
+        self.contingency_name = 'p1_pick_front_frame'
+        # self.contingency_name = 'p1_fasten_bolt_on_main_body_to_handle1'
     def set_problem_dir(self, directory):
         self.problem_dir = directory
 
@@ -51,9 +52,9 @@ class ContingencyManager:
         # contingency_list = ["broken_upper_body_frame", "engine_leaking", "rear_left_wheel_screw1_stuck"]
         # contingency_list = ["trunk_skeleton_missing", "engine_leaking", "rear_left_wheel_screw1_stuck"] 
         # contingency_list = ["handle_bolt3_missing", "engine_leaking", "defective_front_right_wheel"]            
-        # contingency_list = ["broken_upper_body_frame", "engine_leaking", "defective_front_right_wheel"]            
-        # contingency_list = ["broken_upper_body_frame", "rear_left_wheel_screw1_stuck"]
-        contingency_list = ["trunk_skeleton_missing"]
+        contingency_list = ["broken_upper_body_frame", "engine_leaking", "defective_front_right_wheel"]            
+        # contingency_list = ["handle_bolt3_missing", "rear_left_wheel_screw1_stuck"]
+        # contingency_list = ["trunk_skeleton_missing"]
         contingency_planning_node['id'] = f'recovery-contingency_plan-{self.contingency_name}'
         contingency_planning_node['type'] = 'sequential'
         contingency_planning_node['children'] = []
@@ -211,7 +212,7 @@ class ContingencyManager:
     def yaml_export(self,htn_dict, contingency_plan):
 
         # Save the updated data to the YAML file
-        with open("problem_description/ATV_Assembly/problem_description_ATV.yaml", "r") as file:
+        with open("problem_description/ATV_Assembly/current_problem_description_ATV.yaml", "r") as file:
             yaml_dict = yaml.safe_load(file)
             yaml_dict['num_tasks'] = yaml_dict['num_tasks'] + \
                 len(contingency_plan['children'])-1
@@ -222,7 +223,7 @@ class ContingencyManager:
         TreeToolSet().safe_dict_yaml_export(yaml_dict, self.problem_dir, "current_problem_description_ATV.yaml")
 
     def generate_task_model(self, contingency_task_plan):
-        with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
+        with open("problem_description/ATV_Assembly/current_task_model_ATV.yaml", "r") as file:
             task_model_dict = yaml.safe_load(file)
             contingency_plan_anytree = DictImporter().import_(contingency_task_plan)
             contingency_leaf = list(anytree.PostOrderIter(contingency_plan_anytree, filter_=lambda node: node.is_leaf))

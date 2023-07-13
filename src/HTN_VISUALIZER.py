@@ -323,7 +323,7 @@ class HTN_vis(QtWidgets.QMainWindow):
 
     def add_task_model(self):
         if self.child_node_type == 'atomic':
-            with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
+            with open("problem_description/ATV_Assembly/currents_task_model_ATV.yaml", "r") as file:
                 task_model_dict = yaml.safe_load(file)
                 print(task_model_dict)
                 task_model_dict[self.label.text()] = {'agent_model': [self.agent_type.text()], 'duration_model': {}}

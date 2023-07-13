@@ -22,6 +22,8 @@ from anytree.importer import DictImporter
 from Agent import Agent
 from Task import Task
 from tree_toolset import TreeToolSet
+
+
 class HtnMilpScheduler:
     """
     Uses MILP to generate schedule
@@ -105,37 +107,39 @@ class HtnMilpScheduler:
                 task_model1 = yaml.safe_load(stream)
                 # for ease of manipulation convert the task model1 to the list
                 list_task_model = list(task_model1)
-                if self.initial_run:
-                    TreeToolSet().dict_yaml_export(task_model1, self.problem_dir, "current_task_model_ATV.yaml") # create current file for future
-                for product in range(self.num_products):
-                    for i in range(len(task_model1)):
-                        # just indexing how long this is
-                        cur_leaf_node = (product) * \
-                            len(task_model1)+(i+1)
-                        if cur_leaf_node <= len(task_model1):
-                            if list_task_model[i][:8] == 'recovery':
-                                task_model[list_task_model[i]] = {}
-                            else:
-                                task_model['p1_' +
-                                           list_task_model[i]] = {}
-                        elif cur_leaf_node > len(task_model1):
-                            if list_task_model[i][:8] == 'recovery':
-                                task_model[list_task_model[i]] = {}
-                            else:
-                                task_model['p{}_'.format(
-                                    product+1)+list_task_model[i]] = {}
-                for i in range(self.num_products):
-                    for c, agents in enumerate(task_model1):
-                        task_model_index = (c+1)+len(task_model1)*(i)
-                        if list_task_model[c][:8] == 'recovery':
-                            task_model[list_task_model[c]
-                                       ] = task_model1[list_task_model[c]]
-                        else:
-                            task_model["p{}_".format(i+1)
-                                       + list_task_model[c]] = task_model1[list_task_model[c]]
-
             except yaml.YAMLError as e:
                 print(e)
+
+            if self.initial_run:
+                TreeToolSet().dict_yaml_export(task_model1, self.problem_dir, "current_task_model_ATV.yaml") # create current file for future
+            for product in range(self.num_products):
+                for i in range(len(task_model1)):
+                    # just indexing how long this is
+                    cur_leaf_node = (product) * \
+                        len(task_model1)+(i+1)
+                    if cur_leaf_node <= len(task_model1):
+                        if list_task_model[i][:8] == 'recovery':
+                            task_model[list_task_model[i]] = {}
+                        else:
+                            task_model['p1_' +
+                                        list_task_model[i]] = {}
+                    elif cur_leaf_node > len(task_model1):
+                        if list_task_model[i][:8] == 'recovery':
+                            task_model[list_task_model[i]] = {}
+                        else:
+                            task_model['p{}_'.format(
+                                product+1)+list_task_model[i]] = {}
+            for i in range(self.num_products):
+                for c, agents in enumerate(task_model1):
+                    task_model_index = (c+1)+len(task_model1)*(i)
+                    if list_task_model[c][:8] == 'recovery':
+                        task_model[list_task_model[c]
+                                    ] = task_model1[list_task_model[c]]
+                    else:
+                        task_model["p{}_".format(i+1)
+                                    + list_task_model[c]] = task_model1[list_task_model[c]]
+
+
         self.task_object = self.create_task_object(task_model)
 
     def create_task_object(self, tasks):
@@ -270,8 +274,10 @@ class HtnMilpScheduler:
         else:
             plt.savefig("current_gant.png")
         # Add the Scrollbar to the window
+        def on_window_close():
+            window.quit()       
+        window.protocol("WM_DELETE_WINDOW", on_window_close)
         window.mainloop()
-
 
     def import_htn(self, print_htn=True):  # HTN import
         def edit_tree(dictionary, product_num):
