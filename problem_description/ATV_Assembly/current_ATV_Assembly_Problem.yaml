@@ -15,8 +15,40 @@ children:
         children:
         - id: p1_pick_front_frame
           type: atomic
-          agent:
+          agent: &id001
           - r1
+        - id: recovery-contingency_plan-p1_pick_front_frame
+          type: sequential
+          children:
+          - id: recovery-abort_task_pick_front_frame
+            type: atomic
+            agent: *id001
+          - id: recovery_broken_upper_body_frame
+            type: sequential
+            children:
+            - id: recovery-remove_broken_pieces
+              type: atomic
+              agent:
+              - r1
+            - id: recovery-new_upper_body_frame
+              type: sequential
+              children:
+              - id: recovery-search_for_new_part
+                type: atomic
+                agent:
+                - H
+              - id: recovery-pick_new_part
+                type: atomic
+                agent:
+                - r1
+          - id: recovery-notify_execution_monitor2
+            type: atomic
+            agent:
+            - H
+          - id: recovery-pick_front_frame
+            type: atomic
+            agent:
+            - r1
         - id: p1_place_front_frame_on_deck
           type: atomic
           agent:
@@ -148,8 +180,40 @@ children:
               children:
               - id: p1_fasten_bolt_on_main_body_to_handle1
                 type: atomic
-                agent:
+                agent: &id002
                 - r3
+              - id: recovery-contingency_plan-p1_fasten_bolt_on_main_body_to_handle1
+                type: sequential
+                children:
+                - id: recovery-abort_task_fasten_bolt_on_main_body_to_handle1
+                  type: atomic
+                  agent: *id002
+                - id: recovery-trunk_skeleton_missing
+                  type: sequential
+                  children:
+                  - id: recovery-notify_human_for_new_part
+                    type: atomic
+                    agent:
+                    - r1
+                  - id: recovery-new_trunk_skeleton
+                    type: sequential
+                    children:
+                    - id: recovery-wait_for_new_part
+                      type: atomic
+                      agent:
+                      - r1
+                    - id: recovery-locate_new_part
+                      type: atomic
+                      agent:
+                      - r1
+                - id: recovery-notify_execution_monitor-fasten_bolt_on_main_body_to_handle1
+                  type: atomic
+                  agent:
+                  - H
+                - id: recovery-fasten_bolt_on_main_body_to_handle1
+                  type: atomic
+                  agent:
+                  - r3
               - id: p1_fasten_bolt_on_main_body_to_handle2
                 type: atomic
                 agent:
@@ -351,8 +415,76 @@ children:
             children:
             - id: p1_scew_bolt_for_rear_right_wheel1
               type: atomic
-              agent:
+              agent: &id003
               - r3
+            - id: recovery-contingency_plan-p1_scew_bolt_for_rear_right_wheel1
+              type: sequential
+              children:
+              - id: recovery-abort_task_scew_bolt_for_rear_right_wheel1
+                type: atomic
+                agent: *id003
+              - id: recovery-p1_Attachments_to_main_body
+                type: parallel
+                children:
+                - id: recovery-multi_p1_internal_drive_components
+                  type: independent
+                  children:
+                  - id: recovery-engine_leaking
+                    type: sequential
+                    children:
+                    - id: recovery-engine_undo
+                      type: atomic
+                      agent:
+                      - H
+                    - id: recovery-new_engine
+                      type: sequential
+                      children:
+                      - id: recovery-search_new_engine
+                        type: atomic
+                        agent:
+                        - H
+                      - id: recovery-pick_new_engine
+                        type: atomic
+                        agent:
+                        - r1
+                    - id: recovery-redo
+                      type: atomic
+                      agent:
+                      - H
+                  - id: recovery-missing_handle_bolt3
+                    type: sequential
+                    children:
+                    - id: recovery-nofify_human_for_new_bolt
+                      type: atomic
+                      agent:
+                      - r3
+                    - id: recovery_locate_new_part
+                      type: atomic
+                      agent:
+                      - r3
+                - id: recovery-defective_front_right_wheel
+                  type: sequential
+                  children:
+                  - id: recovery-front_right_wheel_undo
+                    type: atomic
+                    agent:
+                    - H
+                  - id: recovery-search_new_wheel
+                    type: atomic
+                    agent:
+                    - r2
+                  - id: recovery_pick_new_wheel
+                    type: atomic
+                    agent:
+                    - r2
+              - id: recovery-notify_execution_monitor
+                type: atomic
+                agent:
+                - H
+              - id: recovery-scew_bolt_for_rear_right_wheel1
+                type: atomic
+                agent:
+                - r3
             - id: p1_scew_bolt_for_rear_right_wheel2
               type: atomic
               agent:

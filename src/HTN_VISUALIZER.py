@@ -15,7 +15,7 @@ from anytree.importer import DictImporter
 import numpy as np
 from tree_toolset import TreeToolSet
 import yaml
-
+from contingency_manager import ContingencyManager
 _RENDER_CMD = ['dot']
 _FORMAT = 'png'
 
@@ -35,26 +35,16 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.parent_radio_options = ['sequential', 'parallel', 'independent'] 
         scheduler = MILP_scheduler.HtnMilpScheduler()
         
-        self.contingency_state = scheduler.contingency
         self.problem_dir = "problem_description/ATV_Assembly/"
-        
-        if scheduler.initial_run:
-            htn_dir = self.problem_dir + "ATV_Assembly_Problem.yaml"
-            with open(htn_dir, "r") as data:
-                try:
-                    self.htn_dict = yaml.safe_load(data)
-                except yaml.YAMLError as e:
-                    print(e)
-        else:
-            contingency_name = scheduler.contingency_name
-            scheduler.set_dir(self.problem_dir)
-            scheduler.import_problem("current_problem_description_ATV.yaml")
-            scheduler.create_task_model()
-            self.htn = scheduler.import_htn()
-            # main htn dictionary
-            self.htn_dict = scheduler.multi_product_dict # input
-            self.contingency_node = TreeToolSet().search_tree(self.htn_dict, contingency_name) 
-        
+        contingency_manger = ContingencyManager()
+        contingency_name = contingency_manger.contingency_name
+        scheduler.set_dir(self.problem_dir)
+        scheduler.import_problem("current_problem_description_ATV.yaml")
+        self.htn = scheduler.import_htn()
+        # main htn dictionary
+        self.htn_dict = scheduler.multi_product_dict # input
+        self.contingency = contingency_manger.contingency
+        self.contingency_node = TreeToolSet().search_tree(self.htn_dict, contingency_name) 
         self.render_node_to_edges(self.htn_dict)
         # declare first igraph instance
         self.g = Graph(self.n_vertices, self.edges)
@@ -222,7 +212,7 @@ class HTN_vis(QtWidgets.QMainWindow):
                 self.color_list.append('yellow')
             else:
                 self.color_list.append('cyan')
-        if self.contingency_state and self.contingency_node in self.id_seqence_list:
+        if self.contingency is True and self.contingency_node in self.id_seqence_list:
             self.color_list[self.id_seqence_list.index(
                 self.contingency_node)] = 'red'
         self.edges = self.edge_list
@@ -293,7 +283,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             parent_input_node_type = parent_node_type
             TreeToolSet().insert_element(self.htn_dict, target_id, parent_input_node_type,
                            user_new_node, order_child)
-            TreeToolSet().dict_yaml_export(self.htn_dict, self.problem_dir, "ATV_Assembly_Problem.yaml")
+            TreeToolSet().dict_yaml_export(self.htn_dict, self.problem_dir, "current_ATV_Assembly_Problem.yaml")
             self.render_node_to_edges(self.htn_dict)
             self.g = Graph(self.n_vertices, self.edges)
             self.labels = []
@@ -319,7 +309,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             # self.g.delete_edges(user_delete)
             TreeToolSet().delete_element(
                 self.htn_dict, self.id_seqence_list[user_delete]['id'])
-            TreeToolSet().dict_yaml_export(self.htn_dict, self.problem_dir, "ATV_Assembly_Problem.yaml")
+            TreeToolSet().dict_yaml_export(self.htn_dict, self.problem_dir, "current_ATV_Assembly_Problem.yaml")
             self.render_node_to_edges(self.htn_dict)
             self.g = Graph(self.n_vertices, self.edges)
             self.labels = []
@@ -339,13 +329,8 @@ class HTN_vis(QtWidgets.QMainWindow):
                 task_model_dict[self.label.text()] = {'agent_model': [self.agent_type.text()], 'duration_model': {}}
                 task_model_dict[self.label.text()]['duration_model'][self.agent_type.text()] = {'id': 'det', 'mean': int(self.agent_duration.text())}
             print(task_model_dict)
-            TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "task_model_ATV.yaml")
+            TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "current_task_model_ATV.yaml")
     
-    # def delete_task_model(self):
-    #     with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
-    #         task_model_dict = yaml.safe_load(file)
-    #         print(task_model_dict)
-        # TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "cont_task_model_ATV.yaml")
 def main():
     app = QtWidgets.QApplication(sys.argv)
     htn = HTN_vis()

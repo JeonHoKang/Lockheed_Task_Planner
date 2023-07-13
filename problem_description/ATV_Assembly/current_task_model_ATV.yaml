@@ -453,3 +453,45 @@ pick_back_front_frame1:
     r1:
       id: det
       mean: 6
+recovery-abort_task_fasten_bolt_on_main_body_to_handle1:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 9
+recovery-notify_human_for_new_part:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-wait_for_new_part:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-locate_new_part:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-notify_execution_monitor-fasten_bolt_on_main_body_to_handle1:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 9
+recovery-fasten_bolt_on_main_body_to_handle1:
+  agent_model:
+  - r3
+  duration_model:
+    r3:
+      id: det
+      mean: 9

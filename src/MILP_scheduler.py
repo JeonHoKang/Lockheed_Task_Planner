@@ -7,6 +7,7 @@ Neel Dhanaraj
 Task allocation problem
 
 """
+import os.path
 import copy
 import itertools
 import tkinter as tk
@@ -44,9 +45,16 @@ class HtnMilpScheduler:
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
-        self.initial_run = True
-        self.contingency = False
-        self.contingency_name = 'p1_scew_bolt_for_rear_left_wheel1'
+        self.initial_run = False
+        self.current_problem = "problem_description/ATV_Assembly/current_problem_description_ATV.yaml"
+        if os.path.isfile(self.current_problem):
+            self.initial_run = False
+        else:
+            self.initial_run = True
+        self.contingency = True
+        if self.initial_run is True:
+            self.contingency = False
+        self.contingency_name = 'p1_fasten_bolt_on_main_body_to_handle1'
         self.contingency_node = None
         self.unavailable_agent_bool = False
         self.unavailable_agent = 'r1'
@@ -72,8 +80,8 @@ class HtnMilpScheduler:
                 print(dict_e)
         if self.initial_run:
             self.current_problem_description = copy.deepcopy(self.problem_description)
-            self.current_problem_description["htn_model_id"] = "current_ATV_Assembly_problem.yaml"
-            # self.current_problem_description["task_model_id"] = "current_task_model_ATV.yaml"
+            self.current_problem_description["htn_model_id"] = "current_ATV_Assembly_Problem.yaml"
+            self.current_problem_description["task_model_id"] = "current_task_model_ATV.yaml"
             TreeToolSet().dict_yaml_export(self.current_problem_description, self.problem_dir, "current_problem_description_ATV.yaml")
             
     def load_agent_model(self):
@@ -97,6 +105,8 @@ class HtnMilpScheduler:
                 task_model1 = yaml.safe_load(stream)
                 # for ease of manipulation convert the task model1 to the list
                 list_task_model = list(task_model1)
+                if self.initial_run:
+                    TreeToolSet().dict_yaml_export(task_model1, self.problem_dir, "current_task_model_ATV.yaml") # create current file for future
                 for product in range(self.num_products):
                     for i in range(len(task_model1)):
                         # just indexing how long this is
