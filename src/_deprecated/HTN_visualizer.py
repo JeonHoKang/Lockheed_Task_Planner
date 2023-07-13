@@ -9,23 +9,12 @@ HTN tree visualizer
 """
 
 
-import collections
 import igraph as ig
-from igraph import Graph, EdgeSeq
-import math
-import pandas as pd
-import plotly.graph_objects as go
-import numpy as np
-import sys
+from igraph import Graph
 from tkinter import ttk
 import tkinter as tk
-from matplotlib import style
-import matplotlib.animation as animation
-from matplotlib.figure import Figure
-from matplotlib.widgets import Button, TextBox, CheckButtons
-from matplotlib import colors
+from matplotlib.widgets import Button, TextBox
 import matplotlib.pyplot as plt
-import time
 
 
 class HTN_VIS_GUI(object):

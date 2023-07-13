@@ -7,6 +7,7 @@ Neel Dhanaraj
 Task allocation problem
 
 """
+import os.path
 import copy
 import itertools
 import tkinter as tk
@@ -20,6 +21,8 @@ from anytree import RenderTree  # just for nice printing
 from anytree.importer import DictImporter
 from Agent import Agent
 from Task import Task
+from tree_toolset import TreeToolSet
+
 
 class HtnMilpScheduler:
     """
@@ -44,8 +47,16 @@ class HtnMilpScheduler:
         self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
+        self.initial_run = False
+        self.current_problem = "problem_description/ATV_Assembly/current_problem_description_ATV.yaml"
+        if os.path.isfile(self.current_problem):
+            self.initial_run = False
+        else:
+            self.initial_run = True
         self.contingency = True
-        self.contingency_name = 'p1_Screw2_Top_P_C3'
+        if self.initial_run is True:
+            self.contingency = False
+        self.contingency_name = 'p1_pick_rear_frame'
         self.contingency_node = None
         self.unavailable_agent_bool = False
         self.unavailable_agent = 'r1'
@@ -69,7 +80,12 @@ class HtnMilpScheduler:
             # Printing dictionary
             except yaml.YAMLError as dict_e:
                 print(dict_e)
-
+        if self.initial_run:
+            self.current_problem_description = copy.deepcopy(self.problem_description)
+            self.current_problem_description["htn_model_id"] = "current_ATV_Assembly_Problem.yaml"
+            self.current_problem_description["task_model_id"] = "current_task_model_ATV.yaml"
+            TreeToolSet().dict_yaml_export(self.current_problem_description, self.problem_dir, "current_problem_description_ATV.yaml")
+            
     def load_agent_model(self):
         """Loads agent model from yaml file"""
         agents = self.problem_description['agents']
@@ -91,35 +107,39 @@ class HtnMilpScheduler:
                 task_model1 = yaml.safe_load(stream)
                 # for ease of manipulation convert the task model1 to the list
                 list_task_model = list(task_model1)
-                for product in range(self.num_products):
-                    for i in range(len(task_model1)):
-                        # just indexing how long this is
-                        cur_leaf_node = (product) * \
-                            len(task_model1)+(i+1)
-                        if cur_leaf_node <= len(task_model1):
-                            if list_task_model[i][:8] == 'recovery':
-                                task_model[list_task_model[i]] = {}
-                            else:
-                                task_model['p1_' +
-                                           list_task_model[i]] = {}
-                        elif cur_leaf_node > len(task_model1):
-                            if list_task_model[i][:8] == 'recovery':
-                                task_model[list_task_model[i]] = {}
-                            else:
-                                task_model['p{}_'.format(
-                                    product+1)+list_task_model[i]] = {}
-                for i in range(self.num_products):
-                    for c, agents in enumerate(task_model1):
-                        task_model_index = (c+1)+len(task_model1)*(i)
-                        if list_task_model[c][:8] == 'recovery':
-                            task_model[list_task_model[c]
-                                       ] = task_model1[list_task_model[c]]
-                        else:
-                            task_model["p{}_".format(i+1)
-                                       + list_task_model[c]] = task_model1[list_task_model[c]]
-
             except yaml.YAMLError as e:
                 print(e)
+
+            if self.initial_run:
+                TreeToolSet().dict_yaml_export(task_model1, self.problem_dir, "current_task_model_ATV.yaml") # create current file for future
+            for product in range(self.num_products):
+                for i in range(len(task_model1)):
+                    # just indexing how long this is
+                    cur_leaf_node = (product) * \
+                        len(task_model1)+(i+1)
+                    if cur_leaf_node <= len(task_model1):
+                        if list_task_model[i][:8] == 'recovery':
+                            task_model[list_task_model[i]] = {}
+                        else:
+                            task_model['p1_' +
+                                        list_task_model[i]] = {}
+                    elif cur_leaf_node > len(task_model1):
+                        if list_task_model[i][:8] == 'recovery':
+                            task_model[list_task_model[i]] = {}
+                        else:
+                            task_model['p{}_'.format(
+                                product+1)+list_task_model[i]] = {}
+            for i in range(self.num_products):
+                for c, agents in enumerate(task_model1):
+                    task_model_index = (c+1)+len(task_model1)*(i)
+                    if list_task_model[c][:8] == 'recovery':
+                        task_model[list_task_model[c]
+                                    ] = task_model1[list_task_model[c]]
+                    else:
+                        task_model["p{}_".format(i+1)
+                                    + list_task_model[c]] = task_model1[list_task_model[c]]
+
+
         self.task_object = self.create_task_object(task_model)
 
     def create_task_object(self, tasks):
@@ -248,14 +268,16 @@ class HtnMilpScheduler:
                                     expand=True)
         scrollbar_canvas.pack(fill=tk.X, side=tk.BOTTOM)
         canvas.get_tk_widget().configure(scrollregion=canvas.get_tk_widget().bbox("all"))
-
-        # Add the Scrollbar to the window
-        window.mainloop()
-        # plt.show()
-        if self.contingency:
-            plt.savefig("contingency_gant.png")
-        else:
+        
+        if self.initial_run:
             plt.savefig("gant.png")
+        else:
+            plt.savefig("current_gant.png")
+        # Add the Scrollbar to the window
+        def on_window_close():
+            window.quit()       
+        window.protocol("WM_DELETE_WINDOW", on_window_close)
+        window.mainloop()
 
     def import_htn(self, print_htn=True):  # HTN import
         def edit_tree(dictionary, product_num):
@@ -275,10 +297,7 @@ class HtnMilpScheduler:
         num_products = self.num_products
         children = []
 
-        if self.contingency:
-            self.multi_product_htn = DictImporter().import_(self.dict)
-            self.multi_product_dict = self.dict
-        else:
+        if self.initial_run:
             self.multi_product_dict = {}
             self.multi_product_dict['id'] = 'Multi_Product_Assembly'
             self.multi_product_dict['type'] = 'independent'
@@ -287,11 +306,13 @@ class HtnMilpScheduler:
                 product_htn = copy.deepcopy(self.dict)
                 edit_tree(product_htn, p+1)
                 self.multi_product_dict['children'].append(product_htn)
-
                 # For multi-product formulation, we introduce a task root at the highest
                 # hiararchy
                 self.multi_product_htn = DictImporter().import_(self.multi_product_dict)
-
+            TreeToolSet().dict_yaml_export(self.multi_product_dict, self.problem_dir, "current_ATV_Assembly_Problem.yaml")
+        else:
+            self.multi_product_htn = DictImporter().import_(self.dict) # to avoid duplicating p1
+            self.multi_product_dict = self.dict
         if print_htn:
             print(RenderTree(self.multi_product_htn))
         return self.multi_product_htn
@@ -593,9 +614,11 @@ class HtnMilpScheduler:
         status = solver.Solve(self.model)
 
         if status == cp_model.OPTIMAL:
+            print("optimal solution")
             print(solver.Value(self.makespan))
             print(solver.WallTime())
         elif status == cp_model.FEASIBLE:
+            print("solution is feasible")
             print(solver.Value(self.makespan))
             print(solver.WallTime())
         else:
@@ -627,8 +650,8 @@ class HtnMilpScheduler:
             assignment = visual_t_assignment[agent]
             sorted_t_assignment[agent] = sorted(
                 assignment, key=lambda x: list(x.values())[0][0])
-        self.visualize(sorted_t_assignment)
         self.export_yaml(sorted_t_assignment)
+        self.visualize(sorted_t_assignment)
 
     def export_yaml(self, t_assignment):
         task_allocation = t_assignment
@@ -644,14 +667,12 @@ class HtnMilpScheduler:
                     i += 1
             if schedule_yaml[agent] == {}:
                 schedule_yaml[agent] = 'None Scheduled yet'
-
-        if self.contingency:
-            with open(r'{}\contingency_visualize_helper_text.yaml'.format(self.problem_dir), 'w') as file:
-                documents = yaml.dump(schedule_yaml, file, sort_keys=False)
+                
+        if self.initial_run:
+            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "initial_visualize_helper_text.yaml")
         else:
-            with open(r'{}\visualize_helper_text.yaml'.format(self.problem_dir), 'w') as file:
-                documents = yaml.dump(
-                    schedule_yaml, file, sort_keys=False, Dumper=NoTagNoQuotesDumper)
+            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "current_visualize_helper_text.yaml")
+
         self.export_schedule_text(t_assignment)
 
     def export_schedule_text(self, t_assignment):
@@ -684,30 +705,12 @@ class HtnMilpScheduler:
                 prev_schedule = schedule_yaml[i]
 
         print(schedule_yaml)
-        if self.contingency:
-            with open(r'{}\task_allocation_cont.yaml'.format(self.problem_dir), 'w') as file:
-                documents = yaml.dump(schedule_yaml, file, sort_keys=False)
+
+        if self.initial_run:
+            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "initial_task_allocation.yaml")
         else:
-            with open(r'{}\task_allocation.yaml'.format(self.problem_dir), 'w') as file:
-                documents = yaml.dump(
-                    schedule_yaml, file, sort_keys=False, Dumper=NoTagNoQuotesDumper)
-
-
-class NoTagNoQuotesDumper(yaml.Dumper):
-    """
-    Export yaml file in the desired format - without string tag etc
-    """
-    def represent_data(self, data):
-        if isinstance(data, tuple):
-            return self.represent_sequence('tag:yaml.org,2002:seq', data, flow_style=True)
-        return super().represent_data(data)
-
-    def represent_scalar(self, tag, value, style=None):
-        if style is None:
-            style = self.default_style
-        if tag == 'tag:yaml.org,2002:str' and '\n' in value:
-            style = '|'
-        return super().represent_scalar(tag, value, style)
+            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "current_task_allocation.yaml")
+                
 
 
 def main():
@@ -716,11 +719,11 @@ def main():
     """
     scheduler = HtnMilpScheduler()
     if scheduler.contingency:
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("cont_problem_description_LM2023.yaml")
+        scheduler.set_dir("problem_description/ATV_Assembly/")
+        scheduler.import_problem("current_problem_description_ATV.yaml")
     else:
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("problem_description_LM2023.yaml")
+        scheduler.set_dir("problem_description/ATV_Assembly/")
+        scheduler.import_problem("problem_description_ATV.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------Initialized-------------')

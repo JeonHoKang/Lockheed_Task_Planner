@@ -1,3 +1,5 @@
+import yaml
+
 class TreeToolSet:
     def __init__(self) -> None:
         pass
@@ -50,7 +52,8 @@ class TreeToolSet:
                 dictionary['children'].append(new_element)
             else:
                 if len(dictionary['children'])+1 < input_order_number:
-                    pass
+                    print("exceeds the number of children - Defaulting to first child")
+                    input_order_number = 0
                 else:
                     dictionary['children'].insert(input_order_number, new_element)
 
@@ -65,6 +68,10 @@ class TreeToolSet:
         if dictionary['id'] == target_id:
             delete_index = parent['children'].index(dictionary)
             parent['children'].pop(delete_index)
+            if len(parent['children']) == 0:
+                print("no longer parent")
+                del parent['children']
+                parent['agent'] = []
         else:
             if 'children' in dictionary:
                 parent = None
@@ -134,3 +141,40 @@ class TreeToolSet:
             index_list.append((parent_id, child_id))
 
         return local_dict
+    
+    def dict_yaml_export(self, export_dictionary, problem_dir, file_name):
+        file_dir = problem_dir + file_name
+        print('-----created------')
+        print(file_dir)
+        with open(file_dir, 'w') as file:
+            yaml.dump(export_dictionary, file, sort_keys=False, Dumper=NoTagNoQuotesDumper)
+
+    def safe_dict_yaml_export(self, export_dictionary, problem_dir, file_name):
+        file_dir = problem_dir + file_name
+        print('-----created------')
+        print(file_dir)
+        with open(file_dir, 'w') as file:
+            yaml.safe_dump(export_dictionary, file, sort_keys=False)
+
+    def safe_dict_yaml_export(self, export_dictionary, problem_dir, file_name):
+        file_dir = problem_dir + file_name
+        print('-----created------')
+        print(file_dir)
+        with open(file_dir, 'w') as file:
+            yaml.safe_dump(export_dictionary, file, sort_keys=False)
+
+class NoTagNoQuotesDumper(yaml.Dumper):
+    """
+    Export yaml file in the desired format - without string tag etc
+    """
+    def represent_data(self, data):
+        if isinstance(data, tuple):
+            return self.represent_sequence('tag:yaml.org,2002:seq', data, flow_style=True)
+        return super().represent_data(data)
+
+    def represent_scalar(self, tag, value, style=None):
+        if style is None:
+            style = self.default_style
+        if tag == 'tag:yaml.org,2002:str' and '\n' in value:
+            style = '|'
+        return super().represent_scalar(tag, value, style)

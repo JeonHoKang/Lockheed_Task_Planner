@@ -1,0 +1,117 @@
+r1:
+  1:
+    p1_pick_front_frame:
+      start: 0
+      end: 10
+  2:
+    recovery-abort_task_pick_front_frame:
+      start: 10
+      end: 19
+  3:
+    p1_pick_back_front_frame1:
+      start: 19
+      end: 25
+  4:
+    recovery-pick_new_engine:
+      start: 37
+      end: 46
+  5:
+    recovery-remove_broken_pieces:
+      start: 55
+      end: 64
+  6:
+    recovery-pick_new_part:
+      start: 73
+      end: 82
+  7:
+    recovery-pick_front_frame:
+      start: 91
+      end: 100
+  8:
+    p1_place_front_frame_on_deck:
+      start: 100
+      end: 109
+  9:
+    recovery-notify_human_for_new_part:
+      start: 126
+      end: 135
+  10:
+    recovery-wait_for_new_part:
+      start: 135
+      end: 144
+  11:
+    recovery-locate_new_part:
+      start: 144
+      end: 153
+r2:
+  12:
+    recovery-search_new_wheel:
+      start: 46
+      end: 55
+  13:
+    recovery_pick_new_wheel:
+      start: 55
+      end: 64
+  14:
+    p1_pick_battery_assembly:
+      start: 109
+      end: 117
+  15:
+    recovery-abort_task_pick_battery_assembly:
+      start: 117
+      end: 126
+  16:
+    recovery-pick_battery_assembly:
+      start: 162
+      end: 171
+  17:
+    p1_place_battery_assembly:
+      start: 171
+      end: 183
+r3:
+  18:
+    p1_screw_battery_assembly_to_front_frame3:
+      start: 183
+      end: 189
+  19:
+    p1_screw_battery_assembly_to_front_frame1:
+      start: 189
+      end: 195
+  20:
+    p1_screw_battery_assembly_to_front_frame2:
+      start: 195
+      end: 201
+  21:
+    p1_screw_battery_assembly_to_front_frame4:
+      start: 201
+      end: 207
+H:
+  22:
+    recovery-engine_undo:
+      start: 19
+      end: 28
+  23:
+    recovery-search_new_engine:
+      start: 28
+      end: 37
+  24:
+    recovery-front_right_wheel_undo:
+      start: 37
+      end: 46
+  25:
+    recovery-redo-engine:
+      start: 46
+      end: 55
+  26:
+    recovery-search_for_new_part:
+      start: 64
+      end: 73
+  27:
+    recovery-notify_execution_monitor-pick_front_frame:
+      start: 82
+      end: 91
+  28:
+    recovery-notify_execution_monitor-pick_battery_assembly:
+      start: 153
+      end: 162
+X: None Scheduled yet
