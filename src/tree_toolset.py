@@ -14,7 +14,7 @@ class TreeToolSet:
                     parent = dictionary
                     res.append(self.search_tree(child, node_id))
             else:
-                return None
+                return Nones
 
             for element in res:
                 if element:

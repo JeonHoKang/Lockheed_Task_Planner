@@ -4,7 +4,7 @@
   sequential_dependencies: ''
   start: 0
   end: 10
-- task_id: p1_place_front_frame_on_deck
+- task_id: recovery-abort_task_pick_front_frame
   agent: r1
   agent_specific_order: 2
   sequential_dependencies: p1_pick_front_frame
@@ -13,294 +13,372 @@
 - task_id: p1_pick_back_front_frame1
   agent: r1
   agent_specific_order: 3
-  sequential_dependencies: p1_place_front_frame_on_deck
+  sequential_dependencies: recovery-abort_task_pick_front_frame
   start: 19
   end: 25
-- task_id: p1_pick_battery_assembly
-  agent: r2
+- task_id: recovery-engine_undo
+  agent: H
   agent_specific_order: 1
   sequential_dependencies: ''
   start: 19
-  end: 27
-- task_id: p1_place_battery_assembly
-  agent: r2
+  end: 28
+- task_id: recovery-search_new_engine
+  agent: H
   agent_specific_order: 2
   sequential_dependencies: p1_pick_back_front_frame1
-  start: 27
-  end: 39
+  start: 28
+  end: 37
+- task_id: recovery-pick_new_engine
+  agent: r1
+  agent_specific_order: 4
+  sequential_dependencies: recovery-search_new_engine
+  start: 37
+  end: 46
+- task_id: recovery-front_right_wheel_undo
+  agent: H
+  agent_specific_order: 3
+  sequential_dependencies: ''
+  start: 37
+  end: 46
+- task_id: recovery-search_new_wheel
+  agent: r2
+  agent_specific_order: 1
+  sequential_dependencies: recovery-pick_new_engine
+  start: 46
+  end: 55
+- task_id: recovery-redo
+  agent: H
+  agent_specific_order: 4
+  sequential_dependencies: ''
+  start: 46
+  end: 55
+- task_id: recovery-remove_broken_pieces
+  agent: r1
+  agent_specific_order: 5
+  sequential_dependencies: recovery-search_new_wheel
+  start: 55
+  end: 64
+- task_id: recovery_pick_new_wheel
+  agent: r2
+  agent_specific_order: 2
+  sequential_dependencies: ''
+  start: 55
+  end: 64
+- task_id: recovery-search_for_new_part
+  agent: H
+  agent_specific_order: 5
+  sequential_dependencies: recovery-remove_broken_pieces
+  start: 64
+  end: 73
+- task_id: recovery-pick_new_part
+  agent: r1
+  agent_specific_order: 6
+  sequential_dependencies: recovery-search_for_new_part
+  start: 73
+  end: 82
+- task_id: recovery-notify_execution_monitor-pick_front_frame
+  agent: H
+  agent_specific_order: 6
+  sequential_dependencies: recovery-pick_new_part
+  start: 82
+  end: 91
+- task_id: recovery-pick_front_frame
+  agent: r1
+  agent_specific_order: 7
+  sequential_dependencies: recovery-notify_execution_monitor-pick_front_frame
+  start: 91
+  end: 100
+- task_id: p1_place_front_frame_on_deck
+  agent: r1
+  agent_specific_order: 8
+  sequential_dependencies: recovery-pick_front_frame
+  start: 100
+  end: 109
+- task_id: p1_pick_battery_assembly
+  agent: r2
+  agent_specific_order: 3
+  sequential_dependencies: p1_place_front_frame_on_deck
+  start: 109
+  end: 117
+- task_id: p1_place_battery_assembly
+  agent: r2
+  agent_specific_order: 4
+  sequential_dependencies: p1_pick_battery_assembly
+  start: 117
+  end: 129
 - task_id: p1_screw_battery_assembly_to_front_frame1
   agent: r3
   agent_specific_order: 1
   sequential_dependencies: p1_place_battery_assembly
-  start: 39
-  end: 45
+  start: 129
+  end: 135
 - task_id: p1_screw_battery_assembly_to_front_frame3
   agent: r3
   agent_specific_order: 2
   sequential_dependencies: p1_screw_battery_assembly_to_front_frame1
-  start: 45
-  end: 51
+  start: 135
+  end: 141
 - task_id: p1_screw_battery_assembly_to_front_frame2
   agent: r3
   agent_specific_order: 3
   sequential_dependencies: p1_screw_battery_assembly_to_front_frame3
-  start: 51
-  end: 57
+  start: 141
+  end: 147
 - task_id: p1_screw_battery_assembly_to_front_frame4
   agent: r3
   agent_specific_order: 4
   sequential_dependencies: p1_screw_battery_assembly_to_front_frame2
-  start: 57
-  end: 63
+  start: 147
+  end: 153
 - task_id: p1_pick_rear_frame
   agent: r2
-  agent_specific_order: 3
+  agent_specific_order: 5
   sequential_dependencies: p1_screw_battery_assembly_to_front_frame4
-  start: 63
-  end: 73
+  start: 153
+  end: 163
 - task_id: p1_place_rear_frame_on_deck
   agent: r2
-  agent_specific_order: 4
+  agent_specific_order: 6
   sequential_dependencies: p1_pick_rear_frame
-  start: 73
-  end: 83
+  start: 163
+  end: 173
 - task_id: p1_front_and_rear_insert_screw4
   agent: H
-  agent_specific_order: 1
+  agent_specific_order: 7
   sequential_dependencies: p1_place_rear_frame_on_deck
-  start: 83
-  end: 92
+  start: 173
+  end: 182
 - task_id: p1_fasten_bolt_on_front_and_rear_screw4
   agent: H
-  agent_specific_order: 2
+  agent_specific_order: 8
   sequential_dependencies: p1_front_and_rear_insert_screw4
-  start: 92
-  end: 98
+  start: 182
+  end: 188
 - task_id: p1_front_and_rear_insert_screw1
   agent: H
-  agent_specific_order: 3
+  agent_specific_order: 9
   sequential_dependencies: p1_fasten_bolt_on_front_and_rear_screw4
-  start: 98
-  end: 116
-- task_id: p1_fasten_bolt_on_front_and_rear_screw1
-  agent: H
-  agent_specific_order: 4
-  sequential_dependencies: p1_front_and_rear_insert_screw1
-  start: 116
-  end: 134
-- task_id: p1_front_and_rear_insert_screw2
-  agent: H
-  agent_specific_order: 5
-  sequential_dependencies: p1_fasten_bolt_on_front_and_rear_screw1
-  start: 134
-  end: 152
-- task_id: p1_fasten_bolt_on_front_and_rear_screw2
-  agent: H
-  agent_specific_order: 6
-  sequential_dependencies: p1_front_and_rear_insert_screw2
-  start: 152
-  end: 170
-- task_id: p1_front_and_rear_insert_screw3
-  agent: H
-  agent_specific_order: 7
-  sequential_dependencies: p1_fasten_bolt_on_front_and_rear_screw2
-  start: 170
-  end: 188
-- task_id: p1_fasten_bolt_on_front_and_rear_screw3
-  agent: H
-  agent_specific_order: 8
-  sequential_dependencies: p1_front_and_rear_insert_screw3
   start: 188
   end: 206
+- task_id: p1_fasten_bolt_on_front_and_rear_screw1
+  agent: H
+  agent_specific_order: 10
+  sequential_dependencies: p1_front_and_rear_insert_screw1
+  start: 206
+  end: 224
+- task_id: p1_front_and_rear_insert_screw2
+  agent: H
+  agent_specific_order: 11
+  sequential_dependencies: p1_fasten_bolt_on_front_and_rear_screw1
+  start: 224
+  end: 242
+- task_id: p1_fasten_bolt_on_front_and_rear_screw2
+  agent: H
+  agent_specific_order: 12
+  sequential_dependencies: p1_front_and_rear_insert_screw2
+  start: 242
+  end: 260
+- task_id: p1_front_and_rear_insert_screw3
+  agent: H
+  agent_specific_order: 13
+  sequential_dependencies: p1_fasten_bolt_on_front_and_rear_screw2
+  start: 260
+  end: 278
+- task_id: p1_fasten_bolt_on_front_and_rear_screw3
+  agent: H
+  agent_specific_order: 14
+  sequential_dependencies: p1_front_and_rear_insert_screw3
+  start: 278
+  end: 296
 - task_id: p1_pick_trunk_skeleton
   agent: r1
-  agent_specific_order: 4
+  agent_specific_order: 9
   sequential_dependencies: p1_fasten_bolt_on_front_and_rear_screw3
-  start: 206
-  end: 211
+  start: 296
+  end: 301
 - task_id: p1_Pick_Handle_bar
   agent: r2
-  agent_specific_order: 5
+  agent_specific_order: 7
   sequential_dependencies: ''
-  start: 206
-  end: 218
+  start: 296
+  end: 308
 - task_id: p1_hold_pick_trunk_skeleton_on_external_frame
   agent: r1
-  agent_specific_order: 5
+  agent_specific_order: 10
   sequential_dependencies: p1_pick_trunk_skeleton
-  start: 211
-  end: 214
+  start: 301
+  end: 304
 - task_id: p1_pick_front_left_wheel
   agent: r1
-  agent_specific_order: 6
+  agent_specific_order: 11
   sequential_dependencies: p1_hold_pick_trunk_skeleton_on_external_frame
-  start: 214
-  end: 224
-- task_id: p1_screw_upper_trunk_skeleton_to_frame1
+  start: 304
+  end: 314
+- task_id: p1_screw_upper_trunk_skeleton_to_frame3
   agent: r3
   agent_specific_order: 5
   sequential_dependencies: ''
-  start: 214
-  end: 222
-- task_id: p1_pick_front_right_wheel
+  start: 304
+  end: 312
+- task_id: p1_pick_rear_left_wheel
   agent: r2
-  agent_specific_order: 6
+  agent_specific_order: 8
   sequential_dependencies: ''
-  start: 218
-  end: 228
+  start: 308
+  end: 318
 - task_id: p1_fasten_bolt_on_main_body_to_handle2
   agent: r3
   agent_specific_order: 6
   sequential_dependencies: ''
-  start: 222
-  end: 230
-- task_id: p1_pick_rear_left_wheel
+  start: 312
+  end: 320
+- task_id: p1_pick_front_right_wheel
   agent: r2
-  agent_specific_order: 7
+  agent_specific_order: 9
   sequential_dependencies: p1_pick_front_left_wheel
-  start: 228
-  end: 238
+  start: 318
+  end: 328
 - task_id: p1_fasten_bolt_on_main_body_to_handle3
   agent: r3
   agent_specific_order: 7
   sequential_dependencies: ''
-  start: 230
-  end: 238
-- task_id: p1_pick_engine
-  agent: r2
-  agent_specific_order: 8
-  sequential_dependencies: p1_pick_rear_left_wheel
-  start: 238
-  end: 254
-- task_id: p1_screw_upper_trunk_skeleton_to_frame2
-  agent: r3
-  agent_specific_order: 8
-  sequential_dependencies: ''
-  start: 238
-  end: 246
-- task_id: p1_screw_upper_trunk_skeleton_to_frame3
-  agent: r3
-  agent_specific_order: 9
-  sequential_dependencies: ''
-  start: 246
-  end: 254
-- task_id: p1_insert_engine_on_main_body_assembly
-  agent: r2
-  agent_specific_order: 9
-  sequential_dependencies: p1_pick_engine
-  start: 254
-  end: 272
-- task_id: p1_scew_bolt_for_rear_left_wheel4
-  agent: r3
-  agent_specific_order: 10
-  sequential_dependencies: ''
-  start: 254
-  end: 264
-- task_id: p1_scew_bolt_for_front_left_wheel1
-  agent: r3
-  agent_specific_order: 11
-  sequential_dependencies: ''
-  start: 264
-  end: 274
+  start: 320
+  end: 328
 - task_id: p1_pick_rear_right_wheel
   agent: r2
   agent_specific_order: 10
-  sequential_dependencies: p1_insert_engine_on_main_body_assembly
-  start: 272
-  end: 282
+  sequential_dependencies: p1_pick_front_right_wheel
+  start: 328
+  end: 338
 - task_id: p1_fasten_bolt_on_main_body_to_handle4
+  agent: r3
+  agent_specific_order: 8
+  sequential_dependencies: ''
+  start: 328
+  end: 336
+- task_id: p1_screw_upper_trunk_skeleton_to_frame1
+  agent: r3
+  agent_specific_order: 9
+  sequential_dependencies: ''
+  start: 336
+  end: 344
+- task_id: p1_pick_engine
+  agent: r2
+  agent_specific_order: 11
+  sequential_dependencies: p1_pick_rear_right_wheel
+  start: 338
+  end: 354
+- task_id: p1_screw_upper_trunk_skeleton_to_frame2
+  agent: r3
+  agent_specific_order: 10
+  sequential_dependencies: ''
+  start: 344
+  end: 352
+- task_id: p1_scew_bolt_for_rear_right_wheel3
+  agent: r3
+  agent_specific_order: 11
+  sequential_dependencies: ''
+  start: 352
+  end: 362
+- task_id: p1_insert_engine_on_main_body_assembly
+  agent: r2
+  agent_specific_order: 12
+  sequential_dependencies: p1_pick_engine
+  start: 354
+  end: 372
+- task_id: p1_scew_bolt_for_rear_right_wheel1
   agent: r3
   agent_specific_order: 12
   sequential_dependencies: ''
-  start: 274
-  end: 282
-- task_id: p1_scew_bolt_for_rear_right_wheel4
-  agent: r3
-  agent_specific_order: 13
-  sequential_dependencies: p1_pick_rear_right_wheel
-  start: 282
-  end: 292
-- task_id: p1_wiring_harness_engine
-  agent: H
-  agent_specific_order: 9
-  sequential_dependencies: ''
-  start: 282
-  end: 306
-- task_id: p1_scew_bolt_for_rear_right_wheel2
-  agent: r3
-  agent_specific_order: 14
-  sequential_dependencies: p1_scew_bolt_for_rear_right_wheel4
-  start: 292
-  end: 302
-- task_id: p1_scew_bolt_for_rear_right_wheel1
-  agent: r3
-  agent_specific_order: 15
-  sequential_dependencies: p1_scew_bolt_for_rear_right_wheel2
-  start: 302
-  end: 312
-- task_id: p1_scew_bolt_for_front_left_wheel3
-  agent: r3
-  agent_specific_order: 16
-  sequential_dependencies: p1_scew_bolt_for_rear_right_wheel1
-  start: 312
-  end: 322
-- task_id: p1_scew_bolt_for_front_right_wheel2
-  agent: r3
-  agent_specific_order: 17
-  sequential_dependencies: p1_scew_bolt_for_front_left_wheel3
-  start: 322
-  end: 332
-- task_id: p1_scew_bolt_for_front_right_wheel4
-  agent: r3
-  agent_specific_order: 18
-  sequential_dependencies: p1_scew_bolt_for_front_right_wheel2
-  start: 332
-  end: 342
-- task_id: p1_scew_bolt_for_front_left_wheel2
-  agent: r3
-  agent_specific_order: 19
-  sequential_dependencies: p1_scew_bolt_for_front_right_wheel4
-  start: 342
-  end: 352
-- task_id: p1_scew_bolt_for_front_right_wheel1
-  agent: r3
-  agent_specific_order: 20
-  sequential_dependencies: p1_scew_bolt_for_front_left_wheel2
-  start: 352
-  end: 362
-- task_id: p1_scew_bolt_for_rear_left_wheel3
-  agent: r3
-  agent_specific_order: 21
-  sequential_dependencies: p1_scew_bolt_for_front_right_wheel1
   start: 362
   end: 372
-- task_id: p1_scew_bolt_for_rear_right_wheel3
-  agent: r3
-  agent_specific_order: 22
-  sequential_dependencies: p1_scew_bolt_for_rear_left_wheel3
-  start: 372
-  end: 382
-- task_id: p1_scew_bolt_for_front_right_wheel3
-  agent: r3
-  agent_specific_order: 23
-  sequential_dependencies: p1_scew_bolt_for_rear_right_wheel3
-  start: 382
-  end: 392
-- task_id: p1_scew_bolt_for_rear_left_wheel2
-  agent: r3
-  agent_specific_order: 24
-  sequential_dependencies: p1_scew_bolt_for_front_right_wheel3
-  start: 392
-  end: 402
 - task_id: p1_scew_bolt_for_rear_left_wheel1
   agent: r3
-  agent_specific_order: 25
-  sequential_dependencies: p1_scew_bolt_for_rear_left_wheel2
-  start: 402
-  end: 412
+  agent_specific_order: 13
+  sequential_dependencies: p1_insert_engine_on_main_body_assembly
+  start: 372
+  end: 382
+- task_id: p1_wiring_harness_engine
+  agent: H
+  agent_specific_order: 15
+  sequential_dependencies: ''
+  start: 372
+  end: 396
+- task_id: p1_scew_bolt_for_rear_left_wheel4
+  agent: r3
+  agent_specific_order: 14
+  sequential_dependencies: p1_scew_bolt_for_rear_left_wheel1
+  start: 382
+  end: 392
+- task_id: p1_scew_bolt_for_front_left_wheel1
+  agent: r3
+  agent_specific_order: 15
+  sequential_dependencies: p1_scew_bolt_for_rear_left_wheel4
+  start: 392
+  end: 402
 - task_id: p1_scew_bolt_for_front_left_wheel4
   agent: r3
-  agent_specific_order: 26
-  sequential_dependencies: p1_scew_bolt_for_rear_left_wheel1
+  agent_specific_order: 16
+  sequential_dependencies: p1_scew_bolt_for_front_left_wheel1
+  start: 402
+  end: 412
+- task_id: p1_scew_bolt_for_front_right_wheel3
+  agent: r3
+  agent_specific_order: 17
+  sequential_dependencies: p1_scew_bolt_for_front_left_wheel4
   start: 412
   end: 422
+- task_id: p1_scew_bolt_for_front_right_wheel1
+  agent: r3
+  agent_specific_order: 18
+  sequential_dependencies: p1_scew_bolt_for_front_right_wheel3
+  start: 422
+  end: 432
+- task_id: p1_scew_bolt_for_rear_left_wheel3
+  agent: r3
+  agent_specific_order: 19
+  sequential_dependencies: p1_scew_bolt_for_front_right_wheel1
+  start: 432
+  end: 442
+- task_id: p1_scew_bolt_for_rear_right_wheel4
+  agent: r3
+  agent_specific_order: 20
+  sequential_dependencies: p1_scew_bolt_for_rear_left_wheel3
+  start: 442
+  end: 452
+- task_id: p1_scew_bolt_for_rear_right_wheel2
+  agent: r3
+  agent_specific_order: 21
+  sequential_dependencies: p1_scew_bolt_for_rear_right_wheel4
+  start: 452
+  end: 462
+- task_id: p1_scew_bolt_for_front_right_wheel2
+  agent: r3
+  agent_specific_order: 22
+  sequential_dependencies: p1_scew_bolt_for_rear_right_wheel2
+  start: 462
+  end: 472
+- task_id: p1_scew_bolt_for_front_left_wheel2
+  agent: r3
+  agent_specific_order: 23
+  sequential_dependencies: p1_scew_bolt_for_front_right_wheel2
+  start: 472
+  end: 482
+- task_id: p1_scew_bolt_for_front_right_wheel4
+  agent: r3
+  agent_specific_order: 24
+  sequential_dependencies: p1_scew_bolt_for_front_left_wheel2
+  start: 482
+  end: 492
+- task_id: p1_scew_bolt_for_rear_left_wheel2
+  agent: r3
+  agent_specific_order: 25
+  sequential_dependencies: p1_scew_bolt_for_front_right_wheel4
+  start: 492
+  end: 502
+- task_id: p1_scew_bolt_for_front_left_wheel3
+  agent: r3
+  agent_specific_order: 26
+  sequential_dependencies: p1_scew_bolt_for_rear_left_wheel2
+  start: 502
+  end: 512

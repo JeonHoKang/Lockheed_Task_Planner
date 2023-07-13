@@ -453,3 +453,94 @@ pick_back_front_frame1:
     r1:
       id: det
       mean: 6
+recovery-abort_task_pick_front_frame:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-engine_undo:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 9
+recovery-search_new_engine:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 9
+recovery-pick_new_engine:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-redo:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 9
+recovery-remove_broken_pieces:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-search_for_new_part:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 9
+recovery-pick_new_part:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-front_right_wheel_undo:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 9
+recovery-search_new_wheel:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 9
+recovery_pick_new_wheel:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 9
+recovery-notify_execution_monitor-pick_front_frame:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 9
+recovery-pick_front_frame:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
