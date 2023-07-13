@@ -17,7 +17,7 @@ class ContingencyManager:
     def __init__(self):
         super().__init__()
         self.contingency = False # set whether contingency has occured
-
+        
     def set_problem_dir(self, directory):
         self.problem_dir = directory
 
@@ -209,8 +209,7 @@ class ContingencyManager:
                        contingency_plan)
 
     def yaml_export(self,htn_dict, contingency_plan):
-        # exporter = DictExporter()
-        # htn_dict = exporter.export(self.htn_dict)
+
         # Save the updated data to the YAML file
         with open("problem_description/ATV_Assembly/problem_description_ATV.yaml", "r") as file:
             yaml_dict = yaml.safe_load(file)
@@ -219,8 +218,8 @@ class ContingencyManager:
             yaml_dict['agents'] = yaml_dict['agents']
             yaml_dict['task_model_id'] = 'cont_task_model_ATV.yaml'
             yaml_dict['htn_model_id'] = 'cont_ATV_Assembly_htn.yaml'
-        TreeToolSet().safe_dict_yaml_export(htn_dict, self.problem_dir, "cont_ATV_Assembly_htn.yaml")
-        TreeToolSet().safe_dict_yaml_export(yaml_dict, self.problem_dir, "cont_problem_description_ATV.yaml")
+        TreeToolSet().safe_dict_yaml_export(htn_dict, self.problem_dir, "current_ATV_Assembly_htn.yaml")
+        TreeToolSet().safe_dict_yaml_export(yaml_dict, self.problem_dir, "current_problem_description_ATV.yaml")
 
     def generate_task_model(self, contingency_task_plan):
         with open("problem_description/ATV_Assembly/task_model_ATV.yaml", "r") as file:
@@ -233,13 +232,13 @@ class ContingencyManager:
                     for agent in task_nodes.agent:
                         task_model_dict[task_nodes.id]['duration_model'] = {
                             agent: {'id': 'det', 'mean': 9}}
-        TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "cont_task_model_ATV.yaml")
+        TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "task_model_ATV.yaml")
     
 
 def main():
     scheduler = MILP_scheduler.HtnMilpScheduler() # imports scheduler
     problem_dir = "problem_description/ATV_Assembly/"
-    problem = "problem_description_ATV.yaml"
+    problem = "current_problem_description.yaml"
     policies_file = "contingency_policies.yaml"
     scheduler.set_dir(problem_dir)
     scheduler.import_problem(problem)

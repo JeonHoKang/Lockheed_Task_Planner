@@ -37,23 +37,23 @@ class HTN_vis(QtWidgets.QMainWindow):
         
         self.contingency_state = scheduler.contingency
         self.problem_dir = "problem_description/ATV_Assembly/"
-        if scheduler.contingency:
-            contingency_name = scheduler.contingency_name
-            scheduler.set_dir(self.problem_dir)
-            scheduler.import_problem("cont_problem_description_ATV.yaml")
-            scheduler.create_task_model()
-            self.htn = scheduler.import_htn()
-            # main htn dictionary
-            self.htn_dict = scheduler.multi_product_dict # input
-            self.contingency_node = TreeToolSet().search_tree(self.htn_dict, contingency_name) 
-        else:
+        
+        if scheduler.initial_run:
             htn_dir = self.problem_dir + "ATV_Assembly_Problem.yaml"
             with open(htn_dir, "r") as data:
                 try:
                     self.htn_dict = yaml.safe_load(data)
                 except yaml.YAMLError as e:
                     print(e)
-
+        else:
+            contingency_name = scheduler.contingency_name
+            scheduler.set_dir(self.problem_dir)
+            scheduler.import_problem("current_problem_description_ATV.yaml")
+            scheduler.create_task_model()
+            self.htn = scheduler.import_htn()
+            # main htn dictionary
+            self.htn_dict = scheduler.multi_product_dict # input
+            self.contingency_node = TreeToolSet().search_tree(self.htn_dict, contingency_name) 
         
         self.render_node_to_edges(self.htn_dict)
         # declare first igraph instance
