@@ -56,7 +56,7 @@ class HtnMilpScheduler:
         self.contingency = True
         if self.initial_run is True:
             self.contingency = False
-        self.contingency_name = 'p1_fasten_bolt_on_main_body_to_handle1'
+        self.contingency_name = 'p1_pick_rear_frame'
         self.contingency_node = None
         self.unavailable_agent_bool = False
         self.unavailable_agent = 'r1'

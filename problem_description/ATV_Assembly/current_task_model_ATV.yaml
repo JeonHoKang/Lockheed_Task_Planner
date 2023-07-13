@@ -481,7 +481,7 @@ recovery-pick_new_engine:
     r1:
       id: det
       mean: 9
-recovery-redo:
+recovery-redo-engine:
   agent_model:
   - H
   duration_model:
@@ -542,5 +542,47 @@ recovery-pick_front_frame:
   - r1
   duration_model:
     r1:
+      id: det
+      mean: 9
+recovery-abort_task_pick_battery_assembly:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 9
+recovery-notify_human_for_new_part:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-wait_for_new_part:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-locate_new_part:
+  agent_model:
+  - r1
+  duration_model:
+    r1:
+      id: det
+      mean: 9
+recovery-notify_execution_monitor-pick_battery_assembly:
+  agent_model:
+  - H
+  duration_model:
+    H:
+      id: det
+      mean: 9
+recovery-pick_battery_assembly:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
       id: det
       mean: 9

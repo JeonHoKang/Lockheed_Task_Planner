@@ -47,7 +47,7 @@ children:
                     type: atomic
                     agent:
                     - r1
-                - id: recovery-redo
+                - id: recovery-redo-engine
                   type: atomic
                   agent:
                   - H
@@ -101,8 +101,40 @@ children:
         children:
         - id: p1_pick_battery_assembly
           type: atomic
-          agent:
+          agent: &id002
           - r2
+        - id: recovery-contingency_plan-p1_pick_battery_assembly
+          type: sequential
+          children:
+          - id: recovery-abort_task_pick_battery_assembly
+            type: atomic
+            agent: *id002
+          - id: recovery-trunk_skeleton_missing
+            type: sequential
+            children:
+            - id: recovery-notify_human_for_new_part
+              type: atomic
+              agent:
+              - r1
+            - id: recovery-new_trunk_skeleton
+              type: sequential
+              children:
+              - id: recovery-wait_for_new_part
+                type: atomic
+                agent:
+                - r1
+              - id: recovery-locate_new_part
+                type: atomic
+                agent:
+                - r1
+          - id: recovery-notify_execution_monitor-pick_battery_assembly
+            type: atomic
+            agent:
+            - H
+          - id: recovery-pick_battery_assembly
+            type: atomic
+            agent:
+            - r2
         - id: p1_place_battery_assembly
           type: atomic
           agent:

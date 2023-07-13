@@ -97,7 +97,10 @@ engine_leaking:
           - id: recovery-pick_new_engine
             type: atomic
             agent: ['r1']
-      - id: recovery-redo
+          - id: recovery-place_new_engine
+            type: atomic
+            agent: ['r1']
+      - id: recovery-redo-engine
         type: atomic
         agent: ['H']
 
