@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 
-import os
 import openai
 import yaml
-
+import json
 openai.api_key = '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'
 
 
@@ -11,40 +10,42 @@ class RecoveryGeneration:
     def __init__(self):
         self.dict = None
         print('___initialized GPT recovery Module____')
-        self.call_gpt()
-
+        self.user_prompt = input("input prompt: ")
+        self.call_gpt(self.user_prompt)
+        self.answer = None
     # def get_context(self, cont):
     # # def generate_prompt(self):
     # #     content =
     # #     return content
     # #
-    def call_gpt(self):
+    def call_gpt(self, user_prompt):
         """calls gpt model """
         prompt = self.import_prompt_yaml()
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-16k",
+            model="gpt-3.5-turbo-0613",
             messages=[
                 {"role": "system", "content": prompt},
-                {"role": "user", "content": input("input prompt")}
+                {"role": "user", "content": user_prompt}
                 # {"role": "user", "content": "Screw was stuck during screwing. Recover from failure"},
-
                 # {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
                 # {"role": "user", "content": "How do I recover from failure"}
                 #
             ],
 
         )
-        answer = response['choices'][0]['message']['content']
+        self.answer = response['choices'][0]['message']['content']
+        dict_answer = json.loads(self.answer)
         conv = {}
-        print(answer)
+        # print(answer)
         # recovery_action = eval(answer)
         # conv["answer"] = recovery_action
         # conv["content"] = prompt
 
         # print(recovery_action.items())
-
-        new_yaml = f'context: {prompt}\n so far you have generated: {answer}'
-        with open('prompt/recovery_generate.yaml', "w") as file:
+        new_yaml = dict_answer
+        print(dict_answer)
+        # new_yaml = f'context: {prompt}\n so far you have generated: {self.answer}'
+        with open(f'answer/{user_prompt}.yaml', "w") as file:
             yaml.safe_dump(new_yaml, file)
 
     def import_prompt_yaml(self):
