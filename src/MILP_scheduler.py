@@ -48,7 +48,7 @@ class HtnMilpScheduler:
         self.agent_team_model = {}
         self.multi_product_dict = {}
         self.initial_run = False
-        self.current_problem = "problem_description/ATV_Assembly/current_problem_description_ATV.yaml"
+        self.current_problem = "problem_description/LM2023_problem/current_problem_description_LM2023.yaml"
         if os.path.isfile(self.current_problem):
             self.initial_run = False
         else:
@@ -56,7 +56,7 @@ class HtnMilpScheduler:
         self.contingency = True
         if self.initial_run is True:
             self.contingency = False
-        self.contingency_name = 'p1_pick_rear_frame'
+        self.contingency_name = 'p1_Screw2_Top_P_C3'
         self.contingency_node = None
         self.unavailable_agent_bool = False
         self.unavailable_agent = 'r1'
@@ -82,9 +82,9 @@ class HtnMilpScheduler:
                 print(dict_e)
         if self.initial_run:
             self.current_problem_description = copy.deepcopy(self.problem_description)
-            self.current_problem_description["htn_model_id"] = "current_ATV_Assembly_Problem.yaml"
-            self.current_problem_description["task_model_id"] = "current_task_model_ATV.yaml"
-            TreeToolSet().dict_yaml_export(self.current_problem_description, self.problem_dir, "current_problem_description_ATV.yaml")
+            self.current_problem_description["htn_model_id"] = "current_LM2023_htn.yaml"
+            self.current_problem_description["task_model_id"] = "current_task_model_LM2023.yaml"
+            TreeToolSet().dict_yaml_export(self.current_problem_description, self.problem_dir, "current_problem_description_LM2023.yaml")
             
     def load_agent_model(self):
         """Loads agent model from yaml file"""
@@ -111,7 +111,7 @@ class HtnMilpScheduler:
                 print(e)
 
             if self.initial_run:
-                TreeToolSet().dict_yaml_export(task_model1, self.problem_dir, "current_task_model_ATV.yaml") # create current file for future
+                TreeToolSet().dict_yaml_export(task_model1, self.problem_dir, "current_task_model_LM2023.yaml") # create current file for future
             for product in range(self.num_products):
                 for i in range(len(task_model1)):
                     # just indexing how long this is
@@ -309,7 +309,7 @@ class HtnMilpScheduler:
                 # For multi-product formulation, we introduce a task root at the highest
                 # hiararchy
                 self.multi_product_htn = DictImporter().import_(self.multi_product_dict)
-            TreeToolSet().dict_yaml_export(self.multi_product_dict, self.problem_dir, "current_ATV_Assembly_Problem.yaml")
+            TreeToolSet().dict_yaml_export(self.multi_product_dict, self.problem_dir, "current_LM2023_htn.yaml")
         else:
             self.multi_product_htn = DictImporter().import_(self.dict) # to avoid duplicating p1
             self.multi_product_dict = self.dict
@@ -719,11 +719,11 @@ def main():
     """
     scheduler = HtnMilpScheduler()
     if scheduler.contingency:
-        scheduler.set_dir("problem_description/ATV_Assembly/")
-        scheduler.import_problem("current_problem_description_ATV.yaml")
+        scheduler.set_dir("problem_description/LM2023_problem/")
+        scheduler.import_problem("current_problem_description_LM2023.yaml")
     else:
-        scheduler.set_dir("problem_description/ATV_Assembly/")
-        scheduler.import_problem("problem_description_ATV.yaml")
+        scheduler.set_dir("problem_description/LM2023_problem/")
+        scheduler.import_problem("problem_description_LM2023.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------Initialized-------------')

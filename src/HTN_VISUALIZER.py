@@ -35,11 +35,11 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.parent_radio_options = ['sequential', 'parallel', 'independent'] 
         scheduler = MILP_scheduler.HtnMilpScheduler()
         
-        self.problem_dir = "problem_description/ATV_Assembly/"
+        self.problem_dir = "problem_description/LM2023_problem/"
         contingency_manger = ContingencyManager()
         contingency_name = contingency_manger.contingency_name
         scheduler.set_dir(self.problem_dir)
-        scheduler.import_problem("current_problem_description_ATV.yaml")
+        scheduler.import_problem("current_problem_description_LM2023.yaml")
         self.htn = scheduler.import_htn()
         # main htn dictionary
         self.htn_dict = scheduler.multi_product_dict # input
@@ -283,7 +283,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             parent_input_node_type = parent_node_type
             TreeToolSet().insert_element(self.htn_dict, target_id, parent_input_node_type,
                            user_new_node, order_child)
-            TreeToolSet().dict_yaml_export(self.htn_dict, self.problem_dir, "current_ATV_Assembly_Problem.yaml")
+            TreeToolSet().dict_yaml_export(self.htn_dict, self.problem_dir, "current_LM2023_htn.yaml")
             self.render_node_to_edges(self.htn_dict)
             self.g = Graph(self.n_vertices, self.edges)
             self.labels = []
@@ -309,7 +309,7 @@ class HTN_vis(QtWidgets.QMainWindow):
             # self.g.delete_edges(user_delete)
             TreeToolSet().delete_element(
                 self.htn_dict, self.id_seqence_list[user_delete]['id'])
-            TreeToolSet().dict_yaml_export(self.htn_dict, self.problem_dir, "current_ATV_Assembly_Problem.yaml")
+            TreeToolSet().dict_yaml_export(self.htn_dict, self.problem_dir, "current_LM2023_htn.yaml")
             self.render_node_to_edges(self.htn_dict)
             self.g = Graph(self.n_vertices, self.edges)
             self.labels = []
@@ -323,13 +323,13 @@ class HTN_vis(QtWidgets.QMainWindow):
 
     def add_task_model(self):
         if self.child_node_type == 'atomic':
-            with open("problem_description/ATV_Assembly/currents_task_model_ATV.yaml", "r") as file:
+            with open("problem_description/LM2023_problem/current_task_model_LM2023.yaml", "r") as file:
                 task_model_dict = yaml.safe_load(file)
                 print(task_model_dict)
                 task_model_dict[self.label.text()] = {'agent_model': [self.agent_type.text()], 'duration_model': {}}
                 task_model_dict[self.label.text()]['duration_model'][self.agent_type.text()] = {'id': 'det', 'mean': int(self.agent_duration.text())}
             print(task_model_dict)
-            TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "current_task_model_ATV.yaml")
+            TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "current_task_model_LM2023.yaml")
     
 def main():
     app = QtWidgets.QApplication(sys.argv)

@@ -17,7 +17,7 @@ class ContingencyManager:
     def __init__(self):
         super().__init__()
         self.contingency = True # set whether contingency has occured
-        self.contingency_name = 'p1_pick_battery_assembly'
+        self.contingency_name = 'p1_Screw2_Top_P_C3'
         # self.contingency_name = 'p1_fasten_bolt_on_main_body_to_handle1'
     def set_problem_dir(self, directory):
         self.problem_dir = directory
@@ -49,18 +49,13 @@ class ContingencyManager:
         second_merged_policy = {}
         third_merged_policy = {}
         check_different_constraint = []
-        # contingency_list = ["broken_upper_body_frame", "engine_leaking", "rear_left_wheel_screw1_stuck"]
-        # contingency_list = ["trunk_skeleton_missing", "engine_leaking", "rear_left_wheel_screw1_stuck"] 
-        # contingency_list = ["handle_bolt3_missing", "engine_leaking", "defective_front_right_wheel"]            
-        # contingency_list = ["broken_upper_body_frame", "engine_leaking", "defective_front_right_wheel"]            
-        # contingency_list = ["handle_bolt3_missing", "rear_left_wheel_screw1_stuck"]
-        contingency_list = ["trunk_skeleton_missing"]
+        contingency_list = ["screw_stuck"]
         contingency_planning_node['id'] = f'recovery-contingency_plan-{self.contingency_name}'
         contingency_planning_node['type'] = 'sequential'
         contingency_planning_node['children'] = []
         enm_notification_node['id'] = f'recovery-notify_execution_monitor-{contingency_node["id"][3:]}'
         enm_notification_node['type'] = 'atomic'
-        enm_notification_node['agent'] = ['H']
+        enm_notification_node['agent'] = ['H1']
         # abort current task is to free and abort from the node that does not add value to the assembly
         abort_current_task['id'] = f'recovery-abort_task_{contingency_node["id"][3:]}'
         abort_current_task['type'] = 'atomic'
@@ -212,18 +207,18 @@ class ContingencyManager:
     def yaml_export(self,htn_dict, contingency_plan):
 
         # Save the updated data to the YAML file
-        with open("problem_description/ATV_Assembly/current_problem_description_ATV.yaml", "r") as file:
+        with open("problem_description/LM2023_problem/current_problem_description_LM2023.yaml", "r") as file:
             yaml_dict = yaml.safe_load(file)
             yaml_dict['num_tasks'] = yaml_dict['num_tasks'] + \
                 len(contingency_plan['children'])-1
             yaml_dict['agents'] = yaml_dict['agents']
-            yaml_dict['task_model_id'] = 'current_task_model_ATV.yaml'
-            yaml_dict['htn_model_id'] = 'current_ATV_Assembly_Problem.yaml'
-        TreeToolSet().safe_dict_yaml_export(htn_dict, self.problem_dir, "current_ATV_Assembly_Problem.yaml")
-        TreeToolSet().safe_dict_yaml_export(yaml_dict, self.problem_dir, "current_problem_description_ATV.yaml")
+            yaml_dict['task_model_id'] = 'current_task_model_LM2023.yaml'
+            yaml_dict['htn_model_id'] = 'current_LM2023_htn.yaml'
+        TreeToolSet().safe_dict_yaml_export(htn_dict, self.problem_dir, "current_LM2023_htn.yaml")
+        TreeToolSet().safe_dict_yaml_export(yaml_dict, self.problem_dir, "current_problem_description_LM2023.yaml")
 
     def generate_task_model(self, contingency_task_plan):
-        with open("problem_description/ATV_Assembly/current_task_model_ATV.yaml", "r") as file:
+        with open("problem_description/LM2023_problem/current_task_model_LM2023.yaml", "r") as file:
             task_model_dict = yaml.safe_load(file)
             contingency_plan_anytree = DictImporter().import_(contingency_task_plan)
             contingency_leaf = list(anytree.PostOrderIter(contingency_plan_anytree, filter_=lambda node: node.is_leaf))
@@ -233,13 +228,13 @@ class ContingencyManager:
                     for agent in task_nodes.agent:
                         task_model_dict[task_nodes.id]['duration_model'] = {
                             agent: {'id': 'det', 'mean': 9}}
-        TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "current_task_model_ATV.yaml")
+        TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "current_task_model_LM2023.yaml")
     
 
 def main():
     scheduler = MILP_scheduler.HtnMilpScheduler() # imports scheduler
-    problem_dir = "problem_description/ATV_Assembly/"
-    problem = "current_problem_description_ATV.yaml"
+    problem_dir = "problem_description/LM2023_problem/"
+    problem = "current_problem_description_LM2023.yaml"
     policies_file = "contingency_policies.yaml"
     scheduler.set_dir(problem_dir)
     scheduler.import_problem(problem)

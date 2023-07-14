@@ -38,7 +38,7 @@ children:
                 type: atomic
                 agent: &id001
                 - r3
-              - id: recovery-contingency_plan
+              - id: recovery-contingency_plan-p1_Screw2_Top_P_C3
                 type: sequential
                 children:
                 - id: recovery-abort_task_Screw2_Top_P_C3
@@ -54,10 +54,10 @@ children:
                       type: atomic
                       agent:
                       - r3
-                - id: recovery-notify_execution_monitor
+                - id: recovery-notify_execution_monitor-Screw2_Top_P_C3
                   type: atomic
                   agent:
-                  - H
+                  - H1
                 - id: recovery-Screw2_Top_P_C3
                   type: atomic
                   agent:
