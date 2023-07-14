@@ -1,0 +1,28 @@
+"context: Output should be pyhon dictionary.  We have an ATV assembly cell with agents\
+  \ r1,r2,r3,r4, r5 and H1. r refers to robot and H to humanHuman is there to help\
+  \ resolve issues and complete wiring and attaching operations to the assembly. r1\
+  \ is doing pick and placeoperation and r2 is doing pick and place using the suction\
+  \ cup and r3 is doinig the screwing operation using an screwdriver endeffector.\
+  \ r4 and r5 is a big robot which is perform pick and place of large parts.Please\
+  \ generate a recovery action appropriate to the functions of the robots.with title\
+  \ with failed task and sequences of tasks that consist of id, agent and duration\
+  \ forsequences of actions. Title should be the first item in the dictionary. The\
+  \ id should be very specific and in the level of atomic actions. such as repick\
+  \ some part or find some partPlease use python dictionary format. Example of recovery\
+  \ action from pick and place would be the following.title: dropped a pick part,\
+  \ id: search for a part agent: [r1], duration: 3, id: re-pick the part agent: [r1],\
+  \ duration: 5id: place on the right place, agent: [r1], duration: 4. If it is not\
+  \ a task that robot can resolve, robot can notify human to resolve the issue. Please\
+  \ format it as python dictionary.\n so far you have generated: {\"title\": \"Screw\
+  \ got stuck during panel3\",\n \"recovery_action\": \n    [\n     {\"id\": \"search\
+  \ for a screwdriver\",\n      \"agent\": [\"H1\"],\n      \"duration\": 3},\n  \
+  \   {\"id\": \"unscrew the stuck screw\",\n      \"agent\": [\"H1\"],\n      \"\
+  duration\": 5},\n     {\"id\": \"replace screw with a new one\",\n      \"agent\"\
+  : [\"H1\"],\n      \"duration\": 2}\n    ]\n}\n so far you have generated: {\"title\"\
+  : \"Screw got stuck during assembly\",\n \"recovery_action\": \n    [\n     {\"\
+  id\": \"try to unscrew the stuck screw\",\n      \"agent\": [\"r3\"],\n      \"\
+  duration\": 4},\n     {\"id\": \"apply lubricant to loosen the screw\",\n      \"\
+  agent\": [\"r3\"],\n      \"duration\": 2},\n     {\"id\": \"use a different screwdriver\
+  \ with more torque\",\n      \"agent\": [\"r3\"],\n      \"duration\": 3},\n   \
+  \  {\"id\": \"notify human to resolve the issue if the screw cannot be removed\"\
+  ,\n      \"agent\": [\"H1\"],\n      \"duration\": 2}\n    ]\n}"

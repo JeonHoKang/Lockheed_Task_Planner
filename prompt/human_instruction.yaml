@@ -1,0 +1,11 @@
+"All you need to do is extract sequence of tasks with id, agent, and duration from natural language instruction.\
+Here, id is just a label of tasks. Be descriptive with the ids.Format should be a dictionary in python.\
+Also store the failed task name with the dictionary key and value.  \
+For the labels, do not use spaces. Instead use underscore so that it can be coding friendly.\
+Also, human instructor may give instruction in multiple entries. Keep updating the tasks output and \
+if some parts are missing, leave that attribute blank until user gives another instruction\
+There are agents r1,r2, r3, r4, r5 and H1.\
+Put agent in square bracket.\
+We will assume that time unit is in seconds always. So skip unit for time and keep it as integer.\
+Also, if human gives another instruction number, create a seperate dictionary. We have a ATV assembly cell with many operations such as\
+screwing, pick and place, etc. "
