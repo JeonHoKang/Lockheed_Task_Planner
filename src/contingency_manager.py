@@ -162,7 +162,7 @@ class ContingencyManager:
                 while deeper_node.is_root != True: # check each one of the parent of deeper node
                     if deeper_node.parent.id == ancestor.id: # if found
                         flag = True # flag that will break all loops
-                        source_node = deeper_node.parent # check for commmon parent and check for its type
+                        source_node = deeper_node.parent # check for common parent and check for its type
                         source_child_node = source_node.children
                     deeper_node = deeper_node.parent
                 deeper_node = reset_to_original

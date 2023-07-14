@@ -4,7 +4,7 @@ import openai
 import yaml
 import json
 openai.api_key = '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'
-
+from MILP_scheduler import HtnMilpScheduler
 
 class RecoveryGeneration:
     def __init__(self):
@@ -20,13 +20,14 @@ class RecoveryGeneration:
     # #
     def call_gpt(self, user_prompt):
         """calls gpt model """
+        scheduler = HtnMilpScheduler()
         prompt = self.import_prompt_yaml()
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-0613",
             messages=[
                 {"role": "system", "content": prompt},
-                {"role": "user", "content": user_prompt}
-                # {"role": "user", "content": "Screw was stuck during screwing. Recover from failure"},
+                {"role": "user", "content": user_prompt},
+                {"role": "user", "content": f'{scheduler.multi_product_dict}'},
                 # {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
                 # {"role": "user", "content": "How do I recover from failure"}
                 #
@@ -46,7 +47,7 @@ class RecoveryGeneration:
         print(dict_answer)
         # new_yaml = f'context: {prompt}\n so far you have generated: {self.answer}'
         with open(f'answer/{user_prompt}.yaml', "w") as file:
-            yaml.safe_dump(new_yaml, file)
+            yaml.dump(new_yaml, file)
 
     def import_prompt_yaml(self):
         """
