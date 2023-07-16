@@ -28,7 +28,10 @@ class HtnMilpScheduler:
     """
     Uses MILP to generate schedule
     """
+
     def __init__(self) -> None:
+        self.task_object = None
+        self.current_problem_description = None
         self.multi_product_htn = None
         self.all_diff_constraints = []
         self.model = None
@@ -84,8 +87,9 @@ class HtnMilpScheduler:
             self.current_problem_description = copy.deepcopy(self.problem_description)
             self.current_problem_description["htn_model_id"] = "current_ATV_Assembly_Problem.yaml"
             self.current_problem_description["task_model_id"] = "current_task_model_ATV.yaml"
-            TreeToolSet().dict_yaml_export(self.current_problem_description, self.problem_dir, "current_problem_description_ATV.yaml")
-            
+            TreeToolSet().dict_yaml_export(self.current_problem_description, self.problem_dir,
+                                           "current_problem_description_ATV.yaml")
+
     def load_agent_model(self):
         """Loads agent model from yaml file"""
         agents = self.problem_description['agents']
@@ -111,34 +115,34 @@ class HtnMilpScheduler:
                 print(e)
 
             if self.initial_run:
-                TreeToolSet().dict_yaml_export(task_model1, self.problem_dir, "current_task_model_ATV.yaml") # create current file for future
+                TreeToolSet().dict_yaml_export(task_model1, self.problem_dir,
+                                               "current_task_model_ATV.yaml")  # create current file for future
             for product in range(self.num_products):
                 for i in range(len(task_model1)):
                     # just indexing how long this is
-                    cur_leaf_node = (product) * \
-                        len(task_model1)+(i+1)
+                    cur_leaf_node = product * \
+                                    len(task_model1) + (i + 1)
                     if cur_leaf_node <= len(task_model1):
                         if list_task_model[i][:8] == 'recovery':
                             task_model[list_task_model[i]] = {}
                         else:
                             task_model['p1_' +
-                                        list_task_model[i]] = {}
+                                       list_task_model[i]] = {}
                     elif cur_leaf_node > len(task_model1):
                         if list_task_model[i][:8] == 'recovery':
                             task_model[list_task_model[i]] = {}
                         else:
                             task_model['p{}_'.format(
-                                product+1)+list_task_model[i]] = {}
+                                product + 1) + list_task_model[i]] = {}
             for i in range(self.num_products):
                 for c, agents in enumerate(task_model1):
-                    task_model_index = (c+1)+len(task_model1)*(i)
+                    task_model_index = (c + 1) + len(task_model1) * i
                     if list_task_model[c][:8] == 'recovery':
                         task_model[list_task_model[c]
-                                    ] = task_model1[list_task_model[c]]
+                        ] = task_model1[list_task_model[c]]
                     else:
-                        task_model["p{}_".format(i+1)
-                                    + list_task_model[c]] = task_model1[list_task_model[c]]
-
+                        task_model["p{}_".format(i + 1)
+                                   + list_task_model[c]] = task_model1[list_task_model[c]]
 
         self.task_object = self.create_task_object(task_model)
 
@@ -200,8 +204,8 @@ class HtnMilpScheduler:
         # fig.set_figheight(10)
         # fig.set_figwidth(500``)
         # Setting ticks on y-axis
-        for i in range(int(x_limit/x_step)):
-            xticks.append(i*x_step)
+        for i in range(int(x_limit / x_step)):
+            xticks.append(i * x_step)
         gnt.set_xticks(xticks)
 
         # Labelling tickes of y-axis
@@ -218,28 +222,27 @@ class HtnMilpScheduler:
                 for task, (start, end) in assignment.items():
                     if color_idx >= 9:
                         color_idx = 0
-                    duration = end-start
-                    gnt.broken_barh([(start, duration)], (10*(c+1), 9),
+                    duration = end - start
+                    gnt.broken_barh([(start, duration)], (10 * (c + 1), 9),
                                     facecolors=(list_colors[color_idx]))
                     font_size = 6
-                    gnt.text((start+end)/2, 10*(c+1)+4.5,
-                             f'T{task_index}', ha='center', va='center',fontsize=font_size)
-                    
+                    gnt.text((start + end) / 2, 10 * (c + 1) + 4.5,
+                             f'T{task_index}', ha='center', va='center', fontsize=font_size)
 
                     list_labels.append(task)
                     task_index += 1
                     color_idx += 1
             # append to the y ticks
             list_ytick_labels.append(agent)
-            list_yticks.append(first_y_tick+y_tick_gap*c)
+            list_yticks.append(first_y_tick + y_tick_gap * c)
 
         gnt.set_title('Task Assignment')
         # se final ytick
-        list_yticks.append(first_y_tick+y_tick_gap*len(list_ytick_labels))
+        list_yticks.append(first_y_tick + y_tick_gap * len(list_ytick_labels))
         gnt.set_yticklabels(list_ytick_labels)
         gnt.set_yticks(list_yticks)
         # Setting Y-axis limits
-        gnt.set_ylim(0, list_yticks[len(list_yticks)-1])
+        gnt.set_ylim(0, list_yticks[len(list_yticks) - 1])
 
         listbox_frame = ttk.Frame(frame)
         listbox_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
@@ -258,7 +261,7 @@ class HtnMilpScheduler:
         scrollbar2.config(command=listbox.xview)
 
         for i, label in enumerate(list_labels):
-            listbox.insert(tk.END, f"{i+1}: {label}")
+            listbox.insert(tk.END, f"{i + 1}: {label}")
         canvas = FigureCanvasTkAgg(fig, master=frame)
         canvas.draw()
         scrollbar_canvas = tk.Scrollbar(
@@ -268,14 +271,16 @@ class HtnMilpScheduler:
                                     expand=True)
         scrollbar_canvas.pack(fill=tk.X, side=tk.BOTTOM)
         canvas.get_tk_widget().configure(scrollregion=canvas.get_tk_widget().bbox("all"))
-        
+
         if self.initial_run:
             plt.savefig("gant.png")
         else:
             plt.savefig("current_gant.png")
+
         # Add the Scrollbar to the window
         def on_window_close():
-            window.quit()       
+            window.quit()
+
         window.protocol("WM_DELETE_WINDOW", on_window_close)
         window.mainloop()
 
@@ -304,14 +309,16 @@ class HtnMilpScheduler:
             self.multi_product_dict['children'] = []
             for p in range(num_products):
                 product_htn = copy.deepcopy(self.dict)
-                edit_tree(product_htn, p+1)
+                edit_tree(product_htn, p + 1)
                 self.multi_product_dict['children'].append(product_htn)
                 # For multi-product formulation, we introduce a task root at the highest
                 # hiararchy
                 self.multi_product_htn = DictImporter().import_(self.multi_product_dict)
-            TreeToolSet().dict_yaml_export(self.multi_product_dict, self.problem_dir, "current_ATV_Assembly_Problem.yaml")
+
+            TreeToolSet().dict_yaml_export(self.multi_product_dict, self.problem_dir,
+                                           "current_ATV_Assembly_Problem.yaml")
         else:
-            self.multi_product_htn = DictImporter().import_(self.dict) # to avoid duplicating p1
+            self.multi_product_htn = DictImporter().import_(self.dict)  # to avoid duplicating p1
             self.multi_product_dict = self.dict
         if print_htn:
             print(RenderTree(self.multi_product_htn))
@@ -388,7 +395,7 @@ class HtnMilpScheduler:
                     atomic_action_groups.append([node_child])
                     for i in range(self.num_products):
                         # Meaning it is the first product
-                        if node_child.id[1:2] == str(i+1):
+                        if node_child.id[1:2] == str(i + 1):
                             atomic_action_groups1[i].append(
                                 node_child)
                 else:
@@ -412,12 +419,12 @@ class HtnMilpScheduler:
             if k == 0:  # and skip 0 to check only once
                 continue
             else:
-                for j in range(self.num_products+multi_product_index):
+                for j in range(self.num_products + multi_product_index):
                     if j == 0:  # and skip 0 to check only once
                         continue
                     else:
                         self.generate_multiproduct_task_contrasints(
-                            atomic_action_groups1[k-1], atomic_action_groups1[k-1+j])
+                            atomic_action_groups1[k - 1], atomic_action_groups1[k - 1 + j])
                 multi_product_index -= 1
 
     def set_dependencies_by_dfs(self, start):
@@ -442,13 +449,13 @@ class HtnMilpScheduler:
 
     def set_dependencies_infeasible(self, node):
         list_siblings = list(node.parent.children)
-        idx = list_siblings.index(node)+1
+        idx = list_siblings.index(node) + 1
         parent = node.parent
         child = node
         while parent.is_root != True:
             if parent.type == 'sequential':
                 parent_siblings = list(parent.children)
-                parent_idx = parent_siblings.index(child)+1
+                parent_idx = parent_siblings.index(child) + 1
                 for element in parent_siblings[parent_idx:len(parent_siblings)]:
                     if element.id == "contingency_plan":
                         continue
@@ -523,7 +530,8 @@ class HtnMilpScheduler:
             for agent in agent_teams:
                 if agent not in task_object[task].agent_id:
                     continue
-                if self.agent_team_model[agent].agent_state == 'available' and self.task_object[task].task_state == 'unattempted':
+                if self.agent_team_model[agent].agent_state == 'available' and self.task_object[
+                    task].task_state == 'unattempted':
                     agent_decision_variables[agent][task] = self.model.NewBoolVar(
                         'x' + agent + '[' + task + ']')
         # Create Start End Duration Interval Variables
@@ -538,7 +546,7 @@ class HtnMilpScheduler:
             dur = 0
             for agent, agent_dur_model in self.task_object[task].duration_model.items():
                 task_dur = max(dur, agent_dur_model['mean'])
-            self.horizon = self.horizon+task_dur
+            self.horizon = self.horizon + task_dur
 
         # Task varriables
         for task in task_object.keys():
@@ -565,13 +573,17 @@ class HtnMilpScheduler:
                 if self.task_object[task].task_state != 'unattempted':
                     continue
                 agent_dur_constraints[agent][task] = self.model.Add(
-                    self.task_object[task].duration_model[agent]['mean'] == duration).OnlyEnforceIf(agent_decision_variables[agent][task])
+                    self.task_object[task].duration_model[agent]['mean'] == duration).OnlyEnforceIf(
+                    agent_decision_variables[agent][task])
                 agent_start_vars[agent][task] = self.model.NewIntVar(
                     0, self.horizon, 'start_on_' + task + agent)
                 agent_end_vars[agent][task] = self.model.NewIntVar(
                     0, self.horizon, 'end_on_' + task + agent)
-                agent_interval_vars[agent][task] = self.model.NewOptionalIntervalVar(agent_start_vars[agent][task], duration, agent_end_vars[agent][task],
-                                                                                     agent_decision_variables[agent][task],
+                agent_interval_vars[agent][task] = self.model.NewOptionalIntervalVar(agent_start_vars[agent][task],
+                                                                                     duration,
+                                                                                     agent_end_vars[agent][task],
+                                                                                     agent_decision_variables[agent][
+                                                                                         task],
                                                                                      'interval_on_' + task + agent)
 
                 self.model.Add(agent_start_vars[agent][task] == start).OnlyEnforceIf(
@@ -593,7 +605,7 @@ class HtnMilpScheduler:
         self.makespan = t
         self.model.AddMaxEquality(t, ends)
         self.model.Add(s == sum(starts))
-        self.model.Add(o == 10*t+s)
+        self.model.Add(o == 10 * t + s)
         self.objective = o
         self.makespan = t
 
@@ -601,7 +613,8 @@ class HtnMilpScheduler:
         self.model.Minimize(o)
         for task in self.task_object.keys():
             for agent in self.task_object[task].agent_id:
-                if self.task_object[task].task_state != 'unattempted' or self.agent_team_model[agent].agent_state != 'available':
+                if self.task_object[task].task_state != 'unattempted' or self.agent_team_model[
+                    agent].agent_state != 'available':
                     continue
                 else:
                     self.all_diff_constraints.append(self.model.Add(sum(
@@ -640,10 +653,12 @@ class HtnMilpScheduler:
                     val = agent_id
                     self.task_id.append(task_id)
                     t_assignment[val][task_id] = {}
-                    t_assignment[val][task_id]["StarttoEnd"] = list([solver.Value(self.task_start_vars[task_id]), solver.Value(
-                        self.task_end_vars[task_id])])
-                    visual_t_assignment[val].append({task_id: (solver.Value(self.task_start_vars[task_id]), solver.Value(
-                        self.task_end_vars[task_id]))})
+                    t_assignment[val][task_id]["StarttoEnd"] = list(
+                        [solver.Value(self.task_start_vars[task_id]), solver.Value(
+                            self.task_end_vars[task_id])])
+                    visual_t_assignment[val].append(
+                        {task_id: (solver.Value(self.task_start_vars[task_id]), solver.Value(
+                            self.task_end_vars[task_id]))})
                 prev_task = task_id
         sorted_t_assignment = {}
         for agent in self.agent_id:
@@ -667,7 +682,7 @@ class HtnMilpScheduler:
                     i += 1
             if schedule_yaml[agent] == {}:
                 schedule_yaml[agent] = 'None Scheduled yet'
-                
+
         if self.initial_run:
             TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "initial_visualize_helper_text.yaml")
         else:
@@ -691,11 +706,12 @@ class HtnMilpScheduler:
             for count, assign in enumerate(assignment):
                 for task, (start, end) in assign.items():
                     schedule_yaml.append({
-                        'task_id': task, 'agent': agent, 'agent_specific_order': count+1, 'sequential_dependencies': '', 'start': start, 'end': end})
+                        'task_id': task, 'agent': agent, 'agent_specific_order': count + 1,
+                        'sequential_dependencies': '', 'start': start, 'end': end})
 
         schedule_yaml = sorted(
             schedule_yaml, key=lambda x: x['start'])
-        
+
         prev_schedule = None
         for i, schedule in enumerate(schedule_yaml):
             if prev_schedule is None:
@@ -704,13 +720,10 @@ class HtnMilpScheduler:
                 schedule['sequential_dependencies'] = prev_schedule['task_id']
                 prev_schedule = schedule_yaml[i]
 
-        print(schedule_yaml)
-
         if self.initial_run:
             TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "initial_task_allocation.yaml")
         else:
             TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "current_task_allocation.yaml")
-                
 
 
 def main():
