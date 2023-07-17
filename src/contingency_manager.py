@@ -12,7 +12,6 @@ from tree_toolset import TreeToolSet
 class ContingencyManager:
     """
     Alters HTN to handle contingencies reactively.
-
     """
     def __init__(self):
         super().__init__()
@@ -40,27 +39,25 @@ class ContingencyManager:
     def geneate_contingency_plan(self, anytree_htn, contingency_node):
         contingency_planning_node = {}
         dict_policies = self.policies_dict
+        cont_node_parent = False
         current_contingency_policy = {}
         contingency_policy_list = []
         enm_notification_node = {}
         abort_current_task = {}
-        operations_list  = set()
+        finish_current_task = {}
+        operations_list = set()
         merged_policy = {}
         second_merged_policy = {}
         third_merged_policy = {}
         check_different_constraint = []
         contingency_list = ["screw_stuck"]
-        contingency_planning_node['id'] = f'recovery-contingency_plan-{self.contingency_name}'
+        contingency_planning_node['id'] = f'recovery-contingency_action-{self.contingency_name}'
         contingency_planning_node['type'] = 'sequential'
         contingency_planning_node['children'] = []
         enm_notification_node['id'] = f'recovery-notify_execution_monitor-{contingency_node["id"][3:]}'
         enm_notification_node['type'] = 'atomic'
         enm_notification_node['agent'] = ['H1']
-        # abort current task is to free and abort from the node that does not add value to the assembly
-        abort_current_task['id'] = f'recovery-abort_task_{contingency_node["id"][3:]}'
-        abort_current_task['type'] = 'atomic'
-        abort_current_task['agent'] = contingency_node['agent']
-        contingency_planning_node['children'].append(abort_current_task)
+
         operation_policy_pair = {}
         for cont in contingency_list:
             current_contingency_policy = dict_policies[cont]
@@ -69,7 +66,7 @@ class ContingencyManager:
             operations_list.add(current_operation_id)
             operation_policy_pair[current_operation_id] = current_contingency_policy['policy']
         contingency_product = self.search_anytree_node(anytree_htn, operations_list) # get Anynode object of the operation
-        if len(contingency_list) > 2: # if it is an occurance of multi-layer contingency
+        if len(contingency_list) > 2:
             policy_in_order = self.search_hierarchy(anytree_htn, contingency_product)
             prev_parent_policy = None
             prev_policy_pair = None
@@ -92,7 +89,8 @@ class ContingencyManager:
                 merged_policy['id'] = f'recovery-{policy_in_order[2]["parent"].id}'
                 merged_policy['type'] = policy_in_order[2]["parent"].type
                 merged_policy['children'] = [second_merged_policy]
-                merged_policy["children"].append(operation_policy_pair[policy_in_order[len(policy_in_order)-1]["policies"][1].id[3:]])
+                merged_policy["children"].append(operation_policy_pair[policy_in_order[len(policy_in_order)-1][
+                                                                           'policies'][1].id[3:]])
             elif check_different_constraint[0] == True and check_different_constraint[1] == False:
                 merged_policy['id'] = f'recovery-{policy_in_order[0]["parent"].id[3:]}'
                 merged_policy['type'] = policy_in_order[0]["parent"].type
@@ -118,7 +116,26 @@ class ContingencyManager:
             for item in contingency_policy_list:
                 if contingency_product[0].id[3:] == item['operation_id']:
                     merged_policy = item['policy']
-
+        # Determine whether this task will add value or not add value by
+        # Check if the contingency node and the current task are sequentially constraint
+        anytree_contingency_node = self.search_anytree_node(anytree_htn, [contingency_node['id'][3:]])
+        for product in contingency_product:
+            common_parent = self.check_for_common_parent(anytree_contingency_node[0], product)
+            if common_parent.type == 'sequential':
+                cont_node_parent = True
+            else:
+                cont_node_parent - False
+        if contingency_node["id"][3:] == item["operation_id"] or cont_node_parent:
+            # if yes abort task
+            abort_current_task['id'] = f'recovery-abort_task_{contingency_node["id"][3:]}'
+            abort_current_task['type'] = 'atomic'
+            abort_current_task['agent'] = contingency_node['agent']
+            contingency_planning_node['children'].append(abort_current_task)
+        else: # if no finish the task first and then move onto resolving the contingency
+            finish_current_task['id'] = f'recovery-complete_current_task_{contingency_node["id"][3:]}'
+            finish_current_task['type'] = 'atomic'
+            finish_current_task['agent'] = contingency_node['agent']
+            contingency_planning_node['children'].append(finish_current_task)
         contingency_planning_node['children'].append(merged_policy)
         original_task = copy.deepcopy(contingency_node)
         original_task['id'] = 'recovery-' + contingency_node['id'][3:]
@@ -134,7 +151,25 @@ class ContingencyManager:
                 if descent.id[3:] == task:
                     contingency_product.append(descent)
         return contingency_product
-    
+
+    def check_for_common_parent(self, node1, node2):
+        flag = False  # found flag to break out of the loop
+        shallower_node = node1
+        deeper_node = node2
+        reset_to_original = copy.deepcopy(deeper_node)
+        # for each ancestors of the higher node
+        for ancestor in list(reversed(shallower_node.ancestors)):  # is revered because of ordering from lower to high
+            while deeper_node.is_root != True:  # check each one of the parent of deeper node
+                if deeper_node.parent.id == ancestor.id:  # if found
+                    flag = True  # flag that will break all loops
+                    source_node = deeper_node.parent  # check for commmon parent and check for its type
+                    source_child_node = source_node.children
+                deeper_node = deeper_node.parent
+            deeper_node = reset_to_original
+            if flag:  # if found then also break the for loop
+                break
+        return source_node
+
     def search_hierarchy(self, anytree_htn, contingency_product):
         """ Checks the type of common parent shared by multiple contingency"""
         def check_in_order_dfs(node, target_names, result_list):
@@ -147,23 +182,7 @@ class ContingencyManager:
             if node in target_names:
                 result_list.append(node)
             
-        def check_for_common_parent(node1, node2):
-            flag = False # found flag to break out of the loop
-            shallower_node = node1
-            deeper_node = node2
-            reset_to_original = copy.deepcopy(deeper_node)
-            # for each ancestors of the higher node
-            for ancestor in list(reversed(shallower_node.ancestors)): # is revered because of ordering from lower to high
-                while deeper_node.is_root != True: # check each one of the parent of deeper node
-                    if deeper_node.parent.id == ancestor.id: # if found
-                        flag = True # flag that will break all loops
-                        source_node = deeper_node.parent # check for commmon parent and check for its type
-                        source_child_node = source_node.children
-                    deeper_node = deeper_node.parent
-                deeper_node = reset_to_original
-                if flag: # if found then also break the for loop
-                    break
-            return source_node
+
         # common_parent_list = set()
         joined_policy_list = []
         original_node = []
@@ -178,7 +197,7 @@ class ContingencyManager:
         for i in range(len(contingency_in_order)):
             for j in range(i+1, len(contingency_in_order)):
                 joined_policy = {}
-                parent_node = check_for_common_parent(contingency_in_order[i],contingency_in_order[j])
+                parent_node = self.check_for_common_parent(contingency_in_order[i],contingency_in_order[j])
                 joined_policy['policies'] = [contingency_in_order[i],contingency_in_order[j]]
                 joined_policy['parent'] = parent_node
                 print(f'{i}--->{j}{joined_policy["parent"].type}')
@@ -186,15 +205,37 @@ class ContingencyManager:
 
         return joined_policy_list
 
-    def Add_Handle_Node(self, htn_dictionary, failed_task, contingency_plan):
+    # def Add_Handle_Node(self, htn_dictionary, failed_task, contingency_plan):
+    #     """Adds the handling nodes into the current contingency"""
+    #     def insert_element(dictionary, failed_task, contingency_plan, parent=None):
+    #         target_node = failed_task
+    #         if dictionary['id'] == target_node['id']:
+    #             input_order_number = parent['children'].index(target_node)
+    #             input_order_number += 1
+    #             parent['children'].insert(
+    #                 input_order_number, contingency_plan)
+    #         else:
+    #             if 'children' in dictionary:
+    #                 for child in dictionary['children']:
+    #                     parent = dictionary
+    #                     insert_element(child, failed_task,
+    #                                    contingency_plan, parent)
+    #     insert_element(htn_dictionary, failed_task,
+    #                    contingency_plan)
+
+    def split_contingency_and_normal(self, htn_dictionary, failed_task, contingency_plan ):
         """Adds the handling nodes into the current contingency"""
         def insert_element(dictionary, failed_task, contingency_plan, parent=None):
             target_node = failed_task
             if dictionary['id'] == target_node['id']:
-                input_order_number = parent['children'].index(target_node)
-                input_order_number += 1
-                parent['children'].insert(
-                    input_order_number, contingency_plan)
+                sub_parent = {'id': 'contingency_action', 'type': 'sequential', 'children': []}
+                sub_parent2 = {'id': 'regular_operations', 'type': parent['type']}
+                parent['type'] = 'sequential'
+                parent['children'].remove(target_node)
+                sub_parent2['children'] = copy.deepcopy(parent['children'])
+                sub_parent['children'].append(target_node)
+                sub_parent['children'].append(contingency_plan)
+                parent['children'] = [sub_parent, sub_parent2]
             else:
                 if 'children' in dictionary:
                     for child in dictionary['children']:
@@ -203,7 +244,6 @@ class ContingencyManager:
                                        contingency_plan, parent)
         insert_element(htn_dictionary, failed_task,
                        contingency_plan)
-
     def yaml_export(self,htn_dict, contingency_plan):
 
         # Save the updated data to the YAML file
@@ -249,7 +289,7 @@ def main():
     contingency_node = TreeToolSet().search_tree(
         htn_dict, contingency_name)
     contingency_plan = contingency_handling.geneate_contingency_plan(product_htn_anytree,contingency_node)
-    contingency_handling.Add_Handle_Node(
+    contingency_handling.split_contingency_and_normal(
         htn_dict, contingency_node, contingency_plan)
     contingency_handling.generate_task_model(contingency_plan) # export task_model to yaml file
     contingency_handling.yaml_export(htn_dict, contingency_plan) # Export yaml file

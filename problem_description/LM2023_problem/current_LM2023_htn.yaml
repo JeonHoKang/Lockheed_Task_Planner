@@ -36,32 +36,8 @@ children:
                 - r3
               - id: p1_Screw2_Top_P_C3
                 type: atomic
-                agent: &id001
+                agent:
                 - r3
-              - id: recovery-contingency_plan-p1_Screw2_Top_P_C3
-                type: sequential
-                children:
-                - id: recovery-abort_task_Screw2_Top_P_C3
-                  type: atomic
-                  agent: *id001
-                - id: recovery-screw_stuck
-                  type: sequential
-                  children:
-                  - id: recovery-unscrew_operation
-                    type: parallel
-                    children:
-                    - id: recovery-unscrew_rear_left_wheel_screw1
-                      type: atomic
-                      agent:
-                      - r3
-                - id: recovery-notify_execution_monitor-Screw2_Top_P_C3
-                  type: atomic
-                  agent:
-                  - H1
-                - id: recovery-Screw2_Top_P_C3
-                  type: atomic
-                  agent:
-                  - r3
               - id: p1_Screw3_Top_P_C3
                 type: atomic
                 agent:

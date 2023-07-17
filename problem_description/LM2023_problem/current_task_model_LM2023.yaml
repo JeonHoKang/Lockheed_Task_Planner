@@ -845,31 +845,3 @@ Extern_Comp2_for_Panel4_joining4:
     H2:
       id: det
       mean: 4
-recovery-abort_task_Screw2_Top_P_C3:
-  agent_model:
-  - r3
-  duration_model:
-    r3:
-      id: det
-      mean: 9
-recovery-unscrew_rear_left_wheel_screw1:
-  agent_model:
-  - r3
-  duration_model:
-    r3:
-      id: det
-      mean: 9
-recovery-notify_execution_monitor-Screw2_Top_P_C3:
-  agent_model:
-  - H1
-  duration_model:
-    H1:
-      id: det
-      mean: 9
-recovery-Screw2_Top_P_C3:
-  agent_model:
-  - r3
-  duration_model:
-    r3:
-      id: det
-      mean: 9

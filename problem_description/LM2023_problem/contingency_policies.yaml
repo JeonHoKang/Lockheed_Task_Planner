@@ -11,7 +11,7 @@ screw_stuck:
           - id: recovery-unscrew_rear_left_wheel_screw1
             type: atomic
             agent: ['r3']
-      
+
 rear_left_wheel_screw1_stuck: 
   part_id: rear_left_wheel_screw1
   operation_id: scew_bolt_for_rear_left_wheel1
@@ -27,8 +27,8 @@ rear_left_wheel_screw1_stuck:
         agent: ['r3']
 
 broken_upper_body_frame:
-  part_id: upper_body_frame
-  operation_id: pick_upper_body_frame
+  part_id: upper_body_frame # part id should come from the Execution and Monitor
+  operation_id: pick_upper_body_frame # operation id should also come from the execution and monitor
   policy:
     id: recovery_broken_upper_body_frame
     type: sequential
