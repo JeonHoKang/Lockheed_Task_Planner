@@ -4,7 +4,7 @@
   sequential_dependencies: ''
   start: 0
   end: 10
-- task_id: recovery-abort_task_pick_front_frame
+- task_id: p1_place_front_frame_on_deck
   agent: r1
   agent_specific_order: 2
   sequential_dependencies: p1_pick_front_frame
@@ -13,156 +13,78 @@
 - task_id: p1_pick_back_front_frame1
   agent: r1
   agent_specific_order: 3
-  sequential_dependencies: recovery-abort_task_pick_front_frame
+  sequential_dependencies: p1_place_front_frame_on_deck
   start: 19
   end: 25
-- task_id: recovery-engine_undo
-  agent: H
+- task_id: p1_pick_battery_assembly
+  agent: r2
   agent_specific_order: 1
   sequential_dependencies: ''
   start: 19
-  end: 28
-- task_id: recovery-search_new_engine
-  agent: H
-  agent_specific_order: 2
-  sequential_dependencies: p1_pick_back_front_frame1
-  start: 28
-  end: 37
-- task_id: recovery-pick_new_engine
-  agent: r1
-  agent_specific_order: 4
-  sequential_dependencies: recovery-search_new_engine
-  start: 37
-  end: 46
-- task_id: recovery-front_right_wheel_undo
-  agent: H
-  agent_specific_order: 3
-  sequential_dependencies: ''
-  start: 37
-  end: 46
-- task_id: recovery-search_new_wheel
-  agent: r2
-  agent_specific_order: 1
-  sequential_dependencies: recovery-pick_new_engine
-  start: 46
-  end: 55
-- task_id: recovery-redo-engine
-  agent: H
-  agent_specific_order: 4
-  sequential_dependencies: ''
-  start: 46
-  end: 55
-- task_id: recovery-remove_broken_pieces
-  agent: r1
-  agent_specific_order: 5
-  sequential_dependencies: recovery-search_new_wheel
-  start: 55
-  end: 64
-- task_id: recovery_pick_new_wheel
-  agent: r2
-  agent_specific_order: 2
-  sequential_dependencies: ''
-  start: 55
-  end: 64
-- task_id: recovery-search_for_new_part
-  agent: H
-  agent_specific_order: 5
-  sequential_dependencies: recovery-remove_broken_pieces
-  start: 64
-  end: 73
-- task_id: recovery-pick_new_part
-  agent: r1
-  agent_specific_order: 6
-  sequential_dependencies: recovery-search_for_new_part
-  start: 73
-  end: 82
-- task_id: recovery-notify_execution_monitor-pick_front_frame
-  agent: H
-  agent_specific_order: 6
-  sequential_dependencies: recovery-pick_new_part
-  start: 82
-  end: 91
-- task_id: recovery-pick_front_frame
-  agent: r1
-  agent_specific_order: 7
-  sequential_dependencies: recovery-notify_execution_monitor-pick_front_frame
-  start: 91
-  end: 100
-- task_id: p1_place_front_frame_on_deck
-  agent: r1
-  agent_specific_order: 8
-  sequential_dependencies: recovery-pick_front_frame
-  start: 100
-  end: 109
-- task_id: p1_pick_battery_assembly
-  agent: r2
-  agent_specific_order: 3
-  sequential_dependencies: p1_place_front_frame_on_deck
-  start: 109
-  end: 117
-- task_id: recovery-abort_task_pick_battery_assembly
-  agent: r2
-  agent_specific_order: 4
-  sequential_dependencies: p1_pick_battery_assembly
-  start: 117
-  end: 126
-- task_id: recovery-notify_human_for_new_part
-  agent: r1
-  agent_specific_order: 9
-  sequential_dependencies: recovery-abort_task_pick_battery_assembly
-  start: 126
-  end: 135
-- task_id: recovery-wait_for_new_part
-  agent: r1
-  agent_specific_order: 10
-  sequential_dependencies: recovery-notify_human_for_new_part
-  start: 135
-  end: 144
-- task_id: recovery-locate_new_part
-  agent: r1
-  agent_specific_order: 11
-  sequential_dependencies: recovery-wait_for_new_part
-  start: 144
-  end: 153
-- task_id: recovery-notify_execution_monitor-pick_battery_assembly
-  agent: H
-  agent_specific_order: 7
-  sequential_dependencies: recovery-locate_new_part
-  start: 153
-  end: 162
-- task_id: recovery-pick_battery_assembly
-  agent: r2
-  agent_specific_order: 5
-  sequential_dependencies: recovery-notify_execution_monitor-pick_battery_assembly
-  start: 162
-  end: 171
+  end: 27
 - task_id: p1_place_battery_assembly
   agent: r2
-  agent_specific_order: 6
-  sequential_dependencies: recovery-pick_battery_assembly
-  start: 171
-  end: 183
+  agent_specific_order: 2
+  sequential_dependencies: p1_pick_back_front_frame1
+  start: 27
+  end: 39
 - task_id: p1_screw_battery_assembly_to_front_frame3
   agent: r3
   agent_specific_order: 1
   sequential_dependencies: p1_place_battery_assembly
-  start: 183
-  end: 189
-- task_id: p1_screw_battery_assembly_to_front_frame1
+  start: 39
+  end: 45
+- task_id: p1_screw_battery_assembly_to_front_frame2
   agent: r3
   agent_specific_order: 2
   sequential_dependencies: p1_screw_battery_assembly_to_front_frame3
-  start: 189
-  end: 195
-- task_id: p1_screw_battery_assembly_to_front_frame2
+  start: 45
+  end: 51
+- task_id: p1_screw_battery_assembly_to_front_frame1
   agent: r3
   agent_specific_order: 3
-  sequential_dependencies: p1_screw_battery_assembly_to_front_frame1
-  start: 195
-  end: 201
+  sequential_dependencies: p1_screw_battery_assembly_to_front_frame2
+  start: 51
+  end: 57
 - task_id: p1_screw_battery_assembly_to_front_frame4
   agent: r3
   agent_specific_order: 4
-  sequential_dependencies: p1_screw_battery_assembly_to_front_frame2
-  start: 201
-  end: 207
+  sequential_dependencies: p1_screw_battery_assembly_to_front_frame1
+  start: 57
+  end: 63
+- task_id: recovery-abort_task_pick_rear_frame
+  agent: r2
+  agent_specific_order: 3
+  sequential_dependencies: p1_screw_battery_assembly_to_front_frame4
+  start: 63
+  end: 72
+- task_id: recovery-notify_human_for_new_part
+  agent: r1
+  agent_specific_order: 4
+  sequential_dependencies: recovery-abort_task_pick_rear_frame
+  start: 72
+  end: 81
+- task_id: recovery-wait_for_new_part
+  agent: r1
+  agent_specific_order: 5
+  sequential_dependencies: recovery-notify_human_for_new_part
+  start: 81
+  end: 90
+- task_id: recovery-locate_new_part
+  agent: r1
+  agent_specific_order: 6
+  sequential_dependencies: recovery-wait_for_new_part
+  start: 90
+  end: 99
+- task_id: recovery-notify_execution_monitor-pick_rear_frame
+  agent: H
+  agent_specific_order: 1
+  sequential_dependencies: recovery-locate_new_part
+  start: 99
+  end: 108
+- task_id: recovery-pick_rear_frame
+  agent: r2
+  agent_specific_order: 4
+  sequential_dependencies: recovery-notify_execution_monitor-pick_rear_frame
+  start: 108
+  end: 117

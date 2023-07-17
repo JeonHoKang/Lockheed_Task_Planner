@@ -15,83 +15,8 @@ children:
         children:
         - id: p1_pick_front_frame
           type: atomic
-          agent: &id001
+          agent:
           - r1
-        - id: recovery-contingency_plan-p1_pick_front_frame
-          type: sequential
-          children:
-          - id: recovery-abort_task_pick_front_frame
-            type: atomic
-            agent: *id001
-          - id: recovery-p1_Attachments_to_main_body
-            type: parallel
-            children:
-            - id: recovery-multi_p1_core_component
-              type: sequential
-              children:
-              - id: recovery-engine_leaking
-                type: sequential
-                children:
-                - id: recovery-engine_undo
-                  type: atomic
-                  agent:
-                  - H
-                - id: recovery-new_engine
-                  type: sequential
-                  children:
-                  - id: recovery-search_new_engine
-                    type: atomic
-                    agent:
-                    - H
-                  - id: recovery-pick_new_engine
-                    type: atomic
-                    agent:
-                    - r1
-                - id: recovery-redo-engine
-                  type: atomic
-                  agent:
-                  - H
-              - id: recovery_broken_upper_body_frame
-                type: sequential
-                children:
-                - id: recovery-remove_broken_pieces
-                  type: atomic
-                  agent:
-                  - r1
-                - id: recovery-new_upper_body_frame
-                  type: sequential
-                  children:
-                  - id: recovery-search_for_new_part
-                    type: atomic
-                    agent:
-                    - H
-                  - id: recovery-pick_new_part
-                    type: atomic
-                    agent:
-                    - r1
-            - id: recovery-defective_front_right_wheel
-              type: sequential
-              children:
-              - id: recovery-front_right_wheel_undo
-                type: atomic
-                agent:
-                - H
-              - id: recovery-search_new_wheel
-                type: atomic
-                agent:
-                - r2
-              - id: recovery_pick_new_wheel
-                type: atomic
-                agent:
-                - r2
-          - id: recovery-notify_execution_monitor-pick_front_frame
-            type: atomic
-            agent:
-            - H
-          - id: recovery-pick_front_frame
-            type: atomic
-            agent:
-            - r1
         - id: p1_place_front_frame_on_deck
           type: atomic
           agent:
@@ -101,40 +26,8 @@ children:
         children:
         - id: p1_pick_battery_assembly
           type: atomic
-          agent: &id002
+          agent:
           - r2
-        - id: recovery-contingency_plan-p1_pick_battery_assembly
-          type: sequential
-          children:
-          - id: recovery-abort_task_pick_battery_assembly
-            type: atomic
-            agent: *id002
-          - id: recovery-trunk_skeleton_missing
-            type: sequential
-            children:
-            - id: recovery-notify_human_for_new_part
-              type: atomic
-              agent:
-              - r1
-            - id: recovery-new_trunk_skeleton
-              type: sequential
-              children:
-              - id: recovery-wait_for_new_part
-                type: atomic
-                agent:
-                - r1
-              - id: recovery-locate_new_part
-                type: atomic
-                agent:
-                - r1
-          - id: recovery-notify_execution_monitor-pick_battery_assembly
-            type: atomic
-            agent:
-            - H
-          - id: recovery-pick_battery_assembly
-            type: atomic
-            agent:
-            - r2
         - id: p1_place_battery_assembly
           type: atomic
           agent:
@@ -161,61 +54,99 @@ children:
       - id: p1_rear_frame
         type: sequential
         children:
-        - id: p1_pick_rear_frame
-          type: atomic
-          agent:
-          - r2
-        - id: p1_place_rear_frame_on_deck
-          type: atomic
-          agent:
-          - r2
-        - id: p1_joint_front_and_rear_frame
-          type: parallel
+        - id: contingency_action
+          type: sequential
           children:
-          - id: p1_fasten_front_and_rear1
+          - id: p1_pick_rear_frame
+            type: atomic
+            agent: &id001
+            - r2
+          - id: recovery-contingency_action-p1_pick_rear_frame
             type: sequential
             children:
-            - id: p1_front_and_rear_insert_screw1
+            - id: recovery-abort_task_pick_rear_frame
+              type: atomic
+              agent: *id001
+            - id: recovery-trunk_skeleton_missing
+              type: sequential
+              children:
+              - id: recovery-notify_human_for_new_part
+                type: atomic
+                agent:
+                - r1
+              - id: recovery-new_trunk_skeleton
+                type: sequential
+                children:
+                - id: recovery-wait_for_new_part
+                  type: atomic
+                  agent:
+                  - r1
+                - id: recovery-locate_new_part
+                  type: atomic
+                  agent:
+                  - r1
+            - id: recovery-notify_execution_monitor-pick_rear_frame
               type: atomic
               agent:
               - H
-            - id: p1_fasten_bolt_on_front_and_rear_screw1
+            - id: recovery-pick_rear_frame
               type: atomic
               agent:
-              - H
-          - id: p1_fasten_front_and_rear2
-            type: sequential
+              - r2
+        - id: regular_operations
+          type: sequential
+          children:
+          - id: p1_place_rear_frame_on_deck
+            type: atomic
+            agent:
+            - r2
+          - id: p1_joint_front_and_rear_frame
+            type: parallel
             children:
-            - id: p1_front_and_rear_insert_screw2
-              type: atomic
-              agent:
-              - H
-            - id: p1_fasten_bolt_on_front_and_rear_screw2
-              type: atomic
-              agent:
-              - H
-          - id: p1_fasten_front_and_rear3
-            type: sequential
-            children:
-            - id: p1_front_and_rear_insert_screw3
-              type: atomic
-              agent:
-              - H
-            - id: p1_fasten_bolt_on_front_and_rear_screw3
-              type: atomic
-              agent:
-              - H
-          - id: p1_fasten_front_and_rear4
-            type: sequential
-            children:
-            - id: p1_front_and_rear_insert_screw4
-              type: atomic
-              agent:
-              - H
-            - id: p1_fasten_bolt_on_front_and_rear_screw4
-              type: atomic
-              agent:
-              - H
+            - id: p1_fasten_front_and_rear1
+              type: sequential
+              children:
+              - id: p1_front_and_rear_insert_screw1
+                type: atomic
+                agent:
+                - H
+              - id: p1_fasten_bolt_on_front_and_rear_screw1
+                type: atomic
+                agent:
+                - H
+            - id: p1_fasten_front_and_rear2
+              type: sequential
+              children:
+              - id: p1_front_and_rear_insert_screw2
+                type: atomic
+                agent:
+                - H
+              - id: p1_fasten_bolt_on_front_and_rear_screw2
+                type: atomic
+                agent:
+                - H
+            - id: p1_fasten_front_and_rear3
+              type: sequential
+              children:
+              - id: p1_front_and_rear_insert_screw3
+                type: atomic
+                agent:
+                - H
+              - id: p1_fasten_bolt_on_front_and_rear_screw3
+                type: atomic
+                agent:
+                - H
+            - id: p1_fasten_front_and_rear4
+              type: sequential
+              children:
+              - id: p1_front_and_rear_insert_screw4
+                type: atomic
+                agent:
+                - H
+              - id: p1_fasten_bolt_on_front_and_rear_screw4
+                type: atomic
+                agent:
+                - H
   - id: p1_external_add_ons
     type: sequential
     children:
