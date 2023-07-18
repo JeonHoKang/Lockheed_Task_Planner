@@ -733,10 +733,10 @@ def main():
     scheduler = HtnMilpScheduler()
     if scheduler.contingency:
         scheduler.set_dir("problem_description/ATV_Assembly/")
-        scheduler.import_problem("current_problem_description_ATV.yaml")
+        scheduler.import_problem("problem_description_ATV.yaml")
     else:
         scheduler.set_dir("problem_description/ATV_Assembly/")
-        scheduler.import_problem("problem_description_ATV.yaml")
+        scheduler.import_problem("current_problem_description_ATV.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------Initialized-------------')
