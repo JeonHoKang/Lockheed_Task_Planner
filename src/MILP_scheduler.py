@@ -53,7 +53,7 @@ class HtnMilpScheduler:
             self.initial_run = False
         else:
             self.initial_run = True
-        self.contingency = True
+        self.contingency = False
         if self.initial_run is True:
             self.contingency = False
         self.contingency_name = 'p1_Screw2_Top_P_C3'
@@ -442,15 +442,15 @@ class HtnMilpScheduler:
 
     def set_dependencies_infeasible(self, node):
         list_siblings = list(node.parent.children)
-        idx = list_siblings.index(node)+1
+        idx = list_siblings.index(node) + 1
         parent = node.parent
         child = node
         while parent.is_root != True:
-            if parent.type == 'sequential':
+            if parent.type == 'sequential' or parent.type == 'independent':
                 parent_siblings = list(parent.children)
-                parent_idx = parent_siblings.index(child)+1
+                parent_idx = parent_siblings.index(child) + 1
                 for element in parent_siblings[parent_idx:len(parent_siblings)]:
-                    if element.id == "contingency_plan":
+                    if "contingency" in element.id:
                         continue
                     if element.is_leaf:
                         self.task_object[element.id].set_task_state(
@@ -718,12 +718,12 @@ def main():
     Main 
     """
     scheduler = HtnMilpScheduler()
-    if scheduler.contingency:
-        scheduler.set_dir("problem_description/LM2023_problem/")
-        scheduler.import_problem("current_problem_description_LM2023.yaml")
-    else:
+    if scheduler.initial_run:
         scheduler.set_dir("problem_description/LM2023_problem/")
         scheduler.import_problem("problem_description_LM2023.yaml")
+    else:
+        scheduler.set_dir("problem_description/LM2023_problem/")
+        scheduler.import_problem("current_problem_description_LM2023.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------Initialized-------------')
