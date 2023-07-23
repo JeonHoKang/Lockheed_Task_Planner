@@ -5,8 +5,8 @@ import collections
 
 class AlterTree:
     """ LLM can call these methods to alter the htn tree"""
-    # Get required components for the assembly
 
+    # Get required components for the assembly
 
     def __init__(self):
         """
@@ -87,32 +87,35 @@ class AlterTree:
         assert type(order_number) == int, "order number should be integer"
         assert child_id not in self.list_node_ids, "no duplicate names"
         assert parent_id in self.list_node_ids, "parent id needs to be present"
-
+        child_id = f'recovery-{child_id}'
         htn_dictionary = self.htn_dict
         task_model_dictionary = self.task_model_dict
         input_order_number = order_number
         node_type = type
-        if child_type == 'atomic':
-            new_element = {'id': child_id, 'type': child_type, 'agent': []}
-        else:
-            new_element = {'id': child_id, 'type': child_type, 'children': []}
-        if htn_dictionary['id'] == parent_id:
-            if 'children' not in htn_dictionary:
-                htn_dictionary['children'] = []
-                del htn_dictionary['agent']
-                htn_dictionary['type'] = node_type
-                htn_dictionary['children'].append(new_element)
-            else:
-                if len(htn_dictionary['children']) + 1 < order_number:
-                    print("exceeds the number of children - Defaulting to first child")
-                    order_number = 0
-                else:
-                    htn_dictionary['children'].insert(order_number, new_element)
 
-        else:
-            if 'children' in htn_dictionary:
-                for child in htn_dictionary['children']:
-                    self.add_node(parent_id, child_id, child_type, order_number)
+        def insert_child(htn_dictionary, target_id, node_added_id, type_child, insert_order=0):
+            if type_child == 'atomic':
+                new_element = {'id': node_added_id, 'type': type_child, 'agent': []}
+            else:
+                new_element = {'id': node_added_id, 'type': type_child, 'children': []}
+            if htn_dictionary['id'] == target_id:
+                if 'children' not in htn_dictionary:
+                    htn_dictionary['children'] = []
+                    del htn_dictionary['agent']
+                    htn_dictionary['type'] = node_type
+                    htn_dictionary['children'].append(new_element)
+                else:
+                    if len(htn_dictionary['children']) + 1 < insert_order:
+                        print("exceeds the number of children - Defaulting to first child")
+                        insert_order = 0
+                    else:
+                        htn_dictionary['children'].insert(insert_order, new_element)
+
+            else:
+                if 'children' in htn_dictionary:
+                    for child in htn_dictionary['children']:
+                        insert_child(child, target_id, node_added_id, type_child, insert_order)
+        insert_child(htn_dictionary, parent_id, child_id, child_type, insert_order=0)
 
     def add_agent_model(self, parent_id, agent_id, agent_duration):
         """
@@ -124,6 +127,7 @@ class AlterTree:
         agent_duration:
         """
         pass
+
     def safe_dict_yaml_export(self, export_dictionary, problem_dir, file_name):
         """
         Expoorts the newly altered HTN to yaml file format for permanent storage
@@ -140,5 +144,3 @@ class AlterTree:
         print(file_dir)
         with open(file_dir, 'w') as file:
             yaml.safe_dump(export_dictionary, file, sort_keys=False)
-
-
