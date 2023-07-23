@@ -1,5 +1,4 @@
 import yaml
-
 class TreeToolSet:
     def __init__(self) -> None:
         pass
@@ -42,6 +41,16 @@ class TreeToolSet:
 
 
     def insert_element(self, dictionary, target_id, type, new_element, input_order_number):
+        """
+        Inserts element to the dictionary
+
+        Parameters
+        dictionary: dictionary to alter
+        target_id: Parent_id
+        type: type of the parent to set
+        new_element: new element to add
+        input_order_number: From left to right(0~1) order of child
+        """
         input_order_number = int(input_order_number)
         node_type = type
         if dictionary['id'] == target_id:
@@ -65,6 +74,13 @@ class TreeToolSet:
 
 
     def delete_element(self, dictionary, target_id, parent=None):
+        """
+        searchs dictionary and deletes the target_id from the dictionary
+
+        Parameters
+        dictionary: dictionary to delete elementt from
+        target_id: id of the node that we want to delete
+        """
         if dictionary['id'] == target_id:
             delete_index = parent['children'].index(dictionary)
             parent['children'].pop(delete_index)
@@ -148,13 +164,6 @@ class TreeToolSet:
         print(file_dir)
         with open(file_dir, 'w') as file:
             yaml.dump(export_dictionary, file, sort_keys=False, Dumper=NoTagNoQuotesDumper)
-
-    def safe_dict_yaml_export(self, export_dictionary, problem_dir, file_name):
-        file_dir = problem_dir + file_name
-        print('-----created------')
-        print(file_dir)
-        with open(file_dir, 'w') as file:
-            yaml.safe_dump(export_dictionary, file, sort_keys=False)
 
     def safe_dict_yaml_export(self, export_dictionary, problem_dir, file_name):
         file_dir = problem_dir + file_name

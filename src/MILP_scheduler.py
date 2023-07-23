@@ -731,7 +731,7 @@ def main():
     Main 
     """
     scheduler = HtnMilpScheduler()
-    if scheduler.contingency:
+    if scheduler.initial_run:
         scheduler.set_dir("problem_description/ATV_Assembly/")
         scheduler.import_problem("problem_description_ATV.yaml")
     else:
