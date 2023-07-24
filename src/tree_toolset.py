@@ -18,7 +18,8 @@ class TreeToolSet:
             for element in res:
                 if element:
                     return element
-                    
+
+
     def create_pairs_with_dfs(self, start):
         visited = []  # Set to track visited vertices
         edges = []

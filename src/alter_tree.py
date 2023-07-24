@@ -1,9 +1,12 @@
 import yaml
-from tree_toolset import TreeToolSet
 import collections
-
+from tree_toolset import TreeToolSet
+from Agent import Agent
+from contingency_manager import ContingencyManager
+from MILP_scheduler import HtnMilpScheduler
 
 class AlterTree:
+
     """ LLM can call these methods to alter the htn tree"""
 
     # Get required components for the assembly
@@ -35,7 +38,20 @@ class AlterTree:
         self.list_node_ids = set()
         for node in self.id_sequence_list:
             self.list_node_ids.add(node['id'])
-        print('id_sequence_list')
+
+        contingency_handling = ContingencyManager()
+        # contingency_handling.set_problem_dir(problem_dir)
+        self.contingency_name = contingency_handling.contingency_name
+        self.contingency_plan = {}
+        self.contingency_plan['id'] = f'recovery-contingency_action-{self.contingency_name}'
+        self.contingency_plan['type'] = 'sequential'
+        self.contingency_plan['children'] = []
+        contingency_node = TreeToolSet().search_tree(
+            htn_dict, self.contingency_name)
+        contingency_handling.split_contingency_and_normal(
+            htn_dict, contingency_node, self.contingency_plan)
+        print('initialized')
+
 
     def load_current_htn(self):
         """
@@ -66,7 +82,8 @@ class AlterTree:
             current_task_model_dict = yaml.safe_load(file)
         return current_task_model_dict
 
-    def add_node(self, parent_id, child_id, child_type, order_number=0):
+
+    def add_node(self, parent_id, child_id, child_type, agent=None, duration=None, order_number=0):
         """
         AddNode
 
@@ -80,14 +97,17 @@ class AlterTree:
                 independent constraint: order does not matter but cannot be worked on together.
                 parallel constraint: can be worked on together in any order.
                 sequential constraint: need to be in order from left node to the right node.
+            agent (str)
+                if the type is atomic, input which agent will be performing the task
+            duration (int)
+                if the type is atomic, also input what the duration for the agent will be
             order_number (int)
                 defaults to 0.
                 from left to right, order number of the new child node.
         """
         assert type(order_number) == int, "order number should be integer"
         assert child_id not in self.list_node_ids, "no duplicate names"
-        assert parent_id in self.list_node_ids, "parent id needs to be present"
-        child_id = f'recovery-{child_id}'
+        # child_id = f'recovery-{child_id}'
         htn_dictionary = self.htn_dict
         task_model_dictionary = self.task_model_dict
         input_order_number = order_number
@@ -95,7 +115,8 @@ class AlterTree:
 
         def insert_child(htn_dictionary, target_id, node_added_id, type_child, insert_order=0):
             if type_child == 'atomic':
-                new_element = {'id': node_added_id, 'type': type_child, 'agent': []}
+                new_element = {'id': node_added_id, 'type': type_child, 'agent': [agent]}
+                self.add_agent_model(child_id, agent, duration)
             else:
                 new_element = {'id': node_added_id, 'type': type_child, 'children': []}
             if htn_dictionary['id'] == target_id:
@@ -117,7 +138,7 @@ class AlterTree:
                         insert_child(child, target_id, node_added_id, type_child, insert_order)
         insert_child(htn_dictionary, parent_id, child_id, child_type, insert_order=0)
 
-    def add_agent_model(self, parent_id, agent_id, agent_duration):
+    def add_agent_model(self, node_id, agent_id, agent_duration):
         """
         AddAgentModel
 
@@ -126,7 +147,21 @@ class AlterTree:
         agent_id:
         agent_duration:
         """
-        pass
+        task_model = self.task_model_dict
+        task_model[node_id] = {'agent_model': [agent_id], 'duration_model': {agent_id: {'id':'det', 'mean':agent_duration}}}
+        print("Inputting task model")
+
+    def set_agent_state(self, agent_id, availability):
+        """
+        sets the agent state to avaiable or unavailable
+
+        Parameters
+            agent_id (str)
+            availability (str)
+                available
+                unavailable
+
+        """
 
     def safe_dict_yaml_export(self, export_dictionary, problem_dir, file_name):
         """

@@ -16,7 +16,7 @@ class ContingencyManager:
     def __init__(self):
         super().__init__()
         self.contingency = False # set whether contingency has occured
-        self.contingency_name = 'p1_pick_rear_frame'
+        self.contingency_name = 'p1_pick_engine'
         # self.contingency_name = 'p1_fasten_bolt_on_main_body_to_handle1'
     def set_problem_dir(self, directory):
         self.problem_dir = directory
@@ -276,29 +276,29 @@ class ContingencyManager:
         TreeToolSet().safe_dict_yaml_export(task_model_dict, self.problem_dir, "current_task_model_ATV.yaml")
     
 
-def main():
-    scheduler = MILP_scheduler.HtnMilpScheduler() # imports scheduler
-    problem_dir = "problem_description/ATV_Assembly/"
-    problem = "current_problem_description_ATV.yaml"
-    policies_file = "contingency_policies.yaml"
-    scheduler.set_dir(problem_dir)
-    scheduler.import_problem(problem)
-    scheduler.create_task_model()
-    scheduler.import_htn()
-    htn_dict = scheduler.multi_product_dict
-    product_htn_anytree = scheduler.multi_product_htn
-    contingency_handling = ContingencyManager()
-    contingency_handling.set_problem_dir(problem_dir)
-    contingency_handling.import_policies(policies_file)
-    contingency_name = contingency_handling.contingency_name
-    contingency_node = TreeToolSet().search_tree(
-        htn_dict, contingency_name)
-    contingency_plan = contingency_handling.geneate_contingency_plan(product_htn_anytree,contingency_node)
-    contingency_handling.split_contingency_and_normal(
-        htn_dict, contingency_node, contingency_plan)
-    contingency_handling.generate_task_model(contingency_plan) # export task_model to yaml file
-    contingency_handling.yaml_export(htn_dict, contingency_plan) # Export yaml file
-    print('-------initialized contingency manager-------')
-    
-if __name__ == '__main__':
-    main()
+# def main():
+#     scheduler = MILP_scheduler.HtnMilpScheduler() # imports scheduler
+#     problem_dir = "problem_description/ATV_Assembly/"
+#     problem = "current_problem_description_ATV.yaml"
+#     policies_file = "contingency_policies.yaml"
+#     scheduler.set_dir(problem_dir)
+#     scheduler.import_problem(problem)
+#     scheduler.create_task_model()
+#     scheduler.import_htn()
+#     htn_dict = scheduler.multi_product_dict
+#     product_htn_anytree = scheduler.multi_product_htn
+#     contingency_handling = ContingencyManager()
+#     contingency_handling.set_problem_dir(problem_dir)
+#     contingency_handling.import_policies(policies_file)
+#     contingency_name = contingency_handling.contingency_name
+#     contingency_node = TreeToolSet().search_tree(
+#         htn_dict, contingency_name)
+#     contingency_plan = contingency_handling.geneate_contingency_plan(product_htn_anytree,contingency_node)
+#     contingency_handling.split_contingency_and_normal(
+#         htn_dict, contingency_node, contingency_plan)
+#     contingency_handling.generate_task_model(contingency_plan) # export task_model to yaml file
+#     contingency_handling.yaml_export(htn_dict, contingency_plan) # Export yaml file
+#     print('-------initialized contingency manager-------')
+#
+# if __name__ == '__main__':
+#     main()
