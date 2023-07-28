@@ -15,7 +15,7 @@ class ContingencyManager:
     """
     def __init__(self):
         super().__init__()
-        self.contingency = False # set whether contingency has occured
+        self.contingency = True # set whether contingency has occured
         self.contingency_name = 'p1_pick_engine'
         # self.contingency_name = 'p1_fasten_bolt_on_main_body_to_handle1'
     def set_problem_dir(self, directory):

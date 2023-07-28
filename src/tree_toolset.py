@@ -1,7 +1,10 @@
 import yaml
+
+
 class TreeToolSet:
     def __init__(self) -> None:
         pass
+
     def search_tree(self, dictionary, node_id):
         if dictionary['id'] == node_id:
             contingency_node = dictionary
@@ -18,7 +21,6 @@ class TreeToolSet:
             for element in res:
                 if element:
                     return element
-
 
     def create_pairs_with_dfs(self, start):
         visited = []  # Set to track visited vertices
@@ -40,7 +42,6 @@ class TreeToolSet:
                         full_id.append((vertex, child))
         return edges, full_id
 
-
     def insert_element(self, dictionary, target_id, type, new_element, input_order_number):
         """
         Inserts element to the dictionary
@@ -61,7 +62,7 @@ class TreeToolSet:
                 dictionary['type'] = node_type
                 dictionary['children'].append(new_element)
             else:
-                if len(dictionary['children'])+1 < input_order_number:
+                if len(dictionary['children']) + 1 < input_order_number:
                     print("exceeds the number of children - Defaulting to first child")
                     input_order_number = 0
                 else:
@@ -71,8 +72,7 @@ class TreeToolSet:
             if 'children' in dictionary:
                 for child in dictionary['children']:
                     self.insert_element(child, target_id, node_type,
-                                new_element, input_order_number)
-
+                                        new_element, input_order_number)
 
     def delete_element(self, dictionary, target_id, parent=None):
         """
@@ -95,7 +95,6 @@ class TreeToolSet:
                 for child in dictionary['children']:
                     parent = dictionary
                     self.delete_element(child, target_id, parent=parent)
-
 
     def create_dict_from_list(self, pairs):
         local_dict = {}
@@ -128,7 +127,6 @@ class TreeToolSet:
 
         return local_dict, index_list
 
-
     def create_dict_list_from_pairs(self, pairs):
         local_dict = {}
         name_id_dict = {}
@@ -158,7 +156,7 @@ class TreeToolSet:
             index_list.append((parent_id, child_id))
 
         return local_dict
-    
+
     def dict_yaml_export(self, export_dictionary, problem_dir, file_name):
         file_dir = problem_dir + file_name
         print('-----created------')
@@ -173,10 +171,12 @@ class TreeToolSet:
         with open(file_dir, 'w') as file:
             yaml.safe_dump(export_dictionary, file, sort_keys=False)
 
+
 class NoTagNoQuotesDumper(yaml.Dumper):
     """
     Export yaml file in the desired format - without string tag etc
     """
+
     def represent_data(self, data):
         if isinstance(data, tuple):
             return self.represent_sequence('tag:yaml.org,2002:seq', data, flow_style=True)

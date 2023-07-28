@@ -12,25 +12,25 @@ r1:
       start: 19
       end: 25
   4:
-    p1_pick_trunk_skeleton:
-      start: 206
-      end: 211
-  5:
-    p1_hold_pick_trunk_skeleton_on_external_frame:
-      start: 211
-      end: 214
-  6:
     p1_pick_front_left_wheel:
-      start: 214
+      start: 206
+      end: 216
+  5:
+    p1_pick_trunk_skeleton:
+      start: 216
+      end: 221
+  6:
+    p1_hold_pick_trunk_skeleton_on_external_frame:
+      start: 221
       end: 224
   7:
     p1_pick_lower_body_frame:
-      start: 322
-      end: 328
+      start: 316
+      end: 322
   8:
     p1_hold_lower_body_frame_in_place:
-      start: 328
-      end: 331
+      start: 322
+      end: 325
   9:
     p1_pick_upper_body_frame:
       start: 356
@@ -57,40 +57,40 @@ r2:
       start: 73
       end: 83
   15:
-    p1_pick_front_right_wheel:
-      start: 206
-      end: 216
-  16:
     p1_Pick_Handle_bar:
-      start: 216
+      start: 206
+      end: 218
+  16:
+    p1_pick_front_right_wheel:
+      start: 218
       end: 228
   17:
-    p1_pick_rear_right_wheel:
+    p1_pick_rear_left_wheel:
       start: 228
       end: 238
   18:
-    p1_pick_rear_left_wheel:
+    p1_pick_rear_right_wheel:
       start: 238
       end: 248
   19:
     p1_pick_engine:
-      start: 248
-      end: 264
+      start: 250
+      end: 266
   20:
     p1_insert_engine_on_main_body_assembly:
-      start: 264
-      end: 282
+      start: 266
+      end: 284
 r3:
   21:
-    p1_screw_battery_assembly_to_front_frame2:
+    p1_screw_battery_assembly_to_front_frame3:
       start: 39
       end: 45
   22:
-    p1_screw_battery_assembly_to_front_frame1:
+    p1_screw_battery_assembly_to_front_frame2:
       start: 45
       end: 51
   23:
-    p1_screw_battery_assembly_to_front_frame3:
+    p1_screw_battery_assembly_to_front_frame1:
       start: 51
       end: 57
   24:
@@ -98,63 +98,63 @@ r3:
       start: 57
       end: 63
   25:
-    p1_screw_upper_trunk_skeleton_to_frame3:
-      start: 214
-      end: 222
+    p1_scew_bolt_for_front_left_wheel2:
+      start: 216
+      end: 226
   26:
-    p1_screw_upper_trunk_skeleton_to_frame1:
-      start: 222
-      end: 230
+    p1_fasten_bolt_on_main_body_to_handle3:
+      start: 226
+      end: 234
   27:
-    p1_fasten_bolt_on_main_body_to_handle4:
-      start: 230
-      end: 238
+    p1_fasten_bolt_on_main_body_to_handle2:
+      start: 234
+      end: 242
   28:
     p1_fasten_bolt_on_main_body_to_handle1:
-      start: 238
-      end: 246
+      start: 242
+      end: 250
   29:
-    p1_scew_bolt_for_front_left_wheel1:
-      start: 246
-      end: 256
+    p1_screw_upper_trunk_skeleton_to_frame3:
+      start: 250
+      end: 258
   30:
-    p1_scew_bolt_for_rear_left_wheel2:
-      start: 256
+    p1_screw_upper_trunk_skeleton_to_frame2:
+      start: 258
       end: 266
   31:
-    p1_scew_bolt_for_rear_left_wheel1:
+    p1_screw_upper_trunk_skeleton_to_frame1:
       start: 266
-      end: 276
+      end: 274
   32:
-    p1_scew_bolt_for_rear_right_wheel2:
-      start: 276
-      end: 286
+    p1_scew_bolt_for_rear_left_wheel4:
+      start: 274
+      end: 284
   33:
-    p1_scew_bolt_for_front_right_wheel2:
-      start: 286
-      end: 296
+    p1_fasten_bolt_on_main_body_to_handle4:
+      start: 284
+      end: 292
   34:
-    p1_scew_bolt_for_rear_left_wheel3:
-      start: 296
-      end: 306
+    p1_scew_bolt_for_front_right_wheel3:
+      start: 292
+      end: 302
   35:
-    p1_fasten_bolt_on_main_body_to_handle2:
-      start: 306
-      end: 314
+    p1_scew_bolt_for_front_left_wheel3:
+      start: 302
+      end: 312
   36:
-    p1_fasten_bolt_on_main_body_to_handle3:
-      start: 314
+    p1_scew_bolt_for_front_right_wheel2:
+      start: 312
       end: 322
   37:
-    p1_scew_bolt_for_front_right_wheel1:
+    p1_scew_bolt_for_front_right_wheel4:
       start: 322
       end: 332
   38:
-    p1_screw_lower_body_frame_to_main1:
+    p1_screw_lower_body_frame_to_main2:
       start: 332
       end: 340
   39:
-    p1_screw_lower_body_frame_to_main2:
+    p1_screw_lower_body_frame_to_main1:
       start: 340
       end: 348
   40:
@@ -162,69 +162,69 @@ r3:
       start: 348
       end: 356
   41:
-    p1_screw_upper_trunk_skeleton_to_frame2:
+    p1_scew_bolt_for_front_left_wheel1:
       start: 356
-      end: 364
+      end: 366
   42:
-    p1_scew_bolt_for_front_left_wheel2:
-      start: 364
-      end: 374
+    p1_scew_bolt_for_rear_right_wheel4:
+      start: 366
+      end: 376
   43:
     p1_screw_upper_body_frame_to_main1:
-      start: 374
-      end: 382
+      start: 376
+      end: 384
   44:
     p1_screw_upper_body_frame_to_main2:
-      start: 382
-      end: 390
+      start: 384
+      end: 392
   45:
     p1_screw_upper_body_frame_to_main3:
-      start: 390
-      end: 398
+      start: 392
+      end: 400
   46:
-    p1_screw_upper_body_frame_to_lower_frame3:
-      start: 398
-      end: 406
+    p1_screw_upper_body_frame_to_lower_frame1:
+      start: 400
+      end: 408
   47:
-    p1_scew_bolt_for_front_left_wheel3:
-      start: 406
+    p1_screw_upper_body_frame_to_lower_frame3:
+      start: 408
       end: 416
   48:
     p1_screw_upper_body_frame_to_lower_frame2:
       start: 416
       end: 424
   49:
-    p1_screw_upper_body_frame_to_lower_frame1:
-      start: 424
-      end: 432
-  50:
-    p1_scew_bolt_for_front_right_wheel4:
-      start: 432
-      end: 442
-  51:
     p1_scew_bolt_for_front_left_wheel4:
-      start: 442
-      end: 452
+      start: 424
+      end: 434
+  50:
+    p1_scew_bolt_for_rear_left_wheel1:
+      start: 434
+      end: 444
+  51:
+    p1_scew_bolt_for_front_right_wheel1:
+      start: 444
+      end: 454
   52:
-    p1_scew_bolt_for_rear_left_wheel4:
-      start: 452
-      end: 462
+    p1_scew_bolt_for_rear_left_wheel3:
+      start: 454
+      end: 464
   53:
-    p1_scew_bolt_for_front_right_wheel3:
-      start: 462
-      end: 472
+    p1_scew_bolt_for_rear_right_wheel2:
+      start: 464
+      end: 474
   54:
-    p1_scew_bolt_for_rear_right_wheel3:
-      start: 472
-      end: 482
-  55:
     p1_scew_bolt_for_rear_right_wheel1:
-      start: 482
-      end: 492
+      start: 474
+      end: 484
+  55:
+    p1_scew_bolt_for_rear_right_wheel3:
+      start: 484
+      end: 494
   56:
-    p1_scew_bolt_for_rear_right_wheel4:
-      start: 492
-      end: 502
+    p1_scew_bolt_for_rear_left_wheel2:
+      start: 494
+      end: 504
 H:
   57:
     p1_front_and_rear_insert_screw4:
@@ -239,11 +239,11 @@ H:
       start: 98
       end: 116
   60:
-    p1_fasten_bolt_on_front_and_rear_screw1:
+    p1_front_and_rear_insert_screw2:
       start: 116
       end: 134
   61:
-    p1_front_and_rear_insert_screw2:
+    p1_fasten_bolt_on_front_and_rear_screw1:
       start: 134
       end: 152
   62:
@@ -260,6 +260,6 @@ H:
       end: 206
   65:
     p1_wiring_harness_engine:
-      start: 282
-      end: 306
+      start: 292
+      end: 316
 X: None Scheduled yet

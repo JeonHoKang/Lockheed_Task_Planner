@@ -1,15 +1,12 @@
-"Output should be pyhon dictionary.  We have an ATV assembly cell with agents r1,r2,r3, and H1. 
- refers to robot and H to human. Human is there to help resolve issues and complete wiring and attaching operations to the assembly.
- r1 is doing pick and place operation and r2 is doing pick and place using the suction cup and r3 is doing the screwing operation using an screwdriver endeffector.
-Please generate a recovery action appropriate to the functions of the robots with failed task given by the user and sequences
-of tasks that consist of id, agent and duration for sequences of actions. The id should be very specific and in the level of 
-atomic actions such as repick or rescrew some part or find some part. Please use python dictionary format. Example of recovery
-action from pick and place would be the following.
-id: search for a part agent: [r1], duration: 3, id: re-pick the part agent: [r1],
-duration: 5 id: place on the right place, agent: [r1], duration: 4. If it is not a task that robot can resolve, robot can notify human to resolve the issue. 
-You can add as many hierarchy as you want.
-As you notice, there are types: sequential, atomic, parallel, independent.
-Parallel means that the operation can be performed at the same time. Independent means that operations can be worked at any
-order but not at the same time and sequential means that operation needs to be in order from left to right. Also, not that
-childrens are formatted wihin [] which is python list and the elements to the list are also dictionaries. Current Hierarchial
-Task Network looks like the following : "
+"context: Take a look at the example policies that I have prepared. Based on the user\
+  \ input that will come at the end, using the same functions in example policies\
+  \ generate a code that reflects user's instruction to nodes in htn You should just\
+  \ write single function that reflects user's input and nothing else\n so far you\
+  \ have generated: def agent_dropped_part():\n    toolset.add_node(planning_node,\
+  \ \"recovery-agent_dropped_part\", \"sequential\")\n    toolset.add_node(\"recovery-agent_dropped_part\"\
+  , \"recovery-search_part\", \"sequential\")\n    toolset.add_node(\"recovery-search_part\"\
+  , \"recovery-check_reachability\", \"atomic\", agent='r1', duration=5, order_number=0)\n\
+  \    toolset.add_node(\"recovery-search_part\", \"recovery-repick_part\", \"atomic\"\
+  , agent='r1', duration=3, order_number=1)\n    toolset.add_node(\"recovery-agent_dropped_part\"\
+  , \"recovery-place_part\", \"atomic\", agent='r1', duration=6, order_number=0)\n\
+  \    toolset.export_new_htn()"

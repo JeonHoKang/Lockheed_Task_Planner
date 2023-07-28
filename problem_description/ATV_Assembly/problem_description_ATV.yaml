@@ -1,5 +1,5 @@
 num_tasks: 40
 num_agents: 4
-agents: ["r1","r2","r3","H"]
+agents: {"r1":"available","r2":"available","r3":"available","H":"available"}
 task_model_id: "task_model_ATV.yaml"
 htn_model_id: "ATV_Assembly_Problem.yaml"

@@ -89,15 +89,17 @@ class HtnMilpScheduler:
             self.current_problem_description["task_model_id"] = "current_task_model_ATV.yaml"
             TreeToolSet().dict_yaml_export(self.current_problem_description, self.problem_dir,
                                            "current_problem_description_ATV.yaml")
+            print("break point")
 
     def load_agent_model(self):
         """Loads agent model from yaml file"""
         agents = self.problem_description['agents']
-        agents.append('X')
-        for agent_id in agents:
+        agents['X'] = 'unavailable'
+        for agent_id, availability in agents.items():
             self.agent_team_model[agent_id] = Agent(
                 agent_id)
-        self.agent_team_model['X'].set_agent_state('unavailable')
+            self.agent_team_model[agent_id].set_agent_state(availability)
+
 
     def create_task_model(self):
         """Creates a task model with the existing HTN"""
