@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 import os
 import openai
 import yaml
@@ -29,10 +28,11 @@ class HumanInstruction:
             messages=[
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": example_policies},
-                {"role": "user", "content": "recovery-dropped_main_body : r1 has dropped a part during pick and place of the ATV main body frame. r1 will search\
-                for a part and see if it is reachable which will take 5.\
-                Let us say that it is reachable. Then r1 will re-pick the part which will take 3.\
-                Then r1 will place it on the table b1 which will take 6."}
+                # {"role": "user", "content": "recovery-dropped_main_body : r1 has dropped a part during pick and place of the ATV main body frame. r1 will search\
+                # for a part and see if it is reachable which will take 15.\
+                # Let us say that it is reachable. Then r1 will re-pick the part which will take 3.\
+                # Then r1 will place it on the table b1 which will take 6."}
+                {"role": "user", "content": "recovery_part_collision: while moving the rear frame, r1 has collided with the moving platform. r1 will slowly move away from the platform. Human will check for damage. Then, r1 will reattempt the motion with the newly generated motion plan."}
             ]
         )
         answer = response['choices'][0]['message']['content']
@@ -52,9 +52,9 @@ class HumanInstruction:
         :return:
         returns the prompt and context from the yaml file
         """
-        with open('prompt/human_instruction.yaml', "r") as data:
+        with open('prompt/human_instruction.txt', "r") as file:
             try:
-                self.dict = yaml.safe_load(data)
+                self.dict = file.read()
             except yaml.YAMLError as e:
                 print(e)
         return self.dict

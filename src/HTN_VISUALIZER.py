@@ -1,5 +1,5 @@
 from asyncio import get_child_watcher
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import igraph as ig
@@ -16,6 +16,8 @@ import numpy as np
 from tree_toolset import TreeToolSet
 import yaml
 from contingency_manager import ContingencyManager
+
+
 _RENDER_CMD = ['dot']
 _FORMAT = 'png'
 
@@ -169,7 +171,7 @@ class HTN_vis(QtWidgets.QMainWindow):
         scroll_area = QtWidgets.QScrollArea()
         scroll_area.setWidgetResizable(True)
         scroll_area.setWidget(self.canvas)
-        # scroll_area.setWidgetResizable(True)
+        scroll_area.setWidgetResizable(True)
         list_scroll_area.setFixedWidth(200)
         scroll_area.setFixedWidth(1300)
         layout1.addWidget(scroll_area)
