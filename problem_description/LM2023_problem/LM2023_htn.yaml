@@ -4,252 +4,696 @@ children:
   - id: Panel_Assemblies
     type: independent
     children:
-      - id: panel_with_assem
+      - id: Panels_with_Assembly
         type: sequential
         children:
-          - id: Top_Panel
+          - id: Top_Panel_Assembly
             type: sequential
             children:
-              - id: Pick_and_Place_Top_Panel
+              - id: Zone1_Pick_PanelA_1
                 type: atomic
                 agent: ["r1"]
-              - id: Component_Top_Panel
+              - id: Zone3_Place_PanelA_2
+                type: atomic
+                agent: ["r1"]
+              - id: Top_Panel_Components
                 type: independent
                 children:
-                  - id: Top_P_C3
+                  - id: Top_Panel_C3
                     type: sequential
                     children: 
-                      - id: Pick_and_Place_Top_P_C3
+                      - id: Zone2_Pick_C3_3
                         type: atomic
                         agent: ["r2"]
-                      - id: Screw_Operation_Top_P_C3
+                      - id: Zone3_Place_C3_4
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Top_Panel_C3
                         type: independent
                         children:
-                          - id: Screw1_Top_P_C3 
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw2_Top_P_C3
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw3_Top_P_C3
-                            type: atomic
-                            agent: ["r3"]   
-                          - id: Screw4_Top_P_C3
-                            type: atomic
-                            agent: ["r3"]
-                  - id: Top_P_C6
+                          - id: Top_Panel_Screw1_C3
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C3_5
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C3_6
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C3_7
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw2_C3
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C3_8
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C3_9
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C3_10
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw3_C3
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C3_11
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C3_12
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C3_13
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw4_C3
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C3_14
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C3_15
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C3_16
+                                type: atomic
+                                agent: ["r3"]
+                  - id: Top_Panel_C6
                     type: sequential
                     children: 
-                      - id: Pick_and_Place_Top_P_C6
+                      - id: Zone2_Pick_C6_17
                         type: atomic
                         agent: ["r2"]
-                      - id: Screw_Operation_Top_P_C6
+                      - id: Zone3_Place_C6_18
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Top_Panel_C6
                         type: independent
                         children:
-                          - id: Screw1_Top_P_C6
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw2_Top_P_C6
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw3_Top_P_C6
-                            type: atomic
-                            agent: ["r3"]   
-                          - id: Screw4_Top_P_C6
-                            type: atomic
-                            agent: ["r3"]  
-                          - id: Screw5_Top_P_C6
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw6_Top_P_C6
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw7_Top_P_C6
-                            type: atomic
-                            agent: ["r3"]   
-                          - id: Screw8_Top_P_C6
-                            type: atomic
-                            agent: ["r3"]  
-                          - id: Screw9_Top_P_C6
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw10_Top_P_C6
-                            type: atomic
-                            agent: ["r3"]     
-                  - id: Top_P_C7
+                          - id: Top_Panel_Screw1_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C6_19
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C6_20
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C6_21
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw2_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw2_C6_22
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone4_ExecMotion_Screw2_C6_23
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone3_Screw_Screw2_C6_24
+                                type: atomic
+                                agent: [ "r3" ]
+                          - id: Top_Panel_Screw3_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw3_C6_25
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw3_C6_26
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw3_C6_27
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw4_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw4_C6_28
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw4_C6_29
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw4_C6_30
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw5_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw5_C6_31
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw5_C6_32
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw5_C6_33
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw6_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw6_C6_34
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw6_C6_35
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw6_C6_36
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw7_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw7_C6_37
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw7_C6_38
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw7_C6_39
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw8_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw8_C6_40
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw8_C6_41
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw8_C6_42
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw9_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw9_C6_43
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw9_C6_44
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw9_C6_45
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw10_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw10_C6_46
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw10_C6_47
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw10_C6_48
+                                type: atomic
+                                agent: ["r3"]
+                  - id: Top_Panel_C7
                     type: sequential
                     children: 
-                      - id: Pick_and_Place_Top_P_C7
+                      - id: Zone2_Pick_C7_49
                         type: atomic
                         agent: ["r2"]
-                      - id: Screw_Operation_Top_P_C7
+                      - id: Zone3_Place_C7_50
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Top_Panel_C7
                         type: independent
                         children:
-                          - id: Screw1_Top_P_C7
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw2_Top_P_C7
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw3_Top_P_C7
-                            type: atomic
-                            agent: ["r3"]   
-                          - id: Screw4_Top_P_C7
-                            type: atomic
-                            agent: ["r3"]   
-              - id: Move_Top_Panel_to_the_Side
+                          - id: Top_Panel_Screw1_C7
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C7_51
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone4_ExecMotion_Screw1_C7_52
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone3_Screw_Screw1_C7_53
+                                type: atomic
+                                agent: [ "r3" ]
+                          - id: Top_Panel_Screw2_C7
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw2_C7_54
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone4_ExecMotion_Screw2_C7_55
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone3_Screw_Screw2_C7_56
+                                type: atomic
+                                agent: [ "r3" ]
+                          - id: Top_Panel_Screw3_C7
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw3_C7_57
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone4_ExecMotion_Screw3_C7_58
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone3_Screw_Screw3_C7_59
+                                type: atomic
+                                agent: [ "r3" ]
+                          - id: Top_Panel_Screw4_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw4_C7_60
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone4_ExecMotion_Screw4_C7_61
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone3_Screw_Screw4_C7_62
+                                type: atomic
+                                agent: [ "r3" ]
+              - id: Zone3_MovetotheSide_PanelA_63
                 type: atomic
                 agent: ["r1"]
-              - id: Mount_Top_Panel_on_the_Fixture
+              - id: Zone5_MountonFixture_PanelA_64
                 type: atomic
                 agent: ["H1"]
               - id: Hinge_Top_Panel
                 type: sequential
                 children:
-                  - id: Hold_Hinge_to_Top_Panel
+                  - id: Zone5_HoldHinge_PanelA_65
                     type: atomic
                     agent: ["H2"]
-                  - id: Hinge_Screw_Operation_Top_Panel
+                  - id: Top_Panel_Hinge_Screw_Operation
                     type: independent
                     children:
                       - id: Hinge_Top_Panel_Screw1
-                        type: atomic
-                        agent: ["H2"]
+                        type: sequential
+                        children:
+                          - id: Zone5_Pick_Screw1_C7_66
+                            type: atomic
+                            agent: [ "r3" ]
+                          - id: Zone5_ExecMotion_Screw1_C7_67
+                            type: atomic
+                            agent: [ "r3" ]
+                          - id: Zone5_Screw_Screw1_C7_68
+                            type: atomic
+                            agent: [ "r3" ]
                       - id: Hinge_Top_Panel_Screw2
-                        type: atomic
-                        agent: ['H2']
-          - id: Right_Panel
+                        type: sequential
+                        children:
+                          - id: Zone4_Pick_Screw2_C7_69
+                            type: atomic
+                            agent: [ "r3" ]
+                          - id: Zone4_ExecMotion_Screw2_C7_70
+                            type: atomic
+                            agent: [ "r3" ]
+                          - id: Zone3_Screw_Screw2_C7_71
+                            type: atomic
+                            agent: [ "r3" ]
+          - id: Right_Panel_Assembly
             type: sequential
             children:
-              - id: Pick_and_Place_Right_Panel
+              - id: Zone1_Pick_PanelE_72
                 type: atomic
                 agent: ["r1"]
-              - id: Component_Right_Panel
+              - id: Zone3_Place_PanelE_73
+                type: atomic
+                agent: ["r1"]
+              - id: Right_Panel_Component
                 type: independent
                 children:
-                  - id: Right_P_C1_1
+                  - id: Right_Panel_C1_1
                     type: sequential
                     children: 
-                      - id: Pick_Place_Right_P_C1_1
+                      - id: Zone2_Place_C1_1_74
                         type: atomic
                         agent: ["r2"]
-                      - id: Right_P_C1_1_Screw
-                        type: independent
-                        children:
-                          - id: Screw1_Right_P_C1_1_Screw
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw2_Right_P_C1_1_Screw
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw3_Right_P_C1_1_Screw
-                            type: atomic
-                            agent: ["r3"]   
-                          - id: Screw4_Right_P_C1_1_Screw
-                            type: atomic
-                            agent: ["r3"]
-                  - id: Right_P_C1_2
-                    type: sequential
-                    children: 
-                      - id: Pick_and_Place_Right_P_C1_2
+                      - id: Zone2_Place_C1_1_75
                         type: atomic
                         agent: ["r2"]
-                      - id: Screw_Operation_Right_P_C1_2
+                      - id: Screw_Operation_Right_Panel_C1_1
                         type: independent
                         children:
-                          - id: Screw1_Right_P_C1_1
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw2_Right_P_C1_1
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw3_Right_P_C1_1
-                            type: atomic
-                            agent: ["r3"]   
-                          - id: Screw4_Right_P_C1_1
-                            type: atomic
-                            agent: ["r3"]     
-                  - id: Right_P_C1_3 
+                          - id: Right_Panel_Screw1_C1_1
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C1_1_76
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C1_1_77
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C1_1_78
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw2_C1_1
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw2_C1_1_79
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw2_C1_1_80
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw2_C1_1_81
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw3_C1_1
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw3_C1_1_82
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw3_C1_1_83
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw3_C1_1_84
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw4_C1_1
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw4_C1_1_85
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone4_ExecMotion_Screw4_C1_1_86
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone3_Screw_Screw4_C1_1_87
+                                type: atomic
+                                agent: [ "r3" ]
+                  - id: Right_Panel_C1_2
                     type: sequential
                     children: 
-                      - id: Pick_and_Place_Right_P_C1_3
+                      - id: Zone1_Pick_PanelE_C1_88
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Zone3_Place_PanelE_C1_89
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Right_Panel_C1_2
+                        type: independent
+                        children:
+                          - id: Right_Panel_Screw1_C1_2
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C1_2_90
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C1_2_91
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C1_2_92
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw2_C1_2
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw2_C1_2_93
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone4_ExecMotion_Screw2_C1_2_94
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone3_Screw_Screw2_C1_2_95
+                                type: atomic
+                                agent: [ "r3" ]
+                          - id: Right_Panel_Screw3_C1_2
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw3_C1_2_96
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C1_2_97
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C1_2_98
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw4_C1_2
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C1_2_99
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C1_2_100
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C1_2_101
+                                type: atomic
+                                agent: ["r3"]
+                  - id: Right_Panel_C1_3
+                    type: sequential
+                    children: 
+                      - id: Zone2_Pick_C1_3_102
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Zone2_Pick_C1_3_103
                         type: atomic
                         agent: ["r2"]
                       - id: Screw_Operation_Right_P_C1_3
                         type: sequential
                         children:
-                          - id: Screw1_Right_P_C1_3
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw2_Right_P_C1_3
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw3_Right_P_C1_3
-                            type: atomic
-                            agent: ["r3"]   
-                          - id: Screw4_Right_P_C1_3
-                            type: atomic
-                            agent: ["r3"]  
-                  - id: Right_P_C2 
+                          - id: Right_Panel_Screw1_C1_3
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw2_C1_3
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw2_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw2_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw2_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw3_C1_3
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw4_C1_3
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C1_3_
+                                type: atomic
+                                agent: ["r3"]
+                  - id: Right_Panel_C2
                     type: sequential
                     children: 
-                      - id: Pick_and_Place_Right_P_C2
+                      - id: Zone1_Pick_C2_
                         type: atomic
                         agent: ["r2"]
-                      - id: Screw_Operation_Right_P_C2
+                      - id: Zone3_Place_C2_
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Right_Panel_C2
                         type: sequential
                         children:
-                          - id: Screw1_B1_Right_P_C2
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw2_B1_Right_P_C2
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw3_B1_Right_P_C2
-                            type: atomic
-                            agent: ["r3"]   
-                          - id: Screw4_B1_Right_P_C2
-                            type: atomic
-                            agent: ["r3"]  
-                  - id: Right_P_C5
+                          - id: Right_Panel_Screw1_C2
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C2_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C2_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C2_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw2_C2
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw2_C2_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw2_C2_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw2_C2_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw3_C2
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C2_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C2_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C2_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Right_Panel_Screw4_C2
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C2_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C2_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C2_
+                                type: atomic
+                                agent: ["r3"]
+                  - id: Right_Panel_C5
                     type: sequential
                     children: 
-                      - id: Pick_and_Place_Right_P_C5
+                      - id: Zone1_Pick_C5_
                         type: atomic
                         agent: ["r2"]
-                      - id: Screw_Operation_Right_P_C5
+                      - id: Zone3_Place_C5_
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Right_Panel_C5
                         type: sequential
                         children:
-                          - id: Screw1_B1_Right_P_C5
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw2_B1_Right_P_C5
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw3_B1_Right_P_C5
-                            type: atomic
-                            agent: ["r3"]   
-                          - id: Screw4_B1_Right_P_C5
-                            type: atomic
-                            agent: ["r3"] 
-                          - id: Screw5_B1_Right_P_C5
-                            type: atomic
-                            agent: ["r3"]  
-                          - id: Screw6_B1_Right_P_C5
-                            type: atomic
-                            agent: ["r3"] 
-                          - id: Screw7_B1_Right_P_C5
-                            type: atomic
-                            agent: ["r3"]  
-                          - id: Screw8_B1_Right_P_C5
-                            type: atomic
-                            agent: ["r3"]  
-                          - id: Screw9_B1_Right_P_C5
-                            type: atomic
-                            agent: ["r3"]  
-                          - id: Screw10_B1_Right_P_C5
-                            type: atomic
-                            agent: ["r3"]   
+                          - id: Top_Panel_Screw1_C5
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C5_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw2_C5
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw2_C5_
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone4_ExecMotion_Screw2_C5_
+                                type: atomic
+                                agent: [ "r3" ]
+                              - id: Zone3_Screw_Screw2_C5_
+                                type: atomic
+                                agent: [ "r3" ]
+                          - id: Top_Panel_Screw3_C5
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw3_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw3_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw3_C5_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw4_C6
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw4_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw4_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw4_C5_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw5_C5
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw5_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw5_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw5_C5_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw6_C5
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw6_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw6_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw6_C5_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw7_C5
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw7_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw7_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw7_C5_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw8_C5
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw8_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw8_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw8_C5_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw9_C5
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw9_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw9_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw9_C5_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Top_Panel_Screw10_C5
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw10_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw10_C5_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw10_C5_
+                                type: atomic
+                                agent: ["r3"]
               - id: Move_Right_Panel_to_the_lift
                 type: atomic
                 agent: ["r1"]
@@ -271,100 +715,142 @@ children:
                       - id: Hinge_Right_Panel_Screw2
                         type: atomic
                         agent: ['H2']
-          - id: Middle_Panel
+          - id: Back_Panel
             type: sequential
             children:
-              - id: Pick_and_Place_Middle_Panel
+              - id: Zone1_Pick_PanelC_
                 type: atomic
                 agent: ["r1"]
-              - id: Component_Middle_Panel
+              - id: Zone3_Place_PanelC_
+                type: atomic
+                agent: ["r1"]
+              - id: Component_Back_Panel
                 type: independent
                 children:
-                  - id: Middle_P_C4
+                  - id: Back_Panel_C4
                     type: sequential
                     children: 
-                      - id: Pick_and_Place_Middle_P_C4
+                      - id: Zone2_Pick_C4
                         type: atomic
                         agent: ["r2"]
-                      - id: Screw_Operation_Middle_P_C4
+                      - id: Zone2_Place_C4
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_C4
                         type: independent
                         children:
-                          - id: Screw1_B2_Middle_P_C4
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw2_B2_Middle_P_C4
-                            type: atomic
-                            agent: ["r3"]
-                          - id: Screw3_B2_Middle_P_C4
-                            type: atomic
-                            agent: ["r3"]   
-                          - id: Screw4_B2_Middle_P_C4
-                            type: atomic
-                            agent: ["r3"]
-              - id: Move_Middle_Panel_to_the_lift
+                          - id: Back_Panel_Screw1_C4
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Back_Panel_Screw2_C4
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Back_Panel_Screw3_C4
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                          - id: Back_Panel_Screw4_C4
+                            type: sequential
+                            children:
+                              - id: Zone4_Pick_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone4_ExecMotion_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+                              - id: Zone3_Screw_Screw1_C4_
+                                type: atomic
+                                agent: ["r3"]
+              - id: Move_Back_Panel_to_the_lift
                 type: atomic
                 agent: ["r1"]
-              - id: Mount_Middle_Panel_on_the_Fixture
+              - id: Mount_Back_Panel_on_the_Fixture
                 type: atomic
                 agent: ["r4"]
-              - id: Hinge_Middle_Panel
+              - id: Hinge_Back_Panel
                 type: sequential
                 children:
-                  - id: Hold_Hinge_to_Middle_Panel
+                  - id: Hold_Hinge_to_Back_Panel
                     type: atomic
                     agent: ["H2"]
-                  - id: Hinge_Screw_Operation_Middle_Panel
+                  - id: Hinge_Screw_Operation_Back_Panel
                     type: independent
                     children:
-                      - id: Hinge_Middle_Panel_Screw1
+                      - id: Hinge_Back_Panel_Screw1
                         type: atomic
                         agent: ["H2"]
-                      - id: Hinge_Middle_Panel_Screw2
+                      - id: Hinge_Back_Panel_Screw2
                         type: atomic
                         agent: ['H2']
       - id: Panel_without_assem
         type: independent
         children:
-          - id: Panel_B4
+          - id: Front_Panel
             type: sequential
             children:
-              - id: Mount_Panel_B4_on_the_Fixture
+              - id: Mount_PanelB_on_the_Fixture
                 type: atomic
                 agent: ["r4"]
-              - id: Hinge_Panel_B4
+              - id: Hinge_PanelB
                 type: sequential
                 children:
-                  - id: Hold_Hinge_to_Panel_B4
+                  - id: Hold_Hinge_to_PanelB
                     type: atomic
                     agent: ["H2"]
-                  - id: Hinge_Screw_Operation_Panel_B4
+                  - id: Hinge_Screw_Operation_PanelB
                     type: independent
                     children:
-                      - id: Hinge_Panel_B4_Screw1
+                      - id: Hinge_PanelB_Screw1
                         type: atomic
                         agent: ["H2"]
-                      - id: Hinge_Panel_B4_Screw2
+                      - id: Hinge_PanelB_Screw2
                         type: atomic
                         agent: ['H2']
-          - id: Panel_B5
+          - id: Left_Panel
             type: sequential
             children:
-              - id: Mount_Panel_B5_on_the_Fixture
+              - id: Mount_PanelD_on_the_Fixture
                 type: atomic
                 agent: ["r4"]
-              - id: Hinge_Panel_B5
+              - id: Hinge_Left_Panel
                 type: sequential
                 children:
-                  - id: Hold_Hinge_to_Panel_B5
+                  - id: Hold_Hinge_to_PanelD
                     type: atomic
                     agent: ["H2"]
-                  - id: Hinge_Screw_Operation_Panel_B5
+                  - id: Hinge_Screw_Operation_PanelD
                     type: independent
                     children:
-                      - id: Hinge_Panel_B5_Screw1
+                      - id: Hinge_PanelD_Screw1
                         type: atomic
                         agent: ["H2"]
-                      - id: Hinge_Panel_B5_Screw2
+                      - id: Hinge_PanelD_Screw2
                         type: atomic
                         agent: ['H2']
   - id: Main_Body_Assembly
