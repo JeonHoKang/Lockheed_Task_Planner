@@ -1,93 +1,75 @@
 id: ATV_assembly
 type: sequential
 children: 
-  - id: main_body_assembly
+  - id: chassis_assembly
     type: sequential
-    children: 
-      - id: skeleton_frame_assembly
+    children:
+      - id: StationA_engine_assembly
         type: sequential
         children:
-          - id: front_frame
+          - id: transport_chassis_to_stationA
             type: sequential
             children:
-              - id: pick_front_frame
+              - id: stationA_move_to_assembly_station
                 type: atomic
-                agent: ['r1']
-              - id: place_front_frame_on_deck
+                agent: ['m1']
+              - id: stationA_stop_and_wait
                 type: atomic
-                agent: ['r1']
-          - id: insert_battery_assembly
+                agent: ['m1']
+          - id: stationA_engine_assembly
             type: sequential
             children:
-              - id: pick_battery_assembly
+              - id: stationA_pick_engine
                 type: atomic
-                agent: ['r2']
-              - id: place_battery_assembly
+                agent: ['A_r1']
+              - id: stationA_insert_engine_on_chassis
                 type: atomic
-                agent: ['r2']
-              - id: joining_battery_to_front_frame
-                type: parallel
-                children:
-                  - id: screw_battery_assembly_to_front_frame1
-                    type: atomic
-                    agent: ['r3']
-                  - id: screw_battery_assembly_to_front_frame2
-                    type: atomic
-                    agent: ['r3']
-                  - id: screw_battery_assembly_to_front_frame3
-                    type: atomic
-                    agent: ['r3']
-                  - id: screw_battery_assembly_to_front_frame4
-                    type: atomic
-                    agent: ['r3']
-          - id: rear_frame
+                agent: ['A_r1']
+          - id: stationA_engine_wiring_harness
             type: sequential
             children:
-              - id: pick_rear_frame
+              - id: wiring_harness_work
                 type: atomic
-                agent: ['r2']
-              - id: place_rear_frame_on_deck
+                agent: ['A_H1']
+      - id: stationB_rear_drive_train_assembly
+        type: sequential
+        children:
+          - id: transport_chassis_to_stationB
+            type: sequential
+            children:
+              - id: stationB_move_to_assembly_station
                 type: atomic
-                agent: ['r2']
-              - id: joint_front_and_rear_frame
-                type: parallel
-                children:
-                  - id: fasten_front_and_rear1
-                    type: sequential
-                    children:
-                      - id: front_and_rear_insert_screw1
-                        type: atomic
-                        agent: ['H']
-                      - id: fasten_bolt_on_front_and_rear_screw1
-                        type: atomic
-                        agent: ['H']
-                  - id: fasten_front_and_rear2
-                    type: sequential
-                    children:                  
-                      - id: front_and_rear_insert_screw2
-                        type: atomic
-                        agent: ['H']
-                      - id: fasten_bolt_on_front_and_rear_screw2
-                        type: atomic
-                        agent: ['H']
-                  - id: fasten_front_and_rear3
-                    type: sequential
-                    children:                  
-                      - id: front_and_rear_insert_screw3
-                        type: atomic
-                        agent: ['H']
-                      - id: fasten_bolt_on_front_and_rear_screw3
-                        type: atomic
-                        agent: ['H']
-                  - id: fasten_front_and_rear4
-                    type: sequential
-                    children:      
-                      - id: front_and_rear_insert_screw4
-                        type: atomic
-                        agent: ['H']
-                      - id: fasten_bolt_on_front_and_rear_screw4
-                        type: atomic
-                        agent: ['H']
+                agent: ['m1']
+              - id: stationB_stop_and_wait
+                type: atomic
+                agent: ['m1']
+          - id: rear_drive_train_assembly
+            type: sequential
+            children:
+              - id: stationB_pick_rear_drive_train
+                type: atomic
+                agent: ['B_r2']
+              - id: stationB_insert_rear_drive_train
+                type: atomic
+                agent: ['B_r2']
+          - id: join_rear_drive_train
+            type: parallel
+            children:
+              - id: stationB_screw_battery_assembly_to_front_frame1
+                type: atomic
+                agent: ['B_r3']
+              - id: stationB_screw_battery_assembly_to_front_frame2
+                type: atomic
+                agent: ['B_r3']
+              - id: stationB_screw_battery_assembly_to_front_frame3
+                type: atomic
+                agent: ['B_r3']
+              - id: stationB_screw_battery_assembly_to_front_frame4
+                type: atomic
+                agent: ['B_r3']
+          - id: connect_chain_to_engine
+            type: atomic
+            agent: ['B_H2']
   - id: external_add_ons
     type: sequential
     children:
