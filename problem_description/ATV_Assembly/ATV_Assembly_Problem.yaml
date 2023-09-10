@@ -10,7 +10,7 @@ children:
           - id: transport_chassis_to_stationA
             type: sequential
             children:
-              - id: stationA_move_to_assembly_station
+              - id: start_move_to_assembly_stationA
                 type: atomic
                 agent: ['m1']
               - id: stationA_stop_and_wait
@@ -28,7 +28,7 @@ children:
           - id: stationA_engine_wiring_harness
             type: sequential
             children:
-              - id: wiring_harness_work
+              - id: wiring_harness_engine
                 type: atomic
                 agent: ['A_H1']
       - id: stationB_rear_drive_train_assembly
@@ -37,7 +37,7 @@ children:
           - id: transport_chassis_to_stationB
             type: sequential
             children:
-              - id: stationB_move_to_assembly_station
+              - id: stationA_move_to_assembly_stationB
                 type: atomic
                 agent: ['m1']
               - id: stationB_stop_and_wait
@@ -70,213 +70,375 @@ children:
           - id: connect_chain_to_engine
             type: atomic
             agent: ['B_H2']
-  - id: external_add_ons
-    type: sequential
-    children:
-      - id: Attachments_to_main_body
-        type: parallel
+      - id: stationC_suspension_assembly
+        type: sequential
         children:
-          - id: core_component
+          - id: stationB_transport_chassis_to_stationC
             type: sequential
             children:
-              - id: internal_drive_components
+              - id: stationC_move_to_assembly_station
+                type: atomic
+                agent: ['m1']
+              - id: stationC_stop_and_wait
+                type: atomic
+                agent: ['m1']
+          - id: stationC_suspension_assembly
+            type: independent
+            children:
+              - id: front_suspension_assembly
+                type: sequential
+                children:
+                  - id: stationC_pick_suspension_1
+                    type: atomic
+                    agent: ['C_r4']
+                  - id: stationC_insert_suspension_1
+                    type: atomic
+                    agent: ['C_r4']
+                  - id: join_suspension_1
+                    type: parallel
+                    children:
+                      - id: stationC_fasten_suspension1_to_chassis1
+                        type: atomic
+                        agent: ['C_H3']
+                      - id: stationC_fasten_suspension1_to_chassis2
+                        type: atomic
+                        agent: ['C_H3']
+              - id: rear_suspension_assembly
                 type: independent
                 children:
-                  - id: Engine
-                    type: sequential
+                  - id: rear_suspension2_assembly
+                    type: independent
                     children:
-                      - id: pick_engine
+                      - id: stationC_pick_suspension_2
                         type: atomic
-                        agent: ["r2"]
-                      - id: insert_engine_on_main_body_assembly
+                        agent: ['C_r5']
+                      - id: stationC_insert_suspension_2
                         type: atomic
-                        agent: ["r2"]
-                      - id: wiring_harness_engine
-                        type: atomic
-                        agent: ["H"]
-                  - id: Handle_assembly
-                    type: sequential
-                    children:
-                      - id: Pick_Handle_bar
-                        type: atomic
-                        agent: ["r1"]
-                      - id: Joining_handle_to_main_body
+                        agent: ['C_r5']
+                      - id: stationC_join_suspension_2
                         type: parallel
                         children:
-                          - id: fasten_bolt_on_main_body_to_handle1
+                          - id: stationC_fasten_suspension2_to_chassis1
                             type: atomic
-                            agent: ['r3']
-                          - id: fasten_bolt_on_main_body_to_handle2
+                            agent: ['C_H4']
+                          - id: stationC_fasten_suspension2_to_chassis2
                             type: atomic
-                            agent: ['r3']
-                          - id: fasten_bolt_on_main_body_to_handle3
+                            agent: ['C_H4']
+                  - id: rear_suspension3_assembly
+                    type: independent
+                    children:
+                      - id: stationC_pick_suspension_3
+                        type: atomic
+                        agent: ['C_r5']
+                      - id: stationC_insert_suspension_3
+                        type: atomic
+                        agent: ['C_r5']
+                      - id: join_suspension_3
+                        type: parallel
+                        children:
+                          - id: stationC_fasten_suspension3_to_chassis1
                             type: atomic
-                            agent: ['r3']
-                          - id: fasten_bolt_on_main_body_to_handle4
+                            agent: ['C_H4']
+                          - id: stationC_fasten_suspension3_to_chassis2
                             type: atomic
-                            agent: ['r3']
-              - id: external_frame_assembly
+                            agent: ['C_H4']
+              - id: stationD_Battery_assembly
                 type: sequential
                 children:
-                  - id: lower_body_frame
+                  - id: transport_chassis_to_stationD
                     type: sequential
                     children:
-                      - id: pick_lower_body_frame
+                      - id: stationC_move_to_assembly_stationD
                         type: atomic
-                        agent: ['r1']
-                      - id: hold_lower_body_frame_in_place
+                        agent: [ 'm1' ]
+                      - id: stationD_stop_and_wait
                         type: atomic
-                        agent: ['r1']
-                      - id: joining_lower_body_frame_to_main
-                        type: independent
-                        children:
-                          - id: screw_lower_body_frame_to_main1
-                            type: atomic
-                            agent: ['r3']
-                          - id: screw_lower_body_frame_to_main2
-                            type: atomic
-                            agent: ['r3']
-                          - id: screw_lower_body_frame_to_main3
-                            type: atomic
-                            agent: ['r3']
-                  - id: upper_body_frame
+                        agent: [ 'm1' ]
+                  - id: stationD_pick_battery
+                    type: atomic
+                    agent: ['D_r6']
+                  - id: stationD_place_battery
+                    type: atomic
+                    agent: ['D_r6']
+                  - id: fasten_battery_assembly
+                    type: atomic
+                    agent: ['D_H4']
+                  - id: wiring_harness_battery
+                    type: atomic
+                    agent: ['D_H4']
+              - id: stationE_FuelContainer_assembly
+                type: sequential
+                children:
+                  - id: stationD_transport_chassis_to_stationE
                     type: sequential
                     children:
-                      - id: pick_upper_body_frame
+                      - id: stationD_move_to_assembly_stationE
                         type: atomic
-                        agent: ['r1']
-                      - id: hold_upper_body_frame_in_place
+                        agent: [ 'm1' ]
+                      - id: stationE_stop_and_wait
                         type: atomic
-                        agent: ['r1']
-                      - id: joining_upper_body_frame_to_main
-                        type: independent
-                        children:
-                          - id: screw_upper_body_frame_to_main1
-                            type: atomic
-                            agent: ['r3']
-                          - id: screw_upper_body_frame_to_main2
-                            type: atomic
-                            agent: ['r3']
-                          - id: screw_upper_body_frame_to_main3
-                            type: atomic
-                            agent: ['r3']
-                      - id: joining_upper_body_frame_to_lower_frame
-                        type: independent
-                        children:
-                          - id: screw_upper_body_frame_to_lower_frame1
-                            type: atomic
-                            agent: ['r3']
-                          - id: screw_upper_body_frame_to_lower_frame2
-                            type: atomic
-                            agent: ['r3']
-                          - id: screw_upper_body_frame_to_lower_frame3
-                            type: atomic
-                            agent: ['r3']
-          - id: trunk_skeleton
+                        agent: [ 'm1' ]
+                  - id: stationE_pick_fuel_container
+                    type: atomic
+                    agent: ['E_r7']
+                  - id: stationE_place_fuel_container
+                    type: atomic
+                    agent: ['E_r7']
+                  - id: stationE_fasten_fuel_container
+                    type: atomic
+                    agent: ['E_r7']
+                  - id: wiring_harness_fuel_container
+                    type: atomic
+                    agent: ['E_H5']
+              - id: stationF_break_assembly
+                type: sequential
+                children:
+                  - id: transport_chassis_to_stationF
+                    type: sequential
+                    children:
+                      - id: stationE_move_to_assembly_stationF
+                        type: atomic
+                        agent: [ 'm1' ]
+                      - id: stationF_stop_and_wait
+                        type: atomic
+                        agent: [ 'm1' ]
+                  - id: wiring_harness_break
+                    type: atomic
+                    agent: ['F_H6']
+  - id: main_external_components
+    type: independent
+    children:
+      - id: handle_frame_assembly
+        type: sequential
+        children:
+          - id: stationG_cover_assembly
             type: sequential
             children:
-              - id: pick_trunk_skeleton
-                type: atomic
-                agent: ['r1']
-              - id: hold_pick_trunk_skeleton_on_external_frame
-                type: atomic
-                agent: ['r1']
-              - id: joining_upper_trunk_skeleton_to_frame
-                type: independent
+              - id: stationG_lower_cover_assembly
+                type: sequential
                 children:
-                  - id: screw_upper_trunk_skeleton_to_frame1
+                  - id: transport_chassis_to_stationG
+                    type: sequential
+                    children:
+                      - id: stationF_move_to_assembly_stationG
+                        type: atomic
+                        agent: ['m1']
+                      - id: stationG_stop_and_wait
+                        type: atomic
+                        agent: ['m1']
+                  - id: stationG_left_lower_cover_assembly
+                    type: sequential
+                    children:
+                      - id: stationG_pick_left_lower_cover
+                        type: atomic
+                        agent: []
+                      - id: stationG_place_left_lower_cover
+                        type: atomic
+                        agent: []
+                      - id: stationG_fasten_left_lower_cover
+                        type: sequential
+                        children:
+                          - id: stationG_fasten_left_lower_cover1
+                            type: atomic
+                            agent: []
+                          - id: stationG_fasten_left_lower_cover2
+                            type: atomic
+                            agent: []
+                  - id: stationG_right_lower_cover_assembly
+                    type: sequential
+                    children:
+                      - id: stationG_pick_left_lower_cover
+                        type: atomic
+                        agent: []
+                      - id: stationG_place_left_lower_cover
+                        type: atomic
+                        agent: []
+                      - id: stationG_fasten_left_lower_cover
+                        type: sequential
+                        children:
+                          - id: stationG_fasten_left_lower_cover1
+                            type: atomic
+                            agent: []
+                          - id: stationG_fasten_left_lower_cover2
+                            type: atomic
+                            agent: []
+              - id: stationG_upper_cover_assembly
+                type: sequential
+                children:
+                  - id: stationG_pick_upper_cover
                     type: atomic
-                    agent: ['r3']
-                  - id: screw_upper_trunk_skeleton_to_frame2
+                    agent: []
+                  - id: stationG_insert_upper_cover
                     type: atomic
-                    agent: ['r3']
-                  - id: screw_upper_trunk_skeleton_to_frame3
+                    agent: []
+                  - id: stationG_fasten_upper_cover
+                    type: independent
+                    children:
+                      - id: stationG_fasten_upper_cover1
+                        type: atomic
+                        agent: []
+                      - id: stationG_fasten_upper_cover2
+                        type: atomic
+                        agent: [ ]
+                      - id: stationG_fasten_upper_cover2
+                        type: atomic
+                        agent: [ ]
+                      - id: stationG_fasten_upper_cover2
+                        type: atomic
+                        agent: [ ]
+          - id: stationH_Handle_assembly
+            type: sequential
+            children:
+              - id: stationG_transport_chassis_to_stationH
+                type: sequential
+                children:
+                  - id: stationG_move_to_assembly_station
                     type: atomic
-                    agent: ['r3']
-          - id: wheel_assembly
+                    agent: ['m1']
+                  - id: stationG_stop_and_wait
+                    type: atomic
+                    agent: ['m1']
+              - id: stationH_pick_handle
+                type: atomic
+                agent: []
+              - id: stationH_place_handle
+                type: atomic
+                agent: []
+              - id: stationH_fasten_handle
+                type: atomic
+                agent: []
+              - id: stationH_wiring_harness_handle
+                type: atomic
+                agent: []
+      - id: stationI_wheel_trunk_assembly
+        type: sequential
+        children:
+          - id: transport_chassis_to_stationI
+            type: sequential
+            children:
+              - id: stationH_move_to_assembly_stationI
+                type: atomic
+                agent: [ 'm1' ]
+              - id: stationG_stop_and_wait
+                type: atomic
+                agent: ['m1']
+          - id: stationI_wheel_assembly
             type: parallel
             children:
-              - id: front_left_wheel_assembly
+              - id: stationI_wheel_assembly1
                 type: sequential
-                children: 
-                  - id: pick_front_left_wheel
+                children:
+                  - id: stationI_pick_wheel1
                     type: atomic
-                    agent: ["r1"]
-                  - id: joining_front_left_wheel
-                    type: parallel
-                    children:
-                      - id: scew_bolt_for_front_left_wheel1
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_front_left_wheel2
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_front_left_wheel3
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_front_left_wheel4
-                        type: atomic
-                        agent: ['r3']
-              - id: front_right_wheel_assembly
+                    agent: []
+                  - id: stationI_insert_wheel1
+                    type: atomic
+                    agent: []
+                  - id: stationI_fasten_wheel1
+                    type: atomic
+                    agent: []
+              - id: stationI_wheel_assembly2
                 type: sequential
-                children: 
-                  - id: pick_front_right_wheel
+                children:
+                  - id: stationI_pick_wheel2
                     type: atomic
-                    agent: ["r1"]
-                  - id: joining_front_right_wheel
-                    type: parallel
-                    children:
-                      - id: scew_bolt_for_front_right_wheel1
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_front_right_wheel2
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_front_right_wheel3
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_front_right_wheel4
-                        type: atomic
-                        agent: ['r3']
-              - id: rear_left_wheel_assembly
+                    agent: []
+                  - id: stationI_insert_wheel2
+                    type: atomic
+                    agent: []
+                  - id: stationI_fasten_wheel2
+                    type: atomic
+                    agent: []
+              - id: stationI_wheel_assembly3
                 type: sequential
-                children: 
-                  - id: pick_rear_left_wheel
+                children:
+                  - id: stationI_pick_wheel3
                     type: atomic
-                    agent: ["r1"]
-                  - id: joining_rear_left_wheel
-                    type: parallel
-                    children:
-                      - id: scew_bolt_for_rear_left_wheel1
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_rear_left_wheel2
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_rear_left_wheel3
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_rear_left_wheel4
-                        type: atomic
-                        agent: ['r3']
-              - id: rear_right_wheel_assembly
+                    agent: []
+                  - id: stationI_insert_wheel3
+                    type: atomic
+                    agent: []
+                  - id: stationI_fasten_wheel3
+                    type: atomic
+                    agent: []
+              - id: stationI_wheel_assembly4
                 type: sequential
-                children: 
-                  - id: pick_rear_right_wheel
+                children:
+                  - id: stationI_pick_wheel4
                     type: atomic
-                    agent: ["r1"]
-                  - id: joining_rear_right_wheel
-                    type: parallel
-                    children:
-                      - id: scew_bolt_for_rear_right_wheel1
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_rear_right_wheel2
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_rear_right_wheel3
-                        type: atomic
-                        agent: ['r3']
-                      - id: scew_bolt_for_rear_right_wheel4
-                        type: atomic
-                        agent: ['r3']
+                    agent: []
+                  - id: stationI_insert_wheel4
+                    type: atomic
+                    agent: []
+                  - id: stationI_fasten_wheel44
+                    type: atomic
+                    agent: []
+          - id: stationI_trunk_assembly
+            type: sequential
+            children:
+              - id: stationI_pick_trunk
+                type: atomic
+                agent: []
+              - id: stationI_insert_trunk
+                type: atomic
+                agent: []
+              - id: stationI_fasten_trunk
+                type: sequential
+                children:
+                  - id: stationI_fasten_trunk_1
+                    type: atomic
+                    agent: []
+                  - id: stationI_fasten_trunk_2
+                    type: atomic
+                    agent: []
+  - id: sub_add_on_components
+    type: parallel
+    children:
+      - id: stationJ_front_light_assembly
+        type: sequential
+        children:
+          - id: transport_chassis_to_stationJ
+            type: sequential
+            children:
+              - id: stationI_move_to_assembly_stationJ
+                type: atomic
+                agent: [ 'm1' ]
+              - id: stationJ_stop_and_wait
+                type: atomic
+                agent: ['m1']
+          - id: stationJ_pick_front_light
+            type: atomic
+            agent: []
+          - id: stationJ_hold_front_light
+            type: atomic
+            agent: []
+          - id: wiring_harness_front_light
+            type: atomic
+            agent: []
+      - id: seat_assembly
+        type: sequential
+        children:
+          - id: transport_chassis_to_stationK
+            type: sequential
+            children:
+              - id: stationJ_move_to_assembly_stationK
+                type: atomic
+                agent: [ 'm1' ]
+              - id: stationK_stop_and_wait
+                type: atomic
+                agent: [ 'm1' ]
+          - id: stationK_pick_seat
+            type: atomic
+            agent: []
+          - id: stationK_place_seat
+            type: atomic
+            agent: []
+          - id: stationK_fasten_seat
+            type: atomic
+            agent: []
+      - id: reflector_assembly
+        type: sequential
+        children:
+          - id: stationK_install_reflectors
+            type: atomic
+            agent: []
