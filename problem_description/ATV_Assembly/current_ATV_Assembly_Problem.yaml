@@ -36,9 +36,11 @@ children:
           type: parallel
           children:
           - id: p1_screw_battery_assembly_to_front_frame1
-            type: atomic
-            agent:
-            - r3
+            type: sequential
+            children:
+            - id: neel
+              type: atomic
+              agent: neel
           - id: p1_screw_battery_assembly_to_front_frame2
             type: atomic
             agent:
@@ -69,9 +71,11 @@ children:
             type: sequential
             children:
             - id: p1_front_and_rear_insert_screw1
-              type: atomic
-              agent:
-              - H
+              type: independent
+              children:
+              - id: njhvfksfndjhsfdvsandsfvnk
+                type: atomic
+                agent: r2
             - id: p1_fasten_bolt_on_front_and_rear_screw1
               type: atomic
               agent:
@@ -124,18 +128,46 @@ children:
           - id: p1_Engine
             type: sequential
             children:
-            - id: p1_pick_engine
-              type: atomic
-              agent:
-              - r2
-            - id: p1_insert_engine_on_main_body_assembly
-              type: atomic
-              agent:
-              - r2
-            - id: p1_wiring_harness_engine
-              type: atomic
-              agent:
-              - H
+            - id: contingency_tasks
+              type: sequential
+              children:
+              - id: p1_pick_engine
+                type: atomic
+                agent:
+                - r2
+              - id: recovery-contingency_action-p1_pick_engine
+                type: sequential
+                children:
+                - id: recovery-dropped_part
+                  type: sequential
+                  children:
+                  - id: recovery-scan_the_workspace
+                    type: atomic
+                    agent:
+                    - r2
+                  - id: recovery-locate_dropped_part
+                    type: atomic
+                    agent:
+                    - r2
+                  - id: recovery-pick_dropped_part
+                    type: atomic
+                    agent:
+                    - r2
+                - id: recovery-notify_monitor
+                  type: atomic
+                  agent:
+                  - r2
+            - id: regular_operations
+              type: sequential
+              children:
+              - id: p1_insert_engine_on_main_body_assembly
+                type: atomic
+                agent:
+                - r2
+              - id: p1_wiring_harness_engine
+                type: atomic
+                agent:
+                - H
           - id: p1_Handle_assembly
             type: sequential
             children:

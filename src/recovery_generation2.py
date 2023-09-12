@@ -18,16 +18,24 @@ class RecoveryGeneration:
     def import_htn(self):
         with open('problem_description/ATV_Assembly/current_ATV_Assembly_Problem.yaml', "r") as data:
             try:
-                htn = str(yaml.safe_load(data))
+                htn = yaml.safe_load(data)
             except yaml.YAMLError as e:
                 print(e)
         return htn
 
     def import_example_policies(self):
-        with open('src/recovery_policies_example.py', "r") as file:
-            examples = file.read()
-            print("check")
-        return examples
+        """
+        imports yaml file
+        :return:
+        returns the prompt and context from the yaml file
+        """
+        with open('prompt/contingency_policies.yaml', "r") as data:
+            try:
+                self.dict = str(yaml.safe_load(data))
+                print(self.dict)
+            except yaml.YAMLError as e:
+                print(e)
+        return self.dict
 
     def import_user_prompt(self):
         with open('prompt/user_prompt.py', "r") as file:
@@ -50,8 +58,9 @@ class RecoveryGeneration:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-0613",
             messages=[
-                {"role": "user", "content": "Current HTN is :" + htn}, # feeds in htn as input,
+                # {"role": "user", "content": htn}, # feeds in htn as input,
                 {"role": "user", "content": example_policies},
+                {"role": "user", "content": },
                 {"role": "user", "content": introduction},
                 {"role": "user", "content": user_prompt}
             ],

@@ -453,3 +453,31 @@ pick_back_front_frame1:
     r1:
       id: det
       mean: 6
+recovery-scan_the_workspace:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 4
+recovery-notify_monitor:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 6
+recovery-locate_dropped_part:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 6
+recovery-pick_dropped_part:
+  agent_model:
+  - r2
+  duration_model:
+    r2:
+      id: det
+      mean: 6

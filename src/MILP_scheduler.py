@@ -22,7 +22,7 @@ from anytree.importer import DictImporter
 from Agent import Agent
 from Task import Task
 from tree_toolset import TreeToolSet
-
+import json
 
 class HtnMilpScheduler:
     """
@@ -322,6 +322,10 @@ class HtnMilpScheduler:
         else:
             self.multi_product_htn = DictImporter().import_(self.dict)  # to avoid duplicating p1
             self.multi_product_dict = self.dict
+            print(self.multi_product_dict)
+            print(type(self.multi_product_dict))
+            str_htn_dict = str(self.multi_product_dict)
+            input()
         if print_htn:
             print(RenderTree(self.multi_product_htn))
         return self.multi_product_htn

@@ -1,0 +1,8 @@
+"Give me the tree data structure of the code for recovery action. The format should follow the original HTN that will be
+provided to you. Also, take a look at the example policies that I have prepared. Based on the user input that will come at the end,
+using the same functions in example policies generate a code that reflects user's instruction to nodes in htn.
+Note that this is for manufacturing assembly cell with three robots and one human agent (r1,r2,r3,H). You can also
+set agents unavailable by using function set_agent_state("agent", state). Note that only human
+is a moving agent. So part retrieval should happen by human but other tasks should be done by robots. Make sure that there is finish of task.
+For example, if picked, place should be there. You can allocate any agent for the recovery task but prioritize robots.
+If a part is broken or damaged, replace it with a new one."

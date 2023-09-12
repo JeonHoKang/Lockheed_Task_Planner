@@ -117,11 +117,11 @@ class AlterTree:
                     dictionary_htn['type'] = node_type
                     dictionary_htn['children'].append(new_element)
                 else:
-                    if len(dictionary_htn['children']) + 1 < insert_order:
+                    if len(dictionary_htn['children']) < insert_order:
                         print("exceeds the number of children - Defaulting to first child")
-                        insert_order = 0
+                        dictionary_htn['children'].append(new_element)
                     else:
-                        dictionary_htn['children'].insert(insert_order, new_element)
+                        dictionary_htn['children'].append(new_element)
 
             else:
                 if 'children' in dictionary_htn:

@@ -18,11 +18,13 @@ def recover_screw_stuck():
 
 def dropped_part():
     toolset.add_node(planning_node, "recovery-dropped_part", "sequential")
-    toolset.add_node("recovery-dropped_part", "recovery-search_dropped_part", "sequential")
-    toolset.add_node("recovery-search_dropped_part", "recovery-scan_the_workspace", "atomic", agent='r2', duration=6,
-                     order_number=0)
-    toolset.add_node("recovery-search_dropped_part", "recovery-notify_monitor", "atomic", agent='r2', duration=6,
+    toolset.add_node("recovery-dropped_part", "recovery-scan_the_workspace", "atomic", agent='r2', duration=4, order_number=0)
+    toolset.add_node("recovery-dropped_part", "recovery-locate_dropped_part", "atomic", agent='r2', duration=6,
                      order_number=1)
+    toolset.add_node("recovery-dropped_part", "recovery-pick_dropped_part", "atomic", agent='r2', duration=6,
+                     order_number=2)
+    toolset.add_node(planning_node, "recovery-notify_monitor", "atomic", agent='r2', duration=6,
+                     order_number=3)
     toolset.export_new_htn()
 
 
@@ -104,3 +106,20 @@ def recovery_task_collision():
 def recovery_Human_on_break():
     toolset.set_agent_state("H", 'unavailable')
     # code to handle recovery task when human agent is on break
+def recovery_part_collision():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-part_collision", "sequential")
+    
+    # Step 1: Move away from the collision spot
+    toolset.add_node("recovery-part_collision", "recovery-move_away", "atomic", agent="r1", duration=10, order_number=0)
+    
+    # Step 2: Check for damage
+    toolset.add_node("recovery-part_collision", "recovery-check_damage", "atomic", agent="H", duration=6, order_number=1)
+    
+    # Step 3: Reattempt motion
+    toolset.add_node("recovery-part_collision", "recovery-reattempt_motion", "atomic", agent="r1", duration=12, order_number=2)
+    
+    # Export the new HTN
+    toolset.export_new_htn()
+
+dropped_part()

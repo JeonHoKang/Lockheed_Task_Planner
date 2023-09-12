@@ -1,5 +1,5 @@
 from asyncio import get_child_watcher
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import igraph as ig
@@ -325,7 +325,7 @@ class HTN_vis(QtWidgets.QMainWindow):
 
     def add_task_model(self):
         if self.child_node_type == 'atomic':
-            with open("problem_description/ATV_Assembly/currents_task_model_ATV.yaml", "r") as file:
+            with open("problem_description/ATV_Assembly/current_task_model_ATV.yaml", "r") as file:
                 task_model_dict = yaml.safe_load(file)
                 print(task_model_dict)
                 task_model_dict[self.label.text()] = {'agent_model': [self.agent_type.text()], 'duration_model': {}}

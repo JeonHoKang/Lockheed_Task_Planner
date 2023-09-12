@@ -228,12 +228,12 @@ class ContingencyManager:
     #     insert_element(htn_dictionary, failed_task,
     #                    contingency_plan)
 
-    def split_contingency_and_normal(self, htn_dictionary, failed_task, contingency_plan ):
+    def split_contingency_and_normal(self, htn_dictionary, failed_task, contingency_plan):
         """Adds the handling nodes into the current contingency"""
         def insert_element(dictionary, failed_task, contingency_plan, parent=None):
             target_node = failed_task
             if dictionary['id'] == target_node['id']:
-                sub_parent = {'id': 'contingency_action', 'type': 'sequential', 'children': []}
+                sub_parent = {'id': 'contingency_tasks', 'type': 'sequential', 'children': []}
                 sub_parent2 = {'id': 'regular_operations', 'type': parent['type']}
                 parent['type'] = 'sequential'
                 parent['children'].remove(target_node)
@@ -299,6 +299,6 @@ class ContingencyManager:
 #     contingency_handling.generate_task_model(contingency_plan) # export task_model to yaml file
 #     contingency_handling.yaml_export(htn_dict, contingency_plan) # Export yaml file
 #     print('-------initialized contingency manager-------')
-#
+# #
 # if __name__ == '__main__':
 #     main()
