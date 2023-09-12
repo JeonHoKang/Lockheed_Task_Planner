@@ -28,7 +28,7 @@ children:
           - id: stationA_engine_wiring_harness
             type: sequential
             children:
-              - id: wiring_harness_engine
+              - id: stationA_wiring_harness_engine
                 type: atomic
                 agent: ['A_H1']
       - id: stationB_rear_drive_train_assembly
@@ -67,7 +67,7 @@ children:
               - id: stationB_screw_battery_assembly_to_front_frame4
                 type: atomic
                 agent: ['B_r3']
-          - id: connect_chain_to_engine
+          - id: stationB_chain_to_engine
             type: atomic
             agent: ['B_H2']
       - id: stationC_suspension_assembly
@@ -160,10 +160,10 @@ children:
                   - id: stationD_place_battery
                     type: atomic
                     agent: ['D_r6']
-                  - id: fasten_battery_assembly
+                  - id: stationD_fasten_battery_assembly
                     type: atomic
                     agent: ['D_H4']
-                  - id: wiring_harness_battery
+                  - id: stationD_wiring_harness_battery
                     type: atomic
                     agent: ['D_H4']
               - id: stationE_FuelContainer_assembly
@@ -187,7 +187,7 @@ children:
                   - id: stationE_fasten_fuel_container
                     type: atomic
                     agent: ['E_r7']
-                  - id: wiring_harness_fuel_container
+                  - id: stationE_wiring_harness_fuel_container
                     type: atomic
                     agent: ['E_H5']
               - id: stationF_break_assembly
@@ -202,7 +202,7 @@ children:
                       - id: stationF_stop_and_wait
                         type: atomic
                         agent: [ 'm1' ]
-                  - id: wiring_harness_break
+                  - id: stationF_wiring_harness_break
                     type: atomic
                     agent: ['F_H6']
   - id: main_external_components
@@ -231,61 +231,61 @@ children:
                     children:
                       - id: stationG_pick_left_lower_cover
                         type: atomic
-                        agent: []
+                        agent: ['G_r8']
                       - id: stationG_place_left_lower_cover
                         type: atomic
-                        agent: []
+                        agent: ['G_r8']
                       - id: stationG_fasten_left_lower_cover
                         type: sequential
                         children:
                           - id: stationG_fasten_left_lower_cover1
                             type: atomic
-                            agent: []
+                            agent: ['G_r9']
                           - id: stationG_fasten_left_lower_cover2
                             type: atomic
-                            agent: []
+                            agent: ['G_r9']
                   - id: stationG_right_lower_cover_assembly
                     type: sequential
                     children:
-                      - id: stationG_pick_left_lower_cover
+                      - id: stationG_pick_right_lower_cover
                         type: atomic
-                        agent: []
-                      - id: stationG_place_left_lower_cover
+                        agent: ['G_r8']
+                      - id: stationG_place_right_lower_cover
                         type: atomic
-                        agent: []
-                      - id: stationG_fasten_left_lower_cover
+                        agent: ['G_r8']
+                      - id: stationG_fasten_right_lower_cover
                         type: sequential
                         children:
-                          - id: stationG_fasten_left_lower_cover1
+                          - id: stationG_fasten_right_lower_cover1
                             type: atomic
-                            agent: []
-                          - id: stationG_fasten_left_lower_cover2
+                            agent: ['G_r9']
+                          - id: stationG_fasten_right_lower_cover2
                             type: atomic
-                            agent: []
+                            agent: ['G_r9']
               - id: stationG_upper_cover_assembly
                 type: sequential
                 children:
                   - id: stationG_pick_upper_cover
                     type: atomic
-                    agent: []
+                    agent: ['G_r8']
                   - id: stationG_insert_upper_cover
                     type: atomic
-                    agent: []
+                    agent: ['G_r8']
                   - id: stationG_fasten_upper_cover
                     type: independent
                     children:
                       - id: stationG_fasten_upper_cover1
                         type: atomic
-                        agent: []
+                        agent: ['G_r9']
                       - id: stationG_fasten_upper_cover2
                         type: atomic
-                        agent: [ ]
-                      - id: stationG_fasten_upper_cover2
+                        agent: ['G_r9']
+                      - id: stationG_fasten_upper_cover3
                         type: atomic
-                        agent: [ ]
-                      - id: stationG_fasten_upper_cover2
+                        agent: ['G_r9']
+                      - id: stationG_fasten_upper_cover4
                         type: atomic
-                        agent: [ ]
+                        agent: ['G_r9']
           - id: stationH_Handle_assembly
             type: sequential
             children:
@@ -295,21 +295,21 @@ children:
                   - id: stationG_move_to_assembly_station
                     type: atomic
                     agent: ['m1']
-                  - id: stationG_stop_and_wait
+                  - id: stationH_stop_and_wait
                     type: atomic
                     agent: ['m1']
               - id: stationH_pick_handle
                 type: atomic
-                agent: []
+                agent: ['H_r10']
               - id: stationH_place_handle
                 type: atomic
-                agent: []
+                agent: ['H_r10']
               - id: stationH_fasten_handle
                 type: atomic
-                agent: []
+                agent: ['H_H7']
               - id: stationH_wiring_harness_handle
                 type: atomic
-                agent: []
+                agent: ['H_H7']
       - id: stationI_wheel_trunk_assembly
         type: sequential
         children:
@@ -319,7 +319,7 @@ children:
               - id: stationH_move_to_assembly_stationI
                 type: atomic
                 agent: [ 'm1' ]
-              - id: stationG_stop_and_wait
+              - id: stationI_stop_and_wait
                 type: atomic
                 agent: ['m1']
           - id: stationI_wheel_assembly
@@ -330,67 +330,67 @@ children:
                 children:
                   - id: stationI_pick_wheel1
                     type: atomic
-                    agent: []
+                    agent: ['I_r11']
                   - id: stationI_insert_wheel1
                     type: atomic
-                    agent: []
+                    agent: ['I_r11']
                   - id: stationI_fasten_wheel1
                     type: atomic
-                    agent: []
+                    agent: ['I_r12']
               - id: stationI_wheel_assembly2
                 type: sequential
                 children:
                   - id: stationI_pick_wheel2
                     type: atomic
-                    agent: []
+                    agent: ['I_r11']
                   - id: stationI_insert_wheel2
                     type: atomic
-                    agent: []
+                    agent: ['I_r11']
                   - id: stationI_fasten_wheel2
                     type: atomic
-                    agent: []
+                    agent: ['I_r12']
               - id: stationI_wheel_assembly3
                 type: sequential
                 children:
                   - id: stationI_pick_wheel3
                     type: atomic
-                    agent: []
+                    agent: ['I_r11']
                   - id: stationI_insert_wheel3
                     type: atomic
-                    agent: []
+                    agent: ['I_r11']
                   - id: stationI_fasten_wheel3
                     type: atomic
-                    agent: []
+                    agent: ['I_r12']
               - id: stationI_wheel_assembly4
                 type: sequential
                 children:
                   - id: stationI_pick_wheel4
                     type: atomic
-                    agent: []
+                    agent: ['I_r11']
                   - id: stationI_insert_wheel4
                     type: atomic
-                    agent: []
+                    agent: ['I_r11']
                   - id: stationI_fasten_wheel44
                     type: atomic
-                    agent: []
+                    agent: ['I_r12']
           - id: stationI_trunk_assembly
             type: sequential
             children:
               - id: stationI_pick_trunk
                 type: atomic
-                agent: []
+                agent: ['I_r11']
               - id: stationI_insert_trunk
                 type: atomic
-                agent: []
+                agent: ['I_r11']
               - id: stationI_fasten_trunk
                 type: sequential
                 children:
                   - id: stationI_fasten_trunk_1
                     type: atomic
-                    agent: []
+                    agent: ['I_r12']
                   - id: stationI_fasten_trunk_2
                     type: atomic
-                    agent: []
+                    agent: ['I_r12']
   - id: sub_add_on_components
     type: parallel
     children:
@@ -408,13 +408,13 @@ children:
                 agent: ['m1']
           - id: stationJ_pick_front_light
             type: atomic
-            agent: []
+            agent: ['J_r13']
           - id: stationJ_hold_front_light
             type: atomic
-            agent: []
-          - id: wiring_harness_front_light
+            agent: ['J_r13']
+          - id: stationJ_wiring_harness_front_light
             type: atomic
-            agent: []
+            agent: ['J_H8']
       - id: seat_assembly
         type: sequential
         children:
@@ -429,16 +429,16 @@ children:
                 agent: [ 'm1' ]
           - id: stationK_pick_seat
             type: atomic
-            agent: []
+            agent: ['K_r14']
           - id: stationK_place_seat
             type: atomic
-            agent: []
+            agent: ['K_r14']
           - id: stationK_fasten_seat
             type: atomic
-            agent: []
+            agent: ['K_r15']
       - id: reflector_assembly
         type: sequential
         children:
           - id: stationK_install_reflectors
             type: atomic
-            agent: []
+            agent: ['K_r15']

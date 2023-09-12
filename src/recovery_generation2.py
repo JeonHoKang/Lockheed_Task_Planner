@@ -58,11 +58,10 @@ class RecoveryGeneration:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-0613",
             messages=[
-                # {"role": "user", "content": htn}, # feeds in htn as input,
+                {"role": "user", "content": htn}, # feeds in htn as input,
                 {"role": "user", "content": example_policies},
-                {"role": "user", "content": },
                 {"role": "user", "content": introduction},
-                {"role": "user", "content": user_prompt}
+                {"role": "user", "content": input("Failure : ")}
             ],
 
         )

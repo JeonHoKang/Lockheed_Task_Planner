@@ -1,32 +1,32 @@
-pick_front_frame:
+start_move_to_assembly_stationA:
   agent_model:
-  - r1
+  - m1
   duration_model:
-    r1:
+    m1:
       id: det
       mean: 10
-place_front_frame_on_deck:
+stationA_stop_and_wait:
   agent_model:
-  - r1
+  - m1
   duration_model:
-    r1:
+    m1:
       id: det
       mean: 9
-pick_battery_assembly:
+stationA_pick_engine:
   agent_model:
-  - r2
+  - A_r1
   duration_model:
-    r2:
+    A_r1:
       id: det
       mean: 8
-place_battery_assembly:
+stationA_insert_engine_on_chassis:
   agent_model:
   - r2
   duration_model:
     r2:
       id: det
       mean: 12
-screw_battery_assembly_to_front_frame1:
+stationA_wiring_harness_engine:
   agent_model:
   - r3
   duration_model:
@@ -40,416 +40,628 @@ screw_battery_assembly_to_front_frame2:
     r3:
       id: det
       mean: 6
-screw_battery_assembly_to_front_frame3:
+stationA_move_to_assembly_stationB:
   agent_model:
   - r3
   duration_model:
     r3:
       id: det
       mean: 6
-screw_battery_assembly_to_front_frame4:
+stationB_stop_and_wait:
   agent_model:
   - r3
   duration_model:
     r3:
       id: det
       mean: 6
-pick_rear_frame:
+stationB_pick_rear_drive_train:
   agent_model:
   - r2
   duration_model:
     r2:
       id: det
       mean: 10
-place_rear_frame_on_deck:
+stationB_insert_rear_drive_train:
   agent_model:
   - r2
   duration_model:
     r2:
       id: det
       mean: 10
-front_and_rear_insert_screw1:
+stationB_screw_battery_assembly_to_front_frame1:
   agent_model:
   - H
   duration_model:
     H:
       id: det
       mean: 18
-fasten_bolt_on_front_and_rear_screw1:
+stationB_screw_battery_assembly_to_front_frame2:
   agent_model:
   - H
   duration_model:
     H:
       id: det
       mean: 18
-front_and_rear_insert_screw2:
+stationB_screw_battery_assembly_to_front_frame3:
   agent_model:
   - H
   duration_model:
     H:
       id: det
       mean: 18
-fasten_bolt_on_front_and_rear_screw2:
+stationB_screw_battery_assembly_to_front_frame4:
   agent_model:
   - H
   duration_model:
     H:
       id: det
       mean: 18
-front_and_rear_insert_screw3:
+stationB_chain_to_engine:
   agent_model:
   - H
   duration_model:
     H:
       id: det
       mean: 18
-fasten_bolt_on_front_and_rear_screw3:
+stationC_move_to_assembly_station:
   agent_model:
   - H
   duration_model:
     H:
       id: det
       mean: 18
-front_and_rear_insert_screw4:
+stationC_stop_and_wait:
   agent_model:
   - H
   duration_model:
     H:
       id: det
       mean: 9
-fasten_bolt_on_front_and_rear_screw4:
+stationC_pick_suspension_1:
   agent_model:
   - H
   duration_model:
     H:
       id: det
       mean: 6
-pick_engine:
+stationC_insert_suspension_1:
   agent_model:
   - r2
   duration_model:
     r2:
       id: det
       mean: 16
-insert_engine_on_main_body_assembly:
+stationC_fasten_suspension1_to_chassis1:
   agent_model:
   - r2
   duration_model:
     r2:
       id: det
       mean: 18
-wiring_harness_engine:
+stationC_fasten_suspension1_to_chassis2:
   agent_model:
   - H
   duration_model:
     H:
       id: det
       mean: 24
-pick_front_left_wheel:
+stationC_pick_suspension_2:
   agent_model:
-  - r1
+  - C_r5
   duration_model:
-    r1:
+    C_r5:
       id: det
       mean: 10
-scew_bolt_for_front_left_wheel1:
+stationC_insert_suspension_2:
   agent_model:
-  - r3
+  - C_r5
   duration_model:
-    r3:
+    C_r5:
       id: det
       mean: 10
-scew_bolt_for_front_left_wheel2:
+stationC_fasten_suspension2_to_chassis1:
   agent_model:
-  - r3
+  - C_H4
   duration_model:
-    r3:
+    C_H4:
       id: det
       mean: 10
-scew_bolt_for_front_left_wheel3:
+stationC_fasten_suspension2_to_chassis2:
   agent_model:
-  - r3
+  - C_H4
   duration_model:
-    r3:
+    C_H4:
       id: det
       mean: 10
-scew_bolt_for_front_left_wheel4:
+stationC_pick_suspension_3:
   agent_model:
-  - r3
+  - C_r5
   duration_model:
-    r3:
+    C_r5:
       id: det
       mean: 10
-pick_front_right_wheel:
+stationC_insert_suspension_3:
   agent_model:
-  - r2
+  - C_H4
   duration_model:
-    r2:
+    C_H4:
       id: det
       mean: 10
-scew_bolt_for_front_right_wheel1:
+stationC_fasten_suspension3_to_chassis1:
   agent_model:
-  - r3
+  - C_r5
   duration_model:
-    r3:
+    C_r5:
       id: det
       mean: 10
-scew_bolt_for_front_right_wheel2:
+stationC_fasten_suspension3_to_chassis2:
   agent_model:
-  - r3
+  - C_H4
   duration_model:
-    r3:
+    C_H4:
       id: det
       mean: 10
-scew_bolt_for_front_right_wheel3:
+stationC_move_to_assembly_stationD:
   agent_model:
-  - r3
+  - m1
   duration_model:
-    r3:
+    m1:
       id: det
       mean: 10
-scew_bolt_for_front_right_wheel4:
+stationD_stop_and_wait:
   agent_model:
-  - r3
+  - m1
   duration_model:
-    r3:
+    m1:
       id: det
       mean: 10
-pick_rear_left_wheel:
+stationD_pick_battery:
   agent_model:
-  - r2
+  - D_r6
   duration_model:
-    r2:
+    D_r6:
       id: det
       mean: 10
-scew_bolt_for_rear_left_wheel1:
+stationD_place_battery:
   agent_model:
-  - r3
+  - D_r6
   duration_model:
-    r3:
+    D_r6:
       id: det
       mean: 10
-scew_bolt_for_rear_left_wheel2:
+stationD_fasten_battery_assembly:
   agent_model:
-  - r3
+  - D_H4
   duration_model:
-    r3:
+    D_H4:
       id: det
       mean: 10
-scew_bolt_for_rear_left_wheel3:
+stationD_wiring_harness_battery:
   agent_model:
-  - r3
+  - D_H4
   duration_model:
-    r3:
+    D_H4:
       id: det
       mean: 10
-scew_bolt_for_rear_left_wheel4:
+stationD_move_to_assembly_stationE:
   agent_model:
-  - r3
+  - m1
   duration_model:
-    r3:
+    m1:
       id: det
       mean: 10
-pick_rear_right_wheel:
+stationE_stop_and_wait:
   agent_model:
-  - r2
+  - m1
   duration_model:
-    r2:
+    m1:
       id: det
       mean: 10
-scew_bolt_for_rear_right_wheel1:
+stationE_pick_fuel_container:
   agent_model:
-  - r3
+  - E_r7
   duration_model:
-    r3:
+    E_r7:
       id: det
       mean: 10
-scew_bolt_for_rear_right_wheel2:
+stationE_place_fuel_container:
   agent_model:
-  - r3
+  - E_r7
   duration_model:
-    r3:
+    E_r7:
       id: det
       mean: 10
-scew_bolt_for_rear_right_wheel3:
+stationE_fasten_fuel_container:
   agent_model:
-  - r3
+  - E_r7
   duration_model:
-    r3:
+    E_r7:
       id: det
       mean: 10
-scew_bolt_for_rear_right_wheel4:
+stationE_wiring_harness_fuel_container:
   agent_model:
-  - r3
+  - E_H5
   duration_model:
-    r3:
+    E_H5:
       id: det
       mean: 10
-Pick_Handle_bar:
+stationE_move_to_assembly_stationF:
   agent_model:
-  - r2
+  - m1
   duration_model:
-    r2:
+    m1:
+      id: det
+      mean: 10
+stationF_stop_and_wait:
+  agent_model:
+  - m1
+  duration_model:
+    m1:
+      id: det
+      mean: 10
+stationF_wiring_harness_break:
+  agent_model:
+  - F_H6
+  duration_model:
+    F_H6:
       id: det
       mean: 12
-fasten_bolt_on_main_body_to_handle1:
+stationF_move_to_assembly_stationG:
   agent_model:
-  - r3
+  - m1
   duration_model:
-    r3:
+    m1:
       id: det
       mean: 8
-fasten_bolt_on_main_body_to_handle2:
+stationG_stop_and_wait:
   agent_model:
-  - r3
+  - m1
   duration_model:
-    r3:
+    m1:
       id: det
       mean: 8
-fasten_bolt_on_main_body_to_handle3:
+stationG_pick_left_lower_cover:
   agent_model:
-  - r3
+  - G_r8
   duration_model:
-    r3:
+    G_r8:
       id: det
       mean: 8
-fasten_bolt_on_main_body_to_handle4:
+stationG_place_left_lower_cover:
   agent_model:
-  - r3
+  - G_r8
   duration_model:
-    r3:
+    G_r8:
       id: det
       mean: 8
-pick_lower_body_frame:
+stationG_fasten_left_lower_cover1:
   agent_model:
-  - r1
+  - G_r9
   duration_model:
-    r1:
+    G_r9:
       id: det
       mean: 6
-hold_lower_body_frame_in_place:
+stationG_fasten_left_lower_cover2:
   agent_model:
-  - r1
+  - G_r9
   duration_model:
-    r1:
+    G_r9:
       id: det
       mean: 3
-screw_lower_body_frame_to_main1:
+stationG_pick_right_lower_cover:
   agent_model:
-  - r3
+  - G_r8
   duration_model:
-    r3:
+    G_r8:
       id: det
       mean: 8
-screw_lower_body_frame_to_main2:
+stationG_place_right_lower_cover:
   agent_model:
-  - r3
+  - G_r8
   duration_model:
-    r3:
+    G_r8:
       id: det
       mean: 8
-screw_lower_body_frame_to_main3:
+stationG_fasten_right_lower_cover1:
   agent_model:
-  - r3
+  - G_r9
   duration_model:
-    r3:
+    G_r9:
       id: det
       mean: 8
-pick_upper_body_frame:
+stationG_fasten_right_lower_cover2:
   agent_model:
-  - r1
+  - G_r9
   duration_model:
-    r1:
+    G_r9:
       id: det
       mean: 8
-hold_upper_body_frame_in_place:
+stationG_pick_upper_cover:
   agent_model:
-  - r1
+  - G_r8
   duration_model:
-    r1:
+    G_r8:
       id: det
       mean: 4
-screw_upper_body_frame_to_main1:
+stationG_insert_upper_cover:
   agent_model:
-  - r3
+  - G_r8
   duration_model:
-    r3:
+    G_r8:
       id: det
       mean: 8
-screw_upper_body_frame_to_main2:
+stationG_fasten_upper_cover1:
   agent_model:
-  - r3
+  - G_r9
   duration_model:
-    r3:
+    G_r9:
       id: det
       mean: 8
-screw_upper_body_frame_to_main3:
+stationG_fasten_upper_cover2:
   agent_model:
-  - r3
+  - G_r9
   duration_model:
-    r3:
+    G_r9:
       id: det
       mean: 8
-screw_upper_body_frame_to_lower_frame1:
+stationG_fasten_upper_cover3:
   agent_model:
-  - r3
+  - G_r9
   duration_model:
-    r3:
+    G_r9:
       id: det
       mean: 8
-screw_upper_body_frame_to_lower_frame2:
+stationG_fasten_upper_cover4:
   agent_model:
-  - r3
+  - G_r9
   duration_model:
-    r3:
+    G_r9:
       id: det
       mean: 8
-screw_upper_body_frame_to_lower_frame3:
+stationG_move_to_assembly_station:
   agent_model:
-  - r3
+  - m1
   duration_model:
-    r3:
+    m1:
       id: det
       mean: 8
-pick_trunk_skeleton:
+stationH_stop_and_wait:
   agent_model:
-  - r1
+  - m1
   duration_model:
-    r1:
+    m1:
       id: det
       mean: 5
-hold_pick_trunk_skeleton_on_external_frame:
+stationH_pick_handle:
   agent_model:
-  - r1
+  - H_r10
   duration_model:
-    r1:
+    H_r10:
       id: det
       mean: 3
-screw_upper_trunk_skeleton_to_frame1:
+stationH_place_handle:
   agent_model:
-  - r3
+  - H_r10
+  duration_model:
+    H_r10:
+      id: det
+      mean: 8
+stationH_fasten_handle:
+  agent_model:
+  - H_H7
+  duration_model:
+    H_r10:
+      id: det
+      mean: 8
+stationH_wiring_harness_handle:
+  agent_model:
+  - H_H7
+  duration_model:
+    H_H7:
+      id: det
+      mean: 8
+stationH_move_to_assembly_stationI:
+  agent_model:
+  - m1
+  duration_model:
+    m1:
+      id: det
+      mean: 6
+stationI_stop_and_wait:
+  agent_model:
+  - m1
+  duration_model:
+    m1:
+      id: det
+      mean: 8
+stationI_pick_wheel1:
+  agent_model:
+  - I_r11
+  duration_model:
+    I_r11:
+      id: det
+      mean: 8
+stationI_insert_wheel1:
+  agent_model:
+  - I_r11
+  duration_model:
+    I_r11:
+      id: det
+      mean: 8
+stationI_fasten_wheel1:
+  agent_model:
+  - I_r12
+  duration_model:
+    I_r12:
+      id: det
+      mean: 6
+stationI_pick_wheel2:
+  agent_model:
+  - I_r11
+  duration_model:
+    I_r11:
+      id: det
+      mean: 3
+stationI_insert_wheel2:
+  agent_model:
+  - I_r11
+  duration_model:
+    I_r11:
+      id: det
+      mean: 8
+stationI_fasten_wheel2:
+  agent_model:
+  - I_r12
+  duration_model:
+    I_r12:
+      id: det
+      mean: 8
+stationI_pick_wheel3:
+  agent_model:
+  - I_r11
+  duration_model:
+    I_r11:
+      id: det
+      mean: 8
+stationI_insert_wheel3:
+  agent_model:
+  - I_r12
+  duration_model:
+    I_r12:
+      id: det
+      mean: 8
+stationI_fasten_wheel3:
+  agent_model:
+  - I_r12
+  duration_model:
+    I_r12:
+      id: det
+      mean: 4
+stationI_pick_wheel4:
+  agent_model:
+  - I_r11
+  duration_model:
+    I_r11:
+      id: det
+      mean: 8
+stationI_insert_wheel4:
+  agent_model:
+  - I_r11
+  duration_model:
+    I_r11:
+      id: det
+      mean: 8
+stationI_fasten_wheel44:
+  agent_model:
+  - I_r12
   duration_model:
     r3:
       id: det
       mean: 8
-screw_upper_trunk_skeleton_to_frame2:
+stationI_pick_trunk:
   agent_model:
-  - r3
+  - I_r11
   duration_model:
-    r3:
+    I_r11:
       id: det
       mean: 8
-screw_upper_trunk_skeleton_to_frame3:
+stationI_insert_trunk:
   agent_model:
-  - r3
+  - I_r11
   duration_model:
-    r3:
+    I_r11:
       id: det
       mean: 8
-pick_back_front_frame1:
+stationI_fasten_trunk_1:
   agent_model:
-  - r1
+  - I_r12
   duration_model:
-    r1:
+    I_r12:
+      id: det
+      mean: 8
+stationI_fasten_trunk_2:
+  agent_model:
+  - I_r12
+  duration_model:
+    I_r12:
+      id: det
+      mean: 5
+stationI_move_to_assembly_stationJ:
+  agent_model:
+  - m1
+  duration_model:
+    m1:
+      id: det
+      mean: 3
+stationJ_stop_and_wait:
+  agent_model:
+  - m1
+  duration_model:
+    m1:
+      id: det
+      mean: 8
+stationJ_pick_front_light:
+  agent_model:
+  - J_r13
+  duration_model:
+    J_r13:
+      id: det
+      mean: 8
+stationJ_hold_front_light:
+  agent_model:
+  - J_r13
+  duration_model:
+    J_r13:
+      id: det
+      mean: 8
+stationJ_wiring_harness_front_light:
+  agent_model:
+  - J_H8
+  duration_model:
+    J_H8:
+      id: det
+      mean: 6
+
+stationJ_move_to_assembly_stationK:
+  agent_model:
+  - m1
+  duration_model:
+    m1:
+      id: det
+      mean: 6
+
+stationK_stop_and_wait:
+  agent_model:
+  - m1
+  duration_model:
+    m1:
+      id: det
+      mean: 6
+stationK_pick_seat:
+  agent_model:
+  - K_r14
+  duration_model:
+    K_r14:
+      id: det
+      mean: 6
+stationK_place_seat:
+  agent_model:
+  - K_r14
+  duration_model:
+    K_r14:
+      id: det
+      mean: 6
+stationK_fasten_seat:
+  agent_model:
+  - K_r15
+  duration_model:
+    K_r15:
+      id: det
+      mean: 6
+stationK_install_reflectors:
+  agent_model:
+  - K_r15
+  duration_model:
+    K_r15:
       id: det
       mean: 6
