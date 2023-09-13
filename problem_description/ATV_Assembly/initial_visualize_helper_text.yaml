@@ -1,265 +1,402 @@
-r1:
+m1:
   1:
-    p1_pick_front_frame:
+    p1_start_move_to_assembly_stationA:
       start: 0
-      end: 10
-  2:
-    p1_place_front_frame_on_deck:
-      start: 10
-      end: 19
-  3:
-    p1_pick_back_front_frame1:
-      start: 19
       end: 25
+  2:
+    p1_stationA_stop_and_wait:
+      start: 25
+      end: 28
+  3:
+    p1_stationA_move_to_assembly_stationB:
+      start: 60
+      end: 85
   4:
-    p1_pick_trunk_skeleton:
-      start: 206
-      end: 211
+    p1_stationB_stop_and_wait:
+      start: 85
+      end: 88
   5:
-    p1_hold_pick_trunk_skeleton_on_external_frame:
-      start: 211
-      end: 214
+    p1_stationC_move_to_assembly_station:
+      start: 157
+      end: 182
   6:
-    p1_pick_front_left_wheel:
-      start: 214
-      end: 224
+    p1_stationC_stop_and_wait:
+      start: 182
+      end: 185
   7:
-    p1_pick_lower_body_frame:
-      start: 320
-      end: 326
+    p1_stationC_move_to_assembly_stationD:
+      start: 263
+      end: 288
   8:
-    p1_hold_lower_body_frame_in_place:
-      start: 326
-      end: 329
+    p1_stationD_stop_and_wait:
+      start: 288
+      end: 291
   9:
-    p1_pick_upper_body_frame:
-      start: 354
-      end: 362
-  10:
-    p1_hold_upper_body_frame_in_place:
-      start: 362
-      end: 366
-r2:
-  11:
-    p1_pick_battery_assembly:
-      start: 19
-      end: 27
-  12:
-    p1_place_battery_assembly:
-      start: 27
-      end: 39
-  13:
-    p1_pick_rear_frame:
-      start: 63
-      end: 73
-  14:
-    p1_place_rear_frame_on_deck:
-      start: 73
-      end: 83
-  15:
-    p1_Pick_Handle_bar:
-      start: 206
-      end: 218
-  16:
-    p1_pick_front_right_wheel:
-      start: 218
-      end: 228
-  17:
-    p1_pick_rear_left_wheel:
-      start: 228
-      end: 238
-  18:
-    p1_pick_rear_right_wheel:
-      start: 238
-      end: 248
-  19:
-    p1_pick_engine:
-      start: 248
-      end: 264
-  20:
-    p1_insert_engine_on_main_body_assembly:
-      start: 264
-      end: 282
-r3:
-  21:
-    p1_screw_battery_assembly_to_front_frame3:
-      start: 39
-      end: 45
-  22:
-    p1_screw_battery_assembly_to_front_frame1:
-      start: 45
-      end: 51
-  23:
-    p1_screw_battery_assembly_to_front_frame2:
-      start: 51
-      end: 57
-  24:
-    p1_screw_battery_assembly_to_front_frame4:
-      start: 57
-      end: 63
-  25:
-    p1_screw_upper_trunk_skeleton_to_frame3:
-      start: 214
-      end: 222
-  26:
-    p1_fasten_bolt_on_main_body_to_handle3:
-      start: 222
-      end: 230
-  27:
-    p1_fasten_bolt_on_main_body_to_handle2:
-      start: 230
-      end: 238
-  28:
-    p1_fasten_bolt_on_main_body_to_handle1:
-      start: 238
-      end: 246
-  29:
-    p1_screw_upper_trunk_skeleton_to_frame2:
-      start: 246
-      end: 254
-  30:
-    p1_screw_upper_trunk_skeleton_to_frame1:
-      start: 254
-      end: 262
-  31:
-    p1_scew_bolt_for_front_left_wheel3:
-      start: 262
-      end: 272
-  32:
-    p1_scew_bolt_for_rear_right_wheel3:
-      start: 272
-      end: 282
-  33:
-    p1_scew_bolt_for_rear_right_wheel4:
-      start: 282
-      end: 292
-  34:
-    p1_scew_bolt_for_front_left_wheel1:
-      start: 292
-      end: 302
-  35:
-    p1_scew_bolt_for_front_right_wheel3:
-      start: 302
-      end: 312
-  36:
-    p1_fasten_bolt_on_main_body_to_handle4:
-      start: 312
-      end: 320
-  37:
-    p1_scew_bolt_for_front_right_wheel4:
-      start: 320
-      end: 330
-  38:
-    p1_screw_lower_body_frame_to_main1:
-      start: 330
-      end: 338
-  39:
-    p1_screw_lower_body_frame_to_main2:
-      start: 338
-      end: 346
-  40:
-    p1_screw_lower_body_frame_to_main3:
-      start: 346
+    p1_stationD_move_to_assembly_stationE:
+      start: 329
       end: 354
-  41:
-    p1_scew_bolt_for_front_left_wheel2:
+  10:
+    p1_stationE_stop_and_wait:
       start: 354
-      end: 364
-  42:
-    p1_scew_bolt_for_front_left_wheel4:
-      start: 364
-      end: 374
-  43:
-    p1_screw_upper_body_frame_to_main1:
-      start: 374
-      end: 382
-  44:
-    p1_screw_upper_body_frame_to_main2:
-      start: 382
-      end: 390
-  45:
-    p1_screw_upper_body_frame_to_main3:
-      start: 390
-      end: 398
-  46:
-    p1_screw_upper_body_frame_to_lower_frame1:
-      start: 398
-      end: 406
-  47:
-    p1_screw_upper_body_frame_to_lower_frame3:
-      start: 406
-      end: 414
-  48:
-    p1_screw_upper_body_frame_to_lower_frame2:
-      start: 414
-      end: 422
-  49:
-    p1_scew_bolt_for_front_right_wheel2:
-      start: 422
-      end: 432
-  50:
-    p1_scew_bolt_for_rear_left_wheel4:
-      start: 432
-      end: 442
-  51:
-    p1_scew_bolt_for_rear_right_wheel2:
-      start: 442
-      end: 452
-  52:
-    p1_scew_bolt_for_rear_left_wheel1:
-      start: 452
-      end: 462
-  53:
-    p1_scew_bolt_for_rear_left_wheel2:
-      start: 462
-      end: 472
-  54:
-    p1_scew_bolt_for_front_right_wheel1:
-      start: 472
-      end: 482
-  55:
-    p1_scew_bolt_for_rear_right_wheel1:
-      start: 482
-      end: 492
-  56:
-    p1_scew_bolt_for_rear_left_wheel3:
-      start: 492
-      end: 502
-H:
-  57:
-    p1_front_and_rear_insert_screw4:
-      start: 83
-      end: 92
-  58:
-    p1_fasten_bolt_on_front_and_rear_screw4:
-      start: 92
+      end: 360
+  11:
+    p1_stationE_move_to_assembly_stationF:
+      start: 392
+      end: 417
+  12:
+    p1_stationF_stop_and_wait:
+      start: 417
+      end: 420
+  13:
+    p1_stationH_move_to_assembly_stationI:
+      start: 450
+      end: 470
+  14:
+    p1_stationI_stop_and_wait:
+      start: 470
+      end: 473
+  15:
+    p1_stationF_move_to_assembly_stationG:
+      start: 560
+      end: 580
+  16:
+    p1_stationG_stop_and_wait:
+      start: 580
+      end: 583
+  17:
+    p1_stationG_move_to_assembly_station:
+      start: 683
+      end: 703
+  18:
+    p1_stationH_stop_and_wait:
+      start: 703
+      end: 706
+  19:
+    p1_stationI_move_to_assembly_stationJ:
+      start: 736
+      end: 756
+  20:
+    p1_stationJ_stop_and_wait:
+      start: 756
+      end: 759
+  21:
+    p1_stationJ_move_to_assembly_stationK:
+      start: 759
+      end: 779
+  22:
+    p1_stationK_stop_and_wait:
+      start: 779
+      end: 782
+A_r1:
+  23:
+    p1_stationA_pick_engine:
+      start: 28
+      end: 36
+  24:
+    p1_stationA_insert_engine_on_chassis:
+      start: 36
+      end: 44
+A_H1:
+  25:
+    p1_stationA_wiring_harness_engine:
+      start: 44
+      end: 60
+B_r2:
+  26:
+    p1_stationB_pick_rear_drive_train:
+      start: 88
       end: 98
-  59:
-    p1_front_and_rear_insert_screw1:
+  27:
+    p1_stationB_insert_rear_drive_train:
       start: 98
-      end: 116
-  60:
-    p1_front_and_rear_insert_screw2:
-      start: 116
+      end: 104
+B_r3:
+  28:
+    p1_stationB_screw_battery_assembly_to_front_frame1:
+      start: 104
+      end: 114
+  29:
+    p1_stationB_screw_battery_assembly_to_front_frame2:
+      start: 114
+      end: 124
+  30:
+    p1_stationB_screw_battery_assembly_to_front_frame3:
+      start: 124
       end: 134
-  61:
-    p1_fasten_bolt_on_front_and_rear_screw2:
+  31:
+    p1_stationB_screw_battery_assembly_to_front_frame4:
       start: 134
-      end: 152
+      end: 144
+B_H2:
+  32:
+    p1_stationB_chain_to_engine:
+      start: 144
+      end: 157
+C_r4:
+  33:
+    p1_stationC_pick_suspension_1:
+      start: 209
+      end: 217
+  34:
+    p1_stationC_insert_suspension_1:
+      start: 217
+      end: 225
+C_H3:
+  35:
+    p1_stationC_fasten_suspension1_to_chassis1:
+      start: 225
+      end: 231
+  36:
+    p1_stationC_fasten_suspension1_to_chassis2:
+      start: 231
+      end: 237
+C_r5:
+  37:
+    p1_stationC_insert_suspension_2:
+      start: 185
+      end: 191
+  38:
+    p1_stationC_fasten_suspension3_to_chassis1:
+      start: 197
+      end: 203
+  39:
+    p1_stationC_pick_suspension_2:
+      start: 237
+      end: 245
+  40:
+    p1_stationC_pick_suspension_3:
+      start: 245
+      end: 253
+C_H4:
+  41:
+    p1_stationC_fasten_suspension2_to_chassis1:
+      start: 191
+      end: 197
+  42:
+    p1_stationC_fasten_suspension3_to_chassis2:
+      start: 197
+      end: 203
+  43:
+    p1_stationC_fasten_suspension2_to_chassis2:
+      start: 203
+      end: 209
+  44:
+    p1_stationC_insert_suspension_3:
+      start: 253
+      end: 263
+D_r6:
+  45:
+    p1_stationD_pick_battery:
+      start: 291
+      end: 301
+  46:
+    p1_stationD_place_battery:
+      start: 301
+      end: 309
+D_H4:
+  47:
+    p1_stationD_fasten_battery_assembly:
+      start: 309
+      end: 319
+  48:
+    p1_stationD_wiring_harness_battery:
+      start: 319
+      end: 329
+E_r7:
+  49:
+    p1_stationE_pick_fuel_container:
+      start: 360
+      end: 370
+  50:
+    p1_stationE_place_fuel_container:
+      start: 370
+      end: 378
+  51:
+    p1_stationE_fasten_fuel_container:
+      start: 378
+      end: 386
+E_H5:
+  52:
+    p1_stationE_wiring_harness_fuel_container:
+      start: 386
+      end: 392
+F_H6:
+  53:
+    p1_stationF_wiring_harness_break:
+      start: 420
+      end: 450
+G_r8:
+  54:
+    p1_stationG_pick_left_lower_cover:
+      start: 583
+      end: 591
+  55:
+    p1_stationG_place_left_lower_cover:
+      start: 591
+      end: 601
+  56:
+    p1_stationG_pick_right_lower_cover:
+      start: 613
+      end: 621
+  57:
+    p1_stationG_place_right_lower_cover:
+      start: 621
+      end: 629
+  58:
+    p1_stationG_pick_upper_cover:
+      start: 643
+      end: 651
+  59:
+    p1_stationG_insert_upper_cover:
+      start: 651
+      end: 659
+G_r9:
+  60:
+    p1_stationG_fasten_left_lower_cover1:
+      start: 601
+      end: 607
+  61:
+    p1_stationG_fasten_left_lower_cover2:
+      start: 607
+      end: 613
   62:
-    p1_fasten_bolt_on_front_and_rear_screw1:
-      start: 152
-      end: 170
+    p1_stationG_fasten_right_lower_cover1:
+      start: 629
+      end: 637
   63:
-    p1_front_and_rear_insert_screw3:
-      start: 170
-      end: 188
+    p1_stationG_fasten_right_lower_cover2:
+      start: 637
+      end: 643
   64:
-    p1_fasten_bolt_on_front_and_rear_screw3:
-      start: 188
-      end: 206
+    p1_stationG_fasten_upper_cover1:
+      start: 659
+      end: 665
   65:
-    p1_wiring_harness_engine:
-      start: 282
-      end: 306
+    p1_stationG_fasten_upper_cover2:
+      start: 665
+      end: 671
+  66:
+    p1_stationG_fasten_upper_cover3:
+      start: 671
+      end: 677
+  67:
+    p1_stationG_fasten_upper_cover4:
+      start: 677
+      end: 683
+H_r10:
+  68:
+    p1_stationH_pick_handle:
+      start: 706
+      end: 714
+  69:
+    p1_stationH_place_handle:
+      start: 714
+      end: 720
+H_H7:
+  70:
+    p1_stationH_fasten_handle:
+      start: 720
+      end: 726
+  71:
+    p1_stationH_wiring_harness_handle:
+      start: 726
+      end: 736
+I_r11:
+  72:
+    p1_stationI_pick_wheel3:
+      start: 473
+      end: 481
+  73:
+    p1_stationI_pick_wheel1:
+      start: 481
+      end: 487
+  74:
+    p1_stationI_insert_wheel1:
+      start: 487
+      end: 495
+  75:
+    p1_stationI_pick_wheel2:
+      start: 495
+      end: 505
+  76:
+    p1_stationI_insert_wheel2:
+      start: 505
+      end: 515
+  77:
+    p1_stationI_pick_wheel4:
+      start: 515
+      end: 523
+  78:
+    p1_stationI_insert_wheel4:
+      start: 523
+      end: 531
+  79:
+    p1_stationI_pick_trunk:
+      start: 531
+      end: 539
+  80:
+    p1_stationI_insert_trunk:
+      start: 539
+      end: 547
+I_r12:
+  81:
+    p1_stationI_insert_wheel3:
+      start: 481
+      end: 489
+  82:
+    p1_stationI_fasten_wheel3:
+      start: 489
+      end: 495
+  83:
+    p1_stationI_fasten_wheel1:
+      start: 495
+      end: 501
+  84:
+    p1_stationI_fasten_wheel2:
+      start: 515
+      end: 521
+  85:
+    p1_stationI_fasten_wheel44:
+      start: 531
+      end: 531
+  86:
+    p1_stationI_fasten_trunk_1:
+      start: 547
+      end: 555
+  87:
+    p1_stationI_fasten_trunk_2:
+      start: 555
+      end: 560
+J_r13:
+  88:
+    p1_stationJ_pick_front_light:
+      start: 759
+      end: 767
+  89:
+    p1_stationJ_hold_front_light:
+      start: 767
+      end: 773
+J_H8:
+  90:
+    p1_stationJ_wiring_harness_front_light:
+      start: 773
+      end: 779
+K_r14:
+  91:
+    p1_stationK_pick_seat:
+      start: 782
+      end: 788
+  92:
+    p1_stationK_place_seat:
+      start: 788
+      end: 794
+K_r15:
+  93:
+    p1_stationK_install_reflectors:
+      start: 736
+      end: 748
+  94:
+    p1_stationK_fasten_seat:
+      start: 794
+      end: 800
 X: None Scheduled yet

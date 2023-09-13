@@ -1,0 +1,12 @@
+|-
+  {'I_r11_controller_failure': {
+      'policy': {
+          'id': 'recovery-I_r11_controller_failure',
+          'type': 'sequential',
+          'children': [
+              {'id': 'move_to_contingency_cell_for_undo', 'type': 'atomic', 'agent': ['m1']},
+              {'id': 'recovery-I_r11_controller_failure_undo', 'type': 'atomic', 'agent': ['contingency_H']},
+              {'id': 'recovery-return_to_robot_cell', 'type': 'atomic', 'agent': ['m1']}
+          ]
+      }
+  }}

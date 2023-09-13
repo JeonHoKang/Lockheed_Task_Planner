@@ -1,0 +1,541 @@
+id: Multi_Product_Assembly
+type: independent
+children:
+- id: p1_ATV_assembly
+  type: sequential
+  children:
+  - id: p1_chassis_assembly
+    type: sequential
+    children:
+    - id: p1_StationA_engine_assembly
+      type: sequential
+      children:
+      - id: p1_transport_chassis_to_stationA
+        type: sequential
+        children:
+        - id: p1_start_move_to_assembly_stationA
+          type: atomic
+          agent:
+          - m1
+        - id: p1_stationA_stop_and_wait
+          type: atomic
+          agent:
+          - m1
+      - id: p1_stationA_engine_assembly
+        type: sequential
+        children:
+        - id: p1_stationA_pick_engine
+          type: atomic
+          agent:
+          - A_r1
+        - id: p1_stationA_insert_engine_on_chassis
+          type: atomic
+          agent:
+          - A_r1
+      - id: p1_stationA_engine_wiring_harness
+        type: sequential
+        children:
+        - id: p1_stationA_wiring_harness_engine
+          type: atomic
+          agent:
+          - A_H1
+    - id: p1_stationB_rear_drive_train_assembly
+      type: sequential
+      children:
+      - id: p1_transport_chassis_to_stationB
+        type: sequential
+        children:
+        - id: p1_stationA_move_to_assembly_stationB
+          type: atomic
+          agent:
+          - m1
+        - id: p1_stationB_stop_and_wait
+          type: atomic
+          agent:
+          - m1
+      - id: p1_rear_drive_train_assembly
+        type: sequential
+        children:
+        - id: p1_stationB_pick_rear_drive_train
+          type: atomic
+          agent:
+          - B_r2
+        - id: p1_stationB_insert_rear_drive_train
+          type: atomic
+          agent:
+          - B_r2
+      - id: p1_join_rear_drive_train
+        type: parallel
+        children:
+        - id: p1_stationB_screw_battery_assembly_to_front_frame1
+          type: atomic
+          agent:
+          - B_r3
+        - id: p1_stationB_screw_battery_assembly_to_front_frame2
+          type: atomic
+          agent:
+          - B_r3
+        - id: p1_stationB_screw_battery_assembly_to_front_frame3
+          type: atomic
+          agent:
+          - B_r3
+        - id: p1_stationB_screw_battery_assembly_to_front_frame4
+          type: atomic
+          agent:
+          - B_r3
+      - id: p1_stationB_chain_to_engine
+        type: atomic
+        agent:
+        - B_H2
+    - id: p1_stationC_suspension_assembly
+      type: sequential
+      children:
+      - id: p1_stationB_transport_chassis_to_stationC
+        type: sequential
+        children:
+        - id: p1_stationC_move_to_assembly_station
+          type: atomic
+          agent:
+          - m1
+        - id: p1_stationC_stop_and_wait
+          type: atomic
+          agent:
+          - m1
+      - id: p1_stationC_suspension_assembly
+        type: independent
+        children:
+        - id: p1_front_suspension_assembly
+          type: sequential
+          children:
+          - id: p1_stationC_pick_suspension_1
+            type: atomic
+            agent:
+            - C_r4
+          - id: p1_stationC_insert_suspension_1
+            type: atomic
+            agent:
+            - C_r4
+          - id: p1_join_suspension_1
+            type: parallel
+            children:
+            - id: p1_stationC_fasten_suspension1_to_chassis1
+              type: atomic
+              agent:
+              - C_H3
+            - id: p1_stationC_fasten_suspension1_to_chassis2
+              type: atomic
+              agent:
+              - C_H3
+        - id: p1_rear_suspension_assembly
+          type: independent
+          children:
+          - id: p1_rear_suspension2_assembly
+            type: independent
+            children:
+            - id: p1_stationC_pick_suspension_2
+              type: atomic
+              agent:
+              - C_r5
+            - id: p1_stationC_insert_suspension_2
+              type: atomic
+              agent:
+              - C_r5
+            - id: p1_stationC_join_suspension_2
+              type: parallel
+              children:
+              - id: p1_stationC_fasten_suspension2_to_chassis1
+                type: atomic
+                agent:
+                - C_H4
+              - id: p1_stationC_fasten_suspension2_to_chassis2
+                type: atomic
+                agent:
+                - C_H4
+          - id: p1_rear_suspension3_assembly
+            type: independent
+            children:
+            - id: p1_stationC_pick_suspension_3
+              type: atomic
+              agent:
+              - C_r5
+            - id: p1_stationC_insert_suspension_3
+              type: atomic
+              agent:
+              - C_r5
+            - id: p1_join_suspension_3
+              type: parallel
+              children:
+              - id: p1_stationC_fasten_suspension3_to_chassis1
+                type: atomic
+                agent:
+                - C_H4
+              - id: p1_stationC_fasten_suspension3_to_chassis2
+                type: atomic
+                agent:
+                - C_H4
+        - id: p1_stationD_Battery_assembly
+          type: sequential
+          children:
+          - id: p1_transport_chassis_to_stationD
+            type: sequential
+            children:
+            - id: p1_stationC_move_to_assembly_stationD
+              type: atomic
+              agent:
+              - m1
+            - id: p1_stationD_stop_and_wait
+              type: atomic
+              agent:
+              - m1
+          - id: p1_stationD_pick_battery
+            type: atomic
+            agent:
+            - D_r6
+          - id: p1_stationD_place_battery
+            type: atomic
+            agent:
+            - D_r6
+          - id: p1_stationD_fasten_battery_assembly
+            type: atomic
+            agent:
+            - D_H4
+          - id: p1_stationD_wiring_harness_battery
+            type: atomic
+            agent:
+            - D_H4
+        - id: p1_stationE_FuelContainer_assembly
+          type: sequential
+          children:
+          - id: p1_stationD_transport_chassis_to_stationE
+            type: sequential
+            children:
+            - id: p1_stationD_move_to_assembly_stationE
+              type: atomic
+              agent:
+              - m1
+            - id: p1_stationE_stop_and_wait
+              type: atomic
+              agent:
+              - m1
+          - id: p1_stationE_pick_fuel_container
+            type: atomic
+            agent:
+            - E_r7
+          - id: p1_stationE_place_fuel_container
+            type: atomic
+            agent:
+            - E_r7
+          - id: p1_stationE_fasten_fuel_container
+            type: atomic
+            agent:
+            - E_r7
+          - id: p1_stationE_wiring_harness_fuel_container
+            type: atomic
+            agent:
+            - E_H5
+        - id: p1_stationF_break_assembly
+          type: sequential
+          children:
+          - id: p1_transport_chassis_to_stationF
+            type: sequential
+            children:
+            - id: p1_stationE_move_to_assembly_stationF
+              type: atomic
+              agent:
+              - m1
+            - id: p1_stationF_stop_and_wait
+              type: atomic
+              agent:
+              - m1
+          - id: p1_stationF_wiring_harness_break
+            type: atomic
+            agent:
+            - F_H6
+  - id: p1_main_external_components
+    type: independent
+    children:
+    - id: p1_handle_frame_assembly
+      type: sequential
+      children:
+      - id: p1_stationG_cover_assembly
+        type: sequential
+        children:
+        - id: p1_stationG_lower_cover_assembly
+          type: sequential
+          children:
+          - id: p1_transport_chassis_to_stationG
+            type: sequential
+            children:
+            - id: p1_stationF_move_to_assembly_stationG
+              type: atomic
+              agent:
+              - m1
+            - id: p1_stationG_stop_and_wait
+              type: atomic
+              agent:
+              - m1
+          - id: p1_stationG_left_lower_cover_assembly
+            type: sequential
+            children:
+            - id: p1_stationG_pick_left_lower_cover
+              type: atomic
+              agent:
+              - G_r8
+            - id: p1_stationG_place_left_lower_cover
+              type: atomic
+              agent:
+              - G_r8
+            - id: p1_stationG_fasten_left_lower_cover
+              type: sequential
+              children:
+              - id: p1_stationG_fasten_left_lower_cover1
+                type: atomic
+                agent:
+                - G_r9
+              - id: p1_stationG_fasten_left_lower_cover2
+                type: atomic
+                agent:
+                - G_r9
+          - id: p1_stationG_right_lower_cover_assembly
+            type: sequential
+            children:
+            - id: p1_stationG_pick_right_lower_cover
+              type: atomic
+              agent:
+              - G_r8
+            - id: p1_stationG_place_right_lower_cover
+              type: atomic
+              agent:
+              - G_r8
+            - id: p1_stationG_fasten_right_lower_cover
+              type: sequential
+              children:
+              - id: p1_stationG_fasten_right_lower_cover1
+                type: atomic
+                agent:
+                - G_r9
+              - id: p1_stationG_fasten_right_lower_cover2
+                type: atomic
+                agent:
+                - G_r9
+        - id: p1_stationG_upper_cover_assembly
+          type: sequential
+          children:
+          - id: p1_stationG_pick_upper_cover
+            type: atomic
+            agent:
+            - G_r8
+          - id: p1_stationG_insert_upper_cover
+            type: atomic
+            agent:
+            - G_r8
+          - id: p1_stationG_fasten_upper_cover
+            type: independent
+            children:
+            - id: p1_stationG_fasten_upper_cover1
+              type: atomic
+              agent:
+              - G_r9
+            - id: p1_stationG_fasten_upper_cover2
+              type: atomic
+              agent:
+              - G_r9
+            - id: p1_stationG_fasten_upper_cover3
+              type: atomic
+              agent:
+              - G_r9
+            - id: p1_stationG_fasten_upper_cover4
+              type: atomic
+              agent:
+              - G_r9
+      - id: p1_stationH_Handle_assembly
+        type: sequential
+        children:
+        - id: p1_stationG_transport_chassis_to_stationH
+          type: sequential
+          children:
+          - id: p1_stationG_move_to_assembly_station
+            type: atomic
+            agent:
+            - m1
+          - id: p1_stationH_stop_and_wait
+            type: atomic
+            agent:
+            - m1
+        - id: p1_stationH_pick_handle
+          type: atomic
+          agent:
+          - H_r10
+        - id: p1_stationH_place_handle
+          type: atomic
+          agent:
+          - H_r10
+        - id: p1_stationH_fasten_handle
+          type: atomic
+          agent:
+          - H_H7
+        - id: p1_stationH_wiring_harness_handle
+          type: atomic
+          agent:
+          - H_H7
+    - id: p1_stationI_wheel_trunk_assembly
+      type: sequential
+      children:
+      - id: p1_transport_chassis_to_stationI
+        type: sequential
+        children:
+        - id: p1_stationH_move_to_assembly_stationI
+          type: atomic
+          agent:
+          - m1
+        - id: p1_stationI_stop_and_wait
+          type: atomic
+          agent:
+          - m1
+      - id: p1_stationI_wheel_assembly
+        type: parallel
+        children:
+        - id: p1_stationI_wheel_assembly1
+          type: sequential
+          children:
+          - id: p1_stationI_pick_wheel1
+            type: atomic
+            agent:
+            - I_r11
+          - id: p1_stationI_insert_wheel1
+            type: atomic
+            agent:
+            - I_r11
+          - id: p1_stationI_fasten_wheel1
+            type: atomic
+            agent:
+            - I_r12
+        - id: p1_stationI_wheel_assembly2
+          type: sequential
+          children:
+          - id: p1_stationI_pick_wheel2
+            type: atomic
+            agent:
+            - I_r11
+          - id: p1_stationI_insert_wheel2
+            type: atomic
+            agent:
+            - I_r11
+          - id: p1_stationI_fasten_wheel2
+            type: atomic
+            agent:
+            - I_r12
+        - id: p1_stationI_wheel_assembly3
+          type: sequential
+          children:
+          - id: p1_stationI_pick_wheel3
+            type: atomic
+            agent:
+            - I_r11
+          - id: p1_stationI_insert_wheel3
+            type: atomic
+            agent:
+            - I_r11
+          - id: p1_stationI_fasten_wheel3
+            type: atomic
+            agent:
+            - I_r12
+        - id: p1_stationI_wheel_assembly4
+          type: sequential
+          children:
+          - id: p1_stationI_pick_wheel4
+            type: atomic
+            agent:
+            - I_r11
+          - id: p1_stationI_insert_wheel4
+            type: atomic
+            agent:
+            - I_r11
+          - id: p1_stationI_fasten_wheel44
+            type: atomic
+            agent:
+            - I_r12
+      - id: p1_stationI_trunk_assembly
+        type: sequential
+        children:
+        - id: p1_stationI_pick_trunk
+          type: atomic
+          agent:
+          - I_r11
+        - id: p1_stationI_insert_trunk
+          type: atomic
+          agent:
+          - I_r11
+        - id: p1_stationI_fasten_trunk
+          type: sequential
+          children:
+          - id: p1_stationI_fasten_trunk_1
+            type: atomic
+            agent:
+            - I_r12
+          - id: p1_stationI_fasten_trunk_2
+            type: atomic
+            agent:
+            - I_r12
+  - id: p1_sub_add_on_components
+    type: parallel
+    children:
+    - id: p1_stationJ_front_light_assembly
+      type: sequential
+      children:
+      - id: p1_transport_chassis_to_stationJ
+        type: sequential
+        children:
+        - id: p1_stationI_move_to_assembly_stationJ
+          type: atomic
+          agent:
+          - m1
+        - id: p1_stationJ_stop_and_wait
+          type: atomic
+          agent:
+          - m1
+      - id: p1_stationJ_pick_front_light
+        type: atomic
+        agent:
+        - J_r13
+      - id: p1_stationJ_hold_front_light
+        type: atomic
+        agent:
+        - J_r13
+      - id: p1_stationJ_wiring_harness_front_light
+        type: atomic
+        agent:
+        - J_H8
+    - id: p1_seat_assembly
+      type: sequential
+      children:
+      - id: p1_transport_chassis_to_stationK
+        type: sequential
+        children:
+        - id: p1_stationJ_move_to_assembly_stationK
+          type: atomic
+          agent:
+          - m1
+        - id: p1_stationK_stop_and_wait
+          type: atomic
+          agent:
+          - m1
+      - id: p1_stationK_pick_seat
+        type: atomic
+        agent:
+        - K_r14
+      - id: p1_stationK_place_seat
+        type: atomic
+        agent:
+        - K_r14
+      - id: p1_stationK_fasten_seat
+        type: atomic
+        agent:
+        - K_r15
+    - id: p1_reflector_assembly
+      type: sequential
+      children:
+      - id: p1_stationK_install_reflectors
+        type: atomic
+        agent:
+        - K_r15

@@ -614,7 +614,6 @@ stationJ_wiring_harness_front_light:
     J_H8:
       id: det
       mean: 6
-
 stationJ_move_to_assembly_stationK:
   agent_model:
   - m1
@@ -622,7 +621,6 @@ stationJ_move_to_assembly_stationK:
     m1:
       id: det
       mean: 20
-
 stationK_stop_and_wait:
   agent_model:
   - m1

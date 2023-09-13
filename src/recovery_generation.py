@@ -26,7 +26,6 @@ class RecoveryGeneration:
     def import_example_policies(self):
         with open('src/recovery_policies_example.py', "r") as file:
             examples = file.read()
-            print("check")
         return examples
 
     def import_user_prompt(self):
@@ -38,7 +37,14 @@ class RecoveryGeneration:
         with open('prompt/recovery_generate.txt', "r") as file:
             intro = file.read()
         return intro
-    
+
+    def import_problem_description(self):
+        with open('problem_description/ATV_Assembly/current_problem_description_ATV.yaml', "r") as data:
+            try:
+                problem_description = str(yaml.safe_load(data))
+            except yaml.YAMLError as e:
+                print(e)
+        return problem_description
     
     def call_gpt(self):
         """calls gpt model """
@@ -47,12 +53,14 @@ class RecoveryGeneration:
         user_prompt = self.import_user_prompt()
         htn = self.import_htn()
         introduction = self.import_intro()
+        problem_description = self.import_problem_description()
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-0613",
+            model="gpt-3.5-turbo-16k",
             messages=[
-                {"role": "user", "content": "Current HTN is :" + htn}, # feeds in htn as input,
-                {"role": "user", "content": example_policies},
                 {"role": "user", "content": introduction},
+                {"role": "user", "content": "Current HTN is :" + htn}, # feeds in htn as input,
+                {"role": "user", "content": problem_description},
+                {"role": "user", "content": "Here is the example: " + example_policies},
                 {"role": "user", "content": user_prompt}
             ],
 
@@ -62,7 +70,7 @@ class RecoveryGeneration:
         conv = {}
         
         print(self.answer)
-        with open('src/recovery_policies_example.py', "a") as file:
+        with open('src/generated_alphas.py', "a") as file:
             file.write(self.answer)
 
 
@@ -81,7 +89,6 @@ class RecoveryGeneration:
 
 
 def main():
-    print(openai.Model.list())
     recovery = RecoveryGeneration()
 
 

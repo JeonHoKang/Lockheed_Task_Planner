@@ -1,0 +1,72 @@
+I_r11_gripper_stuck:
+  policy:
+    id: recovery-gripper_stuck_I_r11
+    type: sequential
+    children:
+    - id: recovery-release_stuck_object
+      type: atomic
+      agent:
+      - H2
+    - id: recovery-retract_gripper
+      type: atomic
+      agent:
+      - I_r11
+    - id: recovery-reset_gripper
+      type: atomic
+      agent:
+      - I_r11
+
+I_r11_Software_bug:
+  policy:
+    id: recovery-I_r11_Software_bug
+    type: sequential
+    children:
+    - id: recovery-debug_and_fix_issue
+      type: atomic
+      agent:
+      - H2
+I_r11_camera_obscured:
+  policy:
+    id: recovery-camera_obscured
+    type: sequential
+    children:
+    - id: move_to_contingency_cell_for_undo
+      type: atomic
+      agent:
+      - m1
+    - id: recovery_camera_obscured_undo
+      type: atomic
+      agent:
+      - contingency_H
+    - id: recovery_camera_obscured
+      type: atomic
+      agent:
+      - I_r11
+I_r11_communication_delay:
+  policy:
+    id: recovery-I_r11_communication_delay
+    type: sequential
+    children:
+    - id: recovery-check_communication_cables
+      type: atomic
+      agent:
+      - H2
+    - id: recovery-reset_I_r11_communication
+      type: atomic
+      agent:
+      - H2
+mobile_platform_navigation_error:
+  policy:
+    id: recovery-mobile_platform_navigation_error
+    type: sequential
+    children:
+    - id: recovery-move_to_error_location
+      type: atomic
+      agent:
+      - m1
+    - id: recovery-notify_human_agent_for_assistance
+      type: atomic
+      agent:
+      - H2
+
+

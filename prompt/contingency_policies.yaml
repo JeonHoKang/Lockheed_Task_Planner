@@ -1,6 +1,4 @@
-defective_rear_left_wheel:
-  part_id: rear_left_wheel
-  operation_id: pick_rear_left_wheel
+defective_ATV_rear_left_wheel:
   policy:
     id: recovery-defective_rear_left_wheel
     type: sequential
@@ -10,162 +8,157 @@ defective_rear_left_wheel:
         children: 
           - id: recovery-unscrew_rear_left_wheel_screw1
             type: atomic
-            agent: ['r3']
+            agent: ['I_r12']
           - id: recovery-unscrew_rear_left_wheel_screw2
             type: atomic
-            agent: ['r3']
+            agent: ['I_r12']
           - id: recovery-unscrew_rear_left_wheel_screw3
             type: atomic
-            agent: ['r3']
+            agent: ['I_r12']
       - id: recovery-remove_rear_left_wheel
         type: atomic
-        agent: ['r2']
+        agent: ['I_r11']
       - id: recovery_new_wheel
         type: sequential
         children:
           - id: recovery-search_new_wheel
             type: atomic
-            agent: ['r1']
+            agent: ['I_r11']
           - id: recovery-pick_new_wheel
             type: atomic
-            agent: ['r1']
+            agent: ['I_r11']
           - id: recovery-place_new_wheel
             type: atomic
-            agent: ['r1']
+            agent: ['I_r11']
       - id: recovery-resrew_operation
         type: sequential
         children:
           - id: recovery-rescrew_rear_left_wheel_screw1
             type: atomic
-            agent: ['r3']
+            agent: ['I_r12']
           - id: recovery-rescrew_rear_left_wheel_screw2
             type: atomic
-            agent: ['r3']
+            agent: ['I_r12']
           - id: recovery-rescrew_rear_left_wheel_screw3
             type: atomic
-            agent: ['r3']
+            agent: ['I_r12']
 
-rear_left_wheel_screw1_stuck: 
-  part_id: rear_left_wheel_screw1
-  operation_id: scew_bolt_for_rear_left_wheel1
+ATV_rear_left_wheel_screw1_stuck:
   policy:
     id: recovery-rear_left_wheel_screw1_stuck
     type: sequential
     children:
       - id: recovery-unscrew_screw1
         type: atomic
-        agent: ['r3']
+        agent: ['I_r11']
       - id: recovery-rescrew_screw1
         type: atomic
-        agent: ['r3']
+        agent: ['I_r11']
 
-broken_upper_body_frame:
-  part_id: upper_body_frame
-  operation_id: pick_upper_body_frame
+ATV_broken_upper_cover:
   policy:
     id: recovery_broken_upper_body_frame
     type: sequential
     children:
       - id: recovery-remove_broken_pieces
         type: atomic
-        agent: ['r1']
+        agent: ['G_r9']
       - id: recovery-new_upper_body_frame
         type: sequential
         children:
           - id: recovery-search_for_new_part
             type: atomic
-            agent: ['H']
+            agent: ['G_r9']
           - id: recovery-pick_new_part
             type: atomic
-            agent: ['r1']
-engine_leaking:
-  part_id: engine
-  operation_id: pick_engine
-  policy:
-    id: recovery-engine_leaking
-    type: sequential
-    children:
-      - id: recovery-engine_undo
-        type: atomic
-        agent: ['H'] # should this done by the human? or should this be done by the mrta
-      - id: recovery-new_engine
-        type: sequential
-        children:
-          - id: recovery-search_new_engine
-            type: atomic
-            agent: ['H']
-          - id: recovery-pick_new_engine
-            type: atomic
-            agent: ['r1']
-          - id: recovery-place_new_engine
-            type: atomic
-            agent: ['r1']
-      - id: recovery-redo-engine
-        type: atomic
-        agent: ['H']
+            agent: ['G_r9']
 
-trunk_skeleton_missing:
-  part_id: trunk_skeleton
-  operation_id: pick_trunk_skeleton
+ATV_trunk_missing:
   policy:
-    id: recovery-trunk_skeleton_missing
+    id: recovery-trunk_missing
     type: sequential
     children:
-      - id: recovery-notify_human_for_new_part
+      - id: recovery-notify_monitor
         type: atomic
-        agent: ['r1']
+        agent: ['I_r11']
       - id: recovery-new_trunk_skeleton
         type: sequential
         children:
           - id: recovery-wait_for_new_part
             type: atomic
-            agent: ['r1']
+            agent: ['I_r11']
           - id: recovery-locate_new_part
             type: atomic
-            agent: ['r1']
+            agent: ['I_r11']
 
-handle_bolt3_missing:
-  part_id: hadle_bolt3
-  operation_id: fasten_bolt_on_main_body_to_handle3
+ATV_handle_bolt3_missing:
   policy:
     id: recovery-missing_handle_bolt3
     type: sequential
     children:
       - id: recovery-nofify_human_for_new_bolt
         type: atomic
-        agent: ['r3']
+        agent: ['G_r8']
       - id: recovery_locate_new_part
         type: atomic
-        agent: ['r3']
+        agent: ['G_r8']
 
-
-shorted_battery:
-  part_id: battery
-  operation_id: pick_battery_assembly
+ATV_shorted_battery:
   policy:
     id: recovery-shorted_battery
     type: sequential
     children:
+      - id: move_to_contingency_cell_for_undo
+        type: atomic
+        agent: ['m1']
       - id: recovery-shorted_battery_undo
         type: atomic
-        agent: ['H']
-      - id: recovery-locate_new_battery
+        agent: ['contingency_H']
+      - id: recovery-return_to_battery_cell
         type: atomic
-        agent: ['r2']
+        agent: ['m1']
 
-defective_front_right_wheel:
-  part_id: front_right_wheel
-  operation_id: pick_front_right_wheel
+ATV_defective_front_right_wheel:
   policy:
     id: recovery-defective_front_right_wheel
     type: sequential
     children:
-      - id: recovery-front_right_wheel_undo
+      - id: move_to_contingency_cell_for_undo
         type: atomic
-        agent: ['H']
-      - id: recovery-search_new_wheel
+        agent: ['m1']
+      - id: recovery_front_right_wheel_undo
         type: atomic
-        agent: ['r2']
-      - id: recovery_pick_new_wheel
+        agent: ['contingency_H']
+      - id: recovery_front_right_wheel
         type: atomic
-        agent: ['r2']
+        agent: ['I_r11']
+
+agent_I_r11_not_available:
+  policy:
+    id: recovery-
+    type: sequential
+    children:
+      - id: wait_until_back_online
+        type: atomic
+        agent: ['I_r11']
+      - id: trouble_shoot_agent_I_r11
+        type: atomic
+        agent: ['H2']
+      - id: Notify_back_online_to_monitor
+        type: atomic
+        agent: ['H2']
+
+agent_I_r11_motor_malfunction:
+  policy:
+    id: recovery-
+    type: sequential
+    children:
+      - id: wait_until_back_online
+        type: atomic
+        agent: ['I_r11']
+      - id: trouble_shoot_motor
+        type: atomic
+        agent: ['H2']
+      - id: Notify_back_online_to_monitor
+        type: atomic
+        agent: ['H2']

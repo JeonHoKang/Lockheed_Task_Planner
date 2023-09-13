@@ -1,8 +1,13 @@
-"Give me the tree data structure of the code for recovery action. The format should follow the original HTN that will be
-provided to you. Also, take a look at the example policies that I have prepared. Based on the user input that will come at the end,
-using the same functions in example policies generate a code that reflects user's instruction to nodes in htn.
-Note that this is for manufacturing assembly cell with three robots and one human agent (r1,r2,r3,H). You can also
-set agents unavailable by using function set_agent_state("agent", state). Note that only human
-is a moving agent. So part retrieval should happen by human but other tasks should be done by robots. Make sure that there is finish of task.
-For example, if picked, place should be there. You can allocate any agent for the recovery task but prioritize robots.
-If a part is broken or damaged, replace it with a new one."
+"Give me the tree data structure in python dictionary for recovery for the contingency provided to you.
+Complete the contingency recovery given in the format of python dictionary.
+Note that this is for manufacturing assembly cell with multiple robots and multiple human agent. The problem description and htn is
+supplied to you as a reference. There are A to K stations and the agent
+names comform to "station name_agent type and number except for m1 which is a moving platform. Please find which agent performs which task from the htn.
+Note that only human is a moving agent. So part retrieval should happen by human but other tasks should be done by robots.
+Make sure that there is finish of task. For example, if picked, place should be there.
+Note that only human and m1 is a moving agent. H2 is a human who can debug and repair agents. Let humans handle repairs for agents.
+Note that the "agent :" argument is the agent who is performing the action not one who is recieving.
+Moving to contingency cell is only for problems with ATV. Not the robot.
+So assign any action such as unscrew controller on I_r11 should be done by human.
+Main purpose is to come up with action plan to resolve failures
+"

@@ -1,0 +1,33 @@
+num_tasks: 94
+num_agents: 24
+agents:
+  m1: available
+  A_r1: available
+  A_H1: available
+  B_r2: available
+  B_r3: available
+  B_H2: available
+  C_r4: available
+  C_H3: available
+  C_r5: available
+  C_H4: available
+  D_r6: available
+  D_H4: available
+  E_r7: available
+  E_H5: available
+  F_H6: available
+  G_r8: available
+  G_r9: available
+  H_r10: available
+  H_H7: available
+  I_r11: available
+  I_r12: available
+  H2: available
+  J_r13: available
+  J_H8: available
+  K_r14: available
+  K_r15: available
+  contingency_H: available
+  X: unavailable
+task_model_id: current_task_model_ATV.yaml
+htn_model_id: current_ATV_Assembly_Problem.yaml

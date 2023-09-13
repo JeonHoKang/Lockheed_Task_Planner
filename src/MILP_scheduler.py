@@ -59,7 +59,7 @@ class HtnMilpScheduler:
         self.contingency = True
         if self.initial_run is True:
             self.contingency = False
-        self.contingency_name = 'p1_pick_rear_frame'
+        # self.contingency_name = 'p1_pick_rear_frame'
         self.contingency_node = None
         self.unavailable_agent_bool = False
         self.unavailable_agent = 'r1'
@@ -501,12 +501,12 @@ class HtnMilpScheduler:
             agent_end_vars[agent] = {}
             agent_interval_vars[agent] = {}
 
-        if self.contingency:
-            self.task_object[self.contingency_name].set_task_state('failed')
-            self.contingency_node = self.task_object[self.contingency_name]
-        if self.unavailable_agent_bool:
-            self.agent_team_model[self.unavailable_agent].set_agent_state(
-                'unavailable')
+        # if self.contingency:
+        #     self.task_object[self.contingency_name].set_task_state('failed')
+        #     self.contingency_node = self.task_object[self.contingency_name]
+        # if self.unavailable_agent_bool:
+        #     self.agent_team_model[self.unavailable_agent].set_agent_state(
+        #         'unavailable')
 
         # self.task_object['p1_Pick_and_Place_Top_Panel'].set_task_state(
         #     'succeeded')
@@ -525,12 +525,12 @@ class HtnMilpScheduler:
                         contingency_nodes.append(node)
             return contingency_nodes
 
-        if self.contingency or self.unavailable_agent_bool:
-            contingency_node_list = find_contingency_nodes(
-                self.unavailable_agent)
-            # From the found contingency list move upward on tree to set all the children infeasible
-            for node in contingency_node_list:
-                self.set_dependencies_infeasible(node)
+        # if self.contingency or self.unavailable_agent_bool:
+        #     contingency_node_list = find_contingency_nodes(
+        #         self.unavailable_agent)
+        #     # From the found contingency list move upward on tree to set all the children infeasible
+        #     for node in contingency_node_list:
+        #         self.set_dependencies_infeasible(node)
 
         for task in task_list:
             for agent in agent_teams:
