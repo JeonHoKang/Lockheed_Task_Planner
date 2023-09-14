@@ -32,7 +32,10 @@ class HumanInstruction:
                 # for a part and see if it is reachable which will take 15.\
                 # Let us say that it is reachable. Then r1 will re-pick the part which will take 3.\
                 # Then r1 will place it on the table b1 which will take 6."}
-                {"role": "user", "content": "recovery_part_collision: while moving the rear frame, r1 has collided with the moving platform. r1 will slowly move away from the platform. Human will check for damage. Then, r1 will reattempt the motion with the newly generated motion plan."}
+                # {"role": "user", "content": "recovery_part_collision: while moving the rear frame, r1 has collided with the moving platform. r1 will slowly move away from the platform. Human will check for damage. Then, r1 will reattempt the motion with the newly generated motion plan."}
+                {"role": "user",
+                 "content": "wheel rim was dented. First, undo dented wheel done by A_r1. remove dented wheel. Then locate new wheel. pick new wheel. insert new wheel."}
+
             ]
         )
         answer = response['choices'][0]['message']['content']

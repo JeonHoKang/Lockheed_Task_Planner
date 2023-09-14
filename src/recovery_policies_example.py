@@ -28,6 +28,8 @@ def recover_ATV_defective_rear_left_wheel():
     toolset.export_new_htn()
 
 
+
+
 def ATV_assembly_screw1_stuck():
     # screw is stuck so it should be reattempted
     toolset.add_node(planning_node, "recovery-ATV_assembly_screw1_stuck", "sequential")
@@ -131,7 +133,7 @@ def recovery_mobile_platform_m1_navigation_error():
     toolset.add_node("recovery-m1_navigation_error", "recovery-notify_human", "atomic", agent='m1', duration=6)
     
     # Step 2: Wait for human to resolve the navigation error
-    toolset.add_node("recovery-m1_navigation_error", "recovery-wait_for_navigation_fix", "atomic", agent='m1', duration=0)
+    toolset.add_node("recovery-m1_navigation_error", "recovery-replan_navigation", "atomic", agent='m1', duration=0)
     
     # Export the new HTN
     toolset.export_new_htn()
@@ -159,7 +161,7 @@ def m1_collision_with_human():
     toolset.add_node("recovery-m1_collision_with_human", "recovery-notify_human", "atomic", agent='m1', duration=10)
 
     # Step 2: Wait for human to resolve the collision
-    toolset.add_node("recovery-m1_collision_with_human", "recovery-wait_for_collision_fix", "atomic", agent='m1', duration=0)
+    toolset.add_node("recovery-m1_collision_with_human", "recovery-replan_motion_plan", "atomic", agent='m1', duration=0)
 
     # Export the new HTN
     toolset.export_new_htn()
@@ -171,20 +173,75 @@ def A_r1_collision_with_table():
     # Step 1: Notify the human for assistance
     toolset.add_node("recovery-A_r1_collision_with_table", "recovery-notify_human", "atomic", agent='A_r1', duration=6)
 
-    # Step 2: Wait for human to resolve the collision
-    toolset.add_node("recovery-A_r1_collision_with_table", "recovery-wait_for_collision_fix", "atomic", agent='A_r1', duration=0)
+    toolset.add_node("recovery-A_r1_collision_with_table", "recovery-retreat_from_collision", "atomic", agent='A_r1', duration=6)
+
+    toolset.add_node("recovery-A_r1_collision_with_table", "recovery-replan_motion_plan", "atomic", agent='A_r1', duration=6)
 
     # Export the new HTN
     toolset.export_new_htn()
-def whole_cell_power_outage():
-    # Add a node to the planning node
-    toolset.add_node(planning_node, "recovery-whole_cell_power_outage", "sequential")
 
-    # Step 1: Notify the human for assistance
-    toolset.add_node("recovery-whole_cell_power_outage", "recovery-notify_superviser", "atomic", agent='H2', duration=6)
-
-    # Step 2: Wait for human to resolve the power outage
-    toolset.add_node("recovery-whole_cell_power_outage", "recovery-wait_for_power_fix", "atomic", agent='H2', duration=0)
-
-    # Export the new HTN
+def recover_battery_defect_during_wheel_assembly():
+    # add a node to planning node
+    toolset.add_node(planning_node, "recovery-battery_defect_during_wheel_assembly", "sequential")
+    # needs to undo upper cover since it is blockin access to the battery
+    toolset.add_node("recovery-battery_defect_during_wheel_assembly", "recovery-undo_upper_cover", "sequential")
+    # undoing steps which is done by contingency_H
+    toolset.add_node("recovery-undo_upper_cover", "recovery-drive_to_contingency_cell", "atomic", agent='m1', duration=25)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-unscrew_upper_cover1", "atomic", agent='contingency_H', duration=6)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-unscrew_upper_cover2", "atomic", agent='contingency_H', duration=8)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-unscrew_upper_cover3", "atomic", agent='contingency_H', duration=8)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-remove_upper_cover", "atomic", agent='contingency_H', duration=8)
+    toolset.add_node("recovery-defective_rear_left_wheel", "recovery-new_wheel", "sequential")
+    # redo operation performed by I_r12 since wheel assembly is done in cell I
+    # new part needed. Cannot repair part in the brand new assembly cell
+    toolset.add_node("recovery-defective_rear_left_wheel", "recovery-redo_operation", "sequential")
+    toolset.add_node("recovery-redo_operation", "recovery-drive_to_wheel_assembly_station", "atomic", agent='I_r12', duration=25)
+    toolset.add_node("recovery-redo_operation", "recovery-search_new_wheel", "atomic", agent='I_r12', duration=8)
+    toolset.add_node("recovery-redo_operation", "recovery-pick_new_wheel", "atomic", agent='I_r12', duration=7)
+    toolset.add_node("recovery-redo_operation", "recovery-place_new_wheel", "atomic", agent='I_r12', duration=7)
+    toolset.add_node("recovery-redo_operation", "recovery-rescrew_rear_left_wheel_screw1", "atomic", agent='I_r12', duration=6)
+    toolset.add_node("recovery-redo_operation", "recovery-rescrew_rear_left_wheel_screw2", "atomic", agent='I_r12', duration=6)
+    toolset.add_node("recovery-redo_operation", "recovery-rescrew_rear_left_wheel_screw3", "atomic", agent='I_r12', duration=6)
     toolset.export_new_htn()
+def during_upper_cover_assembly_inner_part_defect_detected():
+    # add a node to planning node
+    toolset.add_node(planning_node, "recovery-engine_leak_detected", "sequential")
+    # needs to undo upper cover since it is blocking access to the engine
+    # undoing steps which is done by contingency_H
+    # first need to drive to contingency cell to undo assembly
+    toolset.add_node("recovery-engine_leak_detected", "recovery-undo_upper_cover", "sequential")
+    toolset.add_node("recovery-undo_upper_cover", "recovery-drive_to_contingency_cell", "atomic", agent='m1', duration=25)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-unscrew_upper_cover1", "atomic", agent='contingency_H', duration=6)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-unscrew_upper_cover2", "atomic", agent='contingency_H', duration=8)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-unscrew_upper_cover3", "atomic", agent='contingency_H', duration=8)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-remove_upper_cover", "atomic", agent='contingency_H', duration=8)
+    toolset.add_node("recovery-engine_leak_detected", "recovery-redo_upper_cover", "sequential")
+    # return to engine cell and let A_r1 perform the redoing task
+    toolset.add_node("recovery-redo_upper_cover", "recovery-drive_to_part_cell", "atomic", agent='m1', duration=25)
+    toolset.add_node("recovery-redo_upper_cover", "recovery-revert_to_normal_operation", "atomic", agent='m1', duration=6)
+    toolset.add_node("recovery-redo_upper_cover", "recovery-notify_monitor_for_completion", "atomic", agent='A_r1', duration=6)
+
+    toolset.export_new_htn()
+
+
+def during_upper_cover_assembly_engine_leak_detected():
+    # add a node to planning node
+    toolset.add_node(planning_node, "recovery-engine_leak_detected", "sequential")
+    # needs to undo upper cover since it is blocking access to the engine
+    # undoing steps which is done by contingency_H
+    # first need to drive to contingency cell to undo assembly
+    toolset.add_node("recovery-engine_leak_detected", "recovery-undo_upper_cover", "sequential")
+    toolset.add_node("recovery-undo_upper_cover", "recovery-drive_to_contingency_cell", "atomic", agent='m1', duration=25)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-unscrew_upper_cover1", "atomic", agent='contingency_H', duration=6)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-unscrew_upper_cover2", "atomic", agent='contingency_H', duration=8)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-unscrew_upper_cover3", "atomic", agent='contingency_H', duration=8)
+    toolset.add_node("recovery-undo_upper_cover", "recovery-remove_upper_cover", "atomic", agent='contingency_H', duration=8)
+    toolset.add_node("recovery-engine_leak_detected", "recovery-redo_upper_cover", "sequential")
+    # return to engine cell and let A_r1 perform the redoing task
+    toolset.add_node("recovery-redo_upper_cover", "recovery-drive_to_part_cell", "atomic", agent='m1', duration=25)
+    toolset.add_node("recovery-redo_upper_cover", "recovery-revert_to_normal_operation", "atomic", agent='m1', duration=6)
+    toolset.add_node("recovery-redo_upper_cover", "recovery-notify_monitor_for_completion", "atomic", agent='A_r1', duration=6)
+
+    toolset.export_new_htn()
+
+during_upper_cover_assembly_engine_leak_detected()

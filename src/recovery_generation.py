@@ -57,7 +57,7 @@ class RecoveryGeneration:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-16k",
             messages=[
-                {"role": "user", "content": introduction},
+                {"role": "assistant", "content": introduction},
                 {"role": "user", "content": "Current HTN is :" + htn}, # feeds in htn as input,
                 {"role": "user", "content": problem_description},
                 {"role": "user", "content": "Here is the example: " + example_policies},
@@ -70,7 +70,7 @@ class RecoveryGeneration:
         conv = {}
         
         print(self.answer)
-        with open('src/generated_alphas.py', "a") as file:
+        with open('src/recovery_policies_example.py', "a") as file:
             file.write(self.answer)
 
 

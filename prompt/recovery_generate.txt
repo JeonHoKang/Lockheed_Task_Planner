@@ -1,14 +1,6 @@
 "You should just write single function that will recover from given contingency. If robot can recover from failure without
 human help or if agent is capable, resolve the contingency with only robot iself but otherwise request human for help.
-Take a look at the example policies that I have prepared as a reference.
-Note that this is for manufacturing assembly cell
-with multiple robotic arms and multiple human agent. Any problems with agents or robots like repair should be done by human from the same
-cell. The problem description and htn is supplied to you as a reference. Please find which agent performs which task from the htn.
-You can also set agents unavailable by using function set_agent_state("agent", state). There are A to K stations and the agent
-names comform to "station name_agent type and number" except for m1 which is a moving platform. m1 can only move but nothing else, because
-it's a wheeled platform.
-Note that only human and m1 is a moving agent. H2 is a human who can debug and repair agents.
-Note that the agent argument is the agent who is performing the action not one who is recieving
-So assign any action such as unscrew controller on I_r11 should be done by human.
-But if robot is doing the waiting or performing something, agent should be the robot.
+Take a look at the example policies that I have prepared as a reference. Use your background knowledge as much as possible
+for common sense of how to recover from failures. For example, if installed part failed, undo the assembly to access the part.
+Note that this is for manufacturing assembly cell with multiple robotic arms and multiple human agent.
 "

@@ -159,7 +159,9 @@ def A_r1_collision_with_table():
     toolset.add_node("recovery-A_r1_collision_with_table", "recovery-wait_for_collision_fix", "atomic", agent='H2', duration=0)
 
     # Export the new HTN
-    toolset.export_new_htn()def A_r1_unreachable_part():
+    toolset.export_new_htn()
+
+def A_r1_unreachable_part():
     toolset.add_node(planning_node, "recovery-A_r1_unreachable_part", "sequential")
     toolset.add_node("recovery-A_r1_unreachable_part", "recovery-wait_for_access", "atomic", agent='A_r1', duration=10)
     toolset.add_node("recovery-A_r1_unreachable_part", "recovery-move_to_access", "atomic", agent='A_r1', duration=8)
@@ -174,7 +176,8 @@ def A_r1_collision_with_table():
     toolset.add_node("recovery-A_r1_collided_with_A_r2", "recovery-wait_for_collision_fix", "atomic", agent='A_r1', duration=0)
 
     # Export the new HTN
-    toolset.export_new_htn()def A_r1_crack_in_outer_frame():
+    toolset.export_new_htn()
+def A_r1_crack_in_outer_frame():
     # Add a node to the planning node
     toolset.add_node(planning_node, "recovery-crack_in_outer_frame", "sequential")
 
@@ -481,4 +484,415 @@ Please note that the provided function assumes you have already imported the nec
     toolset.export_new_htn()
 
 # Returning the function definition
-power_supply_voltage_low
+power_supply_voltage_lowdef I_r12_wheel_screw_stuck():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-wheel_screw_stuck", "sequential")
+
+    # Step 1: Unscrew the stuck wheel screw
+    toolset.add_node("recovery-wheel_screw_stuck", "recovery-unscrew_wheel_screw", "atomic", agent='I_r12', duration=6)
+
+    # Step 2: Check for any damage
+    toolset.add_node("recovery-wheel_screw_stuck", "recovery-check_for_damage", "atomic", agent='I_r12', duration=6)
+
+    # Step 3: Rescrew the wheel screw
+    toolset.add_node("recovery-wheel_screw_stuck", "recovery-rescrew_wheel_screw", "atomic", agent='I_r12', duration=8)
+
+    # Export the new HTN
+    toolset.export_new_htn()def cannot_find_Hole_for_screwing():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-cannot_find_hole_for_screwing", "sequential")
+    
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-cannot_find_hole_for_screwing", "recovery-notify_human", "atomic", agent='H2', duration=6)
+    
+    # Step 2: Wait for human to assist in finding the hole for screwing
+    toolset.add_node("recovery-cannot_find_hole_for_screwing", "recovery-wait_for_assistance", "atomic", agent='H2', duration=0)
+    
+    # Export the new HTN
+    toolset.export_new_htn()def agent_I_r11_dropped_wheel():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-I_r11_dropped_wheel", "sequential")
+    
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-I_r11_dropped_wheel", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+    
+    # Step 2: Wait for the human to pick up the dropped wheel
+    toolset.add_node("recovery-I_r11_dropped_wheel", "recovery-wait_for_human", "atomic", agent='I_r11', duration=0)
+    
+    # Export the new HTN
+    toolset.export_new_htn()def m1_mobile_platform_unstable_mounting_of_ATV():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-m1_platform_unstable_mounting", "sequential")
+    
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-m1_platform_unstable_mounting", "recovery-notify_human", "atomic", agent='m1', duration=6)
+    
+    # Step 2: Wait for human to stabilize the mounting of ATV
+    toolset.add_node("recovery-m1_platform_unstable_mounting", "recovery-wait_for_stabilization", "atomic", agent='m1', duration=0)
+    
+    # Export the new HTN
+    toolset.export_new_htn()def m1_mobile_platform_dropped_atv_from_mobile_platform():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-m1_mobile_platform_dropped_atv", "sequential")
+    
+    # Step 1: Inspect the ATV for any damage
+    toolset.add_node("recovery-m1_mobile_platform_dropped_atv", "recovery-inspect_atv", "atomic", agent='H2', duration=8)
+    
+    # Step 2: Repair any damage if necessary
+    toolset.add_node("recovery-m1_mobile_platform_dropped_atv", "recovery-repair_atv", "atomic", agent='H2', duration=0)
+    
+    # Export the new HTN
+    toolset.export_new_htn()def m1_mobile_platform_invalid_part():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-m1_invalid_part", "sequential")
+    
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-m1_invalid_part", "recovery-notify_human", "atomic", agent='m1', duration=6)
+    
+    # Step 2: Wait for human to resolve the issue
+    toolset.add_node("recovery-m1_invalid_part", "recovery-wait_for_resolution", "atomic", agent='m1', duration=0)
+    
+    # Export the new HTN
+    toolset.export_new_htn()
+
+m1_mobile_platform_invalid_part()def m1_mobile_platform_invalid_path():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-m1_mobile_platform_invalid_path", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-m1_mobile_platform_invalid_path", "recovery-notify_human", "atomic", agent='m1', duration=6)
+
+    # Step 2: Wait for human to resolve the path issue
+    toolset.add_node("recovery-m1_mobile_platform_invalid_path", "recovery-wait_for_path_fix", "atomic", agent='m1', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_arm_invalid_motion_plan():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-I_r11_arm_invalid_motion_plan", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-I_r11_arm_invalid_motion_plan", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to resolve the issue
+    toolset.add_node("recovery-I_r11_arm_invalid_motion_plan", "recovery-wait_for_resolution", "atomic", agent='I_r11', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_arm_collided_with_assembly_part():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-arm_collision_with_assembly_part", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-arm_collision_with_assembly_part", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to resolve the collision
+    toolset.add_node("recovery-arm_collision_with_assembly_part", "recovery-wait_for_collision_fix", "atomic", agent='I_r11', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_arm_collided_with_assembly_part():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-I_r11_arm_collided_with_assembly_part", "sequential")
+    
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-I_r11_arm_collided_with_assembly_part", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+    
+    # Step 2: Inspect the assembly part for damage
+    toolset.add_node("recovery-I_r11_arm_collided_with_assembly_part", "recovery-inspect_assembly_part", "atomic", agent='I_r11', duration=10)
+    
+    # Step 3: Notify the monitor when inspection is complete
+    toolset.add_node("recovery-I_r11_arm_collided_with_assembly_part", "recovery-notify_monitor", "atomic", agent='I_r11', duration=6)
+    
+    # Export the new HTN
+    toolset.export_new_htn()
+    
+I_r11_arm_collided_with_assembly_part()def mobile_platform_m1_human_on_the_way_of_path():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-m1_human_on_the_way_of_path", "sequential")
+    
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-m1_human_on_the_way_of_path", "recovery-notify_human", "atomic", agent='m1', duration=6)
+    
+    # Step 2: Wait for human to clear the path
+    toolset.add_node("recovery-m1_human_on_the_way_of_path", "recovery-wait_for_path_clearance", "atomic", agent='m1', duration=0)
+    
+    # Export the new HTN
+    toolset.export_new_htn()
+
+mobile_platform_m1_human_on_the_way_of_path()def mobile_platform_m1_mobile_base_collision_with_wall():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-mobile_base_collision_with_wall", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-mobile_base_collision_with_wall", "recovery-notify_human", "atomic", agent='m1', duration=6)
+
+    # Step 2: Wait for human to resolve the collision
+    toolset.add_node("recovery-mobile_base_collision_with_wall", "recovery-wait_for_collision_fix", "atomic", agent='m1', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()
+return mobile_platform_m1_mobile_base_collision_with_walldef I_r11_collision_with_the_wall():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-I_r11_collision_with_the_wall", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-I_r11_collision_with_the_wall", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to resolve the collision
+    toolset.add_node("recovery-I_r11_collision_with_the_wall", "recovery-wait_for_collision_fix", "atomic", agent='I_r11', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_task_unreachable_by_robot():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-I_r11_task_unreachable_by_robot", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-I_r11_task_unreachable_by_robot", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to resolve the issue
+    toolset.add_node("recovery-I_r11_task_unreachable_by_robot", "recovery-wait_for_resolution", "atomic", agent='I_r11', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_task_unreachable_by_robot():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-I_r11_task_unreachable", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-I_r11_task_unreachable", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to make the task reachable
+    toolset.add_node("recovery-I_r11_task_unreachable", "recovery-wait_for_task_reachability_fix", "atomic", agent='I_r11', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()
+def I_r11_part_not_visible():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-part_not_visible", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-part_not_visible", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to resolve the issue
+    toolset.add_node("recovery-part_not_visible", "recovery-wait_for_resolution", "atomic", agent='I_r11', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_noticed_crack_in_outer_frame():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-cracked_frame", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-cracked_frame", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to assess the crack
+    toolset.add_node("recovery-cracked_frame", "recovery-assess_crack", "atomic", agent='I_r11', duration=6)
+
+    # Step 3: Determine repair or replacement needed
+    toolset.add_node("recovery-cracked_frame", "recovery-repair_or_replace", "parallel")
+    toolset.add_node("recovery-repair_or_replace", "recovery-repair_frame", "atomic", agent='I_r11', duration=40)
+    toolset.add_node("recovery-repair_or_replace", "recovery-replace_frame", "sequential")
+    toolset.add_node("recovery-replace_frame", "recovery-search_for_new_frame", "atomic", agent='I_r11', duration=30)
+    toolset.add_node("recovery-replace_frame", "recovery-pick_new_frame", "atomic", agent='I_r11', duration=15)
+    toolset.add_node("recovery-replace_frame", "recovery-install_new_frame", "atomic", agent='I_r11', duration=25)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_noticed_wheel_not_present():
+    # When the I_r11 agent notices that the wheel is not present, it needs to notify the human for assistance
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-I_r11_noticed_wheel_not_present", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-I_r11_noticed_wheel_not_present", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_incorrect_size_screw():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-incorrect_size_screw", "sequential")
+    
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-incorrect_size_screw", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+    
+    # Step 2: Wait for human to resolve the issue
+    toolset.add_node("recovery-incorrect_size_screw", "recovery-wait_for_screw_fix", "atomic", agent='I_r11', duration=0)
+    
+    # Export the new HTN
+    toolset.export_new_htn()
+
+I_r11_incorrect_size_screw()def I_r11_notifed_installed_engine_failure():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-I_r11_notification_installed_engine_failure", "sequential")
+    
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-I_r11_notification_installed_engine_failure", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+    
+    # Step 2: Wait for human to resolve the failure
+    toolset.add_node("recovery-I_r11_notification_installed_engine_failure", "recovery-wait_for_engine_failure_fix", "atomic", agent='I_r11', duration=0)
+    
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_realized_ATV_installed_engine_failure():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-ATV_installed_engine_failure", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-ATV_installed_engine_failure", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to resolve the engine failure
+    toolset.add_node("recovery-ATV_installed_engine_failure", "recovery-wait_for_engine_fix", "atomic", agent='I_r11', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_realized_ATV_installed_engine_failure():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-installed_engine_failure", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-installed_engine_failure", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to resolve the engine failure
+    toolset.add_node("recovery-installed_engine_failure", "recovery-replace_engine", "atomic", agent='I_r11', duration=120)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_realized_ATV_installed_engine_failure():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-ATV_installed_engine_failure", "sequential")
+    
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-ATV_installed_engine_failure", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to resolve the issue
+    toolset.add_node("recovery-ATV_installed_engine_failure", "recovery-wait_for_resolution", "atomic", agent='I_r11', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()# Recovery plan for I_r11_defective_engine_on_ATV_Assembly:
+
+def I_r11_defective_engine_on_ATV_Assembly():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-defective_engine_on_ATV_Assembly", "sequential")
+    
+    # Step 1: Unscrew the defective engine
+    toolset.add_node("recovery-defective_engine_on_ATV_Assembly", "recovery-unscrew_defective_engine", "atomic", agent='I_r11', duration=8)
+    
+    # Step 2: Remove the defective engine
+    toolset.add_node("recovery-defective_engine_on_ATV_Assembly", "recovery-remove_defective_engine", "atomic", agent='I_r11', duration=6)
+    
+    # Step 3: Search for a new engine
+    toolset.add_node("recovery-defective_engine_on_ATV_Assembly", "recovery-search_new_engine", "atomic", agent='I_r11', duration=10)
+    
+    # Step 4: Pick up the new engine
+    toolset.add_node("recovery-defective_engine_on_ATV_Assembly", "recovery-pick_new_engine", "atomic", agent='I_r11', duration=6)
+    
+    # Step 5: Insert the new engine on chassis
+    toolset.add_node("recovery-defective_engine_on_ATV_Assembly", "recovery-insert_new_engine_on_chassis", "atomic", agent='I_r11', duration=8)
+    
+    # Export the new HTN
+    toolset.export_new_htn()
+
+# Call the function to add the recovery plan to the HTN
+I_r11_defective_engine_on_ATV_Assembly()def I_r11_defective_wheel_flat_tire ():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-defective_wheel_flat_tire", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-defective_wheel_flat_tire", "recovery-notify_human", "atomic", agent='I_r11', duration=10)
+
+    # Step 2: Wait for human to replace the wheel
+    toolset.add_node("recovery-defective_wheel_flat_tire", "recovery-replace_wheel", "atomic", agent='H2', duration=6)
+
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_suspension_not_present():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-I_r11_suspension_not_present", "sequential")
+    
+    # Step 1: Notify the human for assistance in finding the suspension
+    toolset.add_node("recovery-I_r11_suspension_not_present", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+    
+    # Step 2: Wait for human to resolve the issue
+    toolset.add_node("recovery-I_r11_suspension_not_present", "recovery-search_for_suspension", "atomic", agent='I_r11', duration=0)
+    
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_wrong_part_present():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-wrong_part_present", "sequential")
+    
+    # Step 1: Remove the wrong part
+    toolset.add_node("recovery-wrong_part_present", "recovery-remove_wrong_part", "atomic", agent='I_r11', duration=6)
+    
+    # Step 2: Search and pick the correct part
+    toolset.add_node("recovery-wrong_part_present", "recovery-search_correct_part", "atomic", agent='I_r11', duration=8)
+    toolset.add_node("recovery-wrong_part_present", "recovery-pick_correct_part", "atomic", agent='I_r11', duration=6)
+    
+    # Step 3: Place and fasten the correct part
+    toolset.add_node("recovery-wrong_part_present", "recovery-place_correct_part", "atomic", agent='I_r11', duration=6)
+    toolset.add_node("recovery-wrong_part_present", "recovery-fasten_correct_part", "atomic", agent='I_r12', duration=8)
+    
+    # Export the new HTN
+    toolset.export_new_htn()def I_r11_wheel_defective_rim_dent():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-wheel_defective_rim_dent", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-wheel_defective_rim_dent", "recovery-notify_human", "atomic", agent='I_r11', duration=6)
+
+    # Step 2: Wait for human to inspect the wheel
+    toolset.add_node("recovery-wheel_defective_rim_dent", "recovery-inspect_wheel", "atomic", agent='I_r11', duration=6)
+
+    # Step 3: Repair the dent on the wheel
+    toolset.add_node("recovery-wheel_defective_rim_dent", "recovery-repair_dent", "atomic", agent='I_r11', duration=8)
+
+    # Export the new HTN
+    toolset.export_new_htn()
+def cell_water_leak():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-cell_water_leak", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-cell_water_leak", "recovery-notify_human", "atomic", agent='H2', duration=6)
+
+    # Step 2: Wait for human to resolve the water leak
+    toolset.add_node("recovery-cell_water_leak", "recovery-fix_water_leak", "atomic", agent='H2', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()
+
+    # Return the function name and definition
+    return cell_water_leakdef cell_rodent_appeared ():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-cell_rodent_appeared", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-cell_rodent_appeared", "recovery-notify_human", "atomic", agent='m1', duration=10)
+
+    # Step 2: Wait for human to resolve the issue
+    toolset.add_node("recovery-cell_rodent_appeared", "recovery-resolve_issue", "atomic", agent='m1', duration=0)
+
+    # Export the new HTN
+    toolset.export_new_htn()def cell_bird_appeared():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-bird_appeared", "sequential")
+  
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-bird_appeared", "recovery-notify_human", "atomic", agent='m1', duration=6)
+    
+    # Step 2: Wait for human to resolve the issue
+    toolset.add_node("recovery-bird_appeared", "recovery-wait_for_human", "atomic", agent='m1', duration=0)
+    
+    # Export the new HTN
+    toolset.export_new_htn()def fire_in_the_cell_G():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-fire_in_the_cell_G", "sequential")
+    
+    # Step 1: Notify the human for the fire
+    toolset.add_node("recovery-fire_in_the_cell_G", "recovery-notify_human", "atomic", agent='G_r8', duration=6)
+    
+    # Step 2: Evacuate the cell
+    toolset.add_node("recovery-fire_in_the_cell_G", "recovery-evacuate_cell", "atomic", agent='G_H9', duration=12)
+    
+    # Step 3: Call for emergency help
+    toolset.add_node("recovery-fire_in_the_cell_G", "recovery-call_emergency", "atomic", agent='G_H9', duration=6)
+    
+    # Export the new HTN
+    toolset.export_new_htn()def cell_A_desk_broken():
+    # Add a node to the planning node
+    toolset.add_node(planning_node, "recovery-cell_A_desk_broken", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-cell_A_desk_broken", "recovery-notify_human", "atomic", agent='H2', duration=6)
+
+    # Step 2: Wait for human to resolve the issue
+    toolset.add_node("recovery-cell_A_desk_broken", "recovery-repair_desk", "atomic", agent='H_H7', duration=15)

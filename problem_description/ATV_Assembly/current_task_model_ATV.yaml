@@ -656,3 +656,59 @@ stationK_install_reflectors:
     K_r15:
       id: det
       mean: 12
+recovery-drive_to_contingency_cell:
+  agent_model:
+  - m1
+  duration_model:
+    m1:
+      id: det
+      mean: 25
+recovery-unscrew_upper_cover1:
+  agent_model:
+  - contingency_H
+  duration_model:
+    contingency_H:
+      id: det
+      mean: 6
+recovery-unscrew_upper_cover2:
+  agent_model:
+  - contingency_H
+  duration_model:
+    contingency_H:
+      id: det
+      mean: 8
+recovery-unscrew_upper_cover3:
+  agent_model:
+  - contingency_H
+  duration_model:
+    contingency_H:
+      id: det
+      mean: 8
+recovery-remove_upper_cover:
+  agent_model:
+  - contingency_H
+  duration_model:
+    contingency_H:
+      id: det
+      mean: 8
+recovery-drive_to_part_cell:
+  agent_model:
+  - m1
+  duration_model:
+    m1:
+      id: det
+      mean: 25
+recovery-revert_to_normal_operation:
+  agent_model:
+  - m1
+  duration_model:
+    m1:
+      id: det
+      mean: 6
+recovery-notify_monitor_for_completion:
+  agent_model:
+  - A_r1
+  duration_model:
+    A_r1:
+      id: det
+      mean: 6

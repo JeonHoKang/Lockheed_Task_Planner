@@ -120,3 +120,116 @@ def communication_delay():
 
     # Export the new HTN
     toolset.export_new_htn()
+
+def I_r12_wheel_screw_stuck():
+    toolset.add_node(planning_node, "recovery-I_r12_wheel_screw_stuck", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-I_r12_wheel_screw_stuck", "recovery-unscrew_wheel_screw", "atomic", agent='I_r12',
+                     duration=6)
+
+    toolset.add_node("recovery-unscrew_wheel_screw", "recovery-check_for_damage", "atomic", agent='I_r12',
+                     duration=6)
+
+    toolset.add_node("recovery-resolve_comm_error", "recovery-rescrew_wheel", "atomic", agent='I_r12',
+                     duration=10)
+
+
+    # Export the new HTN
+    toolset.export_new_htn()
+
+def rodent_present():
+    toolset.add_node(planning_node, "recovery-rodent_present", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-rodent_present", "recovery-notify_human", "atomic", agent='I_r12',
+                     duration=6)
+
+    toolset.add_node("recovery-notify_human", "recovery-resolve_issue", "atomic", agent='I_r12',
+                     duration=6)
+
+
+    # Export the new HTN
+    toolset.export_new_htn()
+
+
+def fire_in_cell_B():
+    toolset.add_node(planning_node, "recovery-fire_in_cell_B", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-fire_in_cell_B", "recovery-notify_human", "atomic", agent='I_r12',
+                     duration=6)
+
+    toolset.add_node("recovery-fire_in_cell_B", "recovery-examine_fire", "atomic", agent='I_r12',
+                     duration=6)
+
+    toolset.add_node("recovery-fire_in_cell_B", "recovery-small_fire_then_put_out_fire", "atomic", agent='I_r12',
+                     duration=6)
+    toolset.add_node("recovery-fire_in_cell_B", "recovery-inspect_and_notify_monitor", "atomic", agent='I_r12',
+                     duration=6)
+    # Export the new HTN
+    toolset.export_new_htn()
+
+def crak_in_the_outer_frame():
+    toolset.add_node(planning_node, "recovery-crak_in_the_outer_frame", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-crak_in_the_outer_frame", "recovery-inspect_crack", "atomic", agent='A_r2',
+                     duration=6)
+
+    toolset.add_node("recovery-crak_in_the_outer_frame", "recovery-replace_part", "atomic", agent='A_r2',
+                     duration=6)
+
+    toolset.add_node("recovery-crak_in_the_outer_frame", "recovery-search_new_part", "atomic", agent='A_r2',
+                     duration=6)
+    toolset.add_node("recovery-crak_in_the_outer_frame", "recovery-pick_new_part", "atomic", agent='A_r2',
+                     duration=6)
+    toolset.add_node("recovery-crak_in_the_outer_frame", "recovery-notify_monitor", "atomic", agent='A_r2',
+                     duration=6)
+    # Export the new HTN
+    toolset.export_new_htn()
+
+def incorrect_screw_size ():
+    toolset.add_node(planning_node, "recovery-incorrect_screw_size", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-incorrect_screw_size", "recovery-remove_incorrect_screw", "atomic", agent='A_r2',
+                     duration=6)
+
+    toolset.add_node("recovery-incorrect_screw_size", "recovery-replace_incorrect_screw", "atomic", agent='H2',
+                     duration=6)
+
+    toolset.add_node("recovery-incorrect_screw_size", "recovery-new_screw", "sequential")
+
+    toolset.add_node("recovery-new_screw", "recovery-locate_new_screw", "atomic", agent='A_r2',
+                     duration=6)
+    toolset.add_node("recovery-new_screw", "recovery-repick_correct_screw", "atomic", agent='A_r2',
+                     duration=6)
+    toolset.add_node("recovery-incorrect_screw_size", "recovery-notify_monitor", "atomic", agent='A_r2',
+                     duration=6)
+    # Export the new HTN
+    toolset.export_new_htn()
+
+def engine_leaking ():
+    toolset.add_node(planning_node, "recovery-engine_leaking", "sequential")
+
+    # Step 1: Notify the human for assistance
+    toolset.add_node("recovery-engine_leaking", "recovery-undo_engine_from_assembly", "atomic", agent='A_r2',
+                     duration=6)
+
+    toolset.add_node("recovery-engine_leaking", "recovery-pick_faulty_engine", "atomic", agent='A_r2',
+                     duration=6)
+    toolset.add_node("recovery-engine_leaking", "recovery-set_aside_faulty_engine", "atomic", agent='A_r2',
+                     duration=6)
+    toolset.add_node("recovery-engine_leaking", "recovery-new_engine", "atomic", agent='A_r2',
+                     duration=6)
+
+    toolset.add_node("recovery-new_engine", "recovery-locate_new_engine", "atomic", agent='A_r2',
+                     duration=6)
+
+    toolset.add_node("recovery-new_engine", "recovery-pick_new_engine", "atomic", agent='A_r2',
+                     duration=6)
+    toolset.add_node("recovery-new_engine", "recovery-notify_monitor", "atomic", agent='A_r2',
+                     duration=6)
+    # Export the new HTN
+    toolset.export_new_htn()=11111

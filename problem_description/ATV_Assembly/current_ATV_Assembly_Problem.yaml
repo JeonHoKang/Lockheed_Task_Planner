@@ -321,33 +321,83 @@ children:
         - id: p1_stationG_upper_cover_assembly
           type: sequential
           children:
-          - id: p1_stationG_pick_upper_cover
-            type: atomic
-            agent:
-            - G_r8
-          - id: p1_stationG_insert_upper_cover
-            type: atomic
-            agent:
-            - G_r8
-          - id: p1_stationG_fasten_upper_cover
-            type: independent
+          - id: contingency_tasks
+            type: sequential
             children:
-            - id: p1_stationG_fasten_upper_cover1
+            - id: p1_stationG_fasten_upper_cover
+              type: independent
+              children:
+              - id: p1_stationG_fasten_upper_cover1
+                type: atomic
+                agent:
+                - G_r9
+              - id: p1_stationG_fasten_upper_cover2
+                type: atomic
+                agent:
+                - G_r9
+              - id: p1_stationG_fasten_upper_cover3
+                type: atomic
+                agent:
+                - G_r9
+              - id: p1_stationG_fasten_upper_cover4
+                type: atomic
+                agent:
+                - G_r9
+            - id: recovery-contingency_action-p1_stationG_fasten_upper_cover
+              type: sequential
+              children:
+              - id: recovery-engine_leak_detected
+                type: sequential
+                children:
+                - id: recovery-undo_upper_cover
+                  type: sequential
+                  children:
+                  - id: recovery-drive_to_contingency_cell
+                    type: atomic
+                    agent:
+                    - m1
+                  - id: recovery-unscrew_upper_cover1
+                    type: atomic
+                    agent:
+                    - contingency_H
+                  - id: recovery-unscrew_upper_cover2
+                    type: atomic
+                    agent:
+                    - contingency_H
+                  - id: recovery-unscrew_upper_cover3
+                    type: atomic
+                    agent:
+                    - contingency_H
+                  - id: recovery-remove_upper_cover
+                    type: atomic
+                    agent:
+                    - contingency_H
+                - id: recovery-redo_upper_cover
+                  type: sequential
+                  children:
+                  - id: recovery-drive_to_part_cell
+                    type: atomic
+                    agent:
+                    - m1
+                  - id: recovery-revert_to_normal_operation
+                    type: atomic
+                    agent:
+                    - m1
+                  - id: recovery-notify_monitor_for_completion
+                    type: atomic
+                    agent:
+                    - A_r1
+          - id: regular_operations
+            type: sequential
+            children:
+            - id: p1_stationG_pick_upper_cover
               type: atomic
               agent:
-              - G_r9
-            - id: p1_stationG_fasten_upper_cover2
+              - G_r8
+            - id: p1_stationG_insert_upper_cover
               type: atomic
               agent:
-              - G_r9
-            - id: p1_stationG_fasten_upper_cover3
-              type: atomic
-              agent:
-              - G_r9
-            - id: p1_stationG_fasten_upper_cover4
-              type: atomic
-              agent:
-              - G_r9
+              - G_r8
       - id: p1_stationH_Handle_assembly
         type: sequential
         children:
