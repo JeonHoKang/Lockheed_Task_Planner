@@ -47,7 +47,7 @@ class HtnMilpScheduler:
         self.task_interval_vars = None
         self.problem_description = None
         self.problem_dir = None
-        self.num_products = 1
+        self.num_products = 3
         self.agent_team_model = {}
         self.multi_product_dict = {}
         self.initial_run = False
@@ -89,12 +89,14 @@ class HtnMilpScheduler:
             self.current_problem_description["task_model_id"] = "current_task_model_ATV.yaml"
             TreeToolSet().dict_yaml_export(self.current_problem_description, self.problem_dir,
                                            "current_problem_description_ATV.yaml")
-            print("break point")
+            # print("break point")
 
     def load_agent_model(self):
         """Loads agent model from yaml file"""
         agents = self.problem_description['agents']
         agents['X'] = 'unavailable'
+        for item in range(2, self.num_products + 1):
+            agents[f"m{item}"] = "available"
         for agent_id, availability in agents.items():
             self.agent_team_model[agent_id] = Agent(
                 agent_id)
@@ -145,8 +147,18 @@ class HtnMilpScheduler:
                     else:
                         task_model["p{}_".format(i + 1)
                                    + list_task_model[c]] = task_model1[list_task_model[c]]
-
-        self.task_object = self.create_task_object(task_model)
+            if self.num_products > 1:
+                for task in task_model.items():
+                    for num in range(2, self.num_products + 1):
+                        if task[0][0:2] == f"p{num}":
+                            if task[1]['agent_model'][0] == "m1":
+                                new_mobile_base = copy.deepcopy(task[1])
+                                new_mobile_base['agent_model'] = [f'm{num}']
+                                new_mobile_base['duration_model'][f'm{num}'] = new_mobile_base['duration_model']['m1']
+                                del new_mobile_base['duration_model']['m1']
+                                task_model[task[0]] = new_mobile_base
+        self.task_object = self.create_task_object(
+            task_model)
 
     def create_task_object(self, tasks):
         '''
@@ -307,7 +319,7 @@ class HtnMilpScheduler:
         if self.initial_run:
             self.multi_product_dict = {}
             self.multi_product_dict['id'] = 'Multi_Product_Assembly'
-            self.multi_product_dict['type'] = 'independent'
+            self.multi_product_dict['type'] = 'parallel'
             self.multi_product_dict['children'] = []
             for p in range(num_products):
                 product_htn = copy.deepcopy(self.dict)
@@ -322,10 +334,6 @@ class HtnMilpScheduler:
         else:
             self.multi_product_htn = DictImporter().import_(self.dict)  # to avoid duplicating p1
             self.multi_product_dict = self.dict
-            print(self.multi_product_dict)
-            print(type(self.multi_product_dict))
-            str_htn_dict = str(self.multi_product_dict)
-            input()
         if print_htn:
             print(RenderTree(self.multi_product_htn))
         return self.multi_product_htn
@@ -479,8 +487,10 @@ class HtnMilpScheduler:
         else:
             prob = self.problem_description
         self.model = cp_model.CpModel()
-        task_object = self.task_object
         task_list = list(self.task_object.keys())
+        print('number of tasks : ')
+        print(len(task_list))
+
         htn_nodes = list(anytree.PostOrderIter(self.multi_product_htn))
         ### Create Task Assignment Agent Decision Variables ###
         agent_decision_variables = {}  # agent Decision Variables
@@ -531,10 +541,9 @@ class HtnMilpScheduler:
         #     # From the found contingency list move upward on tree to set all the children infeasible
         #     for node in contingency_node_list:
         #         self.set_dependencies_infeasible(node)
-
         for task in task_list:
             for agent in agent_teams:
-                if agent not in task_object[task].agent_id:
+                if agent not in self.task_object[task].agent_id:
                     continue
                 if self.agent_team_model[agent].agent_state == 'available' and self.task_object[
                     task].task_state == 'unattempted':
@@ -548,14 +557,14 @@ class HtnMilpScheduler:
 
         # calculate the horizon for the entire plan
         self.horizon = 0
-        for task in task_object.keys():
+        for task in self.task_object.keys():
             dur = 0
             for agent, agent_dur_model in self.task_object[task].duration_model.items():
                 task_dur = max(dur, agent_dur_model['mean'])
             self.horizon = self.horizon + task_dur
 
         # Task varriables
-        for task in task_object.keys():
+        for task in self.task_object.keys():
             # Define Main Start End , Duration and interval variables
             start = self.model.NewIntVar(0, self.horizon, 'start_' + task)
             duration = self.model.NewIntVar(
@@ -629,7 +638,7 @@ class HtnMilpScheduler:
         #### Create Solver and Solve ####
         solver = self.solver
         solver.parameters.num_search_workers = len(self.agent_team_model)
-        solver.parameters.max_time_in_seconds = 12
+        # solver.parameters.max_time_in_seconds = 300
         status = solver.Solve(self.model)
 
         if status == cp_model.OPTIMAL:

@@ -22,12 +22,13 @@ agents:
   H_H7: available
   I_r11: available
   I_r12: available
-  H2: available
   J_r13: available
   J_H8: available
   K_r14: available
   K_r15: available
   contingency_H: available
   X: unavailable
+  m2: available
+  m3: available
 task_model_id: current_task_model_ATV.yaml
 htn_model_id: current_ATV_Assembly_Problem.yaml

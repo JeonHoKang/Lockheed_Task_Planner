@@ -4,561 +4,519 @@
   sequential_dependencies: ''
   start: 0
   end: 25
+- task_id: p2_stationC_move_to_assembly_stationD
+  agent: m2
+  agent_specific_order: 1
+  sequential_dependencies: ''
+  start: 0
+  end: 25
+- task_id: p3_stationC_move_to_assembly_stationD
+  agent: m3
+  agent_specific_order: 1
+  sequential_dependencies: ''
+  start: 0
+  end: 25
 - task_id: p1_stationA_stop_and_wait
   agent: m1
   agent_specific_order: 2
   sequential_dependencies: p1_start_move_to_assembly_stationA
   start: 25
   end: 28
+- task_id: p1_stationC_move_to_assembly_stationD
+  agent: m1
+  agent_specific_order: 3
+  sequential_dependencies: p1_stationA_stop_and_wait
+  start: 28
+  end: 53
 - task_id: p1_stationA_pick_engine
   agent: A_r1
   agent_specific_order: 1
-  sequential_dependencies: p1_stationA_stop_and_wait
+  sequential_dependencies: ''
   start: 28
   end: 36
+- task_id: p2_start_move_to_assembly_stationA
+  agent: m2
+  agent_specific_order: 2
+  sequential_dependencies: ''
+  start: 28
+  end: 53
 - task_id: p1_stationA_insert_engine_on_chassis
   agent: A_r1
   agent_specific_order: 2
-  sequential_dependencies: p1_stationA_pick_engine
+  sequential_dependencies: ''
   start: 36
   end: 44
 - task_id: p1_stationA_wiring_harness_engine
   agent: A_H1
   agent_specific_order: 1
-  sequential_dependencies: p1_stationA_insert_engine_on_chassis
+  sequential_dependencies: ''
   start: 44
   end: 60
+- task_id: p2_stationA_stop_and_wait
+  agent: m2
+  agent_specific_order: 3
+  sequential_dependencies: p1_stationC_move_to_assembly_stationD
+  start: 53
+  end: 56
+- task_id: p2_stationA_pick_engine
+  agent: A_r1
+  agent_specific_order: 3
+  sequential_dependencies: p2_stationA_stop_and_wait
+  start: 56
+  end: 64
+- task_id: p3_start_move_to_assembly_stationA
+  agent: m3
+  agent_specific_order: 2
+  sequential_dependencies: ''
+  start: 56
+  end: 81
 - task_id: p1_stationA_move_to_assembly_stationB
   agent: m1
-  agent_specific_order: 3
-  sequential_dependencies: p1_stationA_wiring_harness_engine
+  agent_specific_order: 4
+  sequential_dependencies: ''
   start: 60
   end: 85
+- task_id: p2_stationA_insert_engine_on_chassis
+  agent: A_r1
+  agent_specific_order: 4
+  sequential_dependencies: p2_stationA_pick_engine
+  start: 64
+  end: 72
+- task_id: p2_stationA_wiring_harness_engine
+  agent: A_H1
+  agent_specific_order: 2
+  sequential_dependencies: p2_stationA_insert_engine_on_chassis
+  start: 72
+  end: 88
+- task_id: p3_stationA_stop_and_wait
+  agent: m3
+  agent_specific_order: 3
+  sequential_dependencies: ''
+  start: 81
+  end: 84
+- task_id: p3_stationA_pick_engine
+  agent: A_r1
+  agent_specific_order: 5
+  sequential_dependencies: ''
+  start: 84
+  end: 92
 - task_id: p1_stationB_stop_and_wait
   agent: m1
-  agent_specific_order: 4
-  sequential_dependencies: p1_stationA_move_to_assembly_stationB
+  agent_specific_order: 5
+  sequential_dependencies: ''
   start: 85
   end: 88
 - task_id: p1_stationB_pick_rear_drive_train
   agent: B_r2
   agent_specific_order: 1
-  sequential_dependencies: p1_stationB_stop_and_wait
+  sequential_dependencies: p2_stationA_wiring_harness_engine
   start: 88
   end: 98
+- task_id: p2_stationA_move_to_assembly_stationB
+  agent: m2
+  agent_specific_order: 4
+  sequential_dependencies: ''
+  start: 88
+  end: 113
+- task_id: p3_stationA_insert_engine_on_chassis
+  agent: A_r1
+  agent_specific_order: 6
+  sequential_dependencies: ''
+  start: 92
+  end: 100
 - task_id: p1_stationB_insert_rear_drive_train
   agent: B_r2
   agent_specific_order: 2
   sequential_dependencies: p1_stationB_pick_rear_drive_train
   start: 98
   end: 104
+- task_id: p3_stationA_wiring_harness_engine
+  agent: A_H1
+  agent_specific_order: 3
+  sequential_dependencies: ''
+  start: 100
+  end: 116
 - task_id: p1_stationB_screw_battery_assembly_to_front_frame1
   agent: B_r3
   agent_specific_order: 1
   sequential_dependencies: p1_stationB_insert_rear_drive_train
   start: 104
   end: 114
+- task_id: p2_stationB_stop_and_wait
+  agent: m2
+  agent_specific_order: 5
+  sequential_dependencies: ''
+  start: 113
+  end: 116
 - task_id: p1_stationB_screw_battery_assembly_to_front_frame2
   agent: B_r3
   agent_specific_order: 2
   sequential_dependencies: p1_stationB_screw_battery_assembly_to_front_frame1
   start: 114
   end: 124
+- task_id: p2_stationB_pick_rear_drive_train
+  agent: B_r2
+  agent_specific_order: 3
+  sequential_dependencies: ''
+  start: 116
+  end: 126
+- task_id: p3_stationA_move_to_assembly_stationB
+  agent: m3
+  agent_specific_order: 4
+  sequential_dependencies: ''
+  start: 116
+  end: 141
 - task_id: p1_stationB_screw_battery_assembly_to_front_frame3
   agent: B_r3
   agent_specific_order: 3
   sequential_dependencies: p1_stationB_screw_battery_assembly_to_front_frame2
   start: 124
   end: 134
+- task_id: p2_stationB_insert_rear_drive_train
+  agent: B_r2
+  agent_specific_order: 4
+  sequential_dependencies: ''
+  start: 126
+  end: 132
 - task_id: p1_stationB_screw_battery_assembly_to_front_frame4
   agent: B_r3
   agent_specific_order: 4
   sequential_dependencies: p1_stationB_screw_battery_assembly_to_front_frame3
   start: 134
   end: 144
+- task_id: p3_stationB_stop_and_wait
+  agent: m3
+  agent_specific_order: 5
+  sequential_dependencies: ''
+  start: 141
+  end: 144
+- task_id: p3_stationB_pick_rear_drive_train
+  agent: B_r2
+  agent_specific_order: 5
+  sequential_dependencies: p1_stationB_screw_battery_assembly_to_front_frame4
+  start: 144
+  end: 154
+- task_id: p2_stationB_screw_battery_assembly_to_front_frame1
+  agent: B_r3
+  agent_specific_order: 5
+  sequential_dependencies: ''
+  start: 144
+  end: 154
 - task_id: p1_stationB_chain_to_engine
   agent: B_H2
   agent_specific_order: 1
-  sequential_dependencies: p1_stationB_screw_battery_assembly_to_front_frame4
+  sequential_dependencies: ''
   start: 144
   end: 157
+- task_id: p3_stationB_insert_rear_drive_train
+  agent: B_r2
+  agent_specific_order: 6
+  sequential_dependencies: p3_stationB_pick_rear_drive_train
+  start: 154
+  end: 160
+- task_id: p2_stationB_screw_battery_assembly_to_front_frame2
+  agent: B_r3
+  agent_specific_order: 6
+  sequential_dependencies: ''
+  start: 154
+  end: 164
 - task_id: p1_stationC_move_to_assembly_station
   agent: m1
-  agent_specific_order: 5
-  sequential_dependencies: p1_stationB_chain_to_engine
+  agent_specific_order: 6
+  sequential_dependencies: ''
   start: 157
   end: 182
+- task_id: p2_stationB_screw_battery_assembly_to_front_frame3
+  agent: B_r3
+  agent_specific_order: 7
+  sequential_dependencies: p3_stationB_insert_rear_drive_train
+  start: 164
+  end: 174
+- task_id: p2_stationB_screw_battery_assembly_to_front_frame4
+  agent: B_r3
+  agent_specific_order: 8
+  sequential_dependencies: p2_stationB_screw_battery_assembly_to_front_frame3
+  start: 174
+  end: 184
 - task_id: p1_stationC_stop_and_wait
   agent: m1
-  agent_specific_order: 6
-  sequential_dependencies: p1_stationC_move_to_assembly_station
+  agent_specific_order: 7
+  sequential_dependencies: ''
   start: 182
   end: 185
+- task_id: p3_stationB_screw_battery_assembly_to_front_frame1
+  agent: B_r3
+  agent_specific_order: 9
+  sequential_dependencies: p2_stationB_screw_battery_assembly_to_front_frame4
+  start: 184
+  end: 194
+- task_id: p2_stationB_chain_to_engine
+  agent: B_H2
+  agent_specific_order: 2
+  sequential_dependencies: ''
+  start: 184
+  end: 197
 - task_id: p1_stationC_insert_suspension_2
   agent: C_r5
   agent_specific_order: 1
-  sequential_dependencies: p1_stationC_stop_and_wait
+  sequential_dependencies: ''
   start: 185
   end: 191
 - task_id: p1_stationC_fasten_suspension2_to_chassis1
   agent: C_H4
   agent_specific_order: 1
-  sequential_dependencies: p1_stationC_insert_suspension_2
+  sequential_dependencies: ''
   start: 191
   end: 197
+- task_id: p3_stationB_screw_battery_assembly_to_front_frame2
+  agent: B_r3
+  agent_specific_order: 10
+  sequential_dependencies: p3_stationB_screw_battery_assembly_to_front_frame1
+  start: 194
+  end: 204
+- task_id: p1_stationC_fasten_suspension2_to_chassis2
+  agent: C_H4
+  agent_specific_order: 2
+  sequential_dependencies: ''
+  start: 197
+  end: 203
+- task_id: p2_stationC_move_to_assembly_station
+  agent: m2
+  agent_specific_order: 6
+  sequential_dependencies: ''
+  start: 197
+  end: 222
 - task_id: p1_stationC_fasten_suspension3_to_chassis1
   agent: C_r5
   agent_specific_order: 2
-  sequential_dependencies: p1_stationC_fasten_suspension2_to_chassis1
-  start: 197
-  end: 203
-- task_id: p1_stationC_fasten_suspension3_to_chassis2
-  agent: C_H4
-  agent_specific_order: 2
   sequential_dependencies: ''
-  start: 197
-  end: 203
-- task_id: p1_stationC_fasten_suspension2_to_chassis2
-  agent: C_H4
-  agent_specific_order: 3
-  sequential_dependencies: p1_stationC_fasten_suspension3_to_chassis1
   start: 203
   end: 209
+- task_id: p3_stationB_screw_battery_assembly_to_front_frame3
+  agent: B_r3
+  agent_specific_order: 11
+  sequential_dependencies: p3_stationB_screw_battery_assembly_to_front_frame2
+  start: 204
+  end: 214
+- task_id: p1_stationC_fasten_suspension3_to_chassis2
+  agent: C_H4
+  agent_specific_order: 3
+  sequential_dependencies: ''
+  start: 209
+  end: 215
+- task_id: p3_stationB_screw_battery_assembly_to_front_frame4
+  agent: B_r3
+  agent_specific_order: 12
+  sequential_dependencies: p3_stationB_screw_battery_assembly_to_front_frame3
+  start: 214
+  end: 224
 - task_id: p1_stationC_pick_suspension_1
   agent: C_r4
   agent_specific_order: 1
-  sequential_dependencies: p1_stationC_fasten_suspension2_to_chassis2
-  start: 209
-  end: 217
+  sequential_dependencies: ''
+  start: 215
+  end: 223
+- task_id: p2_stationC_stop_and_wait
+  agent: m2
+  agent_specific_order: 7
+  sequential_dependencies: ''
+  start: 222
+  end: 225
 - task_id: p1_stationC_insert_suspension_1
   agent: C_r4
   agent_specific_order: 2
-  sequential_dependencies: p1_stationC_pick_suspension_1
-  start: 217
-  end: 225
+  sequential_dependencies: ''
+  start: 223
+  end: 231
+- task_id: p3_stationB_chain_to_engine
+  agent: B_H2
+  agent_specific_order: 3
+  sequential_dependencies: p3_stationB_screw_battery_assembly_to_front_frame4
+  start: 224
+  end: 237
+- task_id: p2_stationC_fasten_suspension2_to_chassis1
+  agent: C_H4
+  agent_specific_order: 4
+  sequential_dependencies: ''
+  start: 225
+  end: 231
 - task_id: p1_stationC_fasten_suspension1_to_chassis1
   agent: C_H3
   agent_specific_order: 1
-  sequential_dependencies: p1_stationC_insert_suspension_1
-  start: 225
-  end: 231
+  sequential_dependencies: ''
+  start: 231
+  end: 237
+- task_id: p2_stationC_fasten_suspension2_to_chassis2
+  agent: C_H4
+  agent_specific_order: 5
+  sequential_dependencies: ''
+  start: 231
+  end: 237
 - task_id: p1_stationC_fasten_suspension1_to_chassis2
   agent: C_H3
   agent_specific_order: 2
-  sequential_dependencies: p1_stationC_fasten_suspension1_to_chassis1
-  start: 231
-  end: 237
+  sequential_dependencies: p3_stationB_chain_to_engine
+  start: 237
+  end: 243
+- task_id: p2_stationC_fasten_suspension3_to_chassis1
+  agent: C_r5
+  agent_specific_order: 3
+  sequential_dependencies: ''
+  start: 237
+  end: 243
+- task_id: p3_stationC_move_to_assembly_station
+  agent: m3
+  agent_specific_order: 6
+  sequential_dependencies: ''
+  start: 237
+  end: 262
 - task_id: p1_stationC_pick_suspension_2
   agent: C_r5
-  agent_specific_order: 3
+  agent_specific_order: 4
   sequential_dependencies: p1_stationC_fasten_suspension1_to_chassis2
-  start: 237
-  end: 245
+  start: 243
+  end: 251
+- task_id: p2_stationC_fasten_suspension3_to_chassis2
+  agent: C_H4
+  agent_specific_order: 6
+  sequential_dependencies: ''
+  start: 243
+  end: 249
+- task_id: p2_stationC_pick_suspension_1
+  agent: C_r4
+  agent_specific_order: 3
+  sequential_dependencies: ''
+  start: 249
+  end: 257
 - task_id: p1_stationC_pick_suspension_3
   agent: C_r5
-  agent_specific_order: 4
+  agent_specific_order: 5
   sequential_dependencies: p1_stationC_pick_suspension_2
-  start: 245
-  end: 253
+  start: 251
+  end: 259
+- task_id: p2_stationC_insert_suspension_1
+  agent: C_r4
+  agent_specific_order: 4
+  sequential_dependencies: ''
+  start: 257
+  end: 265
 - task_id: p1_stationC_insert_suspension_3
   agent: C_H4
-  agent_specific_order: 4
+  agent_specific_order: 7
   sequential_dependencies: p1_stationC_pick_suspension_3
-  start: 253
-  end: 263
-- task_id: p1_stationC_move_to_assembly_stationD
-  agent: m1
+  start: 259
+  end: 269
+- task_id: p3_stationC_stop_and_wait
+  agent: m3
   agent_specific_order: 7
+  sequential_dependencies: ''
+  start: 262
+  end: 265
+- task_id: p2_stationC_fasten_suspension1_to_chassis1
+  agent: C_H3
+  agent_specific_order: 3
+  sequential_dependencies: ''
+  start: 265
+  end: 271
+- task_id: p3_stationC_fasten_suspension3_to_chassis1
+  agent: C_r5
+  agent_specific_order: 6
+  sequential_dependencies: ''
+  start: 265
+  end: 271
+- task_id: p2_stationC_fasten_suspension1_to_chassis2
+  agent: C_H3
+  agent_specific_order: 4
   sequential_dependencies: p1_stationC_insert_suspension_3
-  start: 263
-  end: 288
-- task_id: p1_stationD_stop_and_wait
-  agent: m1
+  start: 271
+  end: 277
+- task_id: p3_stationC_fasten_suspension2_to_chassis1
+  agent: C_H4
   agent_specific_order: 8
-  sequential_dependencies: p1_stationC_move_to_assembly_stationD
-  start: 288
+  sequential_dependencies: ''
+  start: 271
+  end: 277
+- task_id: p2_stationC_insert_suspension_2
+  agent: C_r5
+  agent_specific_order: 7
+  sequential_dependencies: p2_stationC_fasten_suspension1_to_chassis2
+  start: 277
+  end: 283
+- task_id: p3_stationC_fasten_suspension2_to_chassis2
+  agent: C_H4
+  agent_specific_order: 9
+  sequential_dependencies: ''
+  start: 277
+  end: 283
+- task_id: p2_stationC_pick_suspension_2
+  agent: C_r5
+  agent_specific_order: 8
+  sequential_dependencies: p2_stationC_insert_suspension_2
+  start: 283
   end: 291
-- task_id: p1_stationD_pick_battery
-  agent: D_r6
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationD_stop_and_wait
-  start: 291
-  end: 301
-- task_id: p1_stationD_place_battery
-  agent: D_r6
-  agent_specific_order: 2
-  sequential_dependencies: p1_stationD_pick_battery
-  start: 301
-  end: 309
-- task_id: p1_stationD_fasten_battery_assembly
-  agent: D_H4
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationD_place_battery
-  start: 309
-  end: 319
-- task_id: p1_stationD_wiring_harness_battery
-  agent: D_H4
-  agent_specific_order: 2
-  sequential_dependencies: p1_stationD_fasten_battery_assembly
-  start: 319
-  end: 329
-- task_id: p1_stationD_move_to_assembly_stationE
-  agent: m1
-  agent_specific_order: 9
-  sequential_dependencies: p1_stationD_wiring_harness_battery
-  start: 329
-  end: 354
-- task_id: p1_stationE_stop_and_wait
-  agent: m1
+- task_id: p3_stationC_fasten_suspension3_to_chassis2
+  agent: C_H4
   agent_specific_order: 10
-  sequential_dependencies: p1_stationD_move_to_assembly_stationE
-  start: 354
-  end: 360
-- task_id: p1_stationE_pick_fuel_container
-  agent: E_r7
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationE_stop_and_wait
-  start: 360
-  end: 370
-- task_id: p1_stationE_place_fuel_container
-  agent: E_r7
-  agent_specific_order: 2
-  sequential_dependencies: p1_stationE_pick_fuel_container
-  start: 370
-  end: 378
-- task_id: p1_stationE_fasten_fuel_container
-  agent: E_r7
-  agent_specific_order: 3
-  sequential_dependencies: p1_stationE_place_fuel_container
-  start: 378
-  end: 386
-- task_id: p1_stationE_wiring_harness_fuel_container
-  agent: E_H5
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationE_fasten_fuel_container
-  start: 386
-  end: 392
-- task_id: p1_stationE_move_to_assembly_stationF
-  agent: m1
-  agent_specific_order: 11
-  sequential_dependencies: p1_stationE_wiring_harness_fuel_container
-  start: 392
-  end: 417
-- task_id: p1_stationF_stop_and_wait
-  agent: m1
-  agent_specific_order: 12
-  sequential_dependencies: p1_stationE_move_to_assembly_stationF
-  start: 417
-  end: 420
-- task_id: p1_stationF_wiring_harness_break
-  agent: F_H6
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationF_stop_and_wait
-  start: 420
-  end: 450
-- task_id: p1_stationH_move_to_assembly_stationI
-  agent: m1
-  agent_specific_order: 13
-  sequential_dependencies: p1_stationF_wiring_harness_break
-  start: 450
-  end: 470
-- task_id: p1_stationI_stop_and_wait
-  agent: m1
-  agent_specific_order: 14
-  sequential_dependencies: p1_stationH_move_to_assembly_stationI
-  start: 470
-  end: 473
-- task_id: p1_stationI_pick_wheel3
-  agent: I_r11
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationI_stop_and_wait
-  start: 473
-  end: 481
-- task_id: p1_stationI_pick_wheel1
-  agent: I_r11
-  agent_specific_order: 2
-  sequential_dependencies: p1_stationI_pick_wheel3
-  start: 481
-  end: 487
-- task_id: p1_stationI_insert_wheel3
-  agent: I_r12
-  agent_specific_order: 1
   sequential_dependencies: ''
-  start: 481
-  end: 489
-- task_id: p1_stationI_insert_wheel1
-  agent: I_r11
-  agent_specific_order: 3
-  sequential_dependencies: p1_stationI_pick_wheel1
-  start: 487
-  end: 495
-- task_id: p1_stationI_fasten_wheel3
-  agent: I_r12
-  agent_specific_order: 2
-  sequential_dependencies: ''
-  start: 489
-  end: 495
-- task_id: p1_stationI_pick_wheel2
-  agent: I_r11
-  agent_specific_order: 4
-  sequential_dependencies: p1_stationI_insert_wheel1
-  start: 495
-  end: 505
-- task_id: p1_stationI_fasten_wheel1
-  agent: I_r12
-  agent_specific_order: 3
-  sequential_dependencies: ''
-  start: 495
-  end: 501
-- task_id: p1_stationI_insert_wheel2
-  agent: I_r11
-  agent_specific_order: 5
-  sequential_dependencies: p1_stationI_pick_wheel2
-  start: 505
-  end: 515
-- task_id: p1_stationI_pick_wheel4
-  agent: I_r11
-  agent_specific_order: 6
-  sequential_dependencies: p1_stationI_insert_wheel2
-  start: 515
-  end: 523
-- task_id: p1_stationI_fasten_wheel2
-  agent: I_r12
-  agent_specific_order: 4
-  sequential_dependencies: ''
-  start: 515
-  end: 521
-- task_id: p1_stationI_insert_wheel4
-  agent: I_r11
-  agent_specific_order: 7
-  sequential_dependencies: p1_stationI_pick_wheel4
-  start: 523
-  end: 531
-- task_id: p1_stationI_pick_trunk
-  agent: I_r11
-  agent_specific_order: 8
-  sequential_dependencies: p1_stationI_insert_wheel4
-  start: 531
-  end: 539
-- task_id: p1_stationI_fasten_wheel44
-  agent: I_r12
+  start: 283
+  end: 289
+- task_id: p3_stationC_pick_suspension_1
+  agent: C_r4
   agent_specific_order: 5
   sequential_dependencies: ''
-  start: 531
-  end: 531
-- task_id: p1_stationI_insert_trunk
-  agent: I_r11
+  start: 289
+  end: 297
+- task_id: p2_stationC_pick_suspension_3
+  agent: C_r5
   agent_specific_order: 9
-  sequential_dependencies: p1_stationI_pick_trunk
-  start: 539
-  end: 547
-- task_id: p1_stationI_fasten_trunk_1
-  agent: I_r12
+  sequential_dependencies: p2_stationC_pick_suspension_2
+  start: 291
+  end: 299
+- task_id: p3_stationC_insert_suspension_1
+  agent: C_r4
   agent_specific_order: 6
-  sequential_dependencies: p1_stationI_insert_trunk
-  start: 547
-  end: 555
-- task_id: p1_stationI_fasten_trunk_2
-  agent: I_r12
-  agent_specific_order: 7
-  sequential_dependencies: p1_stationI_fasten_trunk_1
-  start: 555
-  end: 560
-- task_id: p1_stationF_move_to_assembly_stationG
-  agent: m1
-  agent_specific_order: 15
-  sequential_dependencies: p1_stationI_fasten_trunk_2
-  start: 560
-  end: 580
-- task_id: p1_stationG_stop_and_wait
-  agent: m1
-  agent_specific_order: 16
-  sequential_dependencies: p1_stationF_move_to_assembly_stationG
-  start: 580
-  end: 583
-- task_id: p1_stationG_pick_left_lower_cover
-  agent: G_r8
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationG_stop_and_wait
-  start: 583
-  end: 591
-- task_id: p1_stationG_place_left_lower_cover
-  agent: G_r8
-  agent_specific_order: 2
-  sequential_dependencies: p1_stationG_pick_left_lower_cover
-  start: 591
-  end: 601
-- task_id: p1_stationG_fasten_left_lower_cover1
-  agent: G_r9
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationG_place_left_lower_cover
-  start: 601
-  end: 607
-- task_id: p1_stationG_fasten_left_lower_cover2
-  agent: G_r9
-  agent_specific_order: 2
-  sequential_dependencies: p1_stationG_fasten_left_lower_cover1
-  start: 607
-  end: 613
-- task_id: p1_stationG_pick_right_lower_cover
-  agent: G_r8
-  agent_specific_order: 3
-  sequential_dependencies: p1_stationG_fasten_left_lower_cover2
-  start: 613
-  end: 621
-- task_id: p1_stationG_place_right_lower_cover
-  agent: G_r8
-  agent_specific_order: 4
-  sequential_dependencies: p1_stationG_pick_right_lower_cover
-  start: 621
-  end: 629
-- task_id: p1_stationG_fasten_right_lower_cover1
-  agent: G_r9
-  agent_specific_order: 3
-  sequential_dependencies: p1_stationG_place_right_lower_cover
-  start: 629
-  end: 637
-- task_id: p1_stationG_fasten_right_lower_cover2
-  agent: G_r9
-  agent_specific_order: 4
-  sequential_dependencies: p1_stationG_fasten_right_lower_cover1
-  start: 637
-  end: 643
-- task_id: p1_stationG_pick_upper_cover
-  agent: G_r8
+  sequential_dependencies: ''
+  start: 297
+  end: 305
+- task_id: p2_stationC_insert_suspension_3
+  agent: C_H4
+  agent_specific_order: 11
+  sequential_dependencies: p2_stationC_pick_suspension_3
+  start: 299
+  end: 309
+- task_id: p3_stationC_fasten_suspension1_to_chassis1
+  agent: C_H3
   agent_specific_order: 5
-  sequential_dependencies: p1_stationG_fasten_right_lower_cover2
-  start: 643
-  end: 651
-- task_id: p1_stationG_insert_upper_cover
-  agent: G_r8
+  sequential_dependencies: ''
+  start: 305
+  end: 311
+- task_id: p3_stationC_fasten_suspension1_to_chassis2
+  agent: C_H3
   agent_specific_order: 6
-  sequential_dependencies: p1_stationG_pick_upper_cover
-  start: 651
-  end: 659
-- task_id: p1_stationG_fasten_upper_cover1
-  agent: G_r9
-  agent_specific_order: 5
-  sequential_dependencies: p1_stationG_insert_upper_cover
-  start: 659
-  end: 665
-- task_id: p1_stationG_fasten_upper_cover2
-  agent: G_r9
-  agent_specific_order: 6
-  sequential_dependencies: p1_stationG_fasten_upper_cover1
-  start: 665
-  end: 671
-- task_id: p1_stationG_fasten_upper_cover3
-  agent: G_r9
-  agent_specific_order: 7
-  sequential_dependencies: p1_stationG_fasten_upper_cover2
-  start: 671
-  end: 677
-- task_id: p1_stationG_fasten_upper_cover4
-  agent: G_r9
-  agent_specific_order: 8
-  sequential_dependencies: p1_stationG_fasten_upper_cover3
-  start: 677
-  end: 683
-- task_id: p1_stationG_move_to_assembly_station
-  agent: m1
-  agent_specific_order: 17
-  sequential_dependencies: p1_stationG_fasten_upper_cover4
-  start: 683
-  end: 703
-- task_id: p1_stationH_stop_and_wait
-  agent: m1
-  agent_specific_order: 18
-  sequential_dependencies: p1_stationG_move_to_assembly_station
-  start: 703
-  end: 706
-- task_id: p1_stationH_pick_handle
-  agent: H_r10
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationH_stop_and_wait
-  start: 706
-  end: 714
-- task_id: p1_stationH_place_handle
-  agent: H_r10
-  agent_specific_order: 2
-  sequential_dependencies: p1_stationH_pick_handle
-  start: 714
-  end: 720
-- task_id: p1_stationH_fasten_handle
-  agent: H_H7
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationH_place_handle
-  start: 720
-  end: 726
-- task_id: p1_stationH_wiring_harness_handle
-  agent: H_H7
-  agent_specific_order: 2
-  sequential_dependencies: p1_stationH_fasten_handle
-  start: 726
-  end: 736
-- task_id: p1_stationI_move_to_assembly_stationJ
-  agent: m1
-  agent_specific_order: 19
-  sequential_dependencies: p1_stationH_wiring_harness_handle
-  start: 736
-  end: 756
-- task_id: p1_stationK_install_reflectors
-  agent: K_r15
-  agent_specific_order: 1
-  sequential_dependencies: ''
-  start: 736
-  end: 748
-- task_id: p1_stationJ_stop_and_wait
-  agent: m1
-  agent_specific_order: 20
-  sequential_dependencies: p1_stationI_move_to_assembly_stationJ
-  start: 756
-  end: 759
-- task_id: p1_stationJ_move_to_assembly_stationK
-  agent: m1
-  agent_specific_order: 21
-  sequential_dependencies: p1_stationJ_stop_and_wait
-  start: 759
-  end: 779
-- task_id: p1_stationJ_pick_front_light
-  agent: J_r13
-  agent_specific_order: 1
-  sequential_dependencies: ''
-  start: 759
-  end: 767
-- task_id: p1_stationJ_hold_front_light
-  agent: J_r13
-  agent_specific_order: 2
-  sequential_dependencies: ''
-  start: 767
-  end: 773
-- task_id: p1_stationJ_wiring_harness_front_light
-  agent: J_H8
-  agent_specific_order: 1
-  sequential_dependencies: ''
-  start: 773
-  end: 779
-- task_id: p1_stationK_stop_and_wait
-  agent: m1
-  agent_specific_order: 22
-  sequential_dependencies: p1_stationJ_move_to_assembly_stationK
-  start: 779
-  end: 782
-- task_id: p1_stationK_pick_seat
-  agent: K_r14
-  agent_specific_order: 1
-  sequential_dependencies: p1_stationK_stop_and_wait
-  start: 782
-  end: 788
-- task_id: p1_stationK_place_seat
-  agent: K_r14
-  agent_specific_order: 2
-  sequential_dependencies: p1_stationK_pick_seat
-  start: 788
-  end: 794
-- task_id: p1_stationK_fasten_seat
-  agent: K_r15
-  agent_specific_order: 2
-  sequential_dependencies: p1_stationK_place_seat
-  start: 794
-  end: 800
+  sequential_dependencies: p2_stationC_insert_suspension_3
+  start: 311
+  end: 317
+- task_id: p3_stationC_insert_suspension_2
+  agent: C_r5
+  agent_specific_order: 10
+  sequential_dependencies: p3_stationC_fasten_suspension1_to_chassis2
+  start: 317
+  end: 323
+- task_id: p3_stationC_pick_suspension_2
+  agent: C_r5
+  agent_specific_order: 11
+  sequential_dependencies: p3_stationC_insert_suspension_2
+  start: 323
+  end: 331
+- task_id: p3_stationC_pick_suspension_3
+  agent: C_r5
+  agent_specific_order: 12
+  sequential_dependencies: p3_stationC_pick_suspension_2
+  start: 331
+  end: 339
+- task_id: p3_stationC_insert_suspension_3
+  agent: C_H4
+  agent_specific_order: 12
+  sequential_dependencies: p3_stationC_pick_suspension_3
+  start: 339
+  end: 349

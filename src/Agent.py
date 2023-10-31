@@ -25,7 +25,7 @@ class Agent:
                         # Converts yaml document to python object
                         problem_description = yaml.safe_load(stream)
                         problem_description['agents'][self.agent_id] = state
-                        print('agent model update')
+                        # print('agent model update')
                     # Printing dictionary
                     except yaml.YAMLError as dict_e:
                         print(dict_e)
