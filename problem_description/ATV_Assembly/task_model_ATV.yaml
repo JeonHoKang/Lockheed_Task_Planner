@@ -172,19 +172,19 @@ stationC_pick_suspension_3:
   duration_model:
     C_r5:
       id: det
-      mean: 8
+      mean: 4
 stationC_insert_suspension_3:
-  agent_model:
-  - C_H4
-  duration_model:
-    C_H4:
-      id: det
-      mean: 10
-stationC_fasten_suspension3_to_chassis1:
   agent_model:
   - C_r5
   duration_model:
     C_r5:
+      id: det
+      mean: 5
+stationC_fasten_suspension3_to_chassis1:
+  agent_model:
+  - C_H4
+  duration_model:
+    C_H4:
       id: det
       mean: 6
 stationC_fasten_suspension3_to_chassis2:
@@ -194,13 +194,13 @@ stationC_fasten_suspension3_to_chassis2:
     C_H4:
       id: det
       mean: 6
-stationC_move_to_assembly_stationD:
-  agent_model:
-  - m1
-  duration_model:
-    m1:
-      id: det
-      mean: 25
+#stationC_move_to_assembly_stationD:
+#  agent_model:
+#  - m1
+#  duration_model:
+#    m1:
+#      id: det
+#      mean: 25
 #stationD_stop_and_wait:
 #  agent_model:
 #  - m1

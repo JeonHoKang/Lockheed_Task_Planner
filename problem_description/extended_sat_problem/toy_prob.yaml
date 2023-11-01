@@ -1,0 +1,546 @@
+id: sat_assem_htn
+type: sequential
+children:
+  - id: Panel_Assemblies
+    type: independent
+    children:
+      - id: panel_with_assem
+        type: sequential
+        children:
+          - id: Top_Panel
+            type: sequential
+            children:
+              - id: Pick_and_Place_Top_Panel
+                type: atomic
+                agent: ["r1"]
+              - id: Component_Top_Panel
+                type: independent
+                children:
+                  - id: Top_P_C3
+                    type: sequential
+                    children:
+                      - id: Pick_and_Place_Top_P_C3
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Top_P_C3
+                        type: independent
+                        children:
+                          - id: Screw1_Top_P_C3
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw2_Top_P_C3
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw3_Top_P_C3
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw4_Top_P_C3
+                            type: atomic
+                            agent: ["r3"]
+                  - id: Top_P_C6
+                    type: sequential
+                    children:
+                      - id: Pick_and_Place_Top_P_C6
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Top_P_C6
+                        type: independent
+                        children:
+                          - id: Screw1_Top_P_C6
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw2_Top_P_C6
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw3_Top_P_C6
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw4_Top_P_C6
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw5_Top_P_C6
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw6_Top_P_C6
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw7_Top_P_C6
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw8_Top_P_C6
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw9_Top_P_C6
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw10_Top_P_C6
+                            type: atomic
+                            agent: ["r3"]
+                  - id: Top_P_C7
+                    type: sequential
+                    children:
+                      - id: Pick_and_Place_Top_P_C7
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Top_P_C7
+                        type: independent
+                        children:
+                          - id: Screw1_Top_P_C7
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw2_Top_P_C7
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw3_Top_P_C7
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw4_Top_P_C7
+                            type: atomic
+                            agent: ["r3"]
+              - id: Move_Top_Panel_to_the_Side
+                type: atomic
+                agent: ["r1"]
+              - id: Mount_Top_Panel_on_the_Fixture
+                type: atomic
+                agent: ["H1"]
+              - id: Hinge_Top_Panel
+                type: sequential
+                children:
+                  - id: Hold_Hinge_to_Top_Panel
+                    type: atomic
+                    agent: ["H2"]
+                  - id: Hinge_Screw_Operation_Top_Panel
+                    type: independent
+                    children:
+                      - id: Hinge_Top_Panel_Screw1
+                        type: atomic
+                        agent: ["H2"]
+                      - id: Hinge_Top_Panel_Screw2
+                        type: atomic
+                        agent: ['H2']
+          - id: Right_Panel
+            type: sequential
+            children:
+              - id: Pick_and_Place_Right_Panel
+                type: atomic
+                agent: ["r1"]
+              - id: Component_Right_Panel
+                type: independent
+                children:
+                  - id: Right_P_C1_1
+                    type: sequential
+                    children:
+                      - id: Pick_Place_Right_P_C1_1
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Right_P_C1_1_Screw
+                        type: independent
+                        children:
+                          - id: Screw1_Right_P_C1_1_Screw
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw2_Right_P_C1_1_Screw
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw3_Right_P_C1_1_Screw
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw4_Right_P_C1_1_Screw
+                            type: atomic
+                            agent: ["r3"]
+                  - id: Right_P_C1_2
+                    type: sequential
+                    children:
+                      - id: Pick_and_Place_Right_P_C1_2
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Right_P_C1_2
+                        type: independent
+                        children:
+                          - id: Screw1_Right_P_C1_1
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw2_Right_P_C1_1
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw3_Right_P_C1_1
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw4_Right_P_C1_1
+                            type: atomic
+                            agent: ["r3"]
+                  - id: Right_P_C1_3
+                    type: sequential
+                    children:
+                      - id: Pick_and_Place_Right_P_C1_3
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Right_P_C1_3
+                        type: sequential
+                        children:
+                          - id: Screw1_Right_P_C1_3
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw2_Right_P_C1_3
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw3_Right_P_C1_3
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw4_Right_P_C1_3
+                            type: atomic
+                            agent: ["r3"]
+                  - id: Right_P_C2
+                    type: sequential
+                    children:
+                      - id: Pick_and_Place_Right_P_C2
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Right_P_C2
+                        type: sequential
+                        children:
+                          - id: Screw1_B1_Right_P_C2
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw2_B1_Right_P_C2
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw3_B1_Right_P_C2
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw4_B1_Right_P_C2
+                            type: atomic
+                            agent: ["r3"]
+                  - id: Right_P_C5
+                    type: sequential
+                    children:
+                      - id: Pick_and_Place_Right_P_C5
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Right_P_C5
+                        type: sequential
+                        children:
+                          - id: Screw1_B1_Right_P_C5
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw2_B1_Right_P_C5
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw3_B1_Right_P_C5
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw4_B1_Right_P_C5
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw5_B1_Right_P_C5
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw6_B1_Right_P_C5
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw7_B1_Right_P_C5
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw8_B1_Right_P_C5
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw9_B1_Right_P_C5
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw10_B1_Right_P_C5
+                            type: atomic
+                            agent: ["r3"]
+              - id: Move_Right_Panel_to_the_lift
+                type: atomic
+                agent: ["r1"]
+              - id: Mount_Right_Panel_on_the_Fixture
+                type: atomic
+                agent: ["r4"]
+              - id: Hinge_Right_Panel
+                type: sequential
+                children:
+                  - id: Hold_Hinge_to_Right_Panel
+                    type: atomic
+                    agent: ["H2"]
+                  - id: Hinge_Screw_Operation_Right_Panel
+                    type: independent
+                    children:
+                      - id: Hinge_Right_Panel_Screw1
+                        type: atomic
+                        agent: ["H2"]
+                      - id: Hinge_Right_Panel_Screw2
+                        type: atomic
+                        agent: ['H2']
+          - id: Middle_Panel
+            type: sequential
+            children:
+              - id: Pick_and_Place_Middle_Panel
+                type: atomic
+                agent: ["r1"]
+              - id: Component_Middle_Panel
+                type: independent
+                children:
+                  - id: Middle_P_C4
+                    type: sequential
+                    children:
+                      - id: Pick_and_Place_Middle_P_C4
+                        type: atomic
+                        agent: ["r2"]
+                      - id: Screw_Operation_Middle_P_C4
+                        type: independent
+                        children:
+                          - id: Screw1_B2_Middle_P_C4
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw2_B2_Middle_P_C4
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw3_B2_Middle_P_C4
+                            type: atomic
+                            agent: ["r3"]
+                          - id: Screw4_B2_Middle_P_C4
+                            type: atomic
+                            agent: ["r3"]
+              - id: Move_Middle_Panel_to_the_lift
+                type: atomic
+                agent: ["r1"]
+              - id: Mount_Middle_Panel_on_the_Fixture
+                type: atomic
+                agent: ["r4"]
+              - id: Hinge_Middle_Panel
+                type: sequential
+                children:
+                  - id: Hold_Hinge_to_Middle_Panel
+                    type: atomic
+                    agent: ["H2"]
+                  - id: Hinge_Screw_Operation_Middle_Panel
+                    type: independent
+                    children:
+                      - id: Hinge_Middle_Panel_Screw1
+                        type: atomic
+                        agent: ["H2"]
+                      - id: Hinge_Middle_Panel_Screw2
+                        type: atomic
+                        agent: ['H2']
+      - id: Panel_without_assem
+        type: independent
+        children:
+          - id: Panel_B4
+            type: sequential
+            children:
+              - id: Mount_Panel_B4_on_the_Fixture
+                type: atomic
+                agent: ["r4"]
+              - id: Hinge_Panel_B4
+                type: sequential
+                children:
+                  - id: Hold_Hinge_to_Panel_B4
+                    type: atomic
+                    agent: ["H2"]
+                  - id: Hinge_Screw_Operation_Panel_B4
+                    type: independent
+                    children:
+                      - id: Hinge_Panel_B4_Screw1
+                        type: atomic
+                        agent: ["H2"]
+                      - id: Hinge_Panel_B4_Screw2
+                        type: atomic
+                        agent: ['H2']
+          - id: Panel_B5
+            type: sequential
+            children:
+              - id: Mount_Panel_B5_on_the_Fixture
+                type: atomic
+                agent: ["r4"]
+              - id: Hinge_Panel_B5
+                type: sequential
+                children:
+                  - id: Hold_Hinge_to_Panel_B5
+                    type: atomic
+                    agent: ["H2"]
+                  - id: Hinge_Screw_Operation_Panel_B5
+                    type: independent
+                    children:
+                      - id: Hinge_Panel_B5_Screw1
+                        type: atomic
+                        agent: ["H2"]
+                      - id: Hinge_Panel_B5_Screw2
+                        type: atomic
+                        agent: ['H2']
+  - id: Main_Body_Assembly
+    type: independent
+    children:
+      - id: Attach_Panel1_and_2
+        type: sequential
+        children:
+          - id: Attach_and_Hold_Hinge_on_Panel12
+            type: atomic
+            agent: ['H2']
+          - id: Screwing_Hinge_on_Panel12
+            type: independent
+            children:
+              - id: Hinge_on_Panel12_Screw1
+                type: atomic
+                agent: ['H2']
+              - id: Hinge_on_Panel12_Screw2
+                type: atomic
+                agent: ['H2']
+
+      - id: Attach_Panel2_and_3
+        type: sequential
+        children:
+          - id: Attach_and_Hold_Hinge_on_Panel23
+            type: atomic
+            agent: ['H2']
+          - id: Screwing_Hinge_on_Panel23
+            type: independent
+            children:
+              - id: Hinge_on_Panel23_Screw1
+                type: atomic
+                agent: ['H2']
+              - id: Hinge_on_Panel23_Screw2
+                type: atomic
+                agent: ['H2']
+
+      - id: Attach_Panel3_and_4
+        type: sequential
+        children:
+          - id: Attach_and_Hold_Hinge_on_Panel34
+            type: atomic
+            agent: ['H2']
+          - id: Screwing_Hinge_on_Panel34
+            type: independent
+            children:
+              - id: Hinge_on_Panel34_Screw1
+                type: atomic
+                agent: ['H2']
+              - id: Hinge_on_Panel34_Screw2
+                type: atomic
+                agent: ['H2']
+      - id: Attach_Panel4_and_5
+        type: sequential
+        children:
+          - id: Attach_and_Hold_Hinge_on_Panel45
+            type: atomic
+            agent: ['H2']
+          - id: Screwing_Hinge_on_Panel45
+            type: independent
+            children:
+              - id: Hinge_on_Panel45_Screw1
+                type: atomic
+                agent: ['H2']
+              - id: Hinge_on_Panel45_Screw2
+                type: atomic
+                agent: ['H2']
+  - id: External_Component
+    type: sequential
+    children:
+      - id: External_Comp1_on_Panel1
+        type: sequential
+        children:
+          - id: Pick_Extern_Comp1_for_Panel1
+            type: atomic
+            agent: ['r5']
+          - id: Fix_Extern_Comp1_for_Panel1
+            type: atomic
+            agent: ['r5']
+          - id: Extern_Comp1_for_Panel1_joining
+            type: independent
+            children:
+              - id: Extern_Comp1_for_Panel1_joining1
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp1_for_Panel1_joining2
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp1_for_Panel1_joining3
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp1_for_Panel1_joining4
+                type: atomic
+                agent: ['H2']
+      - id: Rotate_turn_table
+        type: sequential
+        children:
+          - id: roate_turntable_180
+            type: atomic
+            agent: ['TT']
+      - id: External_Comp2_on_Panel2
+        type: sequential
+        children:
+          - id: Pick_Extern_Comp2_for_Panel2
+            type: atomic
+            agent: ['r5']
+          - id: Fix_Extern_Comp2_for_Panel2
+            type: atomic
+            agent: ['r5']
+          - id: Extern_Comp2_for_Panel2_joining
+            type: independent
+            children:
+              - id: Extern_Comp2_for_Panel2_joining1
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp2_for_Panel2_joining2
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp2_for_Panel2_joining3
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp2_for_Panel2_joining4
+                type: atomic
+                agent: ['H2']
+      - id: External_Comp1_on_Panel3
+        type: sequential
+        children:
+          - id: Pick_Extern_Comp1_for_Panel3
+            type: atomic
+            agent: ['r5']
+          - id: Fix_Extern_Comp1_for_Panel3
+            type: atomic
+            agent: ['r5']
+          - id: Extern_Comp1_for_Panel3_joining
+            type: independent
+            children:
+              - id: Extern_Comp1_for_Panel3_joining1
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp1_for_Panel3_joining2
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp1_for_Panel3_joining3
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp1_for_Panel3_joining4
+                type: atomic
+                agent: ['H2']
+      - id: Rotate_turn_table_2
+        type: sequential
+        children:
+          - id: roate_turntable_180_2
+            type: atomic
+            agent: ['TT']
+      - id: External_Comp2_on_Panel4
+        type: sequential
+        children:
+          - id: Pick_Extern_Comp2_for_Panel4
+            type: atomic
+            agent: ['r5']
+          - id: Fix_Extern_Comp2_for_Panel4
+            type: atomic
+            agent: ['r5']
+          - id: Extern_Comp2_for_Panel4_joining
+            type: independent
+            children:
+              - id: Extern_Comp2_for_Panel4_joining1
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp2_for_Panel4_joining2
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp2_for_Panel4_joining3
+                type: atomic
+                agent: ['H2']
+              - id: Extern_Comp2_for_Panel4_joining4
+                type: atomic
+                agent: ['H2']
+

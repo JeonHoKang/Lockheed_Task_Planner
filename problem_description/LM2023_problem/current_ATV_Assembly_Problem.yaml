@@ -1,0 +1,3323 @@
+id: Multi_Product_Assembly
+type: parallel
+children:
+- id: p1_sat_assem_htn
+  type: sequential
+  children:
+  - id: p1_Panel_Assemblies
+    type: independent
+    children:
+    - id: p1_panel_with_assem
+      type: sequential
+      children:
+      - id: p1_Top_Panel
+        type: sequential
+        children:
+        - id: p1_Pick_and_Place_Top_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p1_Component_Top_Panel
+          type: independent
+          children:
+          - id: p1_Top_P_C3
+            type: sequential
+            children:
+            - id: p1_Pick_and_Place_Top_P_C3
+              type: atomic
+              agent:
+              - r2
+            - id: p1_Screw_Operation_Top_P_C3
+              type: independent
+              children:
+              - id: p1_Screw1_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw2_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw3_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw4_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+          - id: p1_Top_P_C6
+            type: sequential
+            children:
+            - id: p1_Pick_and_Place_Top_P_C6
+              type: atomic
+              agent:
+              - r2
+            - id: p1_Screw_Operation_Top_P_C6
+              type: independent
+              children:
+              - id: p1_Screw1_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw2_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw3_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw4_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw5_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw6_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw7_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw8_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw9_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw10_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+          - id: p1_Top_P_C7
+            type: sequential
+            children:
+            - id: p1_Pick_and_Place_Top_P_C7
+              type: atomic
+              agent:
+              - r2
+            - id: p1_Screw_Operation_Top_P_C7
+              type: independent
+              children:
+              - id: p1_Screw1_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw2_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw3_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw4_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+        - id: p1_Move_Top_Panel_to_the_Side
+          type: atomic
+          agent:
+          - r1
+        - id: p1_Mount_Top_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - H1
+        - id: p1_Hinge_Top_Panel
+          type: sequential
+          children:
+          - id: p1_Hold_Hinge_to_Top_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p1_Hinge_Screw_Operation_Top_Panel
+            type: independent
+            children:
+            - id: p1_Hinge_Top_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p1_Hinge_Top_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p1_Right_Panel
+        type: sequential
+        children:
+        - id: p1_Pick_and_Place_Right_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p1_Component_Right_Panel
+          type: independent
+          children:
+          - id: p1_Right_P_C1_1
+            type: sequential
+            children:
+            - id: p1_Pick_Place_Right_P_C1_1
+              type: atomic
+              agent:
+              - r2
+            - id: p1_Right_P_C1_1_Screw
+              type: independent
+              children:
+              - id: p1_Screw1_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw2_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw3_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw4_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+          - id: p1_Right_P_C1_2
+            type: sequential
+            children:
+            - id: p1_Pick_and_Place_Right_P_C1_2
+              type: atomic
+              agent:
+              - r2
+            - id: p1_Screw_Operation_Right_P_C1_2
+              type: independent
+              children:
+              - id: p1_Screw1_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw2_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw3_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw4_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+          - id: p1_Right_P_C1_3
+            type: sequential
+            children:
+            - id: p1_Pick_and_Place_Right_P_C1_3
+              type: atomic
+              agent:
+              - r2
+            - id: p1_Screw_Operation_Right_P_C1_3
+              type: sequential
+              children:
+              - id: p1_Screw1_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw2_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw3_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw4_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+          - id: p1_Right_P_C2
+            type: sequential
+            children:
+            - id: p1_Pick_and_Place_Right_P_C2
+              type: atomic
+              agent:
+              - r2
+            - id: p1_Screw_Operation_Right_P_C2
+              type: sequential
+              children:
+              - id: p1_Screw1_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw2_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw3_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw4_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+          - id: p1_Right_P_C5
+            type: sequential
+            children:
+            - id: p1_Pick_and_Place_Right_P_C5
+              type: atomic
+              agent:
+              - r2
+            - id: p1_Screw_Operation_Right_P_C5
+              type: sequential
+              children:
+              - id: p1_Screw1_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw2_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw3_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw4_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw5_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw6_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw7_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw8_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw9_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw10_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+        - id: p1_Move_Right_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p1_Mount_Right_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p1_Hinge_Right_Panel
+          type: sequential
+          children:
+          - id: p1_Hold_Hinge_to_Right_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p1_Hinge_Screw_Operation_Right_Panel
+            type: independent
+            children:
+            - id: p1_Hinge_Right_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p1_Hinge_Right_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p1_Middle_Panel
+        type: sequential
+        children:
+        - id: p1_Pick_and_Place_Middle_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p1_Component_Middle_Panel
+          type: independent
+          children:
+          - id: p1_Middle_P_C4
+            type: sequential
+            children:
+            - id: p1_Pick_and_Place_Middle_P_C4
+              type: atomic
+              agent:
+              - r2
+            - id: p1_Screw_Operation_Middle_P_C4
+              type: independent
+              children:
+              - id: p1_Screw1_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw2_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw3_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p1_Screw4_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+        - id: p1_Move_Middle_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p1_Mount_Middle_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p1_Hinge_Middle_Panel
+          type: sequential
+          children:
+          - id: p1_Hold_Hinge_to_Middle_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p1_Hinge_Screw_Operation_Middle_Panel
+            type: independent
+            children:
+            - id: p1_Hinge_Middle_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p1_Hinge_Middle_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+    - id: p1_Panel_without_assem
+      type: independent
+      children:
+      - id: p1_Panel_B4
+        type: sequential
+        children:
+        - id: p1_Mount_Panel_B4_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p1_Hinge_Panel_B4
+          type: sequential
+          children:
+          - id: p1_Hold_Hinge_to_Panel_B4
+            type: atomic
+            agent:
+            - H2
+          - id: p1_Hinge_Screw_Operation_Panel_B4
+            type: independent
+            children:
+            - id: p1_Hinge_Panel_B4_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p1_Hinge_Panel_B4_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p1_Panel_B5
+        type: sequential
+        children:
+        - id: p1_Mount_Panel_B5_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p1_Hinge_Panel_B5
+          type: sequential
+          children:
+          - id: p1_Hold_Hinge_to_Panel_B5
+            type: atomic
+            agent:
+            - H2
+          - id: p1_Hinge_Screw_Operation_Panel_B5
+            type: independent
+            children:
+            - id: p1_Hinge_Panel_B5_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p1_Hinge_Panel_B5_Screw2
+              type: atomic
+              agent:
+              - H2
+  - id: p1_Main_Body_Assembly
+    type: independent
+    children:
+    - id: p1_Attach_Panel1_and_2
+      type: sequential
+      children:
+      - id: p1_Attach_and_Hold_Hinge_on_Panel12
+        type: atomic
+        agent:
+        - H2
+      - id: p1_Screwing_Hinge_on_Panel12
+        type: independent
+        children:
+        - id: p1_Hinge_on_Panel12_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Hinge_on_Panel12_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p1_Attach_Panel2_and_3
+      type: sequential
+      children:
+      - id: p1_Attach_and_Hold_Hinge_on_Panel23
+        type: atomic
+        agent:
+        - H2
+      - id: p1_Screwing_Hinge_on_Panel23
+        type: independent
+        children:
+        - id: p1_Hinge_on_Panel23_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Hinge_on_Panel23_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p1_Attach_Panel3_and_4
+      type: sequential
+      children:
+      - id: p1_Attach_and_Hold_Hinge_on_Panel34
+        type: atomic
+        agent:
+        - H2
+      - id: p1_Screwing_Hinge_on_Panel34
+        type: independent
+        children:
+        - id: p1_Hinge_on_Panel34_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Hinge_on_Panel34_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p1_Attach_Panel4_and_5
+      type: sequential
+      children:
+      - id: p1_Attach_and_Hold_Hinge_on_Panel45
+        type: atomic
+        agent:
+        - H2
+      - id: p1_Screwing_Hinge_on_Panel45
+        type: independent
+        children:
+        - id: p1_Hinge_on_Panel45_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Hinge_on_Panel45_Screw2
+          type: atomic
+          agent:
+          - H2
+  - id: p1_External_Component
+    type: sequential
+    children:
+    - id: p1_External_Comp1_on_Panel1
+      type: sequential
+      children:
+      - id: p1_Pick_Extern_Comp1_for_Panel1
+        type: atomic
+        agent:
+        - r5
+      - id: p1_Fix_Extern_Comp1_for_Panel1
+        type: atomic
+        agent:
+        - r5
+      - id: p1_Extern_Comp1_for_Panel1_joining
+        type: independent
+        children:
+        - id: p1_Extern_Comp1_for_Panel1_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp1_for_Panel1_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp1_for_Panel1_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp1_for_Panel1_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p1_Rotate_turn_table
+      type: sequential
+      children:
+      - id: p1_roate_turntable_180
+        type: atomic
+        agent:
+        - TT
+    - id: p1_External_Comp2_on_Panel2
+      type: sequential
+      children:
+      - id: p1_Pick_Extern_Comp2_for_Panel2
+        type: atomic
+        agent:
+        - r5
+      - id: p1_Fix_Extern_Comp2_for_Panel2
+        type: atomic
+        agent:
+        - r5
+      - id: p1_Extern_Comp2_for_Panel2_joining
+        type: independent
+        children:
+        - id: p1_Extern_Comp2_for_Panel2_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp2_for_Panel2_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp2_for_Panel2_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp2_for_Panel2_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p1_External_Comp1_on_Panel3
+      type: sequential
+      children:
+      - id: p1_Pick_Extern_Comp1_for_Panel3
+        type: atomic
+        agent:
+        - r5
+      - id: p1_Fix_Extern_Comp1_for_Panel3
+        type: atomic
+        agent:
+        - r5
+      - id: p1_Extern_Comp1_for_Panel3_joining
+        type: independent
+        children:
+        - id: p1_Extern_Comp1_for_Panel3_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp1_for_Panel3_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp1_for_Panel3_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp1_for_Panel3_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p1_Rotate_turn_table_2
+      type: sequential
+      children:
+      - id: p1_roate_turntable_180_2
+        type: atomic
+        agent:
+        - TT
+    - id: p1_External_Comp2_on_Panel4
+      type: sequential
+      children:
+      - id: p1_Pick_Extern_Comp2_for_Panel4
+        type: atomic
+        agent:
+        - r5
+      - id: p1_Fix_Extern_Comp2_for_Panel4
+        type: atomic
+        agent:
+        - r5
+      - id: p1_Extern_Comp2_for_Panel4_joining
+        type: independent
+        children:
+        - id: p1_Extern_Comp2_for_Panel4_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp2_for_Panel4_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp2_for_Panel4_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p1_Extern_Comp2_for_Panel4_joining4
+          type: atomic
+          agent:
+          - H2
+- id: p2_sat_assem_htn
+  type: sequential
+  children:
+  - id: p2_Panel_Assemblies
+    type: independent
+    children:
+    - id: p2_panel_with_assem
+      type: sequential
+      children:
+      - id: p2_Top_Panel
+        type: sequential
+        children:
+        - id: p2_Pick_and_Place_Top_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p2_Component_Top_Panel
+          type: independent
+          children:
+          - id: p2_Top_P_C3
+            type: sequential
+            children:
+            - id: p2_Pick_and_Place_Top_P_C3
+              type: atomic
+              agent:
+              - r2
+            - id: p2_Screw_Operation_Top_P_C3
+              type: independent
+              children:
+              - id: p2_Screw1_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw2_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw3_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw4_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+          - id: p2_Top_P_C6
+            type: sequential
+            children:
+            - id: p2_Pick_and_Place_Top_P_C6
+              type: atomic
+              agent:
+              - r2
+            - id: p2_Screw_Operation_Top_P_C6
+              type: independent
+              children:
+              - id: p2_Screw1_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw2_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw3_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw4_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw5_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw6_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw7_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw8_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw9_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw10_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+          - id: p2_Top_P_C7
+            type: sequential
+            children:
+            - id: p2_Pick_and_Place_Top_P_C7
+              type: atomic
+              agent:
+              - r2
+            - id: p2_Screw_Operation_Top_P_C7
+              type: independent
+              children:
+              - id: p2_Screw1_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw2_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw3_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw4_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+        - id: p2_Move_Top_Panel_to_the_Side
+          type: atomic
+          agent:
+          - r1
+        - id: p2_Mount_Top_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - H1
+        - id: p2_Hinge_Top_Panel
+          type: sequential
+          children:
+          - id: p2_Hold_Hinge_to_Top_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p2_Hinge_Screw_Operation_Top_Panel
+            type: independent
+            children:
+            - id: p2_Hinge_Top_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p2_Hinge_Top_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p2_Right_Panel
+        type: sequential
+        children:
+        - id: p2_Pick_and_Place_Right_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p2_Component_Right_Panel
+          type: independent
+          children:
+          - id: p2_Right_P_C1_1
+            type: sequential
+            children:
+            - id: p2_Pick_Place_Right_P_C1_1
+              type: atomic
+              agent:
+              - r2
+            - id: p2_Right_P_C1_1_Screw
+              type: independent
+              children:
+              - id: p2_Screw1_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw2_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw3_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw4_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+          - id: p2_Right_P_C1_2
+            type: sequential
+            children:
+            - id: p2_Pick_and_Place_Right_P_C1_2
+              type: atomic
+              agent:
+              - r2
+            - id: p2_Screw_Operation_Right_P_C1_2
+              type: independent
+              children:
+              - id: p2_Screw1_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw2_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw3_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw4_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+          - id: p2_Right_P_C1_3
+            type: sequential
+            children:
+            - id: p2_Pick_and_Place_Right_P_C1_3
+              type: atomic
+              agent:
+              - r2
+            - id: p2_Screw_Operation_Right_P_C1_3
+              type: sequential
+              children:
+              - id: p2_Screw1_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw2_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw3_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw4_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+          - id: p2_Right_P_C2
+            type: sequential
+            children:
+            - id: p2_Pick_and_Place_Right_P_C2
+              type: atomic
+              agent:
+              - r2
+            - id: p2_Screw_Operation_Right_P_C2
+              type: sequential
+              children:
+              - id: p2_Screw1_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw2_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw3_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw4_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+          - id: p2_Right_P_C5
+            type: sequential
+            children:
+            - id: p2_Pick_and_Place_Right_P_C5
+              type: atomic
+              agent:
+              - r2
+            - id: p2_Screw_Operation_Right_P_C5
+              type: sequential
+              children:
+              - id: p2_Screw1_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw2_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw3_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw4_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw5_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw6_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw7_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw8_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw9_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw10_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+        - id: p2_Move_Right_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p2_Mount_Right_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p2_Hinge_Right_Panel
+          type: sequential
+          children:
+          - id: p2_Hold_Hinge_to_Right_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p2_Hinge_Screw_Operation_Right_Panel
+            type: independent
+            children:
+            - id: p2_Hinge_Right_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p2_Hinge_Right_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p2_Middle_Panel
+        type: sequential
+        children:
+        - id: p2_Pick_and_Place_Middle_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p2_Component_Middle_Panel
+          type: independent
+          children:
+          - id: p2_Middle_P_C4
+            type: sequential
+            children:
+            - id: p2_Pick_and_Place_Middle_P_C4
+              type: atomic
+              agent:
+              - r2
+            - id: p2_Screw_Operation_Middle_P_C4
+              type: independent
+              children:
+              - id: p2_Screw1_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw2_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw3_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p2_Screw4_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+        - id: p2_Move_Middle_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p2_Mount_Middle_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p2_Hinge_Middle_Panel
+          type: sequential
+          children:
+          - id: p2_Hold_Hinge_to_Middle_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p2_Hinge_Screw_Operation_Middle_Panel
+            type: independent
+            children:
+            - id: p2_Hinge_Middle_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p2_Hinge_Middle_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+    - id: p2_Panel_without_assem
+      type: independent
+      children:
+      - id: p2_Panel_B4
+        type: sequential
+        children:
+        - id: p2_Mount_Panel_B4_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p2_Hinge_Panel_B4
+          type: sequential
+          children:
+          - id: p2_Hold_Hinge_to_Panel_B4
+            type: atomic
+            agent:
+            - H2
+          - id: p2_Hinge_Screw_Operation_Panel_B4
+            type: independent
+            children:
+            - id: p2_Hinge_Panel_B4_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p2_Hinge_Panel_B4_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p2_Panel_B5
+        type: sequential
+        children:
+        - id: p2_Mount_Panel_B5_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p2_Hinge_Panel_B5
+          type: sequential
+          children:
+          - id: p2_Hold_Hinge_to_Panel_B5
+            type: atomic
+            agent:
+            - H2
+          - id: p2_Hinge_Screw_Operation_Panel_B5
+            type: independent
+            children:
+            - id: p2_Hinge_Panel_B5_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p2_Hinge_Panel_B5_Screw2
+              type: atomic
+              agent:
+              - H2
+  - id: p2_Main_Body_Assembly
+    type: independent
+    children:
+    - id: p2_Attach_Panel1_and_2
+      type: sequential
+      children:
+      - id: p2_Attach_and_Hold_Hinge_on_Panel12
+        type: atomic
+        agent:
+        - H2
+      - id: p2_Screwing_Hinge_on_Panel12
+        type: independent
+        children:
+        - id: p2_Hinge_on_Panel12_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Hinge_on_Panel12_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p2_Attach_Panel2_and_3
+      type: sequential
+      children:
+      - id: p2_Attach_and_Hold_Hinge_on_Panel23
+        type: atomic
+        agent:
+        - H2
+      - id: p2_Screwing_Hinge_on_Panel23
+        type: independent
+        children:
+        - id: p2_Hinge_on_Panel23_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Hinge_on_Panel23_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p2_Attach_Panel3_and_4
+      type: sequential
+      children:
+      - id: p2_Attach_and_Hold_Hinge_on_Panel34
+        type: atomic
+        agent:
+        - H2
+      - id: p2_Screwing_Hinge_on_Panel34
+        type: independent
+        children:
+        - id: p2_Hinge_on_Panel34_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Hinge_on_Panel34_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p2_Attach_Panel4_and_5
+      type: sequential
+      children:
+      - id: p2_Attach_and_Hold_Hinge_on_Panel45
+        type: atomic
+        agent:
+        - H2
+      - id: p2_Screwing_Hinge_on_Panel45
+        type: independent
+        children:
+        - id: p2_Hinge_on_Panel45_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Hinge_on_Panel45_Screw2
+          type: atomic
+          agent:
+          - H2
+  - id: p2_External_Component
+    type: sequential
+    children:
+    - id: p2_External_Comp1_on_Panel1
+      type: sequential
+      children:
+      - id: p2_Pick_Extern_Comp1_for_Panel1
+        type: atomic
+        agent:
+        - r5
+      - id: p2_Fix_Extern_Comp1_for_Panel1
+        type: atomic
+        agent:
+        - r5
+      - id: p2_Extern_Comp1_for_Panel1_joining
+        type: independent
+        children:
+        - id: p2_Extern_Comp1_for_Panel1_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp1_for_Panel1_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp1_for_Panel1_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp1_for_Panel1_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p2_Rotate_turn_table
+      type: sequential
+      children:
+      - id: p2_roate_turntable_180
+        type: atomic
+        agent:
+        - TT
+    - id: p2_External_Comp2_on_Panel2
+      type: sequential
+      children:
+      - id: p2_Pick_Extern_Comp2_for_Panel2
+        type: atomic
+        agent:
+        - r5
+      - id: p2_Fix_Extern_Comp2_for_Panel2
+        type: atomic
+        agent:
+        - r5
+      - id: p2_Extern_Comp2_for_Panel2_joining
+        type: independent
+        children:
+        - id: p2_Extern_Comp2_for_Panel2_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp2_for_Panel2_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp2_for_Panel2_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp2_for_Panel2_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p2_External_Comp1_on_Panel3
+      type: sequential
+      children:
+      - id: p2_Pick_Extern_Comp1_for_Panel3
+        type: atomic
+        agent:
+        - r5
+      - id: p2_Fix_Extern_Comp1_for_Panel3
+        type: atomic
+        agent:
+        - r5
+      - id: p2_Extern_Comp1_for_Panel3_joining
+        type: independent
+        children:
+        - id: p2_Extern_Comp1_for_Panel3_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp1_for_Panel3_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp1_for_Panel3_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp1_for_Panel3_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p2_Rotate_turn_table_2
+      type: sequential
+      children:
+      - id: p2_roate_turntable_180_2
+        type: atomic
+        agent:
+        - TT
+    - id: p2_External_Comp2_on_Panel4
+      type: sequential
+      children:
+      - id: p2_Pick_Extern_Comp2_for_Panel4
+        type: atomic
+        agent:
+        - r5
+      - id: p2_Fix_Extern_Comp2_for_Panel4
+        type: atomic
+        agent:
+        - r5
+      - id: p2_Extern_Comp2_for_Panel4_joining
+        type: independent
+        children:
+        - id: p2_Extern_Comp2_for_Panel4_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp2_for_Panel4_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp2_for_Panel4_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p2_Extern_Comp2_for_Panel4_joining4
+          type: atomic
+          agent:
+          - H2
+- id: p3_sat_assem_htn
+  type: sequential
+  children:
+  - id: p3_Panel_Assemblies
+    type: independent
+    children:
+    - id: p3_panel_with_assem
+      type: sequential
+      children:
+      - id: p3_Top_Panel
+        type: sequential
+        children:
+        - id: p3_Pick_and_Place_Top_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p3_Component_Top_Panel
+          type: independent
+          children:
+          - id: p3_Top_P_C3
+            type: sequential
+            children:
+            - id: p3_Pick_and_Place_Top_P_C3
+              type: atomic
+              agent:
+              - r2
+            - id: p3_Screw_Operation_Top_P_C3
+              type: independent
+              children:
+              - id: p3_Screw1_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw2_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw3_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw4_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+          - id: p3_Top_P_C6
+            type: sequential
+            children:
+            - id: p3_Pick_and_Place_Top_P_C6
+              type: atomic
+              agent:
+              - r2
+            - id: p3_Screw_Operation_Top_P_C6
+              type: independent
+              children:
+              - id: p3_Screw1_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw2_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw3_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw4_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw5_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw6_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw7_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw8_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw9_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw10_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+          - id: p3_Top_P_C7
+            type: sequential
+            children:
+            - id: p3_Pick_and_Place_Top_P_C7
+              type: atomic
+              agent:
+              - r2
+            - id: p3_Screw_Operation_Top_P_C7
+              type: independent
+              children:
+              - id: p3_Screw1_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw2_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw3_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw4_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+        - id: p3_Move_Top_Panel_to_the_Side
+          type: atomic
+          agent:
+          - r1
+        - id: p3_Mount_Top_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - H1
+        - id: p3_Hinge_Top_Panel
+          type: sequential
+          children:
+          - id: p3_Hold_Hinge_to_Top_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p3_Hinge_Screw_Operation_Top_Panel
+            type: independent
+            children:
+            - id: p3_Hinge_Top_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p3_Hinge_Top_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p3_Right_Panel
+        type: sequential
+        children:
+        - id: p3_Pick_and_Place_Right_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p3_Component_Right_Panel
+          type: independent
+          children:
+          - id: p3_Right_P_C1_1
+            type: sequential
+            children:
+            - id: p3_Pick_Place_Right_P_C1_1
+              type: atomic
+              agent:
+              - r2
+            - id: p3_Right_P_C1_1_Screw
+              type: independent
+              children:
+              - id: p3_Screw1_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw2_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw3_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw4_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+          - id: p3_Right_P_C1_2
+            type: sequential
+            children:
+            - id: p3_Pick_and_Place_Right_P_C1_2
+              type: atomic
+              agent:
+              - r2
+            - id: p3_Screw_Operation_Right_P_C1_2
+              type: independent
+              children:
+              - id: p3_Screw1_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw2_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw3_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw4_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+          - id: p3_Right_P_C1_3
+            type: sequential
+            children:
+            - id: p3_Pick_and_Place_Right_P_C1_3
+              type: atomic
+              agent:
+              - r2
+            - id: p3_Screw_Operation_Right_P_C1_3
+              type: sequential
+              children:
+              - id: p3_Screw1_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw2_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw3_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw4_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+          - id: p3_Right_P_C2
+            type: sequential
+            children:
+            - id: p3_Pick_and_Place_Right_P_C2
+              type: atomic
+              agent:
+              - r2
+            - id: p3_Screw_Operation_Right_P_C2
+              type: sequential
+              children:
+              - id: p3_Screw1_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw2_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw3_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw4_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+          - id: p3_Right_P_C5
+            type: sequential
+            children:
+            - id: p3_Pick_and_Place_Right_P_C5
+              type: atomic
+              agent:
+              - r2
+            - id: p3_Screw_Operation_Right_P_C5
+              type: sequential
+              children:
+              - id: p3_Screw1_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw2_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw3_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw4_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw5_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw6_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw7_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw8_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw9_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw10_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+        - id: p3_Move_Right_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p3_Mount_Right_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p3_Hinge_Right_Panel
+          type: sequential
+          children:
+          - id: p3_Hold_Hinge_to_Right_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p3_Hinge_Screw_Operation_Right_Panel
+            type: independent
+            children:
+            - id: p3_Hinge_Right_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p3_Hinge_Right_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p3_Middle_Panel
+        type: sequential
+        children:
+        - id: p3_Pick_and_Place_Middle_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p3_Component_Middle_Panel
+          type: independent
+          children:
+          - id: p3_Middle_P_C4
+            type: sequential
+            children:
+            - id: p3_Pick_and_Place_Middle_P_C4
+              type: atomic
+              agent:
+              - r2
+            - id: p3_Screw_Operation_Middle_P_C4
+              type: independent
+              children:
+              - id: p3_Screw1_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw2_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw3_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p3_Screw4_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+        - id: p3_Move_Middle_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p3_Mount_Middle_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p3_Hinge_Middle_Panel
+          type: sequential
+          children:
+          - id: p3_Hold_Hinge_to_Middle_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p3_Hinge_Screw_Operation_Middle_Panel
+            type: independent
+            children:
+            - id: p3_Hinge_Middle_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p3_Hinge_Middle_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+    - id: p3_Panel_without_assem
+      type: independent
+      children:
+      - id: p3_Panel_B4
+        type: sequential
+        children:
+        - id: p3_Mount_Panel_B4_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p3_Hinge_Panel_B4
+          type: sequential
+          children:
+          - id: p3_Hold_Hinge_to_Panel_B4
+            type: atomic
+            agent:
+            - H2
+          - id: p3_Hinge_Screw_Operation_Panel_B4
+            type: independent
+            children:
+            - id: p3_Hinge_Panel_B4_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p3_Hinge_Panel_B4_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p3_Panel_B5
+        type: sequential
+        children:
+        - id: p3_Mount_Panel_B5_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p3_Hinge_Panel_B5
+          type: sequential
+          children:
+          - id: p3_Hold_Hinge_to_Panel_B5
+            type: atomic
+            agent:
+            - H2
+          - id: p3_Hinge_Screw_Operation_Panel_B5
+            type: independent
+            children:
+            - id: p3_Hinge_Panel_B5_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p3_Hinge_Panel_B5_Screw2
+              type: atomic
+              agent:
+              - H2
+  - id: p3_Main_Body_Assembly
+    type: independent
+    children:
+    - id: p3_Attach_Panel1_and_2
+      type: sequential
+      children:
+      - id: p3_Attach_and_Hold_Hinge_on_Panel12
+        type: atomic
+        agent:
+        - H2
+      - id: p3_Screwing_Hinge_on_Panel12
+        type: independent
+        children:
+        - id: p3_Hinge_on_Panel12_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Hinge_on_Panel12_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p3_Attach_Panel2_and_3
+      type: sequential
+      children:
+      - id: p3_Attach_and_Hold_Hinge_on_Panel23
+        type: atomic
+        agent:
+        - H2
+      - id: p3_Screwing_Hinge_on_Panel23
+        type: independent
+        children:
+        - id: p3_Hinge_on_Panel23_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Hinge_on_Panel23_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p3_Attach_Panel3_and_4
+      type: sequential
+      children:
+      - id: p3_Attach_and_Hold_Hinge_on_Panel34
+        type: atomic
+        agent:
+        - H2
+      - id: p3_Screwing_Hinge_on_Panel34
+        type: independent
+        children:
+        - id: p3_Hinge_on_Panel34_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Hinge_on_Panel34_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p3_Attach_Panel4_and_5
+      type: sequential
+      children:
+      - id: p3_Attach_and_Hold_Hinge_on_Panel45
+        type: atomic
+        agent:
+        - H2
+      - id: p3_Screwing_Hinge_on_Panel45
+        type: independent
+        children:
+        - id: p3_Hinge_on_Panel45_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Hinge_on_Panel45_Screw2
+          type: atomic
+          agent:
+          - H2
+  - id: p3_External_Component
+    type: sequential
+    children:
+    - id: p3_External_Comp1_on_Panel1
+      type: sequential
+      children:
+      - id: p3_Pick_Extern_Comp1_for_Panel1
+        type: atomic
+        agent:
+        - r5
+      - id: p3_Fix_Extern_Comp1_for_Panel1
+        type: atomic
+        agent:
+        - r5
+      - id: p3_Extern_Comp1_for_Panel1_joining
+        type: independent
+        children:
+        - id: p3_Extern_Comp1_for_Panel1_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp1_for_Panel1_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp1_for_Panel1_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp1_for_Panel1_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p3_Rotate_turn_table
+      type: sequential
+      children:
+      - id: p3_roate_turntable_180
+        type: atomic
+        agent:
+        - TT
+    - id: p3_External_Comp2_on_Panel2
+      type: sequential
+      children:
+      - id: p3_Pick_Extern_Comp2_for_Panel2
+        type: atomic
+        agent:
+        - r5
+      - id: p3_Fix_Extern_Comp2_for_Panel2
+        type: atomic
+        agent:
+        - r5
+      - id: p3_Extern_Comp2_for_Panel2_joining
+        type: independent
+        children:
+        - id: p3_Extern_Comp2_for_Panel2_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp2_for_Panel2_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp2_for_Panel2_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp2_for_Panel2_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p3_External_Comp1_on_Panel3
+      type: sequential
+      children:
+      - id: p3_Pick_Extern_Comp1_for_Panel3
+        type: atomic
+        agent:
+        - r5
+      - id: p3_Fix_Extern_Comp1_for_Panel3
+        type: atomic
+        agent:
+        - r5
+      - id: p3_Extern_Comp1_for_Panel3_joining
+        type: independent
+        children:
+        - id: p3_Extern_Comp1_for_Panel3_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp1_for_Panel3_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp1_for_Panel3_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp1_for_Panel3_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p3_Rotate_turn_table_2
+      type: sequential
+      children:
+      - id: p3_roate_turntable_180_2
+        type: atomic
+        agent:
+        - TT
+    - id: p3_External_Comp2_on_Panel4
+      type: sequential
+      children:
+      - id: p3_Pick_Extern_Comp2_for_Panel4
+        type: atomic
+        agent:
+        - r5
+      - id: p3_Fix_Extern_Comp2_for_Panel4
+        type: atomic
+        agent:
+        - r5
+      - id: p3_Extern_Comp2_for_Panel4_joining
+        type: independent
+        children:
+        - id: p3_Extern_Comp2_for_Panel4_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp2_for_Panel4_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp2_for_Panel4_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p3_Extern_Comp2_for_Panel4_joining4
+          type: atomic
+          agent:
+          - H2
+- id: p4_sat_assem_htn
+  type: sequential
+  children:
+  - id: p4_Panel_Assemblies
+    type: independent
+    children:
+    - id: p4_panel_with_assem
+      type: sequential
+      children:
+      - id: p4_Top_Panel
+        type: sequential
+        children:
+        - id: p4_Pick_and_Place_Top_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p4_Component_Top_Panel
+          type: independent
+          children:
+          - id: p4_Top_P_C3
+            type: sequential
+            children:
+            - id: p4_Pick_and_Place_Top_P_C3
+              type: atomic
+              agent:
+              - r2
+            - id: p4_Screw_Operation_Top_P_C3
+              type: independent
+              children:
+              - id: p4_Screw1_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw2_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw3_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw4_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+          - id: p4_Top_P_C6
+            type: sequential
+            children:
+            - id: p4_Pick_and_Place_Top_P_C6
+              type: atomic
+              agent:
+              - r2
+            - id: p4_Screw_Operation_Top_P_C6
+              type: independent
+              children:
+              - id: p4_Screw1_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw2_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw3_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw4_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw5_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw6_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw7_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw8_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw9_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw10_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+          - id: p4_Top_P_C7
+            type: sequential
+            children:
+            - id: p4_Pick_and_Place_Top_P_C7
+              type: atomic
+              agent:
+              - r2
+            - id: p4_Screw_Operation_Top_P_C7
+              type: independent
+              children:
+              - id: p4_Screw1_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw2_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw3_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw4_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+        - id: p4_Move_Top_Panel_to_the_Side
+          type: atomic
+          agent:
+          - r1
+        - id: p4_Mount_Top_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - H1
+        - id: p4_Hinge_Top_Panel
+          type: sequential
+          children:
+          - id: p4_Hold_Hinge_to_Top_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p4_Hinge_Screw_Operation_Top_Panel
+            type: independent
+            children:
+            - id: p4_Hinge_Top_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p4_Hinge_Top_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p4_Right_Panel
+        type: sequential
+        children:
+        - id: p4_Pick_and_Place_Right_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p4_Component_Right_Panel
+          type: independent
+          children:
+          - id: p4_Right_P_C1_1
+            type: sequential
+            children:
+            - id: p4_Pick_Place_Right_P_C1_1
+              type: atomic
+              agent:
+              - r2
+            - id: p4_Right_P_C1_1_Screw
+              type: independent
+              children:
+              - id: p4_Screw1_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw2_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw3_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw4_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+          - id: p4_Right_P_C1_2
+            type: sequential
+            children:
+            - id: p4_Pick_and_Place_Right_P_C1_2
+              type: atomic
+              agent:
+              - r2
+            - id: p4_Screw_Operation_Right_P_C1_2
+              type: independent
+              children:
+              - id: p4_Screw1_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw2_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw3_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw4_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+          - id: p4_Right_P_C1_3
+            type: sequential
+            children:
+            - id: p4_Pick_and_Place_Right_P_C1_3
+              type: atomic
+              agent:
+              - r2
+            - id: p4_Screw_Operation_Right_P_C1_3
+              type: sequential
+              children:
+              - id: p4_Screw1_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw2_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw3_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw4_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+          - id: p4_Right_P_C2
+            type: sequential
+            children:
+            - id: p4_Pick_and_Place_Right_P_C2
+              type: atomic
+              agent:
+              - r2
+            - id: p4_Screw_Operation_Right_P_C2
+              type: sequential
+              children:
+              - id: p4_Screw1_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw2_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw3_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw4_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+          - id: p4_Right_P_C5
+            type: sequential
+            children:
+            - id: p4_Pick_and_Place_Right_P_C5
+              type: atomic
+              agent:
+              - r2
+            - id: p4_Screw_Operation_Right_P_C5
+              type: sequential
+              children:
+              - id: p4_Screw1_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw2_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw3_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw4_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw5_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw6_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw7_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw8_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw9_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw10_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+        - id: p4_Move_Right_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p4_Mount_Right_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p4_Hinge_Right_Panel
+          type: sequential
+          children:
+          - id: p4_Hold_Hinge_to_Right_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p4_Hinge_Screw_Operation_Right_Panel
+            type: independent
+            children:
+            - id: p4_Hinge_Right_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p4_Hinge_Right_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p4_Middle_Panel
+        type: sequential
+        children:
+        - id: p4_Pick_and_Place_Middle_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p4_Component_Middle_Panel
+          type: independent
+          children:
+          - id: p4_Middle_P_C4
+            type: sequential
+            children:
+            - id: p4_Pick_and_Place_Middle_P_C4
+              type: atomic
+              agent:
+              - r2
+            - id: p4_Screw_Operation_Middle_P_C4
+              type: independent
+              children:
+              - id: p4_Screw1_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw2_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw3_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p4_Screw4_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+        - id: p4_Move_Middle_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p4_Mount_Middle_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p4_Hinge_Middle_Panel
+          type: sequential
+          children:
+          - id: p4_Hold_Hinge_to_Middle_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p4_Hinge_Screw_Operation_Middle_Panel
+            type: independent
+            children:
+            - id: p4_Hinge_Middle_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p4_Hinge_Middle_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+    - id: p4_Panel_without_assem
+      type: independent
+      children:
+      - id: p4_Panel_B4
+        type: sequential
+        children:
+        - id: p4_Mount_Panel_B4_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p4_Hinge_Panel_B4
+          type: sequential
+          children:
+          - id: p4_Hold_Hinge_to_Panel_B4
+            type: atomic
+            agent:
+            - H2
+          - id: p4_Hinge_Screw_Operation_Panel_B4
+            type: independent
+            children:
+            - id: p4_Hinge_Panel_B4_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p4_Hinge_Panel_B4_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p4_Panel_B5
+        type: sequential
+        children:
+        - id: p4_Mount_Panel_B5_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p4_Hinge_Panel_B5
+          type: sequential
+          children:
+          - id: p4_Hold_Hinge_to_Panel_B5
+            type: atomic
+            agent:
+            - H2
+          - id: p4_Hinge_Screw_Operation_Panel_B5
+            type: independent
+            children:
+            - id: p4_Hinge_Panel_B5_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p4_Hinge_Panel_B5_Screw2
+              type: atomic
+              agent:
+              - H2
+  - id: p4_Main_Body_Assembly
+    type: independent
+    children:
+    - id: p4_Attach_Panel1_and_2
+      type: sequential
+      children:
+      - id: p4_Attach_and_Hold_Hinge_on_Panel12
+        type: atomic
+        agent:
+        - H2
+      - id: p4_Screwing_Hinge_on_Panel12
+        type: independent
+        children:
+        - id: p4_Hinge_on_Panel12_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Hinge_on_Panel12_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p4_Attach_Panel2_and_3
+      type: sequential
+      children:
+      - id: p4_Attach_and_Hold_Hinge_on_Panel23
+        type: atomic
+        agent:
+        - H2
+      - id: p4_Screwing_Hinge_on_Panel23
+        type: independent
+        children:
+        - id: p4_Hinge_on_Panel23_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Hinge_on_Panel23_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p4_Attach_Panel3_and_4
+      type: sequential
+      children:
+      - id: p4_Attach_and_Hold_Hinge_on_Panel34
+        type: atomic
+        agent:
+        - H2
+      - id: p4_Screwing_Hinge_on_Panel34
+        type: independent
+        children:
+        - id: p4_Hinge_on_Panel34_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Hinge_on_Panel34_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p4_Attach_Panel4_and_5
+      type: sequential
+      children:
+      - id: p4_Attach_and_Hold_Hinge_on_Panel45
+        type: atomic
+        agent:
+        - H2
+      - id: p4_Screwing_Hinge_on_Panel45
+        type: independent
+        children:
+        - id: p4_Hinge_on_Panel45_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Hinge_on_Panel45_Screw2
+          type: atomic
+          agent:
+          - H2
+  - id: p4_External_Component
+    type: sequential
+    children:
+    - id: p4_External_Comp1_on_Panel1
+      type: sequential
+      children:
+      - id: p4_Pick_Extern_Comp1_for_Panel1
+        type: atomic
+        agent:
+        - r5
+      - id: p4_Fix_Extern_Comp1_for_Panel1
+        type: atomic
+        agent:
+        - r5
+      - id: p4_Extern_Comp1_for_Panel1_joining
+        type: independent
+        children:
+        - id: p4_Extern_Comp1_for_Panel1_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp1_for_Panel1_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp1_for_Panel1_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp1_for_Panel1_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p4_Rotate_turn_table
+      type: sequential
+      children:
+      - id: p4_roate_turntable_180
+        type: atomic
+        agent:
+        - TT
+    - id: p4_External_Comp2_on_Panel2
+      type: sequential
+      children:
+      - id: p4_Pick_Extern_Comp2_for_Panel2
+        type: atomic
+        agent:
+        - r5
+      - id: p4_Fix_Extern_Comp2_for_Panel2
+        type: atomic
+        agent:
+        - r5
+      - id: p4_Extern_Comp2_for_Panel2_joining
+        type: independent
+        children:
+        - id: p4_Extern_Comp2_for_Panel2_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp2_for_Panel2_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp2_for_Panel2_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp2_for_Panel2_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p4_External_Comp1_on_Panel3
+      type: sequential
+      children:
+      - id: p4_Pick_Extern_Comp1_for_Panel3
+        type: atomic
+        agent:
+        - r5
+      - id: p4_Fix_Extern_Comp1_for_Panel3
+        type: atomic
+        agent:
+        - r5
+      - id: p4_Extern_Comp1_for_Panel3_joining
+        type: independent
+        children:
+        - id: p4_Extern_Comp1_for_Panel3_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp1_for_Panel3_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp1_for_Panel3_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp1_for_Panel3_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p4_Rotate_turn_table_2
+      type: sequential
+      children:
+      - id: p4_roate_turntable_180_2
+        type: atomic
+        agent:
+        - TT
+    - id: p4_External_Comp2_on_Panel4
+      type: sequential
+      children:
+      - id: p4_Pick_Extern_Comp2_for_Panel4
+        type: atomic
+        agent:
+        - r5
+      - id: p4_Fix_Extern_Comp2_for_Panel4
+        type: atomic
+        agent:
+        - r5
+      - id: p4_Extern_Comp2_for_Panel4_joining
+        type: independent
+        children:
+        - id: p4_Extern_Comp2_for_Panel4_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp2_for_Panel4_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp2_for_Panel4_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p4_Extern_Comp2_for_Panel4_joining4
+          type: atomic
+          agent:
+          - H2
+- id: p5_sat_assem_htn
+  type: sequential
+  children:
+  - id: p5_Panel_Assemblies
+    type: independent
+    children:
+    - id: p5_panel_with_assem
+      type: sequential
+      children:
+      - id: p5_Top_Panel
+        type: sequential
+        children:
+        - id: p5_Pick_and_Place_Top_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p5_Component_Top_Panel
+          type: independent
+          children:
+          - id: p5_Top_P_C3
+            type: sequential
+            children:
+            - id: p5_Pick_and_Place_Top_P_C3
+              type: atomic
+              agent:
+              - r2
+            - id: p5_Screw_Operation_Top_P_C3
+              type: independent
+              children:
+              - id: p5_Screw1_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw2_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw3_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw4_Top_P_C3
+                type: atomic
+                agent:
+                - r3
+          - id: p5_Top_P_C6
+            type: sequential
+            children:
+            - id: p5_Pick_and_Place_Top_P_C6
+              type: atomic
+              agent:
+              - r2
+            - id: p5_Screw_Operation_Top_P_C6
+              type: independent
+              children:
+              - id: p5_Screw1_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw2_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw3_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw4_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw5_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw6_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw7_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw8_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw9_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw10_Top_P_C6
+                type: atomic
+                agent:
+                - r3
+          - id: p5_Top_P_C7
+            type: sequential
+            children:
+            - id: p5_Pick_and_Place_Top_P_C7
+              type: atomic
+              agent:
+              - r2
+            - id: p5_Screw_Operation_Top_P_C7
+              type: independent
+              children:
+              - id: p5_Screw1_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw2_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw3_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw4_Top_P_C7
+                type: atomic
+                agent:
+                - r3
+        - id: p5_Move_Top_Panel_to_the_Side
+          type: atomic
+          agent:
+          - r1
+        - id: p5_Mount_Top_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - H1
+        - id: p5_Hinge_Top_Panel
+          type: sequential
+          children:
+          - id: p5_Hold_Hinge_to_Top_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p5_Hinge_Screw_Operation_Top_Panel
+            type: independent
+            children:
+            - id: p5_Hinge_Top_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p5_Hinge_Top_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p5_Right_Panel
+        type: sequential
+        children:
+        - id: p5_Pick_and_Place_Right_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p5_Component_Right_Panel
+          type: independent
+          children:
+          - id: p5_Right_P_C1_1
+            type: sequential
+            children:
+            - id: p5_Pick_Place_Right_P_C1_1
+              type: atomic
+              agent:
+              - r2
+            - id: p5_Right_P_C1_1_Screw
+              type: independent
+              children:
+              - id: p5_Screw1_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw2_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw3_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw4_Right_P_C1_1_Screw
+                type: atomic
+                agent:
+                - r3
+          - id: p5_Right_P_C1_2
+            type: sequential
+            children:
+            - id: p5_Pick_and_Place_Right_P_C1_2
+              type: atomic
+              agent:
+              - r2
+            - id: p5_Screw_Operation_Right_P_C1_2
+              type: independent
+              children:
+              - id: p5_Screw1_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw2_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw3_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw4_Right_P_C1_1
+                type: atomic
+                agent:
+                - r3
+          - id: p5_Right_P_C1_3
+            type: sequential
+            children:
+            - id: p5_Pick_and_Place_Right_P_C1_3
+              type: atomic
+              agent:
+              - r2
+            - id: p5_Screw_Operation_Right_P_C1_3
+              type: sequential
+              children:
+              - id: p5_Screw1_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw2_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw3_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw4_Right_P_C1_3
+                type: atomic
+                agent:
+                - r3
+          - id: p5_Right_P_C2
+            type: sequential
+            children:
+            - id: p5_Pick_and_Place_Right_P_C2
+              type: atomic
+              agent:
+              - r2
+            - id: p5_Screw_Operation_Right_P_C2
+              type: sequential
+              children:
+              - id: p5_Screw1_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw2_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw3_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw4_B1_Right_P_C2
+                type: atomic
+                agent:
+                - r3
+          - id: p5_Right_P_C5
+            type: sequential
+            children:
+            - id: p5_Pick_and_Place_Right_P_C5
+              type: atomic
+              agent:
+              - r2
+            - id: p5_Screw_Operation_Right_P_C5
+              type: sequential
+              children:
+              - id: p5_Screw1_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw2_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw3_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw4_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw5_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw6_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw7_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw8_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw9_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw10_B1_Right_P_C5
+                type: atomic
+                agent:
+                - r3
+        - id: p5_Move_Right_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p5_Mount_Right_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p5_Hinge_Right_Panel
+          type: sequential
+          children:
+          - id: p5_Hold_Hinge_to_Right_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p5_Hinge_Screw_Operation_Right_Panel
+            type: independent
+            children:
+            - id: p5_Hinge_Right_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p5_Hinge_Right_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p5_Middle_Panel
+        type: sequential
+        children:
+        - id: p5_Pick_and_Place_Middle_Panel
+          type: atomic
+          agent:
+          - r1
+        - id: p5_Component_Middle_Panel
+          type: independent
+          children:
+          - id: p5_Middle_P_C4
+            type: sequential
+            children:
+            - id: p5_Pick_and_Place_Middle_P_C4
+              type: atomic
+              agent:
+              - r2
+            - id: p5_Screw_Operation_Middle_P_C4
+              type: independent
+              children:
+              - id: p5_Screw1_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw2_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw3_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+              - id: p5_Screw4_B2_Middle_P_C4
+                type: atomic
+                agent:
+                - r3
+        - id: p5_Move_Middle_Panel_to_the_lift
+          type: atomic
+          agent:
+          - r1
+        - id: p5_Mount_Middle_Panel_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p5_Hinge_Middle_Panel
+          type: sequential
+          children:
+          - id: p5_Hold_Hinge_to_Middle_Panel
+            type: atomic
+            agent:
+            - H2
+          - id: p5_Hinge_Screw_Operation_Middle_Panel
+            type: independent
+            children:
+            - id: p5_Hinge_Middle_Panel_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p5_Hinge_Middle_Panel_Screw2
+              type: atomic
+              agent:
+              - H2
+    - id: p5_Panel_without_assem
+      type: independent
+      children:
+      - id: p5_Panel_B4
+        type: sequential
+        children:
+        - id: p5_Mount_Panel_B4_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p5_Hinge_Panel_B4
+          type: sequential
+          children:
+          - id: p5_Hold_Hinge_to_Panel_B4
+            type: atomic
+            agent:
+            - H2
+          - id: p5_Hinge_Screw_Operation_Panel_B4
+            type: independent
+            children:
+            - id: p5_Hinge_Panel_B4_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p5_Hinge_Panel_B4_Screw2
+              type: atomic
+              agent:
+              - H2
+      - id: p5_Panel_B5
+        type: sequential
+        children:
+        - id: p5_Mount_Panel_B5_on_the_Fixture
+          type: atomic
+          agent:
+          - r4
+        - id: p5_Hinge_Panel_B5
+          type: sequential
+          children:
+          - id: p5_Hold_Hinge_to_Panel_B5
+            type: atomic
+            agent:
+            - H2
+          - id: p5_Hinge_Screw_Operation_Panel_B5
+            type: independent
+            children:
+            - id: p5_Hinge_Panel_B5_Screw1
+              type: atomic
+              agent:
+              - H2
+            - id: p5_Hinge_Panel_B5_Screw2
+              type: atomic
+              agent:
+              - H2
+  - id: p5_Main_Body_Assembly
+    type: independent
+    children:
+    - id: p5_Attach_Panel1_and_2
+      type: sequential
+      children:
+      - id: p5_Attach_and_Hold_Hinge_on_Panel12
+        type: atomic
+        agent:
+        - H2
+      - id: p5_Screwing_Hinge_on_Panel12
+        type: independent
+        children:
+        - id: p5_Hinge_on_Panel12_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Hinge_on_Panel12_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p5_Attach_Panel2_and_3
+      type: sequential
+      children:
+      - id: p5_Attach_and_Hold_Hinge_on_Panel23
+        type: atomic
+        agent:
+        - H2
+      - id: p5_Screwing_Hinge_on_Panel23
+        type: independent
+        children:
+        - id: p5_Hinge_on_Panel23_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Hinge_on_Panel23_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p5_Attach_Panel3_and_4
+      type: sequential
+      children:
+      - id: p5_Attach_and_Hold_Hinge_on_Panel34
+        type: atomic
+        agent:
+        - H2
+      - id: p5_Screwing_Hinge_on_Panel34
+        type: independent
+        children:
+        - id: p5_Hinge_on_Panel34_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Hinge_on_Panel34_Screw2
+          type: atomic
+          agent:
+          - H2
+    - id: p5_Attach_Panel4_and_5
+      type: sequential
+      children:
+      - id: p5_Attach_and_Hold_Hinge_on_Panel45
+        type: atomic
+        agent:
+        - H2
+      - id: p5_Screwing_Hinge_on_Panel45
+        type: independent
+        children:
+        - id: p5_Hinge_on_Panel45_Screw1
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Hinge_on_Panel45_Screw2
+          type: atomic
+          agent:
+          - H2
+  - id: p5_External_Component
+    type: sequential
+    children:
+    - id: p5_External_Comp1_on_Panel1
+      type: sequential
+      children:
+      - id: p5_Pick_Extern_Comp1_for_Panel1
+        type: atomic
+        agent:
+        - r5
+      - id: p5_Fix_Extern_Comp1_for_Panel1
+        type: atomic
+        agent:
+        - r5
+      - id: p5_Extern_Comp1_for_Panel1_joining
+        type: independent
+        children:
+        - id: p5_Extern_Comp1_for_Panel1_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp1_for_Panel1_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp1_for_Panel1_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp1_for_Panel1_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p5_Rotate_turn_table
+      type: sequential
+      children:
+      - id: p5_roate_turntable_180
+        type: atomic
+        agent:
+        - TT
+    - id: p5_External_Comp2_on_Panel2
+      type: sequential
+      children:
+      - id: p5_Pick_Extern_Comp2_for_Panel2
+        type: atomic
+        agent:
+        - r5
+      - id: p5_Fix_Extern_Comp2_for_Panel2
+        type: atomic
+        agent:
+        - r5
+      - id: p5_Extern_Comp2_for_Panel2_joining
+        type: independent
+        children:
+        - id: p5_Extern_Comp2_for_Panel2_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp2_for_Panel2_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp2_for_Panel2_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp2_for_Panel2_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p5_External_Comp1_on_Panel3
+      type: sequential
+      children:
+      - id: p5_Pick_Extern_Comp1_for_Panel3
+        type: atomic
+        agent:
+        - r5
+      - id: p5_Fix_Extern_Comp1_for_Panel3
+        type: atomic
+        agent:
+        - r5
+      - id: p5_Extern_Comp1_for_Panel3_joining
+        type: independent
+        children:
+        - id: p5_Extern_Comp1_for_Panel3_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp1_for_Panel3_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp1_for_Panel3_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp1_for_Panel3_joining4
+          type: atomic
+          agent:
+          - H2
+    - id: p5_Rotate_turn_table_2
+      type: sequential
+      children:
+      - id: p5_roate_turntable_180_2
+        type: atomic
+        agent:
+        - TT
+    - id: p5_External_Comp2_on_Panel4
+      type: sequential
+      children:
+      - id: p5_Pick_Extern_Comp2_for_Panel4
+        type: atomic
+        agent:
+        - r5
+      - id: p5_Fix_Extern_Comp2_for_Panel4
+        type: atomic
+        agent:
+        - r5
+      - id: p5_Extern_Comp2_for_Panel4_joining
+        type: independent
+        children:
+        - id: p5_Extern_Comp2_for_Panel4_joining1
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp2_for_Panel4_joining2
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp2_for_Panel4_joining3
+          type: atomic
+          agent:
+          - H2
+        - id: p5_Extern_Comp2_for_Panel4_joining4
+          type: atomic
+          agent:
+          - H2

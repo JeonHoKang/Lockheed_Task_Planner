@@ -82,7 +82,7 @@ children:
               - id: stationC_stop_and_wait
                 type: atomic
                 agent: ['m1']
-          - id: stationC_suspension_assembly
+          - id: stationC_front_suspension_assembly
             type: independent
             children:
               - id: front_suspension_assembly
@@ -107,7 +107,7 @@ children:
                 type: independent
                 children:
                   - id: rear_suspension2_assembly
-                    type: independent
+                    type: sequential
                     children:
                       - id: stationC_pick_suspension_2
                         type: atomic
@@ -125,7 +125,7 @@ children:
                             type: atomic
                             agent: ['C_H4']
                   - id: rear_suspension3_assembly
-                    type: independent
+                    type: sequential
                     children:
                       - id: stationC_pick_suspension_3
                         type: atomic

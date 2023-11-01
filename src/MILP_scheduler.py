@@ -47,14 +47,16 @@ class HtnMilpScheduler:
         self.task_interval_vars = None
         self.problem_description = None
         self.problem_dir = None
-        self.num_products = 3
+        self.num_products = 1
         self.agent_team_model = {}
         self.multi_product_dict = {}
         self.initial_run = False
         self.current_problem = "problem_description/ATV_Assembly/current_problem_description_ATV.yaml"
+        # self.current_problem = "problem_description/LM2023_problem/current_problem_description_ATV.yaml"
         if os.path.isfile(self.current_problem):
             self.initial_run = False
         else:
+            print("initial_run")
             self.initial_run = True
         self.contingency = True
         if self.initial_run is True:
@@ -174,7 +176,7 @@ class HtnMilpScheduler:
 
     def visualize(self, t_assignment):
         window = tk.Tk()
-        window.title("Gant Chart - Multi-Robot SChedule")
+        window.title("Gant Chart - Multi-Robot Schedule")
         frame = ttk.Frame(window, width=200)
         frame.pack(pady=10)
         # Create the graph frame
@@ -638,16 +640,21 @@ class HtnMilpScheduler:
         #### Create Solver and Solve ####
         solver = self.solver
         solver.parameters.num_search_workers = len(self.agent_team_model)
-        # solver.parameters.max_time_in_seconds = 300
+        solver.parameters.max_time_in_seconds = 60
+        print("start solving the problem")
         status = solver.Solve(self.model)
 
         if status == cp_model.OPTIMAL:
             print("optimal solution")
+            print("Makespan: ")
             print(solver.Value(self.makespan))
+            print("Time taken")
             print(solver.WallTime())
         elif status == cp_model.FEASIBLE:
             print("solution is feasible")
+            print("Makespan: ")
             print(solver.Value(self.makespan))
+            print("Time taken")
             print(solver.WallTime())
         else:
             print("no solution found")
@@ -752,6 +759,12 @@ def main():
     else:
         scheduler.set_dir("problem_description/ATV_Assembly/")
         scheduler.import_problem("current_problem_description_ATV.yaml")
+    # if scheduler.initial_run:
+    #     scheduler.set_dir("problem_description/LM2023_problem/")
+    #     scheduler.import_problem("problem_description_LM2023.yaml")
+    # else:
+    #     scheduler.set_dir("problem_description/LM2023_problem/")
+    #     scheduler.import_problem("current_problem_description_ATV.yaml")
     scheduler.create_task_model()
     scheduler.import_htn()
     print('--------Initialized-------------')

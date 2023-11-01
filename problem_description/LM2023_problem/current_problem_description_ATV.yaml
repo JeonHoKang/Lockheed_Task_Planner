@@ -1,0 +1,13 @@
+num_tasks: 127
+num_agents: 8
+agents:
+  r1: available
+  r2: available
+  r3: available
+  r4: available
+  r5: available
+  TT: available
+  H1: available
+  H2: available
+task_model_id: current_task_model_ATV.yaml
+htn_model_id: current_ATV_Assembly_Problem.yaml

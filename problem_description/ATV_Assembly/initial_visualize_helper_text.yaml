@@ -8,298 +8,118 @@ m1:
       start: 25
       end: 28
   3:
-    p1_stationC_move_to_assembly_stationD:
-      start: 28
-      end: 53
-  4:
     p1_stationA_move_to_assembly_stationB:
       start: 60
       end: 85
-  5:
+  4:
     p1_stationB_stop_and_wait:
       start: 85
       end: 88
-  6:
+  5:
     p1_stationC_move_to_assembly_station:
       start: 157
       end: 182
-  7:
+  6:
     p1_stationC_stop_and_wait:
       start: 182
       end: 185
 A_r1:
-  8:
+  7:
     p1_stationA_pick_engine:
       start: 28
       end: 36
-  9:
+  8:
     p1_stationA_insert_engine_on_chassis:
       start: 36
       end: 44
-  10:
-    p2_stationA_pick_engine:
-      start: 56
-      end: 64
-  11:
-    p2_stationA_insert_engine_on_chassis:
-      start: 64
-      end: 72
-  12:
-    p3_stationA_pick_engine:
-      start: 84
-      end: 92
-  13:
-    p3_stationA_insert_engine_on_chassis:
-      start: 92
-      end: 100
 A_H1:
-  14:
+  9:
     p1_stationA_wiring_harness_engine:
       start: 44
       end: 60
-  15:
-    p2_stationA_wiring_harness_engine:
-      start: 72
-      end: 88
-  16:
-    p3_stationA_wiring_harness_engine:
-      start: 100
-      end: 116
 B_r2:
-  17:
+  10:
     p1_stationB_pick_rear_drive_train:
       start: 88
       end: 98
-  18:
+  11:
     p1_stationB_insert_rear_drive_train:
       start: 98
       end: 104
-  19:
-    p2_stationB_pick_rear_drive_train:
-      start: 116
-      end: 126
-  20:
-    p2_stationB_insert_rear_drive_train:
-      start: 126
-      end: 132
-  21:
-    p3_stationB_pick_rear_drive_train:
-      start: 144
-      end: 154
-  22:
-    p3_stationB_insert_rear_drive_train:
-      start: 154
-      end: 160
 B_r3:
-  23:
+  12:
     p1_stationB_screw_battery_assembly_to_front_frame1:
       start: 104
       end: 114
-  24:
+  13:
     p1_stationB_screw_battery_assembly_to_front_frame2:
       start: 114
       end: 124
-  25:
+  14:
     p1_stationB_screw_battery_assembly_to_front_frame3:
       start: 124
       end: 134
-  26:
+  15:
     p1_stationB_screw_battery_assembly_to_front_frame4:
       start: 134
       end: 144
-  27:
-    p2_stationB_screw_battery_assembly_to_front_frame1:
-      start: 144
-      end: 154
-  28:
-    p2_stationB_screw_battery_assembly_to_front_frame2:
-      start: 154
-      end: 164
-  29:
-    p2_stationB_screw_battery_assembly_to_front_frame3:
-      start: 164
-      end: 174
-  30:
-    p2_stationB_screw_battery_assembly_to_front_frame4:
-      start: 174
-      end: 184
-  31:
-    p3_stationB_screw_battery_assembly_to_front_frame1:
-      start: 184
-      end: 194
-  32:
-    p3_stationB_screw_battery_assembly_to_front_frame2:
-      start: 194
-      end: 204
-  33:
-    p3_stationB_screw_battery_assembly_to_front_frame3:
-      start: 204
-      end: 214
-  34:
-    p3_stationB_screw_battery_assembly_to_front_frame4:
-      start: 214
-      end: 224
 B_H2:
-  35:
+  16:
     p1_stationB_chain_to_engine:
       start: 144
       end: 157
-  36:
-    p2_stationB_chain_to_engine:
-      start: 184
-      end: 197
-  37:
-    p3_stationB_chain_to_engine:
-      start: 224
-      end: 237
 C_r4:
-  38:
+  17:
     p1_stationC_pick_suspension_1:
-      start: 215
-      end: 223
-  39:
+      start: 232
+      end: 240
+  18:
     p1_stationC_insert_suspension_1:
-      start: 223
-      end: 231
-  40:
-    p2_stationC_pick_suspension_1:
-      start: 249
-      end: 257
-  41:
-    p2_stationC_insert_suspension_1:
-      start: 257
-      end: 265
-  42:
-    p3_stationC_pick_suspension_1:
-      start: 289
-      end: 297
-  43:
-    p3_stationC_insert_suspension_1:
-      start: 297
-      end: 305
+      start: 240
+      end: 248
 C_H3:
-  44:
+  19:
     p1_stationC_fasten_suspension1_to_chassis1:
-      start: 231
-      end: 237
-  45:
+      start: 248
+      end: 254
+  20:
     p1_stationC_fasten_suspension1_to_chassis2:
-      start: 237
-      end: 243
-  46:
-    p2_stationC_fasten_suspension1_to_chassis1:
-      start: 265
-      end: 271
-  47:
-    p2_stationC_fasten_suspension1_to_chassis2:
-      start: 271
-      end: 277
-  48:
-    p3_stationC_fasten_suspension1_to_chassis1:
-      start: 305
-      end: 311
-  49:
-    p3_stationC_fasten_suspension1_to_chassis2:
-      start: 311
-      end: 317
+      start: 254
+      end: 260
 C_r5:
-  50:
-    p1_stationC_insert_suspension_2:
-      start: 185
-      end: 191
-  51:
-    p1_stationC_fasten_suspension3_to_chassis1:
-      start: 203
-      end: 209
-  52:
-    p2_stationC_fasten_suspension3_to_chassis1:
-      start: 237
-      end: 243
-  53:
-    p1_stationC_pick_suspension_2:
-      start: 243
-      end: 251
-  54:
+  21:
     p1_stationC_pick_suspension_3:
-      start: 251
-      end: 259
-  55:
-    p3_stationC_fasten_suspension3_to_chassis1:
-      start: 265
-      end: 271
-  56:
-    p2_stationC_insert_suspension_2:
-      start: 277
-      end: 283
-  57:
-    p2_stationC_pick_suspension_2:
-      start: 283
-      end: 291
-  58:
-    p2_stationC_pick_suspension_3:
-      start: 291
-      end: 299
-  59:
-    p3_stationC_insert_suspension_2:
-      start: 317
-      end: 323
-  60:
-    p3_stationC_pick_suspension_2:
-      start: 323
-      end: 331
-  61:
-    p3_stationC_pick_suspension_3:
-      start: 331
-      end: 339
-C_H4:
-  62:
-    p1_stationC_fasten_suspension2_to_chassis1:
-      start: 191
-      end: 197
-  63:
-    p1_stationC_fasten_suspension2_to_chassis2:
-      start: 197
-      end: 203
-  64:
-    p1_stationC_fasten_suspension3_to_chassis2:
-      start: 209
-      end: 215
-  65:
-    p2_stationC_fasten_suspension2_to_chassis1:
-      start: 225
-      end: 231
-  66:
-    p2_stationC_fasten_suspension2_to_chassis2:
-      start: 231
-      end: 237
-  67:
-    p2_stationC_fasten_suspension3_to_chassis2:
-      start: 243
-      end: 249
-  68:
+      start: 185
+      end: 189
+  22:
     p1_stationC_insert_suspension_3:
-      start: 259
-      end: 269
-  69:
-    p3_stationC_fasten_suspension2_to_chassis1:
-      start: 271
-      end: 277
-  70:
-    p3_stationC_fasten_suspension2_to_chassis2:
-      start: 277
-      end: 283
-  71:
-    p3_stationC_fasten_suspension3_to_chassis2:
-      start: 283
-      end: 289
-  72:
-    p2_stationC_insert_suspension_3:
-      start: 299
-      end: 309
-  73:
-    p3_stationC_insert_suspension_3:
-      start: 339
-      end: 349
+      start: 189
+      end: 194
+  23:
+    p1_stationC_pick_suspension_2:
+      start: 206
+      end: 214
+  24:
+    p1_stationC_insert_suspension_2:
+      start: 214
+      end: 220
+C_H4:
+  25:
+    p1_stationC_fasten_suspension3_to_chassis1:
+      start: 194
+      end: 200
+  26:
+    p1_stationC_fasten_suspension3_to_chassis2:
+      start: 200
+      end: 206
+  27:
+    p1_stationC_fasten_suspension2_to_chassis1:
+      start: 220
+      end: 226
+  28:
+    p1_stationC_fasten_suspension2_to_chassis2:
+      start: 226
+      end: 232
 D_r6: None Scheduled yet
 D_H4: None Scheduled yet
 E_r7: None Scheduled yet
@@ -317,61 +137,3 @@ K_r14: None Scheduled yet
 K_r15: None Scheduled yet
 contingency_H: None Scheduled yet
 X: None Scheduled yet
-m2:
-  74:
-    p2_stationC_move_to_assembly_stationD:
-      start: 0
-      end: 25
-  75:
-    p2_start_move_to_assembly_stationA:
-      start: 28
-      end: 53
-  76:
-    p2_stationA_stop_and_wait:
-      start: 53
-      end: 56
-  77:
-    p2_stationA_move_to_assembly_stationB:
-      start: 88
-      end: 113
-  78:
-    p2_stationB_stop_and_wait:
-      start: 113
-      end: 116
-  79:
-    p2_stationC_move_to_assembly_station:
-      start: 197
-      end: 222
-  80:
-    p2_stationC_stop_and_wait:
-      start: 222
-      end: 225
-m3:
-  81:
-    p3_stationC_move_to_assembly_stationD:
-      start: 0
-      end: 25
-  82:
-    p3_start_move_to_assembly_stationA:
-      start: 56
-      end: 81
-  83:
-    p3_stationA_stop_and_wait:
-      start: 81
-      end: 84
-  84:
-    p3_stationA_move_to_assembly_stationB:
-      start: 116
-      end: 141
-  85:
-    p3_stationB_stop_and_wait:
-      start: 141
-      end: 144
-  86:
-    p3_stationC_move_to_assembly_station:
-      start: 237
-      end: 262
-  87:
-    p3_stationC_stop_and_wait:
-      start: 262
-      end: 265
