@@ -28,5 +28,27 @@ agents:
   K_r15: available
   contingency_H: available
   X: unavailable
+  r1: available
+  r2: available
+  r3: available
+  r4: available
+  r5: available
+  TT: available
+  H1: available
+  H2: available
+  m2: available
+  m3: available
+  m4: available
+  m5: available
+  m6: available
+  m7: available
+  m8: available
+  m9: available
+  m10: available
+  m11: available
+  m12: available
+  m13: available
+  m14: available
+  m15: available
 task_model_id: current_task_model_ATV.yaml
 htn_model_id: current_ATV_Assembly_Problem.yaml

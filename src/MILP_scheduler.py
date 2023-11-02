@@ -47,12 +47,13 @@ class HtnMilpScheduler:
         self.task_interval_vars = None
         self.problem_description = None
         self.problem_dir = None
-        self.num_products = 1
+        self.num_products = 8
         self.agent_team_model = {}
         self.multi_product_dict = {}
         self.initial_run = False
-        self.current_problem = "problem_description/ATV_Assembly/current_problem_description_ATV.yaml"
+        # self.current_problem = "problem_description/ATV_Assembly/current_problem_description_ATV.yaml"
         # self.current_problem = "problem_description/LM2023_problem/current_problem_description_ATV.yaml"
+        self.current_problem = "problem_description/extended_sat_problem/current_problem_description_ATV.yaml"
         if os.path.isfile(self.current_problem):
             self.initial_run = False
         else:
@@ -552,7 +553,10 @@ class HtnMilpScheduler:
                     agent_decision_variables[agent][task] = self.model.NewBoolVar(
                         'x' + agent + '[' + task + ']')
         # Create Start End Duration Interval Variables
-
+        num_decision_var = 0
+        for agent in agent_teams:
+            num_decision_var += len(agent_decision_variables[agent])
+        print("number of decision variables: ", num_decision_var)
         starts = []
         ends = []
         intervals = []
@@ -640,7 +644,7 @@ class HtnMilpScheduler:
         #### Create Solver and Solve ####
         solver = self.solver
         solver.parameters.num_search_workers = len(self.agent_team_model)
-        solver.parameters.max_time_in_seconds = 60
+        solver.parameters.max_time_in_seconds = 10000
         print("start solving the problem")
         status = solver.Solve(self.model)
 
@@ -753,11 +757,17 @@ def main():
     Main 
     """
     scheduler = HtnMilpScheduler()
+    # if scheduler.initial_run:
+    #     scheduler.set_dir("problem_description/ATV_Assembly/")
+    #     scheduler.import_problem("problem_description_ATV.yaml")
+    # else:
+    #     scheduler.set_dir("problem_description/ATV_Assembly/")
+    #     scheduler.import_problem("current_problem_description_ATV.yaml")
     if scheduler.initial_run:
-        scheduler.set_dir("problem_description/ATV_Assembly/")
-        scheduler.import_problem("problem_description_ATV.yaml")
+        scheduler.set_dir("problem_description/extended_sat_problem/")
+        scheduler.import_problem("problem_description_toy.yaml")
     else:
-        scheduler.set_dir("problem_description/ATV_Assembly/")
+        scheduler.set_dir("problem_description/extended_sat_problem/")
         scheduler.import_problem("current_problem_description_ATV.yaml")
     # if scheduler.initial_run:
     #     scheduler.set_dir("problem_description/LM2023_problem/")
