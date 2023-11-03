@@ -1,5 +1,5 @@
 from asyncio import get_child_watcher
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import igraph as ig
@@ -37,11 +37,11 @@ class HTN_vis(QtWidgets.QMainWindow):
         self.parent_radio_options = ['sequential', 'parallel', 'independent'] 
         scheduler = MILP_scheduler.HtnMilpScheduler()
         
-        self.problem_dir = "problem_description/ATV_Assembly/"
+        self.problem_dir = "problem_description/extended_sat_problem/"
         contingency_manger = ContingencyManager()
         contingency_name = contingency_manger.contingency_name
         scheduler.set_dir(self.problem_dir)
-        scheduler.import_problem("current_problem_description_ATV.yaml")
+        scheduler.import_problem("toy_prob.yaml")
         self.htn = scheduler.import_htn()
         # main htn dictionary
         self.htn_dict = scheduler.multi_product_dict # input

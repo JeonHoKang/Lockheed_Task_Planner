@@ -794,7 +794,7 @@ def main():
                 # else:
                 #     scheduler.set_dir("problem_description/extended_sat_problem/")
                 #     scheduler.import_problem("current_problem_description_ATV.yaml")
-                if k == 1:
+                elif k == 1:
                     scheduler.set_dir("problem_description/LM2023_problem/")
                     scheduler.import_problem("problem_description_LM2023.yaml")
                     problem_htn = "problem_description_LM2023"

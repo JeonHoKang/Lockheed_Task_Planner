@@ -41,7 +41,7 @@ children:
                     type: atomic
                     agent: ["r1", "r2"]
                   - id: Screw_Operation_B1_Componenet2
-                    type: independent
+                    type: parallel
                     children:
                       - id: Screw1_B1_Componenet2
                         type: atomic
@@ -56,13 +56,13 @@ children:
                         type: atomic
                         agent: ["r1", "r2", "r3"]
               - id: B1_Component3
-                type: sequential
+                type: independent
                 children:
                   - id: Pick_and_Place_B1_Component3
                     type: atomic
                     agent: ["r2", "H1", "H2"]
                   - id: Screw_Operation_B1_Component3
-                    type: independent
+                    type: parallel
                     children:
                       - id: Screw1_B1_Component3
                         type: atomic
@@ -83,7 +83,7 @@ children:
                     type: atomic
                     agent: ["r2", "H1", "H2"]
                   - id: Screw_Operation_B1_Component4
-                    type: independent
+                    type: parallel
                     children:
                       - id: Screw1_B1_Component4
                         type: atomic
