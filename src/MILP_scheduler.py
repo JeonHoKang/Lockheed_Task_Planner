@@ -781,10 +781,10 @@ def main():
     #     scheduler.set_dir("problem_description/ATV_Assembly/")
     #     scheduler.import_problem("current_problem_description_ATV.yaml")
     htn_number = 2
-    solving_time_arr = [30, 30]
-    num_products = 9
+    solving_time_arr = [60, 5000]
+    num_products = 7
     for time in solving_time_arr:
-        for number in range(8, num_products):
+        for number in range(1, num_products):
             scheduler = HtnMilpScheduler(solving_time= time, products= number)
             for k in range(htn_number):
                 if k == 0:
@@ -803,11 +803,11 @@ def main():
                 #     scheduler.import_problem("current_problem_description_ATV.yaml")
                 else:
                     pass
-            scheduler.create_task_model()
-            scheduler.import_htn()
-            print('--------Initialized-------------')
-            scheduler.generate_model()
-            scheduler.solve_and_export(problem_htn, number)
+                scheduler.create_task_model()
+                scheduler.import_htn()
+                print('--------Initialized-------------')
+                scheduler.generate_model()
+                scheduler.solve_and_export(problem_htn, number)
 
 
 if __name__ == '__main__':

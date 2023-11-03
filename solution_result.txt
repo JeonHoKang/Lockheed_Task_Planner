@@ -1,0 +1,36 @@
+Problem statement is : problem_description_LM2023
+ Number of products is : 8,
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1601 
+ with time taken : 30.022801817
+ number of decision variables: 968 
+ and number of nodes : 968 
+
+ Problem statement is : problem_description_LM2023
+ Number of products is : 8
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1601 
+with time taken : 30.252316374000003
+ number of decision variables: 968
+ and number of nodes : 968
+
+Problem statement is : extended_sat_problem
+ Number of products is : 1
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 374 
+with time taken : 7.674631059
+ number of decision variables: 343
+ and number of nodes : 170
+
+Problem statement is : extended_sat_problem
+ Number of products is : 6
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1783 
+with time taken : 60.282340350000005
+ number of decision variables: 2058
+ and number of nodes : 1020
+
