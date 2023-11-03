@@ -29,7 +29,9 @@ class HtnMilpScheduler:
     Uses MILP to generate schedule
     """
 
-    def __init__(self) -> None:
+    def __init__(self, products, solving_time) -> None:
+        self.solution_state = None
+        self.given_solving_time = solving_time
         self.task_object = None
         self.current_problem_description = None
         self.multi_product_htn = None
@@ -47,21 +49,22 @@ class HtnMilpScheduler:
         self.task_interval_vars = None
         self.problem_description = None
         self.problem_dir = None
-        self.num_products = 8
+        self.num_products = products
+        print(products)
         self.agent_team_model = {}
         self.multi_product_dict = {}
-        self.initial_run = False
+        # self.initial_run = False
         # self.current_problem = "problem_description/ATV_Assembly/current_problem_description_ATV.yaml"
         # self.current_problem = "problem_description/LM2023_problem/current_problem_description_ATV.yaml"
-        self.current_problem = "problem_description/extended_sat_problem/current_problem_description_ATV.yaml"
-        if os.path.isfile(self.current_problem):
-            self.initial_run = False
-        else:
-            print("initial_run")
-            self.initial_run = True
-        self.contingency = True
-        if self.initial_run is True:
-            self.contingency = False
+        # self.current_problem = "problem_description/extended_sat_problem/current_problem_description_ATV.yaml"
+        # if os.path.isfile(self.current_problem):
+        #     self.initial_run = False
+        # else:
+        #     print("initial_run")
+        #     self.initial_run = True
+        # self.contingency = True
+        # if self.initial_run is True:
+        #     self.contingency = False
         # self.contingency_name = 'p1_pick_rear_frame'
         self.contingency_node = None
         self.unavailable_agent_bool = False
@@ -86,12 +89,12 @@ class HtnMilpScheduler:
             # Printing dictionary
             except yaml.YAMLError as dict_e:
                 print(dict_e)
-        if self.initial_run:
-            self.current_problem_description = copy.deepcopy(self.problem_description)
-            self.current_problem_description["htn_model_id"] = "current_ATV_Assembly_Problem.yaml"
-            self.current_problem_description["task_model_id"] = "current_task_model_ATV.yaml"
-            TreeToolSet().dict_yaml_export(self.current_problem_description, self.problem_dir,
-                                           "current_problem_description_ATV.yaml")
+        # if self.initial_run:
+        #     self.current_problem_description = copy.deepcopy(self.problem_description)
+        #     self.current_problem_description["htn_model_id"] = "current_ATV_Assembly_Problem.yaml"
+        #     self.current_problem_description["task_model_id"] = "current_task_model_ATV.yaml"
+        #     TreeToolSet().dict_yaml_export(self.current_problem_description, self.problem_dir,
+        #                                    "current_problem_description_ATV.yaml")
             # print("break point")
 
     def load_agent_model(self):
@@ -121,9 +124,9 @@ class HtnMilpScheduler:
             except yaml.YAMLError as e:
                 print(e)
 
-            if self.initial_run:
-                TreeToolSet().dict_yaml_export(task_model1, self.problem_dir,
-                                               "current_task_model_ATV.yaml")  # create current file for future
+            # if self.initial_run:
+            #     TreeToolSet().dict_yaml_export(task_model1, self.problem_dir,
+            #                                    "current_task_model_ATV.yaml")  # create current file for future
             for product in range(self.num_products):
                 for i in range(len(task_model1)):
                     # just indexing how long this is
@@ -288,11 +291,11 @@ class HtnMilpScheduler:
                                     expand=True)
         scrollbar_canvas.pack(fill=tk.X, side=tk.BOTTOM)
         canvas.get_tk_widget().configure(scrollregion=canvas.get_tk_widget().bbox("all"))
-
-        if self.initial_run:
-            plt.savefig("gant.png")
-        else:
-            plt.savefig("current_gant.png")
+        #
+        # if self.initial_run:
+        #     plt.savefig("gant.png")
+        # else:
+        plt.savefig("current_gant.png")
 
         # Add the Scrollbar to the window
         def on_window_close():
@@ -301,7 +304,7 @@ class HtnMilpScheduler:
         window.protocol("WM_DELETE_WINDOW", on_window_close)
         window.mainloop()
 
-    def import_htn(self, print_htn=True):  # HTN import
+    def import_htn(self, print_htn=False):  # HTN import
         def edit_tree(dictionary, product_num):
             dictionary['id'] = f"p{product_num}_{dictionary['id']}"
             if 'children' in dictionary:
@@ -319,24 +322,24 @@ class HtnMilpScheduler:
         num_products = self.num_products
         children = []
 
-        if self.initial_run:
-            self.multi_product_dict = {}
-            self.multi_product_dict['id'] = 'Multi_Product_Assembly'
-            self.multi_product_dict['type'] = 'parallel'
-            self.multi_product_dict['children'] = []
-            for p in range(num_products):
-                product_htn = copy.deepcopy(self.dict)
-                edit_tree(product_htn, p + 1)
-                self.multi_product_dict['children'].append(product_htn)
-                # For multi-product formulation, we introduce a task root at the highest
-                # hiararchy
-                self.multi_product_htn = DictImporter().import_(self.multi_product_dict)
+        # if self.initial_run:
+        self.multi_product_dict = {}
+        self.multi_product_dict['id'] = 'Multi_Product_Assembly'
+        self.multi_product_dict['type'] = 'parallel'
+        self.multi_product_dict['children'] = []
+        for p in range(num_products):
+            product_htn = copy.deepcopy(self.dict)
+            edit_tree(product_htn, p + 1)
+            self.multi_product_dict['children'].append(product_htn)
+            # For multi-product formulation, we introduce a task root at the highest
+            # hiararchy
+            self.multi_product_htn = DictImporter().import_(self.multi_product_dict)
 
-            TreeToolSet().dict_yaml_export(self.multi_product_dict, self.problem_dir,
-                                           "current_ATV_Assembly_Problem.yaml")
-        else:
-            self.multi_product_htn = DictImporter().import_(self.dict)  # to avoid duplicating p1
-            self.multi_product_dict = self.dict
+        # TreeToolSet().dict_yaml_export(self.multi_product_dict, self.problem_dir,
+        #                                "current_ATV_Assembly_Problem.yaml")
+        # else:
+        #     self.multi_product_htn = DictImporter().import_(self.dict)  # to avoid duplicating p1
+        #     self.multi_product_dict = self.dict
         if print_htn:
             print(RenderTree(self.multi_product_htn))
         return self.multi_product_htn
@@ -553,10 +556,10 @@ class HtnMilpScheduler:
                     agent_decision_variables[agent][task] = self.model.NewBoolVar(
                         'x' + agent + '[' + task + ']')
         # Create Start End Duration Interval Variables
-        num_decision_var = 0
+        self.num_decision_var = 0
         for agent in agent_teams:
-            num_decision_var += len(agent_decision_variables[agent])
-        print("number of decision variables: ", num_decision_var)
+            self.num_decision_var += len(agent_decision_variables[agent])
+        print("number of decision variables: ", self.num_decision_var)
         starts = []
         ends = []
         intervals = []
@@ -644,7 +647,7 @@ class HtnMilpScheduler:
         #### Create Solver and Solve ####
         solver = self.solver
         solver.parameters.num_search_workers = len(self.agent_team_model)
-        solver.parameters.max_time_in_seconds = 10000
+        solver.parameters.max_time_in_seconds = self.given_solving_time
         print("start solving the problem")
         status = solver.Solve(self.model)
 
@@ -654,12 +657,14 @@ class HtnMilpScheduler:
             print(solver.Value(self.makespan))
             print("Time taken")
             print(solver.WallTime())
+            self.solution_state = "optimal"
         elif status == cp_model.FEASIBLE:
             print("solution is feasible")
             print("Makespan: ")
             print(solver.Value(self.makespan))
             print("Time taken")
             print(solver.WallTime())
+            self.solution_state = "feasible"
         else:
             print("no solution found")
 
@@ -692,7 +697,7 @@ class HtnMilpScheduler:
             sorted_t_assignment[agent] = sorted(
                 assignment, key=lambda x: list(x.values())[0][0])
         self.export_yaml(sorted_t_assignment)
-        self.visualize(sorted_t_assignment)
+        # self.visualize(sorted_t_assignment)
 
     def export_yaml(self, t_assignment):
         task_allocation = t_assignment
@@ -709,12 +714,12 @@ class HtnMilpScheduler:
             if schedule_yaml[agent] == {}:
                 schedule_yaml[agent] = 'None Scheduled yet'
 
-        if self.initial_run:
-            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "initial_visualize_helper_text.yaml")
-        else:
-            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "current_visualize_helper_text.yaml")
+        # if self.initial_run:
+        #     TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "initial_visualize_helper_text.yaml")
+        # else:
+        # TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "current_visualize_helper_text.yaml")
 
-        self.export_schedule_text(t_assignment)
+        # self.export_schedule_text(t_assignment)
 
     def export_schedule_text(self, t_assignment):
         """
@@ -746,39 +751,63 @@ class HtnMilpScheduler:
                 schedule['sequential_dependencies'] = prev_schedule['task_id']
                 prev_schedule = schedule_yaml[i]
 
-        if self.initial_run:
-            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "initial_task_allocation.yaml")
+        # if self.initial_run:
+        #     TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "initial_task_allocation.yaml")
+        # else:
+        # TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "current_task_allocation.yaml")
+    def solve_and_export(self, problem_htn, num_products):
+        solver = self.solver
+        task_list = list(self.task_object.keys())
+        if os.path.isfile("solution_result.txt"):
+            with open('solution_result.txt', "a") as file:
+                intro = file.write(f"Problem statement is : {problem_htn}\n Number of products is : {num_products}\n Given Solving time is: "
+                                   f" {self.given_solving_time} \n and solution type is : {self.solution_state}\n the makespan is : {solver.Value(self.makespan)} \nwith time taken : {solver.WallTime()}\n "
+                                   f"number of decision variables: {self.num_decision_var}\n and number of nodes : {len(task_list)}\n\n")
         else:
-            TreeToolSet().dict_yaml_export(schedule_yaml, self.problem_dir, "current_task_allocation.yaml")
-
+            with open('solution_result.txt', "w") as file:
+                intro = file.write(f"Problem statement is : {problem_htn}\n Number of products is : {num_products},\n Given Solving time is: "
+                                   f" {self.given_solving_time} \n and solution type is : {self.solution_state}\n the makespan is : {solver.Value(self.makespan)} \n with time taken : {solver.WallTime()}\n "
+                                   f"number of decision variables: {self.num_decision_var} \n and number of nodes : {len(task_list)} \n\n ")
+        print("-----exported----------")
 
 def main():
     """
     Main 
     """
-    scheduler = HtnMilpScheduler()
     # if scheduler.initial_run:
     #     scheduler.set_dir("problem_description/ATV_Assembly/")
     #     scheduler.import_problem("problem_description_ATV.yaml")
     # else:
     #     scheduler.set_dir("problem_description/ATV_Assembly/")
     #     scheduler.import_problem("current_problem_description_ATV.yaml")
-    if scheduler.initial_run:
-        scheduler.set_dir("problem_description/extended_sat_problem/")
-        scheduler.import_problem("problem_description_toy.yaml")
-    else:
-        scheduler.set_dir("problem_description/extended_sat_problem/")
-        scheduler.import_problem("current_problem_description_ATV.yaml")
-    # if scheduler.initial_run:
-    #     scheduler.set_dir("problem_description/LM2023_problem/")
-    #     scheduler.import_problem("problem_description_LM2023.yaml")
-    # else:
-    #     scheduler.set_dir("problem_description/LM2023_problem/")
-    #     scheduler.import_problem("current_problem_description_ATV.yaml")
-    scheduler.create_task_model()
-    scheduler.import_htn()
-    print('--------Initialized-------------')
-    scheduler.generate_model()
+    htn_number = 2
+    solving_time_arr = [30, 30]
+    num_products = 9
+    for time in solving_time_arr:
+        for number in range(8, num_products):
+            scheduler = HtnMilpScheduler(solving_time= time, products= number)
+            for k in range(htn_number):
+                if k == 0:
+                    scheduler.set_dir("problem_description/extended_sat_problem/")
+                    scheduler.import_problem("problem_description_toy.yaml")
+                    problem_htn = "extended_sat_problem"
+                # else:
+                #     scheduler.set_dir("problem_description/extended_sat_problem/")
+                #     scheduler.import_problem("current_problem_description_ATV.yaml")
+                if k == 1:
+                    scheduler.set_dir("problem_description/LM2023_problem/")
+                    scheduler.import_problem("problem_description_LM2023.yaml")
+                    problem_htn = "problem_description_LM2023"
+                # else:
+                #     scheduler.set_dir("problem_description/LM2023_problem/")
+                #     scheduler.import_problem("current_problem_description_ATV.yaml")
+                else:
+                    pass
+            scheduler.create_task_model()
+            scheduler.import_htn()
+            print('--------Initialized-------------')
+            scheduler.generate_model()
+            scheduler.solve_and_export(problem_htn, number)
 
 
 if __name__ == '__main__':

@@ -368,36 +368,63 @@ Pick_and_Place_B2_Componenet2:
       mean: 5
 
 Screw1_B2_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
       mean: 3
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 17
 
 Screw2_B2_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
       mean: 3
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B2_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B2_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B2_Component3:
-  agent_model: ["r2"]
+  agent_model: ["r1", "r2"]
   duration_model:
+    r1:
+      id: det
+      mean: 8
     r2:
       id: det
       mean: 5
@@ -410,78 +437,130 @@ Screw1_B2_Component3:
       mean: 3
 
 Screw2_B2_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B2_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B2_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B2_Component4:
   agent_model: ["r2"]
   duration_model:
-    r2:
+    r3:
       id: det
-      mean: 5
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw1_B2_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B2_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B2_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B2_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
+
 Move_Panel_B2_to_the_Side:
   agent_model: ["r1"]
   duration_model:
     r1:
       id: det
       mean: 4
+
 Mount_Panel_B2_on_the_Fixture:
   agent_model: ["H1"]
   duration_model:
     H1:
       id: det
       mean: 10
+
 Hold_Hinge_to_Panel_B2:
   agent_model: ["H2"]
   duration_model:
     H2:
       id: det
       mean: 3
+
 Hinge_Panel_B2_Screw1:
   agent_model: ["H2"]
   duration_model:
@@ -511,32 +590,56 @@ Pick_and_Place_B3_Component1:
       mean: 5
 
 Screw1_B3_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B3_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B3_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B3_Componenet1:
   agent_model: ["r3"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B3_Componenet2:
   agent_model: ["r2"]
@@ -546,32 +649,57 @@ Pick_and_Place_B3_Componenet2:
       mean: 5
 
 Screw1_B3_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B3_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
+
 
 Screw3_B3_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B3_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B3_Component3:
   agent_model: ["r2"]
@@ -581,32 +709,56 @@ Pick_and_Place_B3_Component3:
       mean: 5
 
 Screw1_B3_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B3_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B3_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B3_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B3_Component4:
   agent_model: ["r2"]
@@ -616,50 +768,78 @@ Pick_and_Place_B3_Component4:
       mean: 5
 
 Screw1_B3_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B3_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B3_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B3_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
+
 Move_Panel_B3_to_the_Side:
   agent_model: ["r1"]
   duration_model:
     r1:
       id: det
       mean: 4
+
 Mount_Panel_B3_on_the_Fixture:
   agent_model: ["H1"]
   duration_model:
     H1:
       id: det
       mean: 10
+
 Hold_Hinge_to_Panel_B3:
   agent_model: ["H2"]
   duration_model:
     H2:
       id: det
       mean: 3
+
 Hinge_Panel_B3_Screw1:
   agent_model: ["H2"]
   duration_model:
@@ -689,32 +869,56 @@ Pick_and_Place_B4_Component1:
       mean: 5
 
 Screw1_B4_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B4_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B4_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B4_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B4_Componenet2:
   agent_model: ["r2"]
@@ -724,32 +928,56 @@ Pick_and_Place_B4_Componenet2:
       mean: 5
 
 Screw1_B4_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B4_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B4_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B4_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B4_Component3:
   agent_model: ["r2"]
@@ -759,32 +987,56 @@ Pick_and_Place_B4_Component3:
       mean: 5
 
 Screw1_B4_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B4_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B4_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B4_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B4_Component4:
   agent_model: ["r2"]
@@ -794,32 +1046,50 @@ Pick_and_Place_B4_Component4:
       mean: 5
 
 Screw1_B4_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
       mean: 3
 
 Screw2_B4_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B4_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B4_Component4:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Move_Panel_B4_to_the_Side:
   agent_model: ["r1"]
@@ -870,32 +1140,56 @@ Pick_and_Place_B5_Component1:
       mean: 5
 
 Screw1_B5_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B5_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B5_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B5_Componenet1:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B5_Componenet2:
   agent_model: ["r2"]
@@ -905,32 +1199,56 @@ Pick_and_Place_B5_Componenet2:
       mean: 5
 
 Screw1_B5_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B5_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B5_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B5_Componenet2:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B5_Component3:
   agent_model: ["r2"]
@@ -940,32 +1258,50 @@ Pick_and_Place_B5_Component3:
       mean: 5
 
 Screw1_B5_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
       mean: 3
 
 Screw2_B5_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B5_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B5_Component3:
-  agent_model: ["r3"]
+  agent_model: ["r3, "H1", "H2"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Pick_and_Place_B5_Component4:
   agent_model: ["r2"]
@@ -979,28 +1315,52 @@ Screw1_B5_Component4:
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw2_B5_Component4:
   agent_model: ["r3"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw3_B5_Component4:
   agent_model: ["r3"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Screw4_B5_Component4:
   agent_model: ["r3"]
   duration_model:
     r3:
       id: det
-      mean: 3
+      mean: 4
+    H1:
+      id: det
+      mean: 10
+    H2:
+      id: det
+      mean: 12
 
 Move_Panel_B5_to_the_Side:
   agent_model: ["r1"]

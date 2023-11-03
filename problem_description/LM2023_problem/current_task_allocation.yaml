@@ -22,82 +22,82 @@
   sequential_dependencies: p1_Screw1_Top_P_C3
   start: 13
   end: 16
-- task_id: p1_Screw4_Top_P_C3
+- task_id: p1_Screw3_Top_P_C3
   agent: r3
   agent_specific_order: 3
   sequential_dependencies: p1_Screw2_Top_P_C3
   start: 16
   end: 19
-- task_id: p1_Screw3_Top_P_C3
+- task_id: p1_Screw4_Top_P_C3
   agent: r3
   agent_specific_order: 4
-  sequential_dependencies: p1_Screw4_Top_P_C3
+  sequential_dependencies: p1_Screw3_Top_P_C3
   start: 19
   end: 22
 - task_id: p1_Pick_and_Place_Top_P_C6
   agent: r2
   agent_specific_order: 2
-  sequential_dependencies: p1_Screw3_Top_P_C3
+  sequential_dependencies: p1_Screw4_Top_P_C3
   start: 22
   end: 27
-- task_id: p1_Screw3_Top_P_C6
+- task_id: p1_Screw4_Top_P_C6
   agent: r3
   agent_specific_order: 5
   sequential_dependencies: p1_Pick_and_Place_Top_P_C6
   start: 27
   end: 30
-- task_id: p1_Screw6_Top_P_C6
-  agent: r3
-  agent_specific_order: 6
-  sequential_dependencies: p1_Screw3_Top_P_C6
-  start: 30
-  end: 33
 - task_id: p1_Screw1_Top_P_C6
   agent: r3
+  agent_specific_order: 6
+  sequential_dependencies: p1_Screw4_Top_P_C6
+  start: 30
+  end: 33
+- task_id: p1_Screw3_Top_P_C6
+  agent: r3
   agent_specific_order: 7
-  sequential_dependencies: p1_Screw6_Top_P_C6
+  sequential_dependencies: p1_Screw1_Top_P_C6
   start: 33
   end: 36
-- task_id: p1_Screw2_Top_P_C6
-  agent: r3
-  agent_specific_order: 8
-  sequential_dependencies: p1_Screw1_Top_P_C6
-  start: 36
-  end: 39
-- task_id: p1_Screw4_Top_P_C6
-  agent: r3
-  agent_specific_order: 9
-  sequential_dependencies: p1_Screw2_Top_P_C6
-  start: 39
-  end: 42
-- task_id: p1_Screw5_Top_P_C6
-  agent: r3
-  agent_specific_order: 10
-  sequential_dependencies: p1_Screw4_Top_P_C6
-  start: 42
-  end: 45
-- task_id: p1_Screw8_Top_P_C6
-  agent: r3
-  agent_specific_order: 11
-  sequential_dependencies: p1_Screw5_Top_P_C6
-  start: 45
-  end: 48
-- task_id: p1_Screw7_Top_P_C6
-  agent: r3
-  agent_specific_order: 12
-  sequential_dependencies: p1_Screw8_Top_P_C6
-  start: 48
-  end: 51
 - task_id: p1_Screw9_Top_P_C6
   agent: r3
-  agent_specific_order: 13
+  agent_specific_order: 8
+  sequential_dependencies: p1_Screw3_Top_P_C6
+  start: 36
+  end: 39
+- task_id: p1_Screw5_Top_P_C6
+  agent: r3
+  agent_specific_order: 9
+  sequential_dependencies: p1_Screw9_Top_P_C6
+  start: 39
+  end: 42
+- task_id: p1_Screw6_Top_P_C6
+  agent: r3
+  agent_specific_order: 10
+  sequential_dependencies: p1_Screw5_Top_P_C6
+  start: 42
+  end: 45
+- task_id: p1_Screw7_Top_P_C6
+  agent: r3
+  agent_specific_order: 11
+  sequential_dependencies: p1_Screw6_Top_P_C6
+  start: 45
+  end: 48
+- task_id: p1_Screw8_Top_P_C6
+  agent: r3
+  agent_specific_order: 12
   sequential_dependencies: p1_Screw7_Top_P_C6
+  start: 48
+  end: 51
+- task_id: p1_Screw2_Top_P_C6
+  agent: r3
+  agent_specific_order: 13
+  sequential_dependencies: p1_Screw8_Top_P_C6
   start: 51
   end: 54
 - task_id: p1_Screw10_Top_P_C6
   agent: r3
   agent_specific_order: 14
-  sequential_dependencies: p1_Screw9_Top_P_C6
+  sequential_dependencies: p1_Screw2_Top_P_C6
   start: 54
   end: 57
 - task_id: p1_Pick_and_Place_Top_P_C7
@@ -172,7 +172,7 @@
   sequential_dependencies: ''
   start: 95
   end: 99
-- task_id: p2_Screw3_Top_P_C3
+- task_id: p2_Screw4_Top_P_C3
   agent: r3
   agent_specific_order: 19
   sequential_dependencies: p2_Pick_and_Place_Top_P_C3
@@ -184,25 +184,25 @@
   sequential_dependencies: ''
   start: 99
   end: 104
-- task_id: p2_Screw4_Top_P_C3
+- task_id: p2_Screw2_Top_P_C3
   agent: r3
   agent_specific_order: 20
-  sequential_dependencies: p2_Screw3_Top_P_C3
+  sequential_dependencies: p2_Screw4_Top_P_C3
   start: 101
   end: 104
 - task_id: p1_Pick_Place_Right_P_C1_1
   agent: r2
   agent_specific_order: 5
-  sequential_dependencies: p2_Screw4_Top_P_C3
+  sequential_dependencies: p2_Screw2_Top_P_C3
   start: 104
   end: 109
-- task_id: p2_Screw1_Top_P_C3
+- task_id: p2_Screw3_Top_P_C3
   agent: r3
   agent_specific_order: 21
   sequential_dependencies: ''
   start: 104
   end: 107
-- task_id: p2_Screw2_Top_P_C3
+- task_id: p2_Screw1_Top_P_C3
   agent: r3
   agent_specific_order: 22
   sequential_dependencies: ''
@@ -214,31 +214,31 @@
   sequential_dependencies: p1_Pick_Place_Right_P_C1_1
   start: 109
   end: 114
-- task_id: p2_Pick_and_Place_Top_P_C7
+- task_id: p2_Pick_and_Place_Top_P_C6
   agent: r2
   agent_specific_order: 7
   sequential_dependencies: p1_Pick_and_Place_Right_P_C1_2
   start: 114
   end: 119
-- task_id: p1_Screw1_Right_P_C1_1_Screw
+- task_id: p1_Screw3_Right_P_C1_1_Screw
   agent: r3
   agent_specific_order: 23
   sequential_dependencies: ''
   start: 114
   end: 117
-- task_id: p1_Screw3_Right_P_C1_1
+- task_id: p1_Screw2_Right_P_C1_1_Screw
   agent: r3
   agent_specific_order: 24
   sequential_dependencies: ''
   start: 117
   end: 120
-- task_id: p2_Pick_and_Place_Top_P_C6
+- task_id: p2_Pick_and_Place_Top_P_C7
   agent: r2
   agent_specific_order: 8
-  sequential_dependencies: p2_Pick_and_Place_Top_P_C7
+  sequential_dependencies: p2_Pick_and_Place_Top_P_C6
   start: 119
   end: 124
-- task_id: p1_Screw2_Right_P_C1_1_Screw
+- task_id: p1_Screw2_Right_P_C1_1
   agent: r3
   agent_specific_order: 25
   sequential_dependencies: ''
@@ -250,190 +250,190 @@
   sequential_dependencies: ''
   start: 123
   end: 126
-- task_id: p1_Screw2_Right_P_C1_1
+- task_id: p1_Screw1_Right_P_C1_1
   agent: r3
   agent_specific_order: 27
-  sequential_dependencies: p2_Pick_and_Place_Top_P_C6
+  sequential_dependencies: p2_Pick_and_Place_Top_P_C7
   start: 126
   end: 129
-- task_id: p1_Screw4_Right_P_C1_1
+- task_id: p1_Screw1_Right_P_C1_1_Screw
   agent: r3
   agent_specific_order: 28
-  sequential_dependencies: p1_Screw2_Right_P_C1_1
+  sequential_dependencies: p1_Screw1_Right_P_C1_1
   start: 129
   end: 132
+- task_id: p1_Screw3_Right_P_C1_1
+  agent: r3
+  agent_specific_order: 29
+  sequential_dependencies: p1_Screw1_Right_P_C1_1_Screw
+  start: 132
+  end: 135
+- task_id: p1_Screw4_Right_P_C1_1
+  agent: r3
+  agent_specific_order: 30
+  sequential_dependencies: p1_Screw3_Right_P_C1_1
+  start: 135
+  end: 138
 - task_id: p1_Pick_and_Place_Right_P_C1_3
   agent: r2
   agent_specific_order: 9
   sequential_dependencies: p1_Screw4_Right_P_C1_1
-  start: 132
-  end: 137
-- task_id: p2_Screw3_Top_P_C7
-  agent: r3
-  agent_specific_order: 29
-  sequential_dependencies: ''
-  start: 132
-  end: 135
-- task_id: p2_Screw6_Top_P_C6
-  agent: r3
-  agent_specific_order: 30
-  sequential_dependencies: ''
-  start: 135
-  end: 138
-- task_id: p1_Pick_and_Place_Right_P_C2
-  agent: r2
-  agent_specific_order: 10
-  sequential_dependencies: p1_Pick_and_Place_Right_P_C1_3
-  start: 137
-  end: 142
+  start: 138
+  end: 143
 - task_id: p2_Screw1_Top_P_C7
   agent: r3
   agent_specific_order: 31
   sequential_dependencies: ''
   start: 138
   end: 141
-- task_id: p2_Screw3_Top_P_C6
+- task_id: p2_Screw2_Top_P_C6
   agent: r3
   agent_specific_order: 32
   sequential_dependencies: ''
   start: 141
   end: 144
-- task_id: p1_Pick_and_Place_Right_P_C5
+- task_id: p1_Pick_and_Place_Right_P_C2
   agent: r2
-  agent_specific_order: 11
-  sequential_dependencies: p1_Pick_and_Place_Right_P_C2
-  start: 142
-  end: 147
-- task_id: p2_Screw10_Top_P_C6
+  agent_specific_order: 10
+  sequential_dependencies: p1_Pick_and_Place_Right_P_C1_3
+  start: 143
+  end: 148
+- task_id: p2_Screw3_Top_P_C6
   agent: r3
   agent_specific_order: 33
   sequential_dependencies: ''
   start: 144
   end: 147
-- task_id: p1_Screw1_Right_P_C1_3
+- task_id: p2_Screw4_Top_P_C6
   agent: r3
   agent_specific_order: 34
-  sequential_dependencies: p1_Pick_and_Place_Right_P_C5
+  sequential_dependencies: ''
   start: 147
   end: 150
-- task_id: p1_Screw2_Right_P_C1_3
+- task_id: p1_Pick_and_Place_Right_P_C5
+  agent: r2
+  agent_specific_order: 11
+  sequential_dependencies: p1_Pick_and_Place_Right_P_C2
+  start: 148
+  end: 153
+- task_id: p2_Screw5_Top_P_C6
   agent: r3
   agent_specific_order: 35
-  sequential_dependencies: p1_Screw1_Right_P_C1_3
+  sequential_dependencies: ''
   start: 150
   end: 153
-- task_id: p1_Screw3_Right_P_C1_3
+- task_id: p1_Screw1_Right_P_C1_3
   agent: r3
   agent_specific_order: 36
-  sequential_dependencies: p1_Screw2_Right_P_C1_3
+  sequential_dependencies: p1_Pick_and_Place_Right_P_C5
   start: 153
   end: 156
-- task_id: p1_Screw4_Right_P_C1_3
+- task_id: p1_Screw2_Right_P_C1_3
   agent: r3
   agent_specific_order: 37
-  sequential_dependencies: p1_Screw3_Right_P_C1_3
+  sequential_dependencies: p1_Screw1_Right_P_C1_3
   start: 156
   end: 159
-- task_id: p1_Screw1_B1_Right_P_C2
+- task_id: p1_Screw3_Right_P_C1_3
   agent: r3
   agent_specific_order: 38
-  sequential_dependencies: p1_Screw4_Right_P_C1_3
+  sequential_dependencies: p1_Screw2_Right_P_C1_3
   start: 159
   end: 162
-- task_id: p1_Screw2_B1_Right_P_C2
+- task_id: p1_Screw4_Right_P_C1_3
   agent: r3
   agent_specific_order: 39
-  sequential_dependencies: p1_Screw1_B1_Right_P_C2
+  sequential_dependencies: p1_Screw3_Right_P_C1_3
   start: 162
   end: 165
-- task_id: p1_Screw3_B1_Right_P_C2
+- task_id: p1_Screw1_B1_Right_P_C2
   agent: r3
   agent_specific_order: 40
-  sequential_dependencies: p1_Screw2_B1_Right_P_C2
+  sequential_dependencies: p1_Screw4_Right_P_C1_3
   start: 165
   end: 168
-- task_id: p1_Screw4_B1_Right_P_C2
+- task_id: p1_Screw2_B1_Right_P_C2
   agent: r3
   agent_specific_order: 41
-  sequential_dependencies: p1_Screw3_B1_Right_P_C2
+  sequential_dependencies: p1_Screw1_B1_Right_P_C2
   start: 168
   end: 171
-- task_id: p1_Screw1_B1_Right_P_C5
+- task_id: p1_Screw3_B1_Right_P_C2
   agent: r3
   agent_specific_order: 42
-  sequential_dependencies: p1_Screw4_B1_Right_P_C2
+  sequential_dependencies: p1_Screw2_B1_Right_P_C2
   start: 171
   end: 174
-- task_id: p1_Screw2_B1_Right_P_C5
+- task_id: p1_Screw4_B1_Right_P_C2
   agent: r3
   agent_specific_order: 43
-  sequential_dependencies: p1_Screw1_B1_Right_P_C5
+  sequential_dependencies: p1_Screw3_B1_Right_P_C2
   start: 174
   end: 177
-- task_id: p1_Screw3_B1_Right_P_C5
+- task_id: p1_Screw1_B1_Right_P_C5
   agent: r3
   agent_specific_order: 44
-  sequential_dependencies: p1_Screw2_B1_Right_P_C5
+  sequential_dependencies: p1_Screw4_B1_Right_P_C2
   start: 177
   end: 180
-- task_id: p1_Screw4_B1_Right_P_C5
+- task_id: p1_Screw2_B1_Right_P_C5
   agent: r3
   agent_specific_order: 45
-  sequential_dependencies: p1_Screw3_B1_Right_P_C5
+  sequential_dependencies: p1_Screw1_B1_Right_P_C5
   start: 180
   end: 183
-- task_id: p1_Screw5_B1_Right_P_C5
+- task_id: p1_Screw3_B1_Right_P_C5
   agent: r3
   agent_specific_order: 46
-  sequential_dependencies: p1_Screw4_B1_Right_P_C5
+  sequential_dependencies: p1_Screw2_B1_Right_P_C5
   start: 183
   end: 186
-- task_id: p1_Screw6_B1_Right_P_C5
+- task_id: p1_Screw4_B1_Right_P_C5
   agent: r3
   agent_specific_order: 47
-  sequential_dependencies: p1_Screw5_B1_Right_P_C5
+  sequential_dependencies: p1_Screw3_B1_Right_P_C5
   start: 186
   end: 189
-- task_id: p1_Screw7_B1_Right_P_C5
+- task_id: p1_Screw5_B1_Right_P_C5
   agent: r3
   agent_specific_order: 48
-  sequential_dependencies: p1_Screw6_B1_Right_P_C5
+  sequential_dependencies: p1_Screw4_B1_Right_P_C5
   start: 189
   end: 192
-- task_id: p1_Screw8_B1_Right_P_C5
+- task_id: p1_Screw6_B1_Right_P_C5
   agent: r3
   agent_specific_order: 49
-  sequential_dependencies: p1_Screw7_B1_Right_P_C5
+  sequential_dependencies: p1_Screw5_B1_Right_P_C5
   start: 192
   end: 195
-- task_id: p1_Screw9_B1_Right_P_C5
+- task_id: p1_Screw7_B1_Right_P_C5
   agent: r3
   agent_specific_order: 50
-  sequential_dependencies: p1_Screw8_B1_Right_P_C5
+  sequential_dependencies: p1_Screw6_B1_Right_P_C5
   start: 195
   end: 198
-- task_id: p1_Screw10_B1_Right_P_C5
+- task_id: p1_Screw8_B1_Right_P_C5
   agent: r3
   agent_specific_order: 51
-  sequential_dependencies: p1_Screw9_B1_Right_P_C5
+  sequential_dependencies: p1_Screw7_B1_Right_P_C5
   start: 198
   end: 201
-- task_id: p1_Screw1_Right_P_C1_1
+- task_id: p1_Screw9_B1_Right_P_C5
   agent: r3
   agent_specific_order: 52
-  sequential_dependencies: p1_Screw10_B1_Right_P_C5
+  sequential_dependencies: p1_Screw8_B1_Right_P_C5
   start: 201
   end: 204
-- task_id: p1_Screw3_Right_P_C1_1_Screw
+- task_id: p1_Screw10_B1_Right_P_C5
   agent: r3
   agent_specific_order: 53
-  sequential_dependencies: p1_Screw1_Right_P_C1_1
+  sequential_dependencies: p1_Screw9_B1_Right_P_C5
   start: 204
   end: 207
 - task_id: p1_Move_Right_Panel_to_the_lift
   agent: r1
   agent_specific_order: 5
-  sequential_dependencies: p1_Screw3_Right_P_C1_1_Screw
+  sequential_dependencies: p1_Screw10_B1_Right_P_C5
   start: 207
   end: 211
 - task_id: p2_Screw1_Top_P_C6
@@ -442,7 +442,7 @@
   sequential_dependencies: ''
   start: 207
   end: 210
-- task_id: p2_Screw9_Top_P_C6
+- task_id: p2_Screw7_Top_P_C6
   agent: r3
   agent_specific_order: 55
   sequential_dependencies: ''
@@ -454,19 +454,19 @@
   sequential_dependencies: p1_Move_Right_Panel_to_the_lift
   start: 211
   end: 221
-- task_id: p2_Screw5_Top_P_C6
+- task_id: p2_Screw9_Top_P_C6
   agent: r3
   agent_specific_order: 56
   sequential_dependencies: ''
   start: 213
   end: 216
-- task_id: p2_Screw8_Top_P_C6
+- task_id: p2_Screw10_Top_P_C6
   agent: r3
   agent_specific_order: 57
   sequential_dependencies: ''
   start: 216
   end: 219
-- task_id: p2_Screw4_Top_P_C6
+- task_id: p2_Screw8_Top_P_C6
   agent: r3
   agent_specific_order: 58
   sequential_dependencies: ''
@@ -478,7 +478,7 @@
   sequential_dependencies: p1_Mount_Right_Panel_on_the_Fixture
   start: 221
   end: 224
-- task_id: p2_Screw2_Top_P_C7
+- task_id: p2_Screw3_Top_P_C7
   agent: r3
   agent_specific_order: 59
   sequential_dependencies: ''
@@ -490,7 +490,7 @@
   sequential_dependencies: p1_Hold_Hinge_to_Right_Panel
   start: 224
   end: 228
-- task_id: p2_Screw7_Top_P_C6
+- task_id: p2_Screw2_Top_P_C7
   agent: r3
   agent_specific_order: 60
   sequential_dependencies: ''
@@ -508,121 +508,115 @@
   sequential_dependencies: ''
   start: 228
   end: 232
-- task_id: p2_Screw2_Top_P_C6
+- task_id: p2_Screw6_Top_P_C6
   agent: r3
   agent_specific_order: 62
   sequential_dependencies: p2_Screw4_Top_P_C7
   start: 231
   end: 234
-- task_id: p1_Mount_Panel_B5_on_the_Fixture
-  agent: r4
-  agent_specific_order: 2
-  sequential_dependencies: ''
-  start: 232
-  end: 242
-- task_id: p2_Move_Top_Panel_to_the_Side
-  agent: r1
-  agent_specific_order: 6
-  sequential_dependencies: p2_Screw2_Top_P_C6
-  start: 234
-  end: 238
-- task_id: p2_Mount_Top_Panel_on_the_Fixture
-  agent: H1
-  agent_specific_order: 2
-  sequential_dependencies: p2_Move_Top_Panel_to_the_Side
-  start: 238
-  end: 248
 - task_id: p1_Pick_and_Place_Middle_Panel
   agent: r1
-  agent_specific_order: 7
+  agent_specific_order: 6
   sequential_dependencies: ''
-  start: 242
-  end: 247
+  start: 232
+  end: 237
+- task_id: p2_Move_Top_Panel_to_the_Side
+  agent: r1
+  agent_specific_order: 7
+  sequential_dependencies: p2_Screw6_Top_P_C6
+  start: 237
+  end: 241
 - task_id: p1_Pick_and_Place_Middle_P_C4
   agent: r2
   agent_specific_order: 12
   sequential_dependencies: ''
-  start: 247
-  end: 252
-- task_id: p3_Pick_and_Place_Top_Panel
-  agent: r1
-  agent_specific_order: 8
-  sequential_dependencies: p2_Mount_Top_Panel_on_the_Fixture
-  start: 248
-  end: 253
-- task_id: p2_Hold_Hinge_to_Top_Panel
-  agent: H2
-  agent_specific_order: 7
-  sequential_dependencies: ''
-  start: 248
+  start: 237
+  end: 242
+- task_id: p2_Mount_Top_Panel_on_the_Fixture
+  agent: H1
+  agent_specific_order: 2
+  sequential_dependencies: p2_Move_Top_Panel_to_the_Side
+  start: 241
   end: 251
-- task_id: p2_Hinge_Top_Panel_Screw1
-  agent: H2
-  agent_specific_order: 8
-  sequential_dependencies: ''
-  start: 251
-  end: 255
 - task_id: p1_Screw1_B2_Middle_P_C4
   agent: r3
   agent_specific_order: 63
   sequential_dependencies: ''
-  start: 252
-  end: 255
-- task_id: p3_Pick_and_Place_Top_P_C3
-  agent: r2
-  agent_specific_order: 13
-  sequential_dependencies: p3_Pick_and_Place_Top_Panel
-  start: 253
-  end: 258
+  start: 242
+  end: 245
 - task_id: p1_Screw2_B2_Middle_P_C4
   agent: r3
   agent_specific_order: 64
   sequential_dependencies: ''
-  start: 255
-  end: 258
-- task_id: p2_Hinge_Top_Panel_Screw2
-  agent: H2
-  agent_specific_order: 9
-  sequential_dependencies: ''
-  start: 255
-  end: 259
-- task_id: p3_Pick_and_Place_Top_P_C6
-  agent: r2
-  agent_specific_order: 14
-  sequential_dependencies: p3_Pick_and_Place_Top_P_C3
-  start: 258
-  end: 263
+  start: 245
+  end: 248
 - task_id: p1_Screw3_B2_Middle_P_C4
   agent: r3
   agent_specific_order: 65
   sequential_dependencies: ''
-  start: 258
-  end: 261
-- task_id: p2_Pick_and_Place_Right_Panel
+  start: 248
+  end: 251
+- task_id: p3_Pick_and_Place_Top_Panel
   agent: r1
-  agent_specific_order: 9
-  sequential_dependencies: ''
-  start: 259
-  end: 264
+  agent_specific_order: 8
+  sequential_dependencies: p2_Mount_Top_Panel_on_the_Fixture
+  start: 251
+  end: 256
 - task_id: p1_Screw4_B2_Middle_P_C4
   agent: r3
   agent_specific_order: 66
   sequential_dependencies: ''
-  start: 261
+  start: 251
+  end: 254
+- task_id: p2_Hold_Hinge_to_Top_Panel
+  agent: H2
+  agent_specific_order: 7
+  sequential_dependencies: ''
+  start: 251
+  end: 254
+- task_id: p1_Mount_Panel_B4_on_the_Fixture
+  agent: r4
+  agent_specific_order: 2
+  sequential_dependencies: ''
+  start: 254
   end: 264
-- task_id: p2_Pick_Place_Right_P_C1_1
+- task_id: p2_Hinge_Top_Panel_Screw1
+  agent: H2
+  agent_specific_order: 8
+  sequential_dependencies: ''
+  start: 254
+  end: 258
+- task_id: p3_Pick_and_Place_Top_P_C3
   agent: r2
-  agent_specific_order: 15
-  sequential_dependencies: p3_Pick_and_Place_Top_P_C6
-  start: 264
-  end: 269
-- task_id: p3_Screw1_Top_P_C6
+  agent_specific_order: 13
+  sequential_dependencies: p3_Pick_and_Place_Top_Panel
+  start: 256
+  end: 261
+- task_id: p2_Hinge_Top_Panel_Screw2
+  agent: H2
+  agent_specific_order: 9
+  sequential_dependencies: ''
+  start: 258
+  end: 262
+- task_id: p3_Screw1_Top_P_C3
   agent: r3
   agent_specific_order: 67
+  sequential_dependencies: p3_Pick_and_Place_Top_P_C3
+  start: 261
+  end: 264
+- task_id: p2_Pick_and_Place_Right_Panel
+  agent: r1
+  agent_specific_order: 9
   sequential_dependencies: ''
+  start: 262
+  end: 267
+- task_id: p3_Screw4_Top_P_C3
+  agent: r3
+  agent_specific_order: 68
+  sequential_dependencies: p3_Screw1_Top_P_C3
   start: 264
   end: 267
-- task_id: p1_Hold_Hinge_to_Panel_B5
+- task_id: p1_Hold_Hinge_to_Panel_B4
   agent: H2
   agent_specific_order: 10
   sequential_dependencies: ''
@@ -631,477 +625,483 @@
 - task_id: p1_Move_Middle_Panel_to_the_lift
   agent: r1
   agent_specific_order: 10
-  sequential_dependencies: ''
+  sequential_dependencies: p3_Screw4_Top_P_C3
   start: 267
   end: 271
-- task_id: p3_Screw1_Top_P_C3
-  agent: r3
-  agent_specific_order: 68
+- task_id: p2_Pick_Place_Right_P_C1_1
+  agent: r2
+  agent_specific_order: 14
   sequential_dependencies: ''
   start: 267
-  end: 270
-- task_id: p2_Pick_and_Place_Right_P_C1_2
-  agent: r2
-  agent_specific_order: 16
-  sequential_dependencies: p2_Pick_Place_Right_P_C1_1
-  start: 269
-  end: 274
-- task_id: p3_Screw2_Top_P_C3
+  end: 272
+- task_id: p3_Screw3_Top_P_C3
   agent: r3
   agent_specific_order: 69
   sequential_dependencies: ''
-  start: 270
-  end: 273
-- task_id: p1_Hinge_Panel_B5_Screw2
-  agent: H2
-  agent_specific_order: 11
-  sequential_dependencies: ''
-  start: 271
-  end: 275
-- task_id: p3_Screw3_Top_P_C6
+  start: 267
+  end: 270
+- task_id: p3_Screw2_Top_P_C3
   agent: r3
   agent_specific_order: 70
   sequential_dependencies: ''
-  start: 273
-  end: 276
-- task_id: p2_Pick_and_Place_Right_P_C1_3
+  start: 270
+  end: 273
+- task_id: p1_Hinge_Panel_B4_Screw1
+  agent: H2
+  agent_specific_order: 11
+  sequential_dependencies: p1_Move_Middle_Panel_to_the_lift
+  start: 271
+  end: 275
+- task_id: p2_Pick_and_Place_Right_P_C1_2
   agent: r2
-  agent_specific_order: 17
-  sequential_dependencies: p2_Pick_and_Place_Right_P_C1_2
-  start: 274
-  end: 279
-- task_id: p1_Mount_Middle_Panel_on_the_Fixture
-  agent: r4
-  agent_specific_order: 3
+  agent_specific_order: 15
   sequential_dependencies: ''
+  start: 272
+  end: 277
+- task_id: p1_Hinge_Panel_B4_Screw2
+  agent: H2
+  agent_specific_order: 12
+  sequential_dependencies: p1_Hinge_Panel_B4_Screw1
   start: 275
-  end: 285
-- task_id: p3_Screw4_Top_P_C3
-  agent: r3
-  agent_specific_order: 71
-  sequential_dependencies: ''
-  start: 276
   end: 279
-- task_id: p3_Pick_and_Place_Top_P_C7
+- task_id: p3_Pick_and_Place_Top_P_C6
   agent: r2
-  agent_specific_order: 18
-  sequential_dependencies: p2_Pick_and_Place_Right_P_C1_3
-  start: 279
-  end: 284
-- task_id: p2_Screw3_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 72
+  agent_specific_order: 16
   sequential_dependencies: ''
-  start: 279
+  start: 277
   end: 282
 - task_id: p2_Screw1_Right_P_C1_1_Screw
   agent: r3
-  agent_specific_order: 73
+  agent_specific_order: 71
+  sequential_dependencies: ''
+  start: 277
+  end: 280
+- task_id: p1_Mount_Middle_Panel_on_the_Fixture
+  agent: r4
+  agent_specific_order: 3
+  sequential_dependencies: p1_Hinge_Panel_B4_Screw2
+  start: 279
+  end: 289
+- task_id: p2_Screw2_Right_P_C1_1_Screw
+  agent: r3
+  agent_specific_order: 72
+  sequential_dependencies: ''
+  start: 280
+  end: 283
+- task_id: p3_Pick_and_Place_Top_P_C7
+  agent: r2
+  agent_specific_order: 17
   sequential_dependencies: ''
   start: 282
-  end: 285
-- task_id: p2_Pick_and_Place_Right_P_C5
-  agent: r2
-  agent_specific_order: 19
-  sequential_dependencies: p3_Pick_and_Place_Top_P_C7
-  start: 285
-  end: 290
-- task_id: p3_Screw5_Top_P_C6
+  end: 287
+- task_id: p2_Screw3_Right_P_C1_1_Screw
+  agent: r3
+  agent_specific_order: 73
+  sequential_dependencies: ''
+  start: 283
+  end: 286
+- task_id: p2_Screw4_Right_P_C1_1
   agent: r3
   agent_specific_order: 74
   sequential_dependencies: ''
-  start: 285
-  end: 288
-- task_id: p1_Hold_Hinge_to_Middle_Panel
-  agent: H2
-  agent_specific_order: 12
-  sequential_dependencies: ''
-  start: 285
-  end: 288
-- task_id: p3_Screw2_Top_P_C7
+  start: 286
+  end: 289
+- task_id: p2_Screw1_Right_P_C1_1
   agent: r3
   agent_specific_order: 75
-  sequential_dependencies: ''
-  start: 288
-  end: 291
-- task_id: p1_Hinge_Middle_Panel_Screw1
+  sequential_dependencies: p1_Mount_Middle_Panel_on_the_Fixture
+  start: 289
+  end: 292
+- task_id: p1_Hold_Hinge_to_Middle_Panel
   agent: H2
   agent_specific_order: 13
   sequential_dependencies: ''
-  start: 288
+  start: 289
   end: 292
-- task_id: p2_Pick_and_Place_Right_P_C2
-  agent: r2
-  agent_specific_order: 20
-  sequential_dependencies: p2_Pick_and_Place_Right_P_C5
-  start: 290
-  end: 295
-- task_id: p3_Screw6_Top_P_C6
+- task_id: p2_Screw2_Right_P_C1_1
   agent: r3
   agent_specific_order: 76
-  sequential_dependencies: ''
-  start: 291
-  end: 294
-- task_id: p1_Hinge_Middle_Panel_Screw2
+  sequential_dependencies: p2_Screw1_Right_P_C1_1
+  start: 292
+  end: 295
+- task_id: p1_Hinge_Middle_Panel_Screw1
   agent: H2
   agent_specific_order: 14
   sequential_dependencies: ''
   start: 292
   end: 296
-- task_id: p3_Screw8_Top_P_C6
+- task_id: p2_Screw3_Right_P_C1_1
   agent: r3
   agent_specific_order: 77
-  sequential_dependencies: ''
-  start: 294
-  end: 297
-- task_id: p1_Hinge_Panel_B5_Screw1
+  sequential_dependencies: p2_Screw2_Right_P_C1_1
+  start: 295
+  end: 298
+- task_id: p1_Hinge_Middle_Panel_Screw2
   agent: H2
   agent_specific_order: 15
-  sequential_dependencies: p2_Pick_and_Place_Right_P_C2
+  sequential_dependencies: ''
   start: 296
   end: 300
-- task_id: p2_Screw4_Right_P_C1_1
+- task_id: p3_Screw4_Top_P_C7
   agent: r3
   agent_specific_order: 78
-  sequential_dependencies: ''
-  start: 297
-  end: 300
-- task_id: p2_Screw2_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 79
-  sequential_dependencies: p1_Hinge_Panel_B5_Screw1
-  start: 300
-  end: 303
-- task_id: p1_Mount_Panel_B4_on_the_Fixture
+  sequential_dependencies: p2_Screw3_Right_P_C1_1
+  start: 298
+  end: 301
+- task_id: p1_Mount_Panel_B5_on_the_Fixture
   agent: r4
   agent_specific_order: 4
   sequential_dependencies: ''
   start: 300
   end: 310
-- task_id: p2_Screw4_Right_P_C1_1_Screw
+- task_id: p2_Pick_and_Place_Right_P_C1_3
+  agent: r2
+  agent_specific_order: 18
+  sequential_dependencies: p3_Screw4_Top_P_C7
+  start: 301
+  end: 306
+- task_id: p3_Screw9_Top_P_C6
+  agent: r3
+  agent_specific_order: 79
+  sequential_dependencies: ''
+  start: 301
+  end: 304
+- task_id: p3_Screw2_Top_P_C6
   agent: r3
   agent_specific_order: 80
-  sequential_dependencies: p2_Screw2_Right_P_C1_1_Screw
-  start: 303
-  end: 306
-- task_id: p2_Screw1_Right_P_C1_3
+  sequential_dependencies: ''
+  start: 304
+  end: 307
+- task_id: p2_Pick_and_Place_Right_P_C2
+  agent: r2
+  agent_specific_order: 19
+  sequential_dependencies: p2_Pick_and_Place_Right_P_C1_3
+  start: 306
+  end: 311
+- task_id: p3_Screw3_Top_P_C6
   agent: r3
   agent_specific_order: 81
-  sequential_dependencies: p2_Screw4_Right_P_C1_1_Screw
-  start: 306
-  end: 309
-- task_id: p2_Screw2_Right_P_C1_3
+  sequential_dependencies: ''
+  start: 307
+  end: 310
+- task_id: p3_Screw4_Top_P_C6
   agent: r3
   agent_specific_order: 82
-  sequential_dependencies: p2_Screw1_Right_P_C1_3
-  start: 309
-  end: 312
-- task_id: p1_Hold_Hinge_to_Panel_B4
+  sequential_dependencies: ''
+  start: 310
+  end: 313
+- task_id: p1_Hold_Hinge_to_Panel_B5
   agent: H2
   agent_specific_order: 16
   sequential_dependencies: ''
   start: 310
   end: 313
-- task_id: p2_Screw3_Right_P_C1_3
+- task_id: p2_Pick_and_Place_Right_P_C5
+  agent: r2
+  agent_specific_order: 20
+  sequential_dependencies: p2_Pick_and_Place_Right_P_C2
+  start: 311
+  end: 316
+- task_id: p3_Screw5_Top_P_C6
   agent: r3
   agent_specific_order: 83
-  sequential_dependencies: p2_Screw2_Right_P_C1_3
-  start: 312
-  end: 315
-- task_id: p1_Hinge_Panel_B4_Screw1
+  sequential_dependencies: ''
+  start: 313
+  end: 316
+- task_id: p1_Hinge_Panel_B5_Screw1
   agent: H2
   agent_specific_order: 17
   sequential_dependencies: ''
   start: 313
   end: 317
-- task_id: p2_Screw4_Right_P_C1_3
+- task_id: p2_Screw1_Right_P_C1_3
   agent: r3
   agent_specific_order: 84
-  sequential_dependencies: p2_Screw3_Right_P_C1_3
-  start: 315
-  end: 318
-- task_id: p1_Hinge_Panel_B4_Screw2
+  sequential_dependencies: p2_Pick_and_Place_Right_P_C5
+  start: 316
+  end: 319
+- task_id: p1_Hinge_Panel_B5_Screw2
   agent: H2
   agent_specific_order: 18
   sequential_dependencies: ''
   start: 317
   end: 321
-- task_id: p2_Screw1_B1_Right_P_C2
+- task_id: p2_Screw2_Right_P_C1_3
   agent: r3
   agent_specific_order: 85
-  sequential_dependencies: p2_Screw4_Right_P_C1_3
-  start: 318
-  end: 321
-- task_id: p2_Screw2_B1_Right_P_C2
-  agent: r3
-  agent_specific_order: 86
-  sequential_dependencies: p2_Screw1_B1_Right_P_C2
-  start: 321
-  end: 324
+  sequential_dependencies: p2_Screw1_Right_P_C1_3
+  start: 319
+  end: 322
 - task_id: p1_Attach_and_Hold_Hinge_on_Panel12
   agent: H2
   agent_specific_order: 19
   sequential_dependencies: ''
   start: 321
   end: 324
-- task_id: p2_Screw1_Right_P_C1_1
+- task_id: p2_Screw3_Right_P_C1_3
   agent: r3
-  agent_specific_order: 87
-  sequential_dependencies: p2_Screw2_B1_Right_P_C2
-  start: 324
-  end: 327
-- task_id: p1_Attach_and_Hold_Hinge_on_Panel34
+  agent_specific_order: 86
+  sequential_dependencies: p2_Screw2_Right_P_C1_3
+  start: 322
+  end: 325
+- task_id: p1_Attach_and_Hold_Hinge_on_Panel23
   agent: H2
   agent_specific_order: 20
   sequential_dependencies: ''
   start: 324
   end: 327
-- task_id: p2_Screw3_Right_P_C1_1
+- task_id: p2_Screw4_Right_P_C1_3
   agent: r3
-  agent_specific_order: 88
-  sequential_dependencies: p2_Screw1_Right_P_C1_1
-  start: 327
-  end: 330
-- task_id: p1_Attach_and_Hold_Hinge_on_Panel23
+  agent_specific_order: 87
+  sequential_dependencies: p2_Screw3_Right_P_C1_3
+  start: 325
+  end: 328
+- task_id: p1_Attach_and_Hold_Hinge_on_Panel34
   agent: H2
   agent_specific_order: 21
   sequential_dependencies: ''
   start: 327
   end: 330
-- task_id: p2_Screw2_Right_P_C1_1
+- task_id: p2_Screw1_B1_Right_P_C2
   agent: r3
-  agent_specific_order: 89
-  sequential_dependencies: p2_Screw3_Right_P_C1_1
-  start: 330
-  end: 333
+  agent_specific_order: 88
+  sequential_dependencies: p2_Screw4_Right_P_C1_3
+  start: 328
+  end: 331
 - task_id: p1_Attach_and_Hold_Hinge_on_Panel45
   agent: H2
   agent_specific_order: 22
   sequential_dependencies: ''
   start: 330
   end: 333
-- task_id: p2_Screw1_B1_Right_P_C5
+- task_id: p2_Screw2_B1_Right_P_C2
   agent: r3
-  agent_specific_order: 90
-  sequential_dependencies: p2_Screw2_Right_P_C1_1
-  start: 333
-  end: 336
-- task_id: p1_Hinge_on_Panel12_Screw2
+  agent_specific_order: 89
+  sequential_dependencies: p2_Screw1_B1_Right_P_C2
+  start: 331
+  end: 334
+- task_id: p1_Hinge_on_Panel12_Screw1
   agent: H2
   agent_specific_order: 23
   sequential_dependencies: ''
   start: 333
   end: 338
-- task_id: p2_Screw2_B1_Right_P_C5
+- task_id: p2_Screw3_B1_Right_P_C2
+  agent: r3
+  agent_specific_order: 90
+  sequential_dependencies: p2_Screw2_B1_Right_P_C2
+  start: 334
+  end: 337
+- task_id: p2_Screw4_B1_Right_P_C2
   agent: r3
   agent_specific_order: 91
-  sequential_dependencies: p2_Screw1_B1_Right_P_C5
-  start: 336
-  end: 339
-- task_id: p1_Hinge_on_Panel23_Screw1
+  sequential_dependencies: p2_Screw3_B1_Right_P_C2
+  start: 337
+  end: 340
+- task_id: p1_Hinge_on_Panel12_Screw2
   agent: H2
   agent_specific_order: 24
   sequential_dependencies: ''
   start: 338
   end: 343
-- task_id: p2_Screw3_B1_Right_P_C5
+- task_id: p2_Screw1_B1_Right_P_C5
   agent: r3
   agent_specific_order: 92
-  sequential_dependencies: p2_Screw2_B1_Right_P_C5
-  start: 339
-  end: 342
-- task_id: p2_Screw4_B1_Right_P_C5
+  sequential_dependencies: p2_Screw4_B1_Right_P_C2
+  start: 340
+  end: 343
+- task_id: p2_Screw2_B1_Right_P_C5
   agent: r3
   agent_specific_order: 93
-  sequential_dependencies: p2_Screw3_B1_Right_P_C5
-  start: 342
-  end: 345
-- task_id: p1_Hinge_on_Panel12_Screw1
+  sequential_dependencies: p2_Screw1_B1_Right_P_C5
+  start: 343
+  end: 346
+- task_id: p1_Hinge_on_Panel23_Screw1
   agent: H2
   agent_specific_order: 25
   sequential_dependencies: ''
   start: 343
   end: 348
-- task_id: p2_Screw5_B1_Right_P_C5
+- task_id: p2_Screw3_B1_Right_P_C5
   agent: r3
   agent_specific_order: 94
-  sequential_dependencies: p2_Screw4_B1_Right_P_C5
-  start: 345
-  end: 348
-- task_id: p2_Screw6_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 95
-  sequential_dependencies: p2_Screw5_B1_Right_P_C5
-  start: 348
-  end: 351
-- task_id: p1_Hinge_on_Panel34_Screw2
+  sequential_dependencies: p2_Screw2_B1_Right_P_C5
+  start: 346
+  end: 349
+- task_id: p1_Hinge_on_Panel23_Screw2
   agent: H2
   agent_specific_order: 26
   sequential_dependencies: ''
   start: 348
   end: 353
-- task_id: p2_Screw7_B1_Right_P_C5
+- task_id: p2_Screw4_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 95
+  sequential_dependencies: p2_Screw3_B1_Right_P_C5
+  start: 349
+  end: 352
+- task_id: p2_Screw5_B1_Right_P_C5
   agent: r3
   agent_specific_order: 96
-  sequential_dependencies: p2_Screw6_B1_Right_P_C5
-  start: 351
-  end: 354
+  sequential_dependencies: p2_Screw4_B1_Right_P_C5
+  start: 352
+  end: 355
 - task_id: p1_Hinge_on_Panel34_Screw1
   agent: H2
   agent_specific_order: 27
   sequential_dependencies: ''
   start: 353
   end: 358
-- task_id: p2_Screw8_B1_Right_P_C5
+- task_id: p2_Screw6_B1_Right_P_C5
   agent: r3
   agent_specific_order: 97
-  sequential_dependencies: p2_Screw7_B1_Right_P_C5
-  start: 354
-  end: 357
-- task_id: p2_Screw9_B1_Right_P_C5
+  sequential_dependencies: p2_Screw5_B1_Right_P_C5
+  start: 355
+  end: 358
+- task_id: p2_Screw7_B1_Right_P_C5
   agent: r3
   agent_specific_order: 98
-  sequential_dependencies: p2_Screw8_B1_Right_P_C5
-  start: 357
-  end: 360
-- task_id: p1_Hinge_on_Panel23_Screw2
+  sequential_dependencies: p2_Screw6_B1_Right_P_C5
+  start: 358
+  end: 361
+- task_id: p1_Hinge_on_Panel34_Screw2
   agent: H2
   agent_specific_order: 28
   sequential_dependencies: ''
   start: 358
   end: 363
-- task_id: p2_Screw3_B1_Right_P_C2
+- task_id: p2_Screw8_B1_Right_P_C5
   agent: r3
   agent_specific_order: 99
-  sequential_dependencies: p2_Screw9_B1_Right_P_C5
-  start: 360
-  end: 363
-- task_id: p2_Screw10_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 100
-  sequential_dependencies: p2_Screw3_B1_Right_P_C2
-  start: 363
-  end: 366
+  sequential_dependencies: p2_Screw7_B1_Right_P_C5
+  start: 361
+  end: 364
 - task_id: p1_Hinge_on_Panel45_Screw1
   agent: H2
   agent_specific_order: 29
   sequential_dependencies: ''
   start: 363
   end: 368
-- task_id: p2_Screw4_B1_Right_P_C2
+- task_id: p2_Screw9_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 100
+  sequential_dependencies: p2_Screw8_B1_Right_P_C5
+  start: 364
+  end: 367
+- task_id: p2_Screw10_B1_Right_P_C5
   agent: r3
   agent_specific_order: 101
-  sequential_dependencies: p2_Screw10_B1_Right_P_C5
-  start: 366
-  end: 369
+  sequential_dependencies: p2_Screw9_B1_Right_P_C5
+  start: 367
+  end: 370
 - task_id: p1_Hinge_on_Panel45_Screw2
   agent: H2
   agent_specific_order: 30
   sequential_dependencies: ''
   start: 368
   end: 373
+- task_id: p2_Screw4_Right_P_C1_1_Screw
+  agent: r3
+  agent_specific_order: 102
+  sequential_dependencies: p2_Screw10_B1_Right_P_C5
+  start: 370
+  end: 373
 - task_id: p2_Move_Right_Panel_to_the_lift
   agent: r1
   agent_specific_order: 11
-  sequential_dependencies: p2_Screw4_B1_Right_P_C2
-  start: 369
-  end: 373
-- task_id: p3_Screw3_Top_P_C7
-  agent: r3
-  agent_specific_order: 102
-  sequential_dependencies: ''
-  start: 369
-  end: 372
+  sequential_dependencies: p2_Screw4_Right_P_C1_1_Screw
+  start: 373
+  end: 377
 - task_id: p3_Screw7_Top_P_C6
   agent: r3
   agent_specific_order: 103
   sequential_dependencies: ''
-  start: 372
-  end: 375
+  start: 373
+  end: 376
 - task_id: p1_Pick_Extern_Comp1_for_Panel1
   agent: r4
   agent_specific_order: 5
-  sequential_dependencies: p2_Move_Right_Panel_to_the_lift
+  sequential_dependencies: ''
   start: 373
   end: 378
-- task_id: p3_Screw2_Top_P_C6
+- task_id: p3_Screw8_Top_P_C6
   agent: r3
   agent_specific_order: 104
   sequential_dependencies: ''
-  start: 375
-  end: 378
-- task_id: p3_Screw3_Top_P_C3
-  agent: r3
-  agent_specific_order: 105
-  sequential_dependencies: p1_Pick_Extern_Comp1_for_Panel1
-  start: 378
-  end: 381
+  start: 376
+  end: 379
 - task_id: p1_Fix_Extern_Comp1_for_Panel1
   agent: r4
   agent_specific_order: 6
-  sequential_dependencies: ''
+  sequential_dependencies: p2_Move_Right_Panel_to_the_lift
   start: 378
   end: 381
-- task_id: p3_Screw1_Top_P_C7
+- task_id: p3_Screw1_Top_P_C6
   agent: r3
-  agent_specific_order: 106
-  sequential_dependencies: p3_Screw3_Top_P_C3
-  start: 381
-  end: 384
-- task_id: p1_Extern_Comp1_for_Panel1_joining2
+  agent_specific_order: 105
+  sequential_dependencies: ''
+  start: 379
+  end: 382
+- task_id: p1_Extern_Comp1_for_Panel1_joining1
   agent: r4
   agent_specific_order: 7
-  sequential_dependencies: ''
+  sequential_dependencies: p1_Fix_Extern_Comp1_for_Panel1
   start: 381
   end: 385
-- task_id: p3_Screw4_Top_P_C6
+- task_id: p3_Screw10_Top_P_C6
+  agent: r3
+  agent_specific_order: 106
+  sequential_dependencies: ''
+  start: 382
+  end: 385
+- task_id: p3_Screw1_Top_P_C7
   agent: r3
   agent_specific_order: 107
-  sequential_dependencies: p3_Screw1_Top_P_C7
-  start: 384
-  end: 387
-- task_id: p1_Extern_Comp1_for_Panel1_joining1
+  sequential_dependencies: p1_Extern_Comp1_for_Panel1_joining1
+  start: 385
+  end: 388
+- task_id: p1_Extern_Comp1_for_Panel1_joining2
   agent: r4
   agent_specific_order: 8
   sequential_dependencies: ''
   start: 385
   end: 389
-- task_id: p3_Screw9_Top_P_C6
+- task_id: p3_Screw2_Top_P_C7
   agent: r3
   agent_specific_order: 108
-  sequential_dependencies: p3_Screw4_Top_P_C6
-  start: 387
-  end: 390
+  sequential_dependencies: p3_Screw1_Top_P_C7
+  start: 388
+  end: 391
 - task_id: p1_Extern_Comp1_for_Panel1_joining3
   agent: r4
   agent_specific_order: 9
   sequential_dependencies: ''
   start: 389
   end: 393
-- task_id: p3_Screw10_Top_P_C6
+- task_id: p3_Screw3_Top_P_C7
   agent: r3
   agent_specific_order: 109
-  sequential_dependencies: p3_Screw9_Top_P_C6
-  start: 390
-  end: 393
-- task_id: p3_Screw4_Top_P_C7
-  agent: r3
-  agent_specific_order: 110
-  sequential_dependencies: p3_Screw10_Top_P_C6
-  start: 393
-  end: 396
+  sequential_dependencies: p3_Screw2_Top_P_C7
+  start: 391
+  end: 394
 - task_id: p1_Extern_Comp1_for_Panel1_joining4
   agent: r4
   agent_specific_order: 10
   sequential_dependencies: ''
   start: 393
   end: 397
+- task_id: p3_Screw6_Top_P_C6
+  agent: r3
+  agent_specific_order: 110
+  sequential_dependencies: p3_Screw3_Top_P_C7
+  start: 394
+  end: 397
 - task_id: p3_Move_Top_Panel_to_the_Side
   agent: r1
   agent_specific_order: 12
-  sequential_dependencies: p3_Screw4_Top_P_C7
-  start: 396
-  end: 400
+  sequential_dependencies: p3_Screw6_Top_P_C6
+  start: 397
+  end: 401
 - task_id: p2_Mount_Right_Panel_on_the_Fixture
   agent: r4
   agent_specific_order: 11
@@ -1114,22 +1114,22 @@
   sequential_dependencies: ''
   start: 397
   end: 401
-- task_id: p3_Mount_Top_Panel_on_the_Fixture
-  agent: H1
-  agent_specific_order: 3
-  sequential_dependencies: p3_Move_Top_Panel_to_the_Side
-  start: 400
-  end: 410
 - task_id: p1_Pick_Extern_Comp2_for_Panel2
   agent: r5
   agent_specific_order: 1
-  sequential_dependencies: ''
+  sequential_dependencies: p3_Move_Top_Panel_to_the_Side
   start: 401
   end: 406
+- task_id: p3_Mount_Top_Panel_on_the_Fixture
+  agent: H1
+  agent_specific_order: 3
+  sequential_dependencies: ''
+  start: 401
+  end: 411
 - task_id: p1_Fix_Extern_Comp2_for_Panel2
   agent: r5
   agent_specific_order: 2
-  sequential_dependencies: ''
+  sequential_dependencies: p1_Pick_Extern_Comp2_for_Panel2
   start: 406
   end: 409
 - task_id: p2_Hold_Hinge_to_Right_Panel
@@ -1138,16 +1138,10 @@
   sequential_dependencies: ''
   start: 407
   end: 410
-- task_id: p4_Pick_and_Place_Top_Panel
-  agent: r1
-  agent_specific_order: 13
-  sequential_dependencies: p3_Mount_Top_Panel_on_the_Fixture
-  start: 410
-  end: 415
 - task_id: p2_Mount_Panel_B4_on_the_Fixture
   agent: r4
   agent_specific_order: 12
-  sequential_dependencies: ''
+  sequential_dependencies: p1_Fix_Extern_Comp2_for_Panel2
   start: 410
   end: 420
 - task_id: p1_Extern_Comp2_for_Panel2_joining1
@@ -1156,94 +1150,52 @@
   sequential_dependencies: ''
   start: 410
   end: 414
-- task_id: p1_Extern_Comp2_for_Panel2_joining2
+- task_id: p3_Hold_Hinge_to_Top_Panel
   agent: H2
   agent_specific_order: 33
   sequential_dependencies: ''
   start: 414
-  end: 418
-- task_id: p4_Pick_and_Place_Top_P_C3
-  agent: r2
-  agent_specific_order: 21
-  sequential_dependencies: p4_Pick_and_Place_Top_Panel
-  start: 415
-  end: 420
-- task_id: p1_Extern_Comp2_for_Panel2_joining4
+  end: 417
+- task_id: p1_Extern_Comp2_for_Panel2_joining2
   agent: H2
   agent_specific_order: 34
   sequential_dependencies: ''
-  start: 418
-  end: 422
-- task_id: p4_Screw1_Top_P_C3
-  agent: r3
-  agent_specific_order: 111
-  sequential_dependencies: p4_Pick_and_Place_Top_P_C3
-  start: 420
-  end: 423
+  start: 417
+  end: 421
 - task_id: p2_Mount_Panel_B5_on_the_Fixture
   agent: r4
   agent_specific_order: 13
-  sequential_dependencies: ''
+  sequential_dependencies: p2_Mount_Panel_B4_on_the_Fixture
   start: 420
   end: 430
 - task_id: p1_Extern_Comp2_for_Panel2_joining3
   agent: H2
   agent_specific_order: 35
   sequential_dependencies: ''
-  start: 422
-  end: 426
-- task_id: p4_Screw2_Top_P_C3
-  agent: r3
-  agent_specific_order: 112
-  sequential_dependencies: p4_Screw1_Top_P_C3
-  start: 423
-  end: 426
-- task_id: p4_Screw4_Top_P_C3
-  agent: r3
-  agent_specific_order: 113
-  sequential_dependencies: p4_Screw2_Top_P_C3
-  start: 426
+  start: 421
+  end: 425
+- task_id: p1_Extern_Comp2_for_Panel2_joining4
+  agent: H2
+  agent_specific_order: 36
+  sequential_dependencies: ''
+  start: 425
   end: 429
 - task_id: p1_Pick_Extern_Comp1_for_Panel3
   agent: r5
   agent_specific_order: 3
   sequential_dependencies: ''
-  start: 426
-  end: 431
-- task_id: p3_Hold_Hinge_to_Top_Panel
-  agent: H2
-  agent_specific_order: 36
-  sequential_dependencies: ''
-  start: 426
-  end: 429
-- task_id: p4_Screw3_Top_P_C3
-  agent: r3
-  agent_specific_order: 114
-  sequential_dependencies: p4_Screw4_Top_P_C3
   start: 429
-  end: 432
+  end: 434
 - task_id: p3_Hinge_Top_Panel_Screw1
   agent: H2
   agent_specific_order: 37
   sequential_dependencies: ''
   start: 429
   end: 433
-- task_id: p1_Fix_Extern_Comp1_for_Panel3
-  agent: r5
-  agent_specific_order: 4
-  sequential_dependencies: ''
-  start: 431
-  end: 434
-- task_id: p4_Pick_and_Place_Top_P_C6
-  agent: r2
-  agent_specific_order: 22
-  sequential_dependencies: p4_Screw3_Top_P_C3
-  start: 432
-  end: 437
 - task_id: p3_Mount_Panel_B4_on_the_Fixture
   agent: r4
   agent_specific_order: 14
-  sequential_dependencies: ''
+  sequential_dependencies: p2_Mount_Panel_B5_on_the_Fixture
   start: 433
   end: 443
 - task_id: p2_Hold_Hinge_to_Panel_B4
@@ -1252,2379 +1204,975 @@
   sequential_dependencies: ''
   start: 433
   end: 436
-- task_id: p1_Extern_Comp1_for_Panel3_joining1
+- task_id: p1_Fix_Extern_Comp1_for_Panel3
+  agent: r5
+  agent_specific_order: 4
+  sequential_dependencies: ''
+  start: 434
+  end: 437
+- task_id: p2_Hold_Hinge_to_Panel_B5
   agent: H2
   agent_specific_order: 39
   sequential_dependencies: ''
   start: 436
-  end: 440
-- task_id: p4_Screw3_Top_P_C6
-  agent: r3
-  agent_specific_order: 115
-  sequential_dependencies: p4_Pick_and_Place_Top_P_C6
-  start: 437
-  end: 440
-- task_id: p4_Screw7_Top_P_C6
-  agent: r3
-  agent_specific_order: 116
-  sequential_dependencies: p4_Screw3_Top_P_C6
-  start: 440
-  end: 443
-- task_id: p1_Extern_Comp1_for_Panel3_joining2
+  end: 439
+- task_id: p1_Extern_Comp1_for_Panel3_joining1
   agent: H2
   agent_specific_order: 40
   sequential_dependencies: ''
-  start: 440
-  end: 444
-- task_id: p4_Screw2_Top_P_C6
-  agent: r3
-  agent_specific_order: 117
-  sequential_dependencies: p4_Screw7_Top_P_C6
+  start: 439
+  end: 443
+- task_id: p3_Hold_Hinge_to_Panel_B4
+  agent: H2
+  agent_specific_order: 41
+  sequential_dependencies: p3_Mount_Panel_B4_on_the_Fixture
   start: 443
   end: 446
 - task_id: p3_Mount_Panel_B5_on_the_Fixture
   agent: r4
   agent_specific_order: 15
-  sequential_dependencies: ''
-  start: 443
-  end: 453
-- task_id: p1_Extern_Comp1_for_Panel3_joining3
-  agent: H2
-  agent_specific_order: 41
-  sequential_dependencies: ''
-  start: 444
-  end: 448
-- task_id: p4_Screw4_Top_P_C6
-  agent: r3
-  agent_specific_order: 118
-  sequential_dependencies: p4_Screw2_Top_P_C6
+  sequential_dependencies: p3_Hold_Hinge_to_Panel_B4
   start: 446
-  end: 449
-- task_id: p1_Extern_Comp1_for_Panel3_joining4
+  end: 456
+- task_id: p1_Extern_Comp1_for_Panel3_joining2
   agent: H2
   agent_specific_order: 42
   sequential_dependencies: ''
-  start: 448
-  end: 452
-- task_id: p4_Screw8_Top_P_C6
-  agent: r3
-  agent_specific_order: 119
-  sequential_dependencies: p4_Screw4_Top_P_C6
-  start: 449
-  end: 452
-- task_id: p4_Screw6_Top_P_C6
-  agent: r3
-  agent_specific_order: 120
-  sequential_dependencies: p4_Screw8_Top_P_C6
-  start: 452
-  end: 455
-- task_id: p1_roate_turntable_180_2
-  agent: TT
-  agent_specific_order: 2
-  sequential_dependencies: ''
-  start: 452
-  end: 455
-- task_id: p2_Hinge_Right_Panel_Screw1
+  start: 446
+  end: 450
+- task_id: p1_Extern_Comp1_for_Panel3_joining3
   agent: H2
   agent_specific_order: 43
   sequential_dependencies: ''
-  start: 452
-  end: 456
-- task_id: p4_Screw1_Top_P_C6
-  agent: r3
-  agent_specific_order: 121
-  sequential_dependencies: p4_Screw6_Top_P_C6
-  start: 455
-  end: 458
-- task_id: p1_Pick_Extern_Comp2_for_Panel4
-  agent: r5
-  agent_specific_order: 5
-  sequential_dependencies: ''
-  start: 455
-  end: 460
-- task_id: p2_Hinge_Right_Panel_Screw2
+  start: 450
+  end: 454
+- task_id: p1_Extern_Comp1_for_Panel3_joining4
   agent: H2
   agent_specific_order: 44
   sequential_dependencies: ''
-  start: 456
-  end: 460
-- task_id: p4_Pick_and_Place_Top_P_C7
-  agent: r2
-  agent_specific_order: 23
-  sequential_dependencies: p4_Screw1_Top_P_C6
+  start: 454
+  end: 458
+- task_id: p1_roate_turntable_180_2
+  agent: TT
+  agent_specific_order: 2
+  sequential_dependencies: p3_Mount_Panel_B5_on_the_Fixture
   start: 458
-  end: 463
-- task_id: p2_Pick_and_Place_Middle_Panel
-  agent: r1
-  agent_specific_order: 14
-  sequential_dependencies: ''
-  start: 460
-  end: 465
-- task_id: p1_Fix_Extern_Comp2_for_Panel4
-  agent: r5
-  agent_specific_order: 6
-  sequential_dependencies: ''
-  start: 460
-  end: 463
-- task_id: p3_Hold_Hinge_to_Panel_B4
+  end: 461
+- task_id: p3_Hold_Hinge_to_Panel_B5
   agent: H2
   agent_specific_order: 45
   sequential_dependencies: ''
-  start: 460
-  end: 463
-- task_id: p4_Screw1_Top_P_C7
-  agent: r3
-  agent_specific_order: 122
-  sequential_dependencies: p4_Pick_and_Place_Top_P_C7
-  start: 463
+  start: 458
+  end: 461
+- task_id: p1_Pick_Extern_Comp2_for_Panel4
+  agent: r5
+  agent_specific_order: 5
+  sequential_dependencies: p1_roate_turntable_180_2
+  start: 461
   end: 466
-- task_id: p3_Hinge_Top_Panel_Screw2
+- task_id: p2_Hinge_Right_Panel_Screw1
   agent: H2
   agent_specific_order: 46
   sequential_dependencies: ''
-  start: 463
-  end: 467
-- task_id: p2_Pick_and_Place_Middle_P_C4
-  agent: r2
-  agent_specific_order: 24
-  sequential_dependencies: ''
-  start: 465
-  end: 470
-- task_id: p4_Screw3_Top_P_C7
-  agent: r3
-  agent_specific_order: 123
-  sequential_dependencies: p4_Screw1_Top_P_C7
-  start: 466
-  end: 469
-- task_id: p3_Pick_and_Place_Right_Panel
-  agent: r1
-  agent_specific_order: 15
-  sequential_dependencies: ''
-  start: 467
-  end: 472
-- task_id: p1_Extern_Comp2_for_Panel4_joining2
+  start: 461
+  end: 465
+- task_id: p2_Hinge_Right_Panel_Screw2
   agent: H2
   agent_specific_order: 47
   sequential_dependencies: ''
-  start: 467
-  end: 471
-- task_id: p4_Mount_Panel_B4_on_the_Fixture
-  agent: r4
-  agent_specific_order: 16
-  sequential_dependencies: p4_Screw3_Top_P_C7
+  start: 465
+  end: 469
+- task_id: p1_Fix_Extern_Comp2_for_Panel4
+  agent: r5
+  agent_specific_order: 6
+  sequential_dependencies: p1_Pick_Extern_Comp2_for_Panel4
+  start: 466
+  end: 469
+- task_id: p2_Pick_and_Place_Middle_Panel
+  agent: r1
+  agent_specific_order: 13
+  sequential_dependencies: p1_Fix_Extern_Comp2_for_Panel4
   start: 469
-  end: 479
-- task_id: p2_Screw1_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 124
-  sequential_dependencies: ''
-  start: 470
-  end: 473
+  end: 474
 - task_id: p1_Extern_Comp2_for_Panel4_joining1
   agent: H2
   agent_specific_order: 48
   sequential_dependencies: ''
-  start: 471
-  end: 475
-- task_id: p3_Pick_and_Place_Right_P_C1_3
-  agent: r2
-  agent_specific_order: 25
-  sequential_dependencies: ''
-  start: 472
-  end: 477
-- task_id: p2_Screw2_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 125
-  sequential_dependencies: ''
-  start: 473
-  end: 476
-- task_id: p1_Extern_Comp2_for_Panel4_joining4
+  start: 469
+  end: 473
+- task_id: p1_Extern_Comp2_for_Panel4_joining2
   agent: H2
   agent_specific_order: 49
   sequential_dependencies: ''
-  start: 475
-  end: 479
-- task_id: p2_Screw4_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 126
-  sequential_dependencies: ''
-  start: 476
-  end: 479
-- task_id: p3_Pick_Place_Right_P_C1_1
+  start: 473
+  end: 477
+- task_id: p2_Pick_and_Place_Middle_P_C4
   agent: r2
-  agent_specific_order: 26
-  sequential_dependencies: ''
-  start: 477
-  end: 482
-- task_id: p2_Screw3_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 127
-  sequential_dependencies: p4_Mount_Panel_B4_on_the_Fixture
-  start: 479
-  end: 482
-- task_id: p5_Mount_Panel_B4_on_the_Fixture
-  agent: r4
-  agent_specific_order: 17
-  sequential_dependencies: ''
-  start: 479
-  end: 489
-- task_id: p4_Hold_Hinge_to_Panel_B4
+  agent_specific_order: 21
+  sequential_dependencies: p2_Pick_and_Place_Middle_Panel
+  start: 474
+  end: 479
+- task_id: p3_Hinge_Top_Panel_Screw2
   agent: H2
   agent_specific_order: 50
   sequential_dependencies: ''
+  start: 477
+  end: 481
+- task_id: p2_Screw3_B2_Middle_P_C4
+  agent: r3
+  agent_specific_order: 111
+  sequential_dependencies: p2_Pick_and_Place_Middle_P_C4
   start: 479
   end: 482
-- task_id: p2_Move_Middle_Panel_to_the_lift
+- task_id: p3_Pick_and_Place_Right_Panel
   agent: r1
-  agent_specific_order: 16
-  sequential_dependencies: p2_Screw3_B2_Middle_P_C4
-  start: 482
+  agent_specific_order: 14
+  sequential_dependencies: ''
+  start: 481
   end: 486
-- task_id: p3_Pick_and_Place_Right_P_C1_2
-  agent: r2
-  agent_specific_order: 27
-  sequential_dependencies: ''
-  start: 482
-  end: 487
-- task_id: p4_Screw9_Top_P_C6
-  agent: r3
-  agent_specific_order: 128
-  sequential_dependencies: ''
-  start: 482
-  end: 485
-- task_id: p1_Extern_Comp2_for_Panel4_joining3
+- task_id: p1_Extern_Comp2_for_Panel4_joining4
   agent: H2
   agent_specific_order: 51
   sequential_dependencies: ''
-  start: 482
-  end: 486
-- task_id: p4_Screw2_Top_P_C7
+  start: 481
+  end: 485
+- task_id: p2_Screw2_B2_Middle_P_C4
   agent: r3
-  agent_specific_order: 129
-  sequential_dependencies: ''
+  agent_specific_order: 112
+  sequential_dependencies: p2_Screw3_B2_Middle_P_C4
+  start: 482
+  end: 485
+- task_id: p2_Screw1_B2_Middle_P_C4
+  agent: r3
+  agent_specific_order: 113
+  sequential_dependencies: p2_Screw2_B2_Middle_P_C4
   start: 485
   end: 488
-- task_id: p2_Hold_Hinge_to_Panel_B5
+- task_id: p1_Extern_Comp2_for_Panel4_joining3
   agent: H2
   agent_specific_order: 52
-  sequential_dependencies: p2_Move_Middle_Panel_to_the_lift
-  start: 486
+  sequential_dependencies: ''
+  start: 485
   end: 489
-- task_id: p3_Pick_and_Place_Right_P_C2
+- task_id: p3_Pick_and_Place_Right_P_C1_3
   agent: r2
-  agent_specific_order: 28
+  agent_specific_order: 22
   sequential_dependencies: ''
-  start: 487
-  end: 492
-- task_id: p4_Screw4_Top_P_C7
+  start: 486
+  end: 491
+- task_id: p2_Screw4_B2_Middle_P_C4
   agent: r3
-  agent_specific_order: 130
-  sequential_dependencies: ''
+  agent_specific_order: 114
+  sequential_dependencies: p2_Screw1_B2_Middle_P_C4
   start: 488
   end: 491
-- task_id: p5_Hold_Hinge_to_Panel_B4
+- task_id: p3_Screw1_Right_P_C1_3
+  agent: r3
+  agent_specific_order: 115
+  sequential_dependencies: p2_Screw4_B2_Middle_P_C4
+  start: 491
+  end: 494
+- task_id: p2_Hinge_Panel_B4_Screw2
   agent: H2
   agent_specific_order: 53
-  sequential_dependencies: p2_Hold_Hinge_to_Panel_B5
-  start: 489
-  end: 492
-- task_id: p4_Mount_Panel_B5_on_the_Fixture
-  agent: r4
-  agent_specific_order: 18
   sequential_dependencies: ''
   start: 491
-  end: 501
-- task_id: p3_Screw2_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 131
-  sequential_dependencies: p5_Hold_Hinge_to_Panel_B4
-  start: 492
   end: 495
-- task_id: p2_Hinge_Panel_B4_Screw2
+- task_id: p3_Pick_Place_Right_P_C1_1
+  agent: r2
+  agent_specific_order: 23
+  sequential_dependencies: p3_Screw1_Right_P_C1_3
+  start: 494
+  end: 499
+- task_id: p2_Move_Middle_Panel_to_the_lift
+  agent: r1
+  agent_specific_order: 15
+  sequential_dependencies: ''
+  start: 495
+  end: 499
+- task_id: p3_Screw4_Right_P_C1_1_Screw
+  agent: r3
+  agent_specific_order: 116
+  sequential_dependencies: p3_Pick_Place_Right_P_C1_1
+  start: 499
+  end: 502
+- task_id: p2_Hinge_Panel_B4_Screw1
   agent: H2
   agent_specific_order: 54
   sequential_dependencies: ''
-  start: 492
-  end: 496
+  start: 499
+  end: 503
 - task_id: p3_Screw2_Right_P_C1_1_Screw
   agent: r3
-  agent_specific_order: 132
-  sequential_dependencies: p3_Screw2_Right_P_C1_1
-  start: 495
-  end: 498
+  agent_specific_order: 117
+  sequential_dependencies: p3_Screw4_Right_P_C1_1_Screw
+  start: 502
+  end: 505
 - task_id: p2_Hinge_Panel_B5_Screw1
   agent: H2
   agent_specific_order: 55
   sequential_dependencies: ''
-  start: 496
-  end: 500
-- task_id: p3_Screw3_Right_P_C1_1_Screw
+  start: 503
+  end: 507
+- task_id: p3_Screw2_Right_P_C1_3
   agent: r3
-  agent_specific_order: 133
+  agent_specific_order: 118
   sequential_dependencies: p3_Screw2_Right_P_C1_1_Screw
-  start: 498
-  end: 501
-- task_id: p2_Hinge_Panel_B4_Screw1
+  start: 505
+  end: 508
+- task_id: p2_Hinge_Panel_B5_Screw2
   agent: H2
   agent_specific_order: 56
   sequential_dependencies: ''
-  start: 500
-  end: 504
-- task_id: p4_Screw5_Top_P_C6
-  agent: r3
-  agent_specific_order: 134
-  sequential_dependencies: p3_Screw3_Right_P_C1_1_Screw
-  start: 501
-  end: 504
-- task_id: p5_Mount_Panel_B5_on_the_Fixture
-  agent: r4
-  agent_specific_order: 19
-  sequential_dependencies: ''
-  start: 501
+  start: 507
   end: 511
-- task_id: p4_Screw10_Top_P_C6
+- task_id: p3_Screw3_Right_P_C1_3
   agent: r3
-  agent_specific_order: 135
-  sequential_dependencies: p4_Screw5_Top_P_C6
-  start: 504
-  end: 507
-- task_id: p3_Hold_Hinge_to_Panel_B5
+  agent_specific_order: 119
+  sequential_dependencies: p3_Screw2_Right_P_C1_3
+  start: 508
+  end: 511
+- task_id: p2_Mount_Middle_Panel_on_the_Fixture
+  agent: r4
+  agent_specific_order: 16
+  sequential_dependencies: p3_Screw3_Right_P_C1_3
+  start: 511
+  end: 521
+- task_id: p3_Hinge_Panel_B4_Screw1
   agent: H2
   agent_specific_order: 57
   sequential_dependencies: ''
-  start: 504
-  end: 507
-- task_id: p4_Move_Top_Panel_to_the_Side
-  agent: r1
-  agent_specific_order: 17
-  sequential_dependencies: p4_Screw10_Top_P_C6
-  start: 507
-  end: 511
-- task_id: p3_Screw4_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 136
-  sequential_dependencies: ''
-  start: 507
-  end: 510
-- task_id: p2_Hinge_Panel_B5_Screw2
+  start: 511
+  end: 515
+- task_id: p3_Hinge_Panel_B4_Screw2
   agent: H2
   agent_specific_order: 58
   sequential_dependencies: ''
-  start: 507
-  end: 511
-- task_id: p3_Screw1_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 137
-  sequential_dependencies: ''
-  start: 510
-  end: 513
-- task_id: p2_Mount_Middle_Panel_on_the_Fixture
-  agent: r4
-  agent_specific_order: 20
-  sequential_dependencies: p4_Move_Top_Panel_to_the_Side
-  start: 511
-  end: 521
-- task_id: p4_Hold_Hinge_to_Panel_B5
+  start: 515
+  end: 519
+- task_id: p3_Hinge_Panel_B5_Screw1
   agent: H2
   agent_specific_order: 59
   sequential_dependencies: ''
-  start: 511
-  end: 514
-- task_id: p3_Screw1_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 138
-  sequential_dependencies: ''
-  start: 513
-  end: 516
-- task_id: p4_Mount_Top_Panel_on_the_Fixture
-  agent: H1
-  agent_specific_order: 4
-  sequential_dependencies: ''
-  start: 514
-  end: 524
-- task_id: p5_Hold_Hinge_to_Panel_B5
+  start: 519
+  end: 523
+- task_id: p3_Pick_and_Place_Right_P_C5
+  agent: r2
+  agent_specific_order: 24
+  sequential_dependencies: p2_Mount_Middle_Panel_on_the_Fixture
+  start: 523
+  end: 528
+- task_id: p2_Hold_Hinge_to_Middle_Panel
   agent: H2
   agent_specific_order: 60
   sequential_dependencies: ''
-  start: 514
-  end: 517
-- task_id: p3_Hinge_Panel_B5_Screw2
+  start: 523
+  end: 526
+- task_id: p2_Hinge_Middle_Panel_Screw1
   agent: H2
   agent_specific_order: 61
   sequential_dependencies: ''
-  start: 517
-  end: 521
-- task_id: p3_Screw4_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 139
-  sequential_dependencies: p2_Mount_Middle_Panel_on_the_Fixture
-  start: 521
-  end: 524
-- task_id: p2_Hold_Hinge_to_Middle_Panel
+  start: 526
+  end: 530
+- task_id: p3_Pick_and_Place_Right_P_C1_2
+  agent: r2
+  agent_specific_order: 25
+  sequential_dependencies: p3_Pick_and_Place_Right_P_C5
+  start: 528
+  end: 533
+- task_id: p2_Hinge_Middle_Panel_Screw2
   agent: H2
   agent_specific_order: 62
   sequential_dependencies: ''
-  start: 521
-  end: 524
-- task_id: p5_Pick_and_Place_Top_Panel
-  agent: r1
-  agent_specific_order: 18
-  sequential_dependencies: p3_Screw4_Right_P_C1_1
-  start: 524
-  end: 529
+  start: 530
+  end: 534
 - task_id: p3_Screw3_Right_P_C1_1
   agent: r3
-  agent_specific_order: 140
-  sequential_dependencies: ''
-  start: 524
-  end: 527
-- task_id: p4_Hold_Hinge_to_Top_Panel
+  agent_specific_order: 120
+  sequential_dependencies: p3_Pick_and_Place_Right_P_C1_2
+  start: 533
+  end: 536
+- task_id: p2_Attach_and_Hold_Hinge_on_Panel12
   agent: H2
   agent_specific_order: 63
   sequential_dependencies: ''
-  start: 524
-  end: 527
-- task_id: p3_Screw1_Right_P_C1_3
+  start: 534
+  end: 537
+- task_id: p3_Screw4_Right_P_C1_1
   agent: r3
-  agent_specific_order: 141
-  sequential_dependencies: ''
-  start: 527
-  end: 530
-- task_id: p4_Hinge_Top_Panel_Screw2
+  agent_specific_order: 121
+  sequential_dependencies: p3_Screw3_Right_P_C1_1
+  start: 536
+  end: 539
+- task_id: p2_Attach_and_Hold_Hinge_on_Panel23
   agent: H2
   agent_specific_order: 64
   sequential_dependencies: ''
-  start: 527
-  end: 531
-- task_id: p5_Pick_and_Place_Top_P_C3
-  agent: r2
-  agent_specific_order: 29
-  sequential_dependencies: p5_Pick_and_Place_Top_Panel
-  start: 529
-  end: 534
-- task_id: p3_Screw2_Right_P_C1_3
+  start: 537
+  end: 540
+- task_id: p3_Screw1_Right_P_C1_1_Screw
   agent: r3
-  agent_specific_order: 142
-  sequential_dependencies: ''
-  start: 530
-  end: 533
-- task_id: p2_Hinge_Middle_Panel_Screw1
+  agent_specific_order: 122
+  sequential_dependencies: p3_Screw4_Right_P_C1_1
+  start: 540
+  end: 543
+- task_id: p2_Attach_and_Hold_Hinge_on_Panel34
   agent: H2
   agent_specific_order: 65
   sequential_dependencies: ''
-  start: 531
-  end: 535
-- task_id: p3_Screw3_Right_P_C1_3
+  start: 540
+  end: 543
+- task_id: p3_Screw3_Right_P_C1_1_Screw
   agent: r3
-  agent_specific_order: 143
-  sequential_dependencies: ''
-  start: 533
-  end: 536
-- task_id: p5_Pick_and_Place_Top_P_C6
-  agent: r2
-  agent_specific_order: 30
-  sequential_dependencies: p5_Pick_and_Place_Top_P_C3
-  start: 534
-  end: 539
-- task_id: p2_Hinge_Middle_Panel_Screw2
+  agent_specific_order: 123
+  sequential_dependencies: p3_Screw1_Right_P_C1_1_Screw
+  start: 543
+  end: 546
+- task_id: p2_Attach_and_Hold_Hinge_on_Panel45
   agent: H2
   agent_specific_order: 66
   sequential_dependencies: ''
-  start: 535
-  end: 539
+  start: 543
+  end: 546
 - task_id: p3_Screw4_Right_P_C1_3
   agent: r3
-  agent_specific_order: 144
-  sequential_dependencies: ''
-  start: 536
-  end: 539
-- task_id: p5_Screw8_Top_P_C6
-  agent: r3
-  agent_specific_order: 145
-  sequential_dependencies: p5_Pick_and_Place_Top_P_C6
-  start: 539
-  end: 542
-- task_id: p3_Hinge_Panel_B5_Screw1
+  agent_specific_order: 124
+  sequential_dependencies: p3_Screw3_Right_P_C1_1_Screw
+  start: 546
+  end: 549
+- task_id: p2_Hinge_on_Panel12_Screw1
   agent: H2
   agent_specific_order: 67
   sequential_dependencies: ''
-  start: 539
-  end: 543
-- task_id: p5_Screw2_Top_P_C6
+  start: 546
+  end: 551
+- task_id: p3_Screw2_Right_P_C1_1
   agent: r3
-  agent_specific_order: 146
-  sequential_dependencies: p5_Screw8_Top_P_C6
-  start: 542
-  end: 545
-- task_id: p3_Pick_and_Place_Right_P_C5
-  agent: r2
-  agent_specific_order: 31
-  sequential_dependencies: ''
-  start: 543
-  end: 548
-- task_id: p2_Attach_and_Hold_Hinge_on_Panel45
+  agent_specific_order: 125
+  sequential_dependencies: p3_Screw4_Right_P_C1_3
+  start: 549
+  end: 552
+- task_id: p2_Hinge_on_Panel12_Screw2
   agent: H2
   agent_specific_order: 68
   sequential_dependencies: ''
-  start: 543
-  end: 546
-- task_id: p5_Screw2_Top_P_C3
+  start: 551
+  end: 556
+- task_id: p3_Screw1_Right_P_C1_1
   agent: r3
-  agent_specific_order: 147
-  sequential_dependencies: p5_Screw2_Top_P_C6
-  start: 545
-  end: 548
-- task_id: p2_Attach_and_Hold_Hinge_on_Panel12
+  agent_specific_order: 126
+  sequential_dependencies: p3_Screw2_Right_P_C1_1
+  start: 552
+  end: 555
+- task_id: p3_Pick_and_Place_Right_P_C2
+  agent: r2
+  agent_specific_order: 26
+  sequential_dependencies: p3_Screw1_Right_P_C1_1
+  start: 555
+  end: 560
+- task_id: p2_Hinge_on_Panel23_Screw1
   agent: H2
   agent_specific_order: 69
   sequential_dependencies: ''
-  start: 546
-  end: 549
-- task_id: p5_Pick_and_Place_Top_P_C7
-  agent: r2
-  agent_specific_order: 32
-  sequential_dependencies: p5_Screw2_Top_P_C3
-  start: 548
-  end: 553
+  start: 556
+  end: 561
 - task_id: p3_Screw1_B1_Right_P_C2
   agent: r3
-  agent_specific_order: 148
-  sequential_dependencies: ''
-  start: 548
-  end: 551
-- task_id: p2_Attach_and_Hold_Hinge_on_Panel23
+  agent_specific_order: 127
+  sequential_dependencies: p3_Pick_and_Place_Right_P_C2
+  start: 560
+  end: 563
+- task_id: p2_Hinge_on_Panel23_Screw2
   agent: H2
   agent_specific_order: 70
   sequential_dependencies: ''
-  start: 549
-  end: 552
+  start: 561
+  end: 566
 - task_id: p3_Screw2_B1_Right_P_C2
   agent: r3
-  agent_specific_order: 149
-  sequential_dependencies: ''
-  start: 551
-  end: 554
-- task_id: p2_Attach_and_Hold_Hinge_on_Panel34
+  agent_specific_order: 128
+  sequential_dependencies: p3_Screw1_B1_Right_P_C2
+  start: 565
+  end: 568
+- task_id: p2_Hinge_on_Panel34_Screw1
   agent: H2
   agent_specific_order: 71
   sequential_dependencies: ''
-  start: 552
-  end: 555
+  start: 566
+  end: 571
 - task_id: p3_Screw3_B1_Right_P_C2
   agent: r3
-  agent_specific_order: 150
-  sequential_dependencies: p5_Pick_and_Place_Top_P_C7
-  start: 554
-  end: 557
-- task_id: p4_Hinge_Panel_B5_Screw1
+  agent_specific_order: 129
+  sequential_dependencies: p3_Screw2_B1_Right_P_C2
+  start: 568
+  end: 571
+- task_id: p3_Screw4_B1_Right_P_C2
+  agent: r3
+  agent_specific_order: 130
+  sequential_dependencies: p3_Screw3_B1_Right_P_C2
+  start: 571
+  end: 574
+- task_id: p2_Hinge_on_Panel34_Screw2
   agent: H2
   agent_specific_order: 72
   sequential_dependencies: ''
-  start: 555
-  end: 559
-- task_id: p3_Screw4_B1_Right_P_C2
+  start: 571
+  end: 576
+- task_id: p3_Screw1_B1_Right_P_C5
   agent: r3
-  agent_specific_order: 151
-  sequential_dependencies: p3_Screw3_B1_Right_P_C2
-  start: 557
-  end: 560
-- task_id: p4_Hinge_Panel_B5_Screw2
+  agent_specific_order: 131
+  sequential_dependencies: p3_Screw4_B1_Right_P_C2
+  start: 574
+  end: 577
+- task_id: p2_Hinge_on_Panel45_Screw1
   agent: H2
   agent_specific_order: 73
   sequential_dependencies: ''
-  start: 559
-  end: 563
-- task_id: p3_Screw1_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 152
-  sequential_dependencies: p3_Screw4_B1_Right_P_C2
-  start: 560
-  end: 563
+  start: 576
+  end: 581
 - task_id: p3_Screw2_B1_Right_P_C5
   agent: r3
-  agent_specific_order: 153
+  agent_specific_order: 132
   sequential_dependencies: p3_Screw1_B1_Right_P_C5
-  start: 563
-  end: 566
-- task_id: p4_Hinge_Top_Panel_Screw1
+  start: 577
+  end: 580
+- task_id: p3_Screw3_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 133
+  sequential_dependencies: p3_Screw2_B1_Right_P_C5
+  start: 580
+  end: 583
+- task_id: p2_Hinge_on_Panel45_Screw2
   agent: H2
   agent_specific_order: 74
   sequential_dependencies: ''
-  start: 563
-  end: 567
-- task_id: p3_Screw3_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 154
-  sequential_dependencies: p3_Screw2_B1_Right_P_C5
-  start: 566
-  end: 569
-- task_id: p5_Hinge_Panel_B5_Screw1
-  agent: H2
-  agent_specific_order: 75
-  sequential_dependencies: ''
-  start: 567
-  end: 571
-- task_id: p3_Screw4_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 155
-  sequential_dependencies: p3_Screw3_B1_Right_P_C5
-  start: 569
-  end: 572
-- task_id: p2_Hinge_on_Panel23_Screw1
-  agent: H2
-  agent_specific_order: 76
-  sequential_dependencies: ''
-  start: 571
-  end: 576
-- task_id: p3_Screw5_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 156
-  sequential_dependencies: p3_Screw4_B1_Right_P_C5
-  start: 572
-  end: 575
-- task_id: p3_Screw6_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 157
-  sequential_dependencies: p3_Screw5_B1_Right_P_C5
-  start: 575
-  end: 578
-- task_id: p2_Hinge_on_Panel12_Screw2
-  agent: H2
-  agent_specific_order: 77
-  sequential_dependencies: ''
-  start: 576
-  end: 581
-- task_id: p3_Screw7_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 158
-  sequential_dependencies: p3_Screw6_B1_Right_P_C5
-  start: 578
-  end: 581
-- task_id: p3_Screw8_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 159
-  sequential_dependencies: p3_Screw7_B1_Right_P_C5
-  start: 581
-  end: 584
-- task_id: p2_Hinge_on_Panel23_Screw2
-  agent: H2
-  agent_specific_order: 78
-  sequential_dependencies: ''
   start: 581
   end: 586
-- task_id: p3_Screw9_B1_Right_P_C5
+- task_id: p3_Screw4_B1_Right_P_C5
   agent: r3
-  agent_specific_order: 160
-  sequential_dependencies: p3_Screw8_B1_Right_P_C5
-  start: 584
-  end: 587
-- task_id: p2_Hinge_on_Panel12_Screw1
-  agent: H2
-  agent_specific_order: 79
+  agent_specific_order: 134
+  sequential_dependencies: p3_Screw3_B1_Right_P_C5
+  start: 583
+  end: 586
+- task_id: p3_Screw5_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 135
+  sequential_dependencies: p3_Screw4_B1_Right_P_C5
+  start: 586
+  end: 589
+- task_id: p2_Pick_Extern_Comp1_for_Panel1
+  agent: r4
+  agent_specific_order: 17
   sequential_dependencies: ''
   start: 586
   end: 591
-- task_id: p3_Screw10_B1_Right_P_C5
+- task_id: p3_Screw6_B1_Right_P_C5
   agent: r3
-  agent_specific_order: 161
-  sequential_dependencies: p3_Screw9_B1_Right_P_C5
-  start: 587
-  end: 590
-- task_id: p3_Move_Right_Panel_to_the_lift
-  agent: r1
-  agent_specific_order: 19
-  sequential_dependencies: p3_Screw10_B1_Right_P_C5
-  start: 590
-  end: 594
-- task_id: p5_Screw1_Top_P_C3
-  agent: r3
-  agent_specific_order: 162
-  sequential_dependencies: ''
-  start: 590
-  end: 593
-- task_id: p2_Hinge_on_Panel34_Screw1
-  agent: H2
-  agent_specific_order: 80
-  sequential_dependencies: ''
-  start: 591
-  end: 596
-- task_id: p5_Screw1_Top_P_C6
-  agent: r3
-  agent_specific_order: 163
-  sequential_dependencies: ''
-  start: 593
-  end: 596
-- task_id: p3_Mount_Right_Panel_on_the_Fixture
-  agent: r4
-  agent_specific_order: 21
-  sequential_dependencies: p3_Move_Right_Panel_to_the_lift
-  start: 594
-  end: 604
-- task_id: p5_Screw5_Top_P_C6
-  agent: r3
-  agent_specific_order: 164
-  sequential_dependencies: ''
-  start: 596
-  end: 599
-- task_id: p2_Hinge_on_Panel45_Screw1
-  agent: H2
-  agent_specific_order: 81
-  sequential_dependencies: ''
-  start: 596
-  end: 601
-- task_id: p5_Screw6_Top_P_C6
-  agent: r3
-  agent_specific_order: 165
-  sequential_dependencies: ''
-  start: 599
-  end: 602
-- task_id: p2_Hinge_on_Panel34_Screw2
-  agent: H2
-  agent_specific_order: 82
-  sequential_dependencies: ''
-  start: 601
-  end: 606
-- task_id: p5_Screw3_Top_P_C3
-  agent: r3
-  agent_specific_order: 166
-  sequential_dependencies: ''
-  start: 602
-  end: 605
-- task_id: p4_Pick_and_Place_Right_Panel
-  agent: r1
-  agent_specific_order: 20
-  sequential_dependencies: p3_Mount_Right_Panel_on_the_Fixture
-  start: 604
-  end: 609
-- task_id: p5_Screw1_Top_P_C7
-  agent: r3
-  agent_specific_order: 167
-  sequential_dependencies: ''
-  start: 605
-  end: 608
-- task_id: p3_Hold_Hinge_to_Right_Panel
-  agent: H2
-  agent_specific_order: 83
-  sequential_dependencies: ''
-  start: 606
-  end: 609
-- task_id: p5_Screw3_Top_P_C6
-  agent: r3
-  agent_specific_order: 168
-  sequential_dependencies: ''
-  start: 608
-  end: 611
-- task_id: p4_Pick_Place_Right_P_C1_1
-  agent: r2
-  agent_specific_order: 33
-  sequential_dependencies: p4_Pick_and_Place_Right_Panel
-  start: 609
-  end: 614
-- task_id: p3_Hinge_Right_Panel_Screw1
-  agent: H2
-  agent_specific_order: 84
-  sequential_dependencies: ''
-  start: 609
-  end: 613
-- task_id: p5_Screw4_Top_P_C3
-  agent: r3
-  agent_specific_order: 169
-  sequential_dependencies: ''
-  start: 611
-  end: 614
-- task_id: p3_Hinge_Right_Panel_Screw2
-  agent: H2
-  agent_specific_order: 85
-  sequential_dependencies: ''
-  start: 613
-  end: 617
-- task_id: p4_Screw2_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 170
-  sequential_dependencies: p4_Pick_Place_Right_P_C1_1
-  start: 614
-  end: 617
-- task_id: p3_Pick_and_Place_Middle_Panel
-  agent: r1
-  agent_specific_order: 21
-  sequential_dependencies: p4_Screw2_Right_P_C1_1_Screw
-  start: 617
-  end: 622
-- task_id: p4_Screw3_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 171
-  sequential_dependencies: ''
-  start: 617
-  end: 620
-- task_id: p5_Hinge_Panel_B5_Screw2
-  agent: H2
-  agent_specific_order: 86
-  sequential_dependencies: ''
-  start: 617
-  end: 621
-- task_id: p4_Screw4_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 172
-  sequential_dependencies: ''
-  start: 620
-  end: 623
-- task_id: p2_Hinge_on_Panel45_Screw2
-  agent: H2
-  agent_specific_order: 87
-  sequential_dependencies: ''
-  start: 621
-  end: 626
-- task_id: p4_Pick_and_Place_Right_P_C2
-  agent: r2
-  agent_specific_order: 34
-  sequential_dependencies: p3_Pick_and_Place_Middle_Panel
-  start: 623
-  end: 628
-- task_id: p5_Screw4_Top_P_C6
-  agent: r3
-  agent_specific_order: 173
-  sequential_dependencies: ''
-  start: 623
-  end: 626
-- task_id: p5_Screw10_Top_P_C6
-  agent: r3
-  agent_specific_order: 174
-  sequential_dependencies: ''
-  start: 626
-  end: 629
-- task_id: p2_Pick_Extern_Comp1_for_Panel1
-  agent: r4
-  agent_specific_order: 22
-  sequential_dependencies: ''
-  start: 626
-  end: 631
-- task_id: p3_Hinge_Panel_B4_Screw2
-  agent: H2
-  agent_specific_order: 88
-  sequential_dependencies: ''
-  start: 626
-  end: 630
-- task_id: p4_Pick_and_Place_Right_P_C1_3
-  agent: r2
-  agent_specific_order: 35
-  sequential_dependencies: p4_Pick_and_Place_Right_P_C2
-  start: 628
-  end: 633
-- task_id: p5_Screw7_Top_P_C6
-  agent: r3
-  agent_specific_order: 175
-  sequential_dependencies: ''
-  start: 629
-  end: 632
-- task_id: p3_Hinge_Panel_B4_Screw1
-  agent: H2
-  agent_specific_order: 89
-  sequential_dependencies: ''
-  start: 630
-  end: 634
+  agent_specific_order: 136
+  sequential_dependencies: p3_Screw5_B1_Right_P_C5
+  start: 589
+  end: 592
 - task_id: p2_Fix_Extern_Comp1_for_Panel1
   agent: r4
-  agent_specific_order: 23
+  agent_specific_order: 18
   sequential_dependencies: ''
-  start: 631
-  end: 634
-- task_id: p5_Screw2_Top_P_C7
+  start: 591
+  end: 594
+- task_id: p3_Screw7_B1_Right_P_C5
   agent: r3
-  agent_specific_order: 176
-  sequential_dependencies: ''
-  start: 632
-  end: 635
-- task_id: p4_Pick_and_Place_Right_P_C1_2
-  agent: r2
-  agent_specific_order: 36
-  sequential_dependencies: p4_Pick_and_Place_Right_P_C1_3
-  start: 633
-  end: 638
-- task_id: p2_Extern_Comp1_for_Panel1_joining1
-  agent: r4
-  agent_specific_order: 24
-  sequential_dependencies: ''
-  start: 634
-  end: 638
-- task_id: p5_Screw9_Top_P_C6
-  agent: r3
-  agent_specific_order: 177
-  sequential_dependencies: ''
-  start: 635
-  end: 638
-- task_id: p3_Pick_and_Place_Middle_P_C4
-  agent: r2
-  agent_specific_order: 37
-  sequential_dependencies: p4_Pick_and_Place_Right_P_C1_2
-  start: 638
-  end: 643
-- task_id: p5_Screw3_Top_P_C7
-  agent: r3
-  agent_specific_order: 178
-  sequential_dependencies: ''
-  start: 638
-  end: 641
-- task_id: p2_Extern_Comp1_for_Panel1_joining4
-  agent: r4
-  agent_specific_order: 25
-  sequential_dependencies: ''
-  start: 638
-  end: 642
-- task_id: p4_Hinge_Panel_B4_Screw1
-  agent: H2
-  agent_specific_order: 90
-  sequential_dependencies: ''
-  start: 638
-  end: 642
-- task_id: p5_Screw4_Top_P_C7
-  agent: r3
-  agent_specific_order: 179
-  sequential_dependencies: ''
-  start: 641
-  end: 644
-- task_id: p2_Extern_Comp1_for_Panel1_joining2
-  agent: r4
-  agent_specific_order: 26
-  sequential_dependencies: ''
-  start: 642
-  end: 646
-- task_id: p4_Hinge_Panel_B4_Screw2
-  agent: H2
-  agent_specific_order: 91
-  sequential_dependencies: ''
-  start: 642
-  end: 646
-- task_id: p5_Move_Top_Panel_to_the_Side
-  agent: r1
-  agent_specific_order: 22
-  sequential_dependencies: p3_Pick_and_Place_Middle_P_C4
-  start: 644
-  end: 648
-- task_id: p3_Screw1_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 180
-  sequential_dependencies: ''
-  start: 644
-  end: 647
-- task_id: p4_Pick_and_Place_Right_P_C5
-  agent: r2
-  agent_specific_order: 38
-  sequential_dependencies: ''
-  start: 646
-  end: 651
+  agent_specific_order: 137
+  sequential_dependencies: p3_Screw6_B1_Right_P_C5
+  start: 592
+  end: 595
 - task_id: p2_Extern_Comp1_for_Panel1_joining3
   agent: r4
-  agent_specific_order: 27
+  agent_specific_order: 19
   sequential_dependencies: ''
-  start: 646
-  end: 650
-- task_id: p3_Screw2_B2_Middle_P_C4
+  start: 594
+  end: 598
+- task_id: p3_Screw8_B1_Right_P_C5
   agent: r3
-  agent_specific_order: 181
-  sequential_dependencies: ''
-  start: 647
-  end: 650
-- task_id: p5_Hinge_Panel_B4_Screw1
-  agent: H2
-  agent_specific_order: 92
-  sequential_dependencies: p5_Move_Top_Panel_to_the_Side
-  start: 648
-  end: 652
-- task_id: p3_Screw3_B2_Middle_P_C4
+  agent_specific_order: 138
+  sequential_dependencies: p3_Screw7_B1_Right_P_C5
+  start: 595
+  end: 598
+- task_id: p3_Screw9_B1_Right_P_C5
   agent: r3
-  agent_specific_order: 182
+  agent_specific_order: 139
+  sequential_dependencies: p3_Screw8_B1_Right_P_C5
+  start: 598
+  end: 601
+- task_id: p2_Extern_Comp1_for_Panel1_joining2
+  agent: r4
+  agent_specific_order: 20
   sequential_dependencies: ''
-  start: 650
-  end: 653
+  start: 598
+  end: 602
+- task_id: p3_Screw10_B1_Right_P_C5
+  agent: r3
+  agent_specific_order: 140
+  sequential_dependencies: p3_Screw9_B1_Right_P_C5
+  start: 601
+  end: 604
+- task_id: p2_Extern_Comp1_for_Panel1_joining1
+  agent: r4
+  agent_specific_order: 21
+  sequential_dependencies: ''
+  start: 602
+  end: 606
+- task_id: p3_Move_Right_Panel_to_the_lift
+  agent: r1
+  agent_specific_order: 16
+  sequential_dependencies: p3_Screw10_B1_Right_P_C5
+  start: 604
+  end: 608
+- task_id: p2_Extern_Comp1_for_Panel1_joining4
+  agent: r4
+  agent_specific_order: 22
+  sequential_dependencies: ''
+  start: 606
+  end: 610
 - task_id: p2_roate_turntable_180
   agent: TT
   agent_specific_order: 3
+  sequential_dependencies: p3_Move_Right_Panel_to_the_lift
+  start: 610
+  end: 614
+- task_id: p3_Hinge_Panel_B5_Screw2
+  agent: H2
+  agent_specific_order: 75
   sequential_dependencies: ''
-  start: 650
-  end: 654
-- task_id: p5_Mount_Top_Panel_on_the_Fixture
-  agent: H1
-  agent_specific_order: 5
-  sequential_dependencies: p5_Hinge_Panel_B4_Screw1
-  start: 652
-  end: 662
-- task_id: p3_Screw4_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 183
-  sequential_dependencies: ''
-  start: 653
-  end: 656
+  start: 613
+  end: 617
 - task_id: p2_Pick_Extern_Comp2_for_Panel2
   agent: r5
   agent_specific_order: 7
-  sequential_dependencies: ''
-  start: 654
-  end: 659
-- task_id: p3_Move_Middle_Panel_to_the_lift
-  agent: r1
+  sequential_dependencies: p2_roate_turntable_180
+  start: 614
+  end: 619
+- task_id: p3_Mount_Right_Panel_on_the_Fixture
+  agent: r4
   agent_specific_order: 23
   sequential_dependencies: ''
-  start: 656
-  end: 660
-- task_id: p4_Screw3_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 184
-  sequential_dependencies: ''
-  start: 656
-  end: 659
-- task_id: p4_Screw2_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 185
-  sequential_dependencies: ''
-  start: 659
-  end: 662
+  start: 617
+  end: 627
 - task_id: p2_Fix_Extern_Comp2_for_Panel2
   agent: r5
   agent_specific_order: 8
-  sequential_dependencies: ''
-  start: 659
-  end: 662
-- task_id: p3_Mount_Middle_Panel_on_the_Fixture
-  agent: r4
-  agent_specific_order: 28
-  sequential_dependencies: ''
-  start: 660
-  end: 670
-- task_id: p4_Screw1_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 186
-  sequential_dependencies: p5_Mount_Top_Panel_on_the_Fixture
-  start: 662
-  end: 665
-- task_id: p2_Extern_Comp2_for_Panel2_joining3
-  agent: H2
-  agent_specific_order: 93
-  sequential_dependencies: ''
-  start: 662
-  end: 666
-- task_id: p4_Screw1_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 187
-  sequential_dependencies: p4_Screw1_Right_P_C1_1_Screw
-  start: 665
-  end: 668
+  sequential_dependencies: p2_Pick_Extern_Comp2_for_Panel2
+  start: 619
+  end: 622
 - task_id: p2_Extern_Comp2_for_Panel2_joining1
   agent: H2
-  agent_specific_order: 94
-  sequential_dependencies: ''
-  start: 666
-  end: 670
-- task_id: p4_Screw4_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 188
-  sequential_dependencies: p4_Screw1_Right_P_C1_1
-  start: 668
-  end: 671
-- task_id: p2_Extern_Comp2_for_Panel2_joining4
-  agent: H2
-  agent_specific_order: 95
-  sequential_dependencies: ''
-  start: 670
-  end: 674
-- task_id: p4_Screw1_Right_P_C1_3
-  agent: r3
-  agent_specific_order: 189
-  sequential_dependencies: p4_Screw4_Right_P_C1_1
-  start: 671
-  end: 674
-- task_id: p4_Screw2_Right_P_C1_3
-  agent: r3
-  agent_specific_order: 190
-  sequential_dependencies: p4_Screw1_Right_P_C1_3
-  start: 674
-  end: 677
+  agent_specific_order: 76
+  sequential_dependencies: p2_Fix_Extern_Comp2_for_Panel2
+  start: 622
+  end: 626
 - task_id: p2_Extern_Comp2_for_Panel2_joining2
   agent: H2
-  agent_specific_order: 96
-  sequential_dependencies: ''
-  start: 674
-  end: 678
-- task_id: p4_Screw3_Right_P_C1_3
-  agent: r3
-  agent_specific_order: 191
-  sequential_dependencies: p4_Screw2_Right_P_C1_3
-  start: 677
-  end: 680
+  agent_specific_order: 77
+  sequential_dependencies: p2_Extern_Comp2_for_Panel2_joining1
+  start: 626
+  end: 630
+- task_id: p3_Hold_Hinge_to_Right_Panel
+  agent: H2
+  agent_specific_order: 78
+  sequential_dependencies: p2_Extern_Comp2_for_Panel2_joining2
+  start: 630
+  end: 633
+- task_id: p2_Extern_Comp2_for_Panel2_joining3
+  agent: H2
+  agent_specific_order: 79
+  sequential_dependencies: p3_Hold_Hinge_to_Right_Panel
+  start: 633
+  end: 637
+- task_id: p2_Extern_Comp2_for_Panel2_joining4
+  agent: H2
+  agent_specific_order: 80
+  sequential_dependencies: p2_Extern_Comp2_for_Panel2_joining3
+  start: 637
+  end: 641
 - task_id: p2_Pick_Extern_Comp1_for_Panel3
   agent: r5
   agent_specific_order: 9
-  sequential_dependencies: ''
-  start: 678
-  end: 683
-- task_id: p3_Hold_Hinge_to_Middle_Panel
+  sequential_dependencies: p2_Extern_Comp2_for_Panel2_joining4
+  start: 641
+  end: 646
+- task_id: p3_Hinge_Right_Panel_Screw1
   agent: H2
-  agent_specific_order: 97
+  agent_specific_order: 81
   sequential_dependencies: ''
-  start: 678
-  end: 681
-- task_id: p4_Screw4_Right_P_C1_3
-  agent: r3
-  agent_specific_order: 192
-  sequential_dependencies: p4_Screw3_Right_P_C1_3
-  start: 680
-  end: 683
-- task_id: p3_Hinge_Middle_Panel_Screw1
+  start: 641
+  end: 645
+- task_id: p3_Hinge_Right_Panel_Screw2
   agent: H2
-  agent_specific_order: 98
+  agent_specific_order: 82
   sequential_dependencies: ''
-  start: 681
-  end: 685
-- task_id: p4_Screw1_B1_Right_P_C2
-  agent: r3
-  agent_specific_order: 193
-  sequential_dependencies: p4_Screw4_Right_P_C1_3
-  start: 683
-  end: 686
+  start: 645
+  end: 649
 - task_id: p2_Fix_Extern_Comp1_for_Panel3
   agent: r5
   agent_specific_order: 10
-  sequential_dependencies: ''
-  start: 683
-  end: 686
-- task_id: p3_Hinge_Middle_Panel_Screw2
-  agent: H2
-  agent_specific_order: 99
-  sequential_dependencies: ''
-  start: 685
-  end: 689
-- task_id: p4_Screw2_B1_Right_P_C2
-  agent: r3
-  agent_specific_order: 194
-  sequential_dependencies: p4_Screw1_B1_Right_P_C2
-  start: 686
-  end: 689
-- task_id: p4_Screw3_B1_Right_P_C2
-  agent: r3
-  agent_specific_order: 195
-  sequential_dependencies: p4_Screw2_B1_Right_P_C2
-  start: 689
-  end: 692
+  sequential_dependencies: p2_Pick_Extern_Comp1_for_Panel3
+  start: 646
+  end: 649
+- task_id: p3_Pick_and_Place_Middle_Panel
+  agent: r1
+  agent_specific_order: 17
+  sequential_dependencies: p2_Fix_Extern_Comp1_for_Panel3
+  start: 649
+  end: 654
 - task_id: p2_Extern_Comp1_for_Panel3_joining1
   agent: H2
-  agent_specific_order: 100
+  agent_specific_order: 83
   sequential_dependencies: ''
-  start: 689
-  end: 693
-- task_id: p4_Screw4_B1_Right_P_C2
-  agent: r3
-  agent_specific_order: 196
-  sequential_dependencies: p4_Screw3_B1_Right_P_C2
-  start: 692
-  end: 695
-- task_id: p2_Extern_Comp1_for_Panel3_joining4
-  agent: H2
-  agent_specific_order: 101
-  sequential_dependencies: ''
-  start: 693
-  end: 697
-- task_id: p4_Screw1_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 197
-  sequential_dependencies: p4_Screw4_B1_Right_P_C2
-  start: 695
-  end: 698
-- task_id: p2_Extern_Comp1_for_Panel3_joining3
-  agent: H2
-  agent_specific_order: 102
-  sequential_dependencies: ''
-  start: 697
-  end: 701
-- task_id: p4_Screw2_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 198
-  sequential_dependencies: p4_Screw1_B1_Right_P_C5
-  start: 698
-  end: 701
-- task_id: p4_Screw3_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 199
-  sequential_dependencies: p4_Screw2_B1_Right_P_C5
-  start: 701
-  end: 704
+  start: 649
+  end: 653
 - task_id: p2_Extern_Comp1_for_Panel3_joining2
   agent: H2
-  agent_specific_order: 103
+  agent_specific_order: 84
   sequential_dependencies: ''
-  start: 701
-  end: 705
-- task_id: p4_Screw4_B1_Right_P_C5
+  start: 653
+  end: 657
+- task_id: p3_Pick_and_Place_Middle_P_C4
+  agent: r2
+  agent_specific_order: 27
+  sequential_dependencies: p3_Pick_and_Place_Middle_Panel
+  start: 654
+  end: 659
+- task_id: p2_Extern_Comp1_for_Panel3_joining3
+  agent: H2
+  agent_specific_order: 85
+  sequential_dependencies: ''
+  start: 657
+  end: 661
+- task_id: p3_Screw1_B2_Middle_P_C4
   agent: r3
-  agent_specific_order: 200
-  sequential_dependencies: p4_Screw3_B1_Right_P_C5
-  start: 704
-  end: 707
+  agent_specific_order: 141
+  sequential_dependencies: p3_Pick_and_Place_Middle_P_C4
+  start: 659
+  end: 662
+- task_id: p2_Extern_Comp1_for_Panel3_joining4
+  agent: H2
+  agent_specific_order: 86
+  sequential_dependencies: ''
+  start: 661
+  end: 665
+- task_id: p3_Screw2_B2_Middle_P_C4
+  agent: r3
+  agent_specific_order: 142
+  sequential_dependencies: p3_Screw1_B2_Middle_P_C4
+  start: 662
+  end: 665
+- task_id: p3_Screw3_B2_Middle_P_C4
+  agent: r3
+  agent_specific_order: 143
+  sequential_dependencies: p3_Screw2_B2_Middle_P_C4
+  start: 665
+  end: 668
 - task_id: p2_roate_turntable_180_2
   agent: TT
   agent_specific_order: 4
   sequential_dependencies: ''
-  start: 705
-  end: 708
-- task_id: p3_Attach_and_Hold_Hinge_on_Panel12
-  agent: H2
-  agent_specific_order: 104
-  sequential_dependencies: ''
-  start: 705
-  end: 708
-- task_id: p4_Screw5_B1_Right_P_C5
+  start: 665
+  end: 668
+- task_id: p3_Screw4_B2_Middle_P_C4
   agent: r3
-  agent_specific_order: 201
-  sequential_dependencies: p4_Screw4_B1_Right_P_C5
-  start: 707
-  end: 710
+  agent_specific_order: 144
+  sequential_dependencies: p3_Screw3_B2_Middle_P_C4
+  start: 668
+  end: 671
 - task_id: p2_Pick_Extern_Comp2_for_Panel4
   agent: r5
   agent_specific_order: 11
   sequential_dependencies: ''
-  start: 708
-  end: 713
-- task_id: p3_Attach_and_Hold_Hinge_on_Panel23
-  agent: H2
-  agent_specific_order: 105
-  sequential_dependencies: ''
-  start: 708
-  end: 711
-- task_id: p4_Screw6_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 202
-  sequential_dependencies: p4_Screw5_B1_Right_P_C5
-  start: 710
-  end: 713
-- task_id: p3_Attach_and_Hold_Hinge_on_Panel34
-  agent: H2
-  agent_specific_order: 106
-  sequential_dependencies: ''
-  start: 711
-  end: 714
-- task_id: p4_Screw7_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 203
-  sequential_dependencies: p4_Screw6_B1_Right_P_C5
-  start: 713
-  end: 716
+  start: 668
+  end: 673
+- task_id: p3_Move_Middle_Panel_to_the_lift
+  agent: r1
+  agent_specific_order: 18
+  sequential_dependencies: p3_Screw4_B2_Middle_P_C4
+  start: 671
+  end: 675
 - task_id: p2_Fix_Extern_Comp2_for_Panel4
   agent: r5
   agent_specific_order: 12
   sequential_dependencies: ''
-  start: 713
-  end: 716
-- task_id: p3_Attach_and_Hold_Hinge_on_Panel45
-  agent: H2
-  agent_specific_order: 107
-  sequential_dependencies: ''
-  start: 714
-  end: 717
-- task_id: p4_Screw8_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 204
-  sequential_dependencies: p4_Screw7_B1_Right_P_C5
-  start: 716
-  end: 719
-- task_id: p5_Hold_Hinge_to_Top_Panel
-  agent: H2
-  agent_specific_order: 108
-  sequential_dependencies: ''
-  start: 717
-  end: 720
-- task_id: p4_Screw9_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 205
-  sequential_dependencies: p4_Screw8_B1_Right_P_C5
-  start: 719
-  end: 722
+  start: 673
+  end: 676
+- task_id: p3_Mount_Middle_Panel_on_the_Fixture
+  agent: r4
+  agent_specific_order: 24
+  sequential_dependencies: p3_Move_Middle_Panel_to_the_lift
+  start: 675
+  end: 685
 - task_id: p2_Extern_Comp2_for_Panel4_joining2
   agent: H2
-  agent_specific_order: 109
+  agent_specific_order: 87
   sequential_dependencies: ''
-  start: 720
-  end: 724
-- task_id: p4_Screw10_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 206
-  sequential_dependencies: p4_Screw9_B1_Right_P_C5
-  start: 722
-  end: 725
-- task_id: p5_Hinge_Top_Panel_Screw2
+  start: 676
+  end: 680
+- task_id: p2_Extern_Comp2_for_Panel4_joining4
   agent: H2
-  agent_specific_order: 110
+  agent_specific_order: 88
   sequential_dependencies: ''
-  start: 724
-  end: 728
-- task_id: p4_Move_Right_Panel_to_the_lift
-  agent: r1
-  agent_specific_order: 24
-  sequential_dependencies: p4_Screw10_B1_Right_P_C5
-  start: 725
-  end: 729
-- task_id: p5_Hinge_Top_Panel_Screw1
+  start: 680
+  end: 684
+- task_id: p2_Extern_Comp2_for_Panel4_joining3
   agent: H2
-  agent_specific_order: 111
+  agent_specific_order: 89
   sequential_dependencies: ''
-  start: 728
-  end: 732
-- task_id: p4_Mount_Right_Panel_on_the_Fixture
-  agent: r4
-  agent_specific_order: 29
-  sequential_dependencies: p4_Move_Right_Panel_to_the_lift
-  start: 729
-  end: 739
-- task_id: p5_Hinge_Panel_B4_Screw2
+  start: 684
+  end: 688
+- task_id: p3_Hold_Hinge_to_Middle_Panel
   agent: H2
-  agent_specific_order: 112
-  sequential_dependencies: ''
-  start: 732
-  end: 736
-- task_id: p2_Extern_Comp2_for_Panel4_joining1
+  agent_specific_order: 90
+  sequential_dependencies: p3_Mount_Middle_Panel_on_the_Fixture
+  start: 688
+  end: 691
+- task_id: p3_Hinge_Middle_Panel_Screw1
   agent: H2
-  agent_specific_order: 113
-  sequential_dependencies: ''
-  start: 736
-  end: 740
-- task_id: p5_Pick_and_Place_Right_Panel
-  agent: r1
-  agent_specific_order: 25
-  sequential_dependencies: p4_Mount_Right_Panel_on_the_Fixture
-  start: 739
-  end: 744
-- task_id: p4_Hold_Hinge_to_Right_Panel
+  agent_specific_order: 91
+  sequential_dependencies: p3_Hold_Hinge_to_Middle_Panel
+  start: 691
+  end: 695
+- task_id: p3_Hinge_Middle_Panel_Screw2
   agent: H2
-  agent_specific_order: 114
-  sequential_dependencies: ''
-  start: 740
-  end: 743
-- task_id: p4_Hinge_Right_Panel_Screw2
+  agent_specific_order: 92
+  sequential_dependencies: p3_Hinge_Middle_Panel_Screw1
+  start: 695
+  end: 699
+- task_id: p3_Attach_and_Hold_Hinge_on_Panel23
   agent: H2
-  agent_specific_order: 115
-  sequential_dependencies: ''
-  start: 743
-  end: 747
-- task_id: p5_Pick_and_Place_Right_P_C1_2
-  agent: r2
-  agent_specific_order: 39
-  sequential_dependencies: p5_Pick_and_Place_Right_Panel
-  start: 744
-  end: 749
-- task_id: p4_Hinge_Right_Panel_Screw1
-  agent: H2
-  agent_specific_order: 116
-  sequential_dependencies: ''
-  start: 747
-  end: 751
-- task_id: p5_Screw2_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 207
-  sequential_dependencies: p5_Pick_and_Place_Right_P_C1_2
-  start: 749
-  end: 752
-- task_id: p4_Pick_and_Place_Middle_Panel
-  agent: r1
-  agent_specific_order: 26
-  sequential_dependencies: ''
-  start: 751
-  end: 756
-- task_id: p3_Hinge_on_Panel12_Screw1
-  agent: H2
-  agent_specific_order: 117
-  sequential_dependencies: ''
-  start: 751
-  end: 756
-- task_id: p5_Screw3_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 208
-  sequential_dependencies: p5_Screw2_Right_P_C1_1
-  start: 752
-  end: 755
-- task_id: p5_Screw1_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 209
-  sequential_dependencies: p5_Screw3_Right_P_C1_1
-  start: 755
-  end: 758
-- task_id: p4_Pick_and_Place_Middle_P_C4
-  agent: r2
-  agent_specific_order: 40
-  sequential_dependencies: ''
-  start: 756
-  end: 761
-- task_id: p3_Hinge_on_Panel12_Screw2
-  agent: H2
-  agent_specific_order: 118
-  sequential_dependencies: ''
-  start: 756
-  end: 761
-- task_id: p5_Screw4_Right_P_C1_1
-  agent: r3
-  agent_specific_order: 210
-  sequential_dependencies: p5_Screw1_Right_P_C1_1
-  start: 758
-  end: 761
-- task_id: p5_Pick_Place_Right_P_C1_1
-  agent: r2
-  agent_specific_order: 41
-  sequential_dependencies: p5_Screw4_Right_P_C1_1
-  start: 761
-  end: 766
-- task_id: p4_Screw4_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 211
-  sequential_dependencies: ''
-  start: 761
-  end: 764
+  agent_specific_order: 93
+  sequential_dependencies: p3_Hinge_Middle_Panel_Screw2
+  start: 699
+  end: 702
 - task_id: p3_Hinge_on_Panel23_Screw2
   agent: H2
-  agent_specific_order: 119
-  sequential_dependencies: ''
-  start: 761
-  end: 766
-- task_id: p4_Screw2_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 212
-  sequential_dependencies: ''
-  start: 764
-  end: 767
-- task_id: p5_Pick_and_Place_Right_P_C1_3
-  agent: r2
-  agent_specific_order: 42
-  sequential_dependencies: p5_Pick_Place_Right_P_C1_1
-  start: 766
-  end: 771
+  agent_specific_order: 94
+  sequential_dependencies: p3_Attach_and_Hold_Hinge_on_Panel23
+  start: 702
+  end: 707
+- task_id: p3_Attach_and_Hold_Hinge_on_Panel34
+  agent: H2
+  agent_specific_order: 95
+  sequential_dependencies: p3_Hinge_on_Panel23_Screw2
+  start: 707
+  end: 710
+- task_id: p3_Attach_and_Hold_Hinge_on_Panel12
+  agent: H2
+  agent_specific_order: 96
+  sequential_dependencies: p3_Attach_and_Hold_Hinge_on_Panel34
+  start: 712
+  end: 715
+- task_id: p3_Hinge_on_Panel12_Screw1
+  agent: H2
+  agent_specific_order: 97
+  sequential_dependencies: p3_Attach_and_Hold_Hinge_on_Panel12
+  start: 715
+  end: 720
+- task_id: p3_Hinge_on_Panel12_Screw2
+  agent: H2
+  agent_specific_order: 98
+  sequential_dependencies: p3_Hinge_on_Panel12_Screw1
+  start: 720
+  end: 725
 - task_id: p3_Hinge_on_Panel23_Screw1
   agent: H2
-  agent_specific_order: 120
-  sequential_dependencies: ''
-  start: 766
-  end: 771
-- task_id: p4_Screw3_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 213
-  sequential_dependencies: ''
-  start: 767
-  end: 770
-- task_id: p4_Screw1_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 214
-  sequential_dependencies: ''
-  start: 770
-  end: 773
-- task_id: p5_Pick_and_Place_Right_P_C2
-  agent: r2
-  agent_specific_order: 43
-  sequential_dependencies: p5_Pick_and_Place_Right_P_C1_3
-  start: 771
-  end: 776
+  agent_specific_order: 99
+  sequential_dependencies: p3_Hinge_on_Panel12_Screw2
+  start: 725
+  end: 730
+- task_id: p3_Attach_and_Hold_Hinge_on_Panel45
+  agent: H2
+  agent_specific_order: 100
+  sequential_dependencies: p3_Hinge_on_Panel23_Screw1
+  start: 730
+  end: 733
 - task_id: p3_Hinge_on_Panel34_Screw1
   agent: H2
-  agent_specific_order: 121
-  sequential_dependencies: ''
-  start: 771
-  end: 776
-- task_id: p4_Move_Middle_Panel_to_the_lift
-  agent: r1
-  agent_specific_order: 27
-  sequential_dependencies: ''
-  start: 773
-  end: 777
-- task_id: p5_Screw1_Right_P_C1_3
-  agent: r3
-  agent_specific_order: 215
-  sequential_dependencies: p5_Pick_and_Place_Right_P_C2
-  start: 776
-  end: 779
-- task_id: p3_Hinge_on_Panel45_Screw2
-  agent: H2
-  agent_specific_order: 122
-  sequential_dependencies: ''
-  start: 776
-  end: 781
-- task_id: p4_Mount_Middle_Panel_on_the_Fixture
-  agent: r4
-  agent_specific_order: 30
-  sequential_dependencies: ''
-  start: 777
-  end: 787
-- task_id: p5_Screw2_Right_P_C1_3
-  agent: r3
-  agent_specific_order: 216
-  sequential_dependencies: p5_Screw1_Right_P_C1_3
-  start: 779
-  end: 782
+  agent_specific_order: 101
+  sequential_dependencies: p3_Attach_and_Hold_Hinge_on_Panel45
+  start: 733
+  end: 738
 - task_id: p3_Hinge_on_Panel34_Screw2
   agent: H2
-  agent_specific_order: 123
-  sequential_dependencies: ''
-  start: 781
-  end: 786
-- task_id: p5_Screw3_Right_P_C1_3
-  agent: r3
-  agent_specific_order: 217
-  sequential_dependencies: p5_Screw2_Right_P_C1_3
-  start: 782
-  end: 785
-- task_id: p5_Screw4_Right_P_C1_3
-  agent: r3
-  agent_specific_order: 218
-  sequential_dependencies: p5_Screw3_Right_P_C1_3
-  start: 785
-  end: 788
+  agent_specific_order: 102
+  sequential_dependencies: p3_Hinge_on_Panel34_Screw1
+  start: 738
+  end: 743
 - task_id: p3_Hinge_on_Panel45_Screw1
   agent: H2
-  agent_specific_order: 124
-  sequential_dependencies: ''
-  start: 786
-  end: 791
-- task_id: p5_Screw1_B1_Right_P_C2
-  agent: r3
-  agent_specific_order: 219
-  sequential_dependencies: p5_Screw4_Right_P_C1_3
-  start: 788
-  end: 791
-- task_id: p5_Screw2_B1_Right_P_C2
-  agent: r3
-  agent_specific_order: 220
-  sequential_dependencies: p5_Screw1_B1_Right_P_C2
-  start: 791
-  end: 794
+  agent_specific_order: 103
+  sequential_dependencies: p3_Hinge_on_Panel34_Screw2
+  start: 743
+  end: 748
+- task_id: p3_Hinge_on_Panel45_Screw2
+  agent: H2
+  agent_specific_order: 104
+  sequential_dependencies: p3_Hinge_on_Panel45_Screw1
+  start: 748
+  end: 753
 - task_id: p3_Pick_Extern_Comp1_for_Panel1
   agent: r4
-  agent_specific_order: 31
-  sequential_dependencies: ''
-  start: 791
-  end: 796
-- task_id: p4_Hold_Hinge_to_Middle_Panel
+  agent_specific_order: 25
+  sequential_dependencies: p3_Hinge_on_Panel45_Screw2
+  start: 753
+  end: 758
+- task_id: p2_Extern_Comp2_for_Panel4_joining1
   agent: H2
-  agent_specific_order: 125
+  agent_specific_order: 105
   sequential_dependencies: ''
-  start: 791
-  end: 794
-- task_id: p5_Screw4_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 221
-  sequential_dependencies: p5_Screw2_B1_Right_P_C2
-  start: 794
-  end: 797
-- task_id: p4_Hinge_Middle_Panel_Screw1
-  agent: H2
-  agent_specific_order: 126
-  sequential_dependencies: ''
-  start: 794
-  end: 798
+  start: 755
+  end: 759
 - task_id: p3_Fix_Extern_Comp1_for_Panel1
   agent: r4
-  agent_specific_order: 32
-  sequential_dependencies: ''
-  start: 796
-  end: 799
-- task_id: p5_Screw1_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 222
-  sequential_dependencies: p5_Screw4_Right_P_C1_1_Screw
-  start: 797
-  end: 800
-- task_id: p4_Hinge_Middle_Panel_Screw2
-  agent: H2
-  agent_specific_order: 127
-  sequential_dependencies: ''
-  start: 798
-  end: 802
-- task_id: p3_Extern_Comp1_for_Panel1_joining3
-  agent: r4
-  agent_specific_order: 33
-  sequential_dependencies: ''
-  start: 799
-  end: 803
-- task_id: p5_Screw2_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 223
-  sequential_dependencies: p5_Screw1_Right_P_C1_1_Screw
-  start: 800
-  end: 803
-- task_id: p4_Attach_and_Hold_Hinge_on_Panel12
-  agent: H2
-  agent_specific_order: 128
-  sequential_dependencies: ''
-  start: 802
-  end: 805
-- task_id: p5_Screw3_Right_P_C1_1_Screw
-  agent: r3
-  agent_specific_order: 224
-  sequential_dependencies: p5_Screw2_Right_P_C1_1_Screw
-  start: 803
-  end: 806
+  agent_specific_order: 26
+  sequential_dependencies: p3_Pick_Extern_Comp1_for_Panel1
+  start: 758
+  end: 761
 - task_id: p3_Extern_Comp1_for_Panel1_joining1
   agent: r4
-  agent_specific_order: 34
-  sequential_dependencies: ''
-  start: 803
-  end: 807
-- task_id: p4_Attach_and_Hold_Hinge_on_Panel45
-  agent: H2
-  agent_specific_order: 129
-  sequential_dependencies: ''
-  start: 805
-  end: 808
-- task_id: p5_Screw3_B1_Right_P_C2
-  agent: r3
-  agent_specific_order: 225
-  sequential_dependencies: p5_Screw3_Right_P_C1_1_Screw
-  start: 806
-  end: 809
+  agent_specific_order: 27
+  sequential_dependencies: p3_Fix_Extern_Comp1_for_Panel1
+  start: 761
+  end: 765
 - task_id: p3_Extern_Comp1_for_Panel1_joining2
   agent: r4
-  agent_specific_order: 35
-  sequential_dependencies: ''
-  start: 807
-  end: 811
-- task_id: p4_Attach_and_Hold_Hinge_on_Panel23
-  agent: H2
-  agent_specific_order: 130
-  sequential_dependencies: ''
-  start: 808
-  end: 811
-- task_id: p5_Screw4_B1_Right_P_C2
-  agent: r3
-  agent_specific_order: 226
-  sequential_dependencies: p5_Screw3_B1_Right_P_C2
-  start: 809
-  end: 812
+  agent_specific_order: 28
+  sequential_dependencies: p3_Extern_Comp1_for_Panel1_joining1
+  start: 765
+  end: 769
+- task_id: p3_Extern_Comp1_for_Panel1_joining3
+  agent: r4
+  agent_specific_order: 29
+  sequential_dependencies: p3_Extern_Comp1_for_Panel1_joining2
+  start: 769
+  end: 773
 - task_id: p3_Extern_Comp1_for_Panel1_joining4
   agent: r4
-  agent_specific_order: 36
-  sequential_dependencies: ''
-  start: 811
-  end: 815
-- task_id: p4_Attach_and_Hold_Hinge_on_Panel34
-  agent: H2
-  agent_specific_order: 131
-  sequential_dependencies: ''
-  start: 811
-  end: 814
-- task_id: p5_Pick_and_Place_Right_P_C5
-  agent: r2
-  agent_specific_order: 44
-  sequential_dependencies: p5_Screw4_B1_Right_P_C2
-  start: 812
-  end: 817
-- task_id: p4_Hinge_on_Panel45_Screw1
-  agent: H2
-  agent_specific_order: 132
-  sequential_dependencies: ''
-  start: 814
-  end: 819
+  agent_specific_order: 30
+  sequential_dependencies: p3_Extern_Comp1_for_Panel1_joining3
+  start: 773
+  end: 777
 - task_id: p3_roate_turntable_180
   agent: TT
   agent_specific_order: 5
-  sequential_dependencies: ''
-  start: 815
-  end: 819
-- task_id: p5_Screw1_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 227
-  sequential_dependencies: p5_Pick_and_Place_Right_P_C5
-  start: 817
-  end: 820
+  sequential_dependencies: p3_Extern_Comp1_for_Panel1_joining4
+  start: 777
+  end: 781
 - task_id: p3_Pick_Extern_Comp2_for_Panel2
   agent: r5
   agent_specific_order: 13
-  sequential_dependencies: ''
-  start: 819
-  end: 824
-- task_id: p4_Hinge_on_Panel12_Screw1
-  agent: H2
-  agent_specific_order: 133
-  sequential_dependencies: ''
-  start: 819
-  end: 824
-- task_id: p5_Screw2_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 228
-  sequential_dependencies: p5_Screw1_B1_Right_P_C5
-  start: 820
-  end: 823
-- task_id: p5_Screw3_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 229
-  sequential_dependencies: p5_Screw2_B1_Right_P_C5
-  start: 823
-  end: 826
+  sequential_dependencies: p3_roate_turntable_180
+  start: 781
+  end: 786
 - task_id: p3_Fix_Extern_Comp2_for_Panel2
   agent: r5
   agent_specific_order: 14
-  sequential_dependencies: ''
-  start: 824
-  end: 827
-- task_id: p4_Hinge_on_Panel23_Screw2
-  agent: H2
-  agent_specific_order: 134
-  sequential_dependencies: ''
-  start: 824
-  end: 829
-- task_id: p5_Screw4_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 230
-  sequential_dependencies: p5_Screw3_B1_Right_P_C5
-  start: 826
-  end: 829
-- task_id: p5_Screw5_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 231
-  sequential_dependencies: p5_Screw4_B1_Right_P_C5
-  start: 829
-  end: 832
-- task_id: p3_Extern_Comp2_for_Panel2_joining3
-  agent: H2
-  agent_specific_order: 135
-  sequential_dependencies: ''
-  start: 829
-  end: 833
-- task_id: p5_Screw6_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 232
-  sequential_dependencies: p5_Screw5_B1_Right_P_C5
-  start: 832
-  end: 835
-- task_id: p3_Extern_Comp2_for_Panel2_joining2
-  agent: H2
-  agent_specific_order: 136
-  sequential_dependencies: ''
-  start: 833
-  end: 837
-- task_id: p5_Screw7_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 233
-  sequential_dependencies: p5_Screw6_B1_Right_P_C5
-  start: 835
-  end: 838
+  sequential_dependencies: p3_Pick_Extern_Comp2_for_Panel2
+  start: 786
+  end: 789
 - task_id: p3_Extern_Comp2_for_Panel2_joining1
   agent: H2
-  agent_specific_order: 137
-  sequential_dependencies: ''
-  start: 837
-  end: 841
-- task_id: p5_Screw8_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 234
-  sequential_dependencies: p5_Screw7_B1_Right_P_C5
-  start: 838
-  end: 841
-- task_id: p5_Screw9_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 235
-  sequential_dependencies: p5_Screw8_B1_Right_P_C5
-  start: 841
-  end: 844
+  agent_specific_order: 106
+  sequential_dependencies: p3_Fix_Extern_Comp2_for_Panel2
+  start: 789
+  end: 793
+- task_id: p3_Extern_Comp2_for_Panel2_joining2
+  agent: H2
+  agent_specific_order: 107
+  sequential_dependencies: p3_Extern_Comp2_for_Panel2_joining1
+  start: 795
+  end: 799
+- task_id: p3_Extern_Comp2_for_Panel2_joining3
+  agent: H2
+  agent_specific_order: 108
+  sequential_dependencies: p3_Extern_Comp2_for_Panel2_joining2
+  start: 799
+  end: 803
 - task_id: p3_Extern_Comp2_for_Panel2_joining4
   agent: H2
-  agent_specific_order: 138
-  sequential_dependencies: ''
-  start: 841
-  end: 845
-- task_id: p5_Screw10_B1_Right_P_C5
-  agent: r3
-  agent_specific_order: 236
-  sequential_dependencies: p5_Screw9_B1_Right_P_C5
-  start: 844
-  end: 847
+  agent_specific_order: 109
+  sequential_dependencies: p3_Extern_Comp2_for_Panel2_joining3
+  start: 803
+  end: 807
 - task_id: p3_Pick_Extern_Comp1_for_Panel3
   agent: r5
   agent_specific_order: 15
-  sequential_dependencies: ''
-  start: 845
-  end: 850
-- task_id: p2_Extern_Comp2_for_Panel4_joining4
-  agent: H2
-  agent_specific_order: 139
-  sequential_dependencies: ''
-  start: 845
-  end: 849
-- task_id: p5_Move_Right_Panel_to_the_lift
-  agent: r1
-  agent_specific_order: 28
-  sequential_dependencies: p5_Screw10_B1_Right_P_C5
-  start: 847
-  end: 851
-- task_id: p2_Extern_Comp2_for_Panel4_joining3
-  agent: H2
-  agent_specific_order: 140
-  sequential_dependencies: ''
-  start: 849
-  end: 853
+  sequential_dependencies: p3_Extern_Comp2_for_Panel2_joining4
+  start: 807
+  end: 812
 - task_id: p3_Fix_Extern_Comp1_for_Panel3
   agent: r5
   agent_specific_order: 16
-  sequential_dependencies: ''
-  start: 850
-  end: 853
-- task_id: p5_Mount_Right_Panel_on_the_Fixture
-  agent: r4
-  agent_specific_order: 37
-  sequential_dependencies: p5_Move_Right_Panel_to_the_lift
-  start: 851
-  end: 861
-- task_id: p3_Extern_Comp1_for_Panel3_joining3
-  agent: H2
-  agent_specific_order: 141
-  sequential_dependencies: ''
-  start: 853
-  end: 857
+  sequential_dependencies: p3_Pick_Extern_Comp1_for_Panel3
+  start: 812
+  end: 815
 - task_id: p3_Extern_Comp1_for_Panel3_joining1
   agent: H2
-  agent_specific_order: 142
-  sequential_dependencies: ''
-  start: 857
-  end: 861
-- task_id: p5_Hold_Hinge_to_Right_Panel
-  agent: H2
-  agent_specific_order: 143
-  sequential_dependencies: p5_Mount_Right_Panel_on_the_Fixture
-  start: 861
-  end: 864
-- task_id: p5_Hinge_Right_Panel_Screw1
-  agent: H2
-  agent_specific_order: 144
-  sequential_dependencies: p5_Hold_Hinge_to_Right_Panel
-  start: 864
-  end: 868
-- task_id: p5_Hinge_Right_Panel_Screw2
-  agent: H2
-  agent_specific_order: 145
-  sequential_dependencies: p5_Hinge_Right_Panel_Screw1
-  start: 868
-  end: 872
-- task_id: p5_Pick_and_Place_Middle_Panel
-  agent: r1
-  agent_specific_order: 29
-  sequential_dependencies: p5_Hinge_Right_Panel_Screw2
-  start: 872
-  end: 877
+  agent_specific_order: 110
+  sequential_dependencies: p3_Fix_Extern_Comp1_for_Panel3
+  start: 815
+  end: 819
 - task_id: p3_Extern_Comp1_for_Panel3_joining2
   agent: H2
-  agent_specific_order: 146
-  sequential_dependencies: ''
-  start: 872
-  end: 876
+  agent_specific_order: 111
+  sequential_dependencies: p3_Extern_Comp1_for_Panel3_joining1
+  start: 819
+  end: 823
+- task_id: p3_Extern_Comp1_for_Panel3_joining3
+  agent: H2
+  agent_specific_order: 112
+  sequential_dependencies: p3_Extern_Comp1_for_Panel3_joining2
+  start: 823
+  end: 827
 - task_id: p3_Extern_Comp1_for_Panel3_joining4
   agent: H2
-  agent_specific_order: 147
-  sequential_dependencies: ''
-  start: 876
-  end: 880
-- task_id: p5_Pick_and_Place_Middle_P_C4
-  agent: r2
-  agent_specific_order: 45
-  sequential_dependencies: p5_Pick_and_Place_Middle_Panel
-  start: 877
-  end: 882
+  agent_specific_order: 113
+  sequential_dependencies: p3_Extern_Comp1_for_Panel3_joining3
+  start: 827
+  end: 831
 - task_id: p3_roate_turntable_180_2
   agent: TT
   agent_specific_order: 6
-  sequential_dependencies: ''
-  start: 880
-  end: 883
-- task_id: p4_Hinge_on_Panel23_Screw1
-  agent: H2
-  agent_specific_order: 148
-  sequential_dependencies: ''
-  start: 880
-  end: 885
-- task_id: p5_Screw1_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 237
-  sequential_dependencies: p5_Pick_and_Place_Middle_P_C4
-  start: 882
-  end: 885
+  sequential_dependencies: p3_Extern_Comp1_for_Panel3_joining4
+  start: 831
+  end: 834
 - task_id: p3_Pick_Extern_Comp2_for_Panel4
   agent: r5
   agent_specific_order: 17
-  sequential_dependencies: ''
-  start: 883
-  end: 888
-- task_id: p5_Screw2_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 238
-  sequential_dependencies: p5_Screw1_B2_Middle_P_C4
-  start: 885
-  end: 888
-- task_id: p4_Hinge_on_Panel34_Screw1
-  agent: H2
-  agent_specific_order: 149
-  sequential_dependencies: ''
-  start: 885
-  end: 890
-- task_id: p5_Screw3_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 239
-  sequential_dependencies: p5_Screw2_B2_Middle_P_C4
-  start: 888
-  end: 891
+  sequential_dependencies: p3_roate_turntable_180_2
+  start: 834
+  end: 839
 - task_id: p3_Fix_Extern_Comp2_for_Panel4
   agent: r5
   agent_specific_order: 18
-  sequential_dependencies: ''
-  start: 888
-  end: 891
-- task_id: p4_Hinge_on_Panel34_Screw2
-  agent: H2
-  agent_specific_order: 150
-  sequential_dependencies: ''
-  start: 890
-  end: 895
-- task_id: p5_Screw4_B2_Middle_P_C4
-  agent: r3
-  agent_specific_order: 240
-  sequential_dependencies: p5_Screw3_B2_Middle_P_C4
-  start: 891
-  end: 894
-- task_id: p5_Move_Middle_Panel_to_the_lift
-  agent: r1
-  agent_specific_order: 30
-  sequential_dependencies: p5_Screw4_B2_Middle_P_C4
-  start: 894
-  end: 898
-- task_id: p4_Hinge_on_Panel12_Screw2
-  agent: H2
-  agent_specific_order: 151
-  sequential_dependencies: ''
-  start: 895
-  end: 900
-- task_id: p5_Mount_Middle_Panel_on_the_Fixture
-  agent: r4
-  agent_specific_order: 38
-  sequential_dependencies: p5_Move_Middle_Panel_to_the_lift
-  start: 898
-  end: 908
-- task_id: p4_Hinge_on_Panel45_Screw2
-  agent: H2
-  agent_specific_order: 152
-  sequential_dependencies: ''
-  start: 900
-  end: 905
-- task_id: p3_Extern_Comp2_for_Panel4_joining2
-  agent: H2
-  agent_specific_order: 153
-  sequential_dependencies: ''
-  start: 905
-  end: 909
-- task_id: p4_Pick_Extern_Comp1_for_Panel1
-  agent: r4
-  agent_specific_order: 39
-  sequential_dependencies: p5_Mount_Middle_Panel_on_the_Fixture
-  start: 908
-  end: 913
-- task_id: p5_Hold_Hinge_to_Middle_Panel
-  agent: H2
-  agent_specific_order: 154
-  sequential_dependencies: ''
-  start: 909
-  end: 912
-- task_id: p5_Hinge_Middle_Panel_Screw1
-  agent: H2
-  agent_specific_order: 155
-  sequential_dependencies: ''
-  start: 912
-  end: 916
-- task_id: p4_Fix_Extern_Comp1_for_Panel1
-  agent: r4
-  agent_specific_order: 40
-  sequential_dependencies: p4_Pick_Extern_Comp1_for_Panel1
-  start: 913
-  end: 916
-- task_id: p4_Extern_Comp1_for_Panel1_joining1
-  agent: r4
-  agent_specific_order: 41
-  sequential_dependencies: p4_Fix_Extern_Comp1_for_Panel1
-  start: 916
-  end: 920
-- task_id: p5_Hinge_Middle_Panel_Screw2
-  agent: H2
-  agent_specific_order: 156
-  sequential_dependencies: ''
-  start: 916
-  end: 920
-- task_id: p4_Extern_Comp1_for_Panel1_joining4
-  agent: r4
-  agent_specific_order: 42
-  sequential_dependencies: p4_Extern_Comp1_for_Panel1_joining1
-  start: 920
-  end: 924
-- task_id: p5_Attach_and_Hold_Hinge_on_Panel12
-  agent: H2
-  agent_specific_order: 157
-  sequential_dependencies: ''
-  start: 920
-  end: 923
-- task_id: p5_Attach_and_Hold_Hinge_on_Panel23
-  agent: H2
-  agent_specific_order: 158
-  sequential_dependencies: ''
-  start: 923
-  end: 926
-- task_id: p4_Extern_Comp1_for_Panel1_joining3
-  agent: r4
-  agent_specific_order: 43
-  sequential_dependencies: p4_Extern_Comp1_for_Panel1_joining4
-  start: 924
-  end: 928
-- task_id: p5_Attach_and_Hold_Hinge_on_Panel34
-  agent: H2
-  agent_specific_order: 159
-  sequential_dependencies: ''
-  start: 926
-  end: 929
-- task_id: p4_Extern_Comp1_for_Panel1_joining2
-  agent: r4
-  agent_specific_order: 44
-  sequential_dependencies: p4_Extern_Comp1_for_Panel1_joining3
-  start: 928
-  end: 932
-- task_id: p5_Attach_and_Hold_Hinge_on_Panel45
-  agent: H2
-  agent_specific_order: 160
-  sequential_dependencies: ''
-  start: 929
-  end: 932
-- task_id: p4_roate_turntable_180
-  agent: TT
-  agent_specific_order: 7
-  sequential_dependencies: p4_Extern_Comp1_for_Panel1_joining2
-  start: 932
-  end: 936
-- task_id: p5_Hinge_on_Panel12_Screw1
-  agent: H2
-  agent_specific_order: 161
-  sequential_dependencies: ''
-  start: 932
-  end: 937
-- task_id: p4_Pick_Extern_Comp2_for_Panel2
-  agent: r5
-  agent_specific_order: 19
-  sequential_dependencies: p4_roate_turntable_180
-  start: 936
-  end: 941
-- task_id: p5_Hinge_on_Panel23_Screw1
-  agent: H2
-  agent_specific_order: 162
-  sequential_dependencies: ''
-  start: 937
-  end: 942
-- task_id: p4_Fix_Extern_Comp2_for_Panel2
-  agent: r5
-  agent_specific_order: 20
-  sequential_dependencies: p4_Pick_Extern_Comp2_for_Panel2
-  start: 941
-  end: 944
-- task_id: p5_Hinge_on_Panel23_Screw2
-  agent: H2
-  agent_specific_order: 163
-  sequential_dependencies: ''
-  start: 942
-  end: 947
-- task_id: p4_Extern_Comp2_for_Panel2_joining2
-  agent: H2
-  agent_specific_order: 164
-  sequential_dependencies: p4_Fix_Extern_Comp2_for_Panel2
-  start: 947
-  end: 951
-- task_id: p4_Extern_Comp2_for_Panel2_joining1
-  agent: H2
-  agent_specific_order: 165
-  sequential_dependencies: p4_Extern_Comp2_for_Panel2_joining2
-  start: 951
-  end: 955
-- task_id: p4_Extern_Comp2_for_Panel2_joining3
-  agent: H2
-  agent_specific_order: 166
-  sequential_dependencies: p4_Extern_Comp2_for_Panel2_joining1
-  start: 955
-  end: 959
-- task_id: p4_Extern_Comp2_for_Panel2_joining4
-  agent: H2
-  agent_specific_order: 167
-  sequential_dependencies: p4_Extern_Comp2_for_Panel2_joining3
-  start: 959
-  end: 963
-- task_id: p4_Pick_Extern_Comp1_for_Panel3
-  agent: r5
-  agent_specific_order: 21
-  sequential_dependencies: p4_Extern_Comp2_for_Panel2_joining4
-  start: 963
-  end: 968
-- task_id: p5_Hinge_on_Panel12_Screw2
-  agent: H2
-  agent_specific_order: 168
-  sequential_dependencies: ''
-  start: 963
-  end: 968
-- task_id: p4_Fix_Extern_Comp1_for_Panel3
-  agent: r5
-  agent_specific_order: 22
-  sequential_dependencies: p4_Pick_Extern_Comp1_for_Panel3
-  start: 968
-  end: 971
-- task_id: p5_Hinge_on_Panel34_Screw1
-  agent: H2
-  agent_specific_order: 169
-  sequential_dependencies: ''
-  start: 968
-  end: 973
-- task_id: p5_Hinge_on_Panel34_Screw2
-  agent: H2
-  agent_specific_order: 170
-  sequential_dependencies: p4_Fix_Extern_Comp1_for_Panel3
-  start: 973
-  end: 978
-- task_id: p5_Hinge_on_Panel45_Screw1
-  agent: H2
-  agent_specific_order: 171
-  sequential_dependencies: p5_Hinge_on_Panel34_Screw2
-  start: 978
-  end: 983
-- task_id: p5_Hinge_on_Panel45_Screw2
-  agent: H2
-  agent_specific_order: 172
-  sequential_dependencies: p5_Hinge_on_Panel45_Screw1
-  start: 983
-  end: 988
-- task_id: p5_Pick_Extern_Comp1_for_Panel1
-  agent: r4
-  agent_specific_order: 45
-  sequential_dependencies: p5_Hinge_on_Panel45_Screw2
-  start: 988
-  end: 993
-- task_id: p4_Extern_Comp1_for_Panel3_joining3
-  agent: H2
-  agent_specific_order: 173
-  sequential_dependencies: ''
-  start: 988
-  end: 992
-- task_id: p4_Extern_Comp1_for_Panel3_joining1
-  agent: H2
-  agent_specific_order: 174
-  sequential_dependencies: ''
-  start: 992
-  end: 996
-- task_id: p5_Fix_Extern_Comp1_for_Panel1
-  agent: r4
-  agent_specific_order: 46
-  sequential_dependencies: p5_Pick_Extern_Comp1_for_Panel1
-  start: 993
-  end: 996
-- task_id: p5_Extern_Comp1_for_Panel1_joining4
-  agent: r4
-  agent_specific_order: 47
-  sequential_dependencies: p5_Fix_Extern_Comp1_for_Panel1
-  start: 996
-  end: 1000
-- task_id: p4_Extern_Comp1_for_Panel3_joining2
-  agent: H2
-  agent_specific_order: 175
-  sequential_dependencies: ''
-  start: 996
-  end: 1000
-- task_id: p5_Extern_Comp1_for_Panel1_joining3
-  agent: r4
-  agent_specific_order: 48
-  sequential_dependencies: p5_Extern_Comp1_for_Panel1_joining4
-  start: 1000
-  end: 1004
-- task_id: p4_Extern_Comp1_for_Panel3_joining4
-  agent: H2
-  agent_specific_order: 176
-  sequential_dependencies: ''
-  start: 1000
-  end: 1004
-- task_id: p5_Extern_Comp1_for_Panel1_joining1
-  agent: r4
-  agent_specific_order: 49
-  sequential_dependencies: p5_Extern_Comp1_for_Panel1_joining3
-  start: 1004
-  end: 1008
-- task_id: p4_roate_turntable_180_2
-  agent: TT
-  agent_specific_order: 8
-  sequential_dependencies: ''
-  start: 1004
-  end: 1007
+  sequential_dependencies: p3_Pick_Extern_Comp2_for_Panel4
+  start: 839
+  end: 842
 - task_id: p3_Extern_Comp2_for_Panel4_joining1
   agent: H2
-  agent_specific_order: 177
-  sequential_dependencies: ''
-  start: 1004
-  end: 1008
-- task_id: p4_Pick_Extern_Comp2_for_Panel4
-  agent: r5
-  agent_specific_order: 23
-  sequential_dependencies: ''
-  start: 1007
-  end: 1012
-- task_id: p5_Extern_Comp1_for_Panel1_joining2
-  agent: r4
-  agent_specific_order: 50
-  sequential_dependencies: p5_Extern_Comp1_for_Panel1_joining1
-  start: 1008
-  end: 1012
+  agent_specific_order: 114
+  sequential_dependencies: p3_Fix_Extern_Comp2_for_Panel4
+  start: 842
+  end: 846
+- task_id: p3_Extern_Comp2_for_Panel4_joining2
+  agent: H2
+  agent_specific_order: 115
+  sequential_dependencies: p3_Extern_Comp2_for_Panel4_joining1
+  start: 846
+  end: 850
 - task_id: p3_Extern_Comp2_for_Panel4_joining3
   agent: H2
-  agent_specific_order: 178
-  sequential_dependencies: ''
-  start: 1008
-  end: 1012
-- task_id: p4_Fix_Extern_Comp2_for_Panel4
-  agent: r5
-  agent_specific_order: 24
-  sequential_dependencies: p5_Extern_Comp1_for_Panel1_joining2
-  start: 1012
-  end: 1015
-- task_id: p5_roate_turntable_180
-  agent: TT
-  agent_specific_order: 9
-  sequential_dependencies: ''
-  start: 1012
-  end: 1016
+  agent_specific_order: 116
+  sequential_dependencies: p3_Extern_Comp2_for_Panel4_joining2
+  start: 850
+  end: 854
 - task_id: p3_Extern_Comp2_for_Panel4_joining4
   agent: H2
-  agent_specific_order: 179
-  sequential_dependencies: ''
-  start: 1012
-  end: 1016
-- task_id: p5_Pick_Extern_Comp2_for_Panel2
-  agent: r5
-  agent_specific_order: 25
-  sequential_dependencies: p4_Fix_Extern_Comp2_for_Panel4
-  start: 1016
-  end: 1021
-- task_id: p4_Extern_Comp2_for_Panel4_joining2
-  agent: H2
-  agent_specific_order: 180
-  sequential_dependencies: ''
-  start: 1016
-  end: 1020
-- task_id: p4_Extern_Comp2_for_Panel4_joining4
-  agent: H2
-  agent_specific_order: 181
-  sequential_dependencies: ''
-  start: 1020
-  end: 1024
-- task_id: p5_Fix_Extern_Comp2_for_Panel2
-  agent: r5
-  agent_specific_order: 26
-  sequential_dependencies: p5_Pick_Extern_Comp2_for_Panel2
-  start: 1021
-  end: 1024
-- task_id: p5_Extern_Comp2_for_Panel2_joining1
-  agent: H2
-  agent_specific_order: 182
-  sequential_dependencies: p5_Fix_Extern_Comp2_for_Panel2
-  start: 1024
-  end: 1028
-- task_id: p5_Extern_Comp2_for_Panel2_joining2
-  agent: H2
-  agent_specific_order: 183
-  sequential_dependencies: p5_Extern_Comp2_for_Panel2_joining1
-  start: 1028
-  end: 1032
-- task_id: p5_Extern_Comp2_for_Panel2_joining3
-  agent: H2
-  agent_specific_order: 184
-  sequential_dependencies: p5_Extern_Comp2_for_Panel2_joining2
-  start: 1032
-  end: 1036
-- task_id: p5_Extern_Comp2_for_Panel2_joining4
-  agent: H2
-  agent_specific_order: 185
-  sequential_dependencies: p5_Extern_Comp2_for_Panel2_joining3
-  start: 1036
-  end: 1040
-- task_id: p5_Pick_Extern_Comp1_for_Panel3
-  agent: r5
-  agent_specific_order: 27
-  sequential_dependencies: p5_Extern_Comp2_for_Panel2_joining4
-  start: 1040
-  end: 1045
-- task_id: p4_Extern_Comp2_for_Panel4_joining3
-  agent: H2
-  agent_specific_order: 186
-  sequential_dependencies: ''
-  start: 1040
-  end: 1044
-- task_id: p4_Extern_Comp2_for_Panel4_joining1
-  agent: H2
-  agent_specific_order: 187
-  sequential_dependencies: ''
-  start: 1044
-  end: 1048
-- task_id: p5_Fix_Extern_Comp1_for_Panel3
-  agent: r5
-  agent_specific_order: 28
-  sequential_dependencies: p5_Pick_Extern_Comp1_for_Panel3
-  start: 1045
-  end: 1048
-- task_id: p5_Extern_Comp1_for_Panel3_joining3
-  agent: H2
-  agent_specific_order: 188
-  sequential_dependencies: p5_Fix_Extern_Comp1_for_Panel3
-  start: 1048
-  end: 1052
-- task_id: p5_Extern_Comp1_for_Panel3_joining4
-  agent: H2
-  agent_specific_order: 189
-  sequential_dependencies: p5_Extern_Comp1_for_Panel3_joining3
-  start: 1052
-  end: 1056
-- task_id: p5_Extern_Comp1_for_Panel3_joining1
-  agent: H2
-  agent_specific_order: 190
-  sequential_dependencies: p5_Extern_Comp1_for_Panel3_joining4
-  start: 1056
-  end: 1060
-- task_id: p5_Extern_Comp1_for_Panel3_joining2
-  agent: H2
-  agent_specific_order: 191
-  sequential_dependencies: p5_Extern_Comp1_for_Panel3_joining1
-  start: 1060
-  end: 1064
-- task_id: p5_roate_turntable_180_2
-  agent: TT
-  agent_specific_order: 10
-  sequential_dependencies: p5_Extern_Comp1_for_Panel3_joining2
-  start: 1064
-  end: 1067
-- task_id: p5_Pick_Extern_Comp2_for_Panel4
-  agent: r5
-  agent_specific_order: 29
-  sequential_dependencies: p5_roate_turntable_180_2
-  start: 1067
-  end: 1072
-- task_id: p5_Fix_Extern_Comp2_for_Panel4
-  agent: r5
-  agent_specific_order: 30
-  sequential_dependencies: p5_Pick_Extern_Comp2_for_Panel4
-  start: 1072
-  end: 1075
-- task_id: p5_Extern_Comp2_for_Panel4_joining1
-  agent: H2
-  agent_specific_order: 192
-  sequential_dependencies: p5_Fix_Extern_Comp2_for_Panel4
-  start: 1075
-  end: 1079
-- task_id: p5_Extern_Comp2_for_Panel4_joining2
-  agent: H2
-  agent_specific_order: 193
-  sequential_dependencies: p5_Extern_Comp2_for_Panel4_joining1
-  start: 1079
-  end: 1083
-- task_id: p5_Extern_Comp2_for_Panel4_joining3
-  agent: H2
-  agent_specific_order: 194
-  sequential_dependencies: p5_Extern_Comp2_for_Panel4_joining2
-  start: 1083
-  end: 1087
-- task_id: p5_Extern_Comp2_for_Panel4_joining4
-  agent: H2
-  agent_specific_order: 195
-  sequential_dependencies: p5_Extern_Comp2_for_Panel4_joining3
-  start: 1087
-  end: 1091
+  agent_specific_order: 117
+  sequential_dependencies: p3_Extern_Comp2_for_Panel4_joining3
+  start: 854
+  end: 858

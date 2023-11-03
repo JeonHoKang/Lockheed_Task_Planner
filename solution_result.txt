@@ -1,0 +1,27 @@
+Problem statement is : problem_description_LM2023
+ Number of products is : 1,
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 461 
+ with time taken : 30.031611113
+ number of decision variables: 121 
+ and number of nodes : 121 
+
+ Problem statement is : problem_description_LM2023
+ Number of products is : 2
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 615 
+with time taken : 29.966898961000002
+ number of decision variables: 242
+ and number of nodes : 242
+
+Problem statement is : problem_description_LM2023
+ Number of products is : 3
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 773 
+with time taken : 23.513080992000003
+ number of decision variables: 363
+ and number of nodes : 363
+

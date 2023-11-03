@@ -14,7 +14,7 @@ children:
                 type: atomic
                 agent: ["r1"]
               - id: Component_Top_Panel
-                type: independent
+                type: parallel
                 children:
                   - id: Top_P_C3
                     type: sequential
@@ -23,7 +23,7 @@ children:
                         type: atomic
                         agent: ["r2"]
                       - id: Screw_Operation_Top_P_C3
-                        type: independent
+                        type: parallel
                         children:
                           - id: Screw1_Top_P_C3 
                             type: atomic
@@ -77,13 +77,13 @@ children:
                             type: atomic
                             agent: ["r3"]     
                   - id: Top_P_C7
-                    type: sequential
+                    type: parallel
                     children: 
                       - id: Pick_and_Place_Top_P_C7
                         type: atomic
                         agent: ["r2"]
                       - id: Screw_Operation_Top_P_C7
-                        type: independent
+                        type: parallel
                         children:
                           - id: Screw1_Top_P_C7
                             type: atomic
@@ -104,13 +104,13 @@ children:
                 type: atomic
                 agent: ["H1"]
               - id: Hinge_Top_Panel
-                type: sequential
+                type: parallel
                 children:
                   - id: Hold_Hinge_to_Top_Panel
                     type: atomic
                     agent: ["H2"]
                   - id: Hinge_Screw_Operation_Top_Panel
-                    type: independent
+                    type: parallel
                     children:
                       - id: Hinge_Top_Panel_Screw1
                         type: atomic
@@ -418,7 +418,7 @@ children:
                 type: atomic
                 agent: ['H2']
       - id: Attach_Panel4_and_5
-        type: sequential
+        type: parallel
         children:
           - id: Attach_and_Hold_Hinge_on_Panel45
             type: atomic
@@ -445,7 +445,7 @@ children:
             type: atomic
             agent: ['r5']
           - id: Extern_Comp1_for_Panel1_joining
-            type: independent
+            type: parallel
             children:
               - id: Extern_Comp1_for_Panel1_joining1
                 type: atomic
@@ -529,7 +529,7 @@ children:
             type: atomic
             agent: ['r5']
           - id: Extern_Comp2_for_Panel4_joining
-            type: independent
+            type: parallel
             children:
               - id: Extern_Comp2_for_Panel4_joining1
                 type: atomic
