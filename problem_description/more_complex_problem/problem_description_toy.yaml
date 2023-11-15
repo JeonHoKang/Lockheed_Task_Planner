@@ -1,0 +1,5 @@
+num_tasks: 170
+num_agents: 8
+agents: {"r1":"available","r2":"available","r3": "available", "H1":"available"}
+task_model_id: "task_model_toy.yaml"
+htn_model_id: "toy_prob.yaml"

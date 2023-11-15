@@ -780,27 +780,28 @@ def main():
     # else:
     #     scheduler.set_dir("problem_description/ATV_Assembly/")
     #     scheduler.import_problem("current_problem_description_ATV.yaml")
-    htn_number = 2
-    solving_time_arr = [60, 5000]
-    num_products = 7
+    htn_number = 1
+    solving_time_arr = [30]
+    num_products = 6
     for time in solving_time_arr:
-        for number in range(1, num_products):
+        for number in range(1, num_products, 1):
             scheduler = HtnMilpScheduler(solving_time= time, products= number)
             for k in range(htn_number):
                 if k == 0:
                     scheduler.set_dir("problem_description/extended_sat_problem/")
                     scheduler.import_problem("problem_description_toy.yaml")
-                    problem_htn = "extended_sat_problem"
+                    problem_htn = "another atv problem"
                 # else:
                 #     scheduler.set_dir("problem_description/extended_sat_problem/")
-                #     scheduler.import_problem("current_problem_description_ATV.yaml")
-                elif k == 1:
-                    scheduler.set_dir("problem_description/LM2023_problem/")
-                    scheduler.import_problem("problem_description_LM2023.yaml")
-                    problem_htn = "problem_description_LM2023"
-                # else:
-                #     scheduler.set_dir("problem_description/LM2023_problem/")
-                #     scheduler.import_problem("current_problem_description_ATV.yaml")
+                #     scheduler.import_problem("problem_description_toy.yaml")
+                #     problem_htn = "extended_ATV"
+                # elif k == 1:
+                #     scheduler.set_dir("problem_description/more_complex_problem/")
+                #     scheduler.import_problem("problem_description_LM2023.yaml")
+                #     problem_htn = "problem_description_LM2023"
+                # # else:
+                # #     scheduler.set_dir("problem_description/LM2023_problem/")
+                # #     scheduler.import_problem("current_problem_description_ATV.yaml")
                 else:
                     pass
                 scheduler.create_task_model()

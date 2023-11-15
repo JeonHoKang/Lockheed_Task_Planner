@@ -1,36 +1,1458 @@
-Problem statement is : problem_description_LM2023
- Number of products is : 8,
- Given Solving time is:  30 
- and solution type is : feasible
- the makespan is : 1601 
- with time taken : 30.022801817
- number of decision variables: 968 
- and number of nodes : 968 
-
- Problem statement is : problem_description_LM2023
- Number of products is : 8
- Given Solving time is:  30 
- and solution type is : feasible
- the makespan is : 1601 
-with time taken : 30.252316374000003
- number of decision variables: 968
- and number of nodes : 968
-
-Problem statement is : extended_sat_problem
- Number of products is : 1
+Problem statement is : another_ATV_problem
+ Number of products is : 1,
  Given Solving time is:  60 
  and solution type is : feasible
- the makespan is : 374 
-with time taken : 7.674631059
- number of decision variables: 343
- and number of nodes : 170
+ the makespan is : 333 
+ with time taken : 60.041562000000006
+ number of decision variables: 343 
+ and number of nodes : 170 
 
-Problem statement is : extended_sat_problem
+ Problem statement is : another_ATV_problem
+ Number of products is : 2
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 544 
+with time taken : 60.097910000000006
+ number of decision variables: 686
+ and number of nodes : 340
+
+Problem statement is : another_ATV_problem
+ Number of products is : 3
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 866 
+with time taken : 60.134119000000005
+ number of decision variables: 1029
+ and number of nodes : 510
+
+Problem statement is : another_ATV_problem
+ Number of products is : 4
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1235 
+with time taken : 60.24180200000001
+ number of decision variables: 1372
+ and number of nodes : 680
+
+Problem statement is : another_ATV_problem
+ Number of products is : 5
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1515 
+with time taken : 60.116902
+ number of decision variables: 1715
+ and number of nodes : 850
+
+Problem statement is : another_ATV_problem
  Number of products is : 6
  Given Solving time is:  60 
  and solution type is : feasible
  the makespan is : 1783 
-with time taken : 60.282340350000005
+with time taken : 60.025604
  number of decision variables: 2058
  and number of nodes : 1020
+
+Problem statement is : another_ATV_problem
+ Number of products is : 7
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 2051 
+with time taken : 60.056771000000005
+ number of decision variables: 2401
+ and number of nodes : 1190
+
+Problem statement is : another_ATV_problem
+ Number of products is : 1
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 322 
+with time taken : 5000.124477
+ number of decision variables: 343
+ and number of nodes : 170
+
+Problem statement is : another_ATV_problem
+ Number of products is : 2
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 507 
+with time taken : 5000.185670000001
+ number of decision variables: 686
+ and number of nodes : 340
+
+Problem statement is : another_ATV_problem
+ Number of products is : 3
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 701 
+with time taken : 5000.146012
+ number of decision variables: 1029
+ and number of nodes : 510
+
+Problem statement is : another_ATV_problem
+ Number of products is : 4
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 905 
+with time taken : 5000.256801
+ number of decision variables: 1372
+ and number of nodes : 680
+
+Problem statement is : another_ATV_problem
+ Number of products is : 5
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 1090 
+with time taken : 5000.427627
+ number of decision variables: 1715
+ and number of nodes : 850
+
+Problem statement is : another_ATV_problem
+ Number of products is : 6
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 1281 
+with time taken : 5000.5279120000005
+ number of decision variables: 2058
+ and number of nodes : 1020
+
+Problem statement is : another_ATV_problem
+ Number of products is : 7
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 1957 
+with time taken : 199.11229
+ number of decision variables: 2401
+ and number of nodes : 1190
+
+Problem statement is : another_ATV_problem
+ Number of products is : 1
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 248 
+with time taken : 60.017573000000006
+ number of decision variables: 297
+ and number of nodes : 99
+
+Problem statement is : another_ATV_problem
+ Number of products is : 2
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 515 
+with time taken : 60.03196500000001
+ number of decision variables: 594
+ and number of nodes : 198
+
+Problem statement is : another_ATV_problem
+ Number of products is : 3
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1060 
+with time taken : 60.084988
+ number of decision variables: 891
+ and number of nodes : 297
+
+Problem statement is : another_ATV_problem
+ Number of products is : 4
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1415 
+with time taken : 60.070298
+ number of decision variables: 1188
+ and number of nodes : 396
+
+Problem statement is : another_ATV_problem
+ Number of products is : 5
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1902 
+with time taken : 60.115104
+ number of decision variables: 1485
+ and number of nodes : 495
+
+Problem statement is : another_ATV_problem
+ Number of products is : 6
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 2965 
+with time taken : 60.184591000000005
+ number of decision variables: 1782
+ and number of nodes : 594
+
+Problem statement is : another_ATV_problem
+ Number of products is : 7
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 2519 
+with time taken : 60.276319
+ number of decision variables: 2079
+ and number of nodes : 693
+
+Problem statement is : another_ATV_problem
+ Number of products is : 1
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 248 
+with time taken : 5000.036524
+ number of decision variables: 297
+ and number of nodes : 99
+
+Problem statement is : another_ATV_problem
+ Number of products is : 2
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 495 
+with time taken : 5000.08007
+ number of decision variables: 594
+ and number of nodes : 198
+
+Problem statement is : another_ATV_problem
+ Number of products is : 3
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 741 
+with time taken : 5000.083815
+ number of decision variables: 891
+ and number of nodes : 297
+
+Problem statement is : another_ATV_problem
+ Number of products is : 4
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 988 
+with time taken : 5000.120948000001
+ number of decision variables: 1188
+ and number of nodes : 396
+
+Problem statement is : another_ATV_problem
+ Number of products is : 5
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 1235 
+with time taken : 5000.141862
+ number of decision variables: 1485
+ and number of nodes : 495
+
+Problem statement is : another_ATV_problem
+ Number of products is : 6
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 1480 
+with time taken : 5000.207897
+ number of decision variables: 1782
+ and number of nodes : 594
+
+Problem statement is : another_ATV_problem
+ Number of products is : 7
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 1728 
+with time taken : 5000.186467
+ number of decision variables: 2079
+ and number of nodes : 693
+
+Problem statement is : problem_description_LM2023
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 461 
+with time taken : 29.932127
+ number of decision variables: 121
+ and number of nodes : 121
+
+Problem statement is : problem_description_LM2023
+ Number of products is : 2
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 615 
+with time taken : 30.286956000000004
+ number of decision variables: 242
+ and number of nodes : 242
+
+Problem statement is : problem_description_LM2023
+ Number of products is : 1
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 461 
+with time taken : 9.924188000000001
+ number of decision variables: 121
+ and number of nodes : 121
+
+Problem statement is : problem_description_LM2023
+ Number of products is : 2
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 615 
+with time taken : 10.075931
+ number of decision variables: 242
+ and number of nodes : 242
+
+Problem statement is : problem_description_LM2023
+ Number of products is : 3
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 773 
+with time taken : 9.814368
+ number of decision variables: 363
+ and number of nodes : 363
+
+Problem statement is : extended_ATV
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 358 
+with time taken : 30.033493000000004
+ number of decision variables: 343
+ and number of nodes : 170
+
+Problem statement is : extended_ATV
+ Number of products is : 2
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 631 
+with time taken : 30.082752000000003
+ number of decision variables: 686
+ and number of nodes : 340
+
+Problem statement is : extended_ATV
+ Number of products is : 3
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 899 
+with time taken : 30.122019
+ number of decision variables: 1029
+ and number of nodes : 510
+
+Problem statement is : extended_ATV
+ Number of products is : 4
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1247 
+with time taken : 60.229539
+ number of decision variables: 1372
+ and number of nodes : 680
+
+Problem statement is : extended_ATV
+ Number of products is : 5
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1515 
+with time taken : 60.28398000000001
+ number of decision variables: 1715
+ and number of nodes : 850
+
+Problem statement is : extended_ATV
+ Number of products is : 6
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1783 
+with time taken : 60.112790000000004
+ number of decision variables: 2058
+ and number of nodes : 1020
+
+Problem statement is : extended_ATV
+ Number of products is : 1
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 332 
+with time taken : 60.047056000000005
+ number of decision variables: 343
+ and number of nodes : 170
+
+Problem statement is : extended_ATV
+ Number of products is : 2
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 573 
+with time taken : 60.104165
+ number of decision variables: 686
+ and number of nodes : 340
+
+Problem statement is : extended_ATV
+ Number of products is : 3
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 899 
+with time taken : 60.16153800000001
+ number of decision variables: 1029
+ and number of nodes : 510
+
+Problem statement is : extended_ATV
+ Number of products is : 4
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1247 
+with time taken : 60.243808
+ number of decision variables: 1372
+ and number of nodes : 680
+
+Problem statement is : extended_ATV
+ Number of products is : 5
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1515 
+with time taken : 27.169841
+ number of decision variables: 1715
+ and number of nodes : 850
+
+Problem statement is : another_ATV_problem
+ Number of products is : 1
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 254 
+with time taken : 60.016645000000004
+ number of decision variables: 297
+ and number of nodes : 99
+
+Problem statement is : another_ATV_problem
+ Number of products is : 2
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 570 
+with time taken : 60.02455500000001
+ number of decision variables: 594
+ and number of nodes : 198
+
+Problem statement is : another_ATV_problem
+ Number of products is : 3
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 893 
+with time taken : 60.068496
+ number of decision variables: 891
+ and number of nodes : 297
+
+Problem statement is : another_ATV_problem
+ Number of products is : 4
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1399 
+with time taken : 60.089895000000006
+ number of decision variables: 1188
+ and number of nodes : 396
+
+Problem statement is : another_ATV_problem
+ Number of products is : 5
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1864 
+with time taken : 60.124836
+ number of decision variables: 1485
+ and number of nodes : 495
+
+Problem statement is : another_ATV_problem
+ Number of products is : 6
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 2960 
+with time taken : 60.205678000000006
+ number of decision variables: 1782
+ and number of nodes : 594
+
+Problem statement is : another_ATV_problem
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 273 
+with time taken : 30.013140000000003
+ number of decision variables: 297
+ and number of nodes : 99
+
+Problem statement is : another_ATV_problem
+ Number of products is : 2
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 598 
+with time taken : 30.025902000000002
+ number of decision variables: 594
+ and number of nodes : 198
+
+Problem statement is : another_ATV_problem
+ Number of products is : 3
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1360 
+with time taken : 30.041123000000002
+ number of decision variables: 891
+ and number of nodes : 297
+
+Problem statement is : another_ATV_problem
+ Number of products is : 4
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1975 
+with time taken : 30.059026000000003
+ number of decision variables: 1188
+ and number of nodes : 396
+
+Problem statement is : another_ATV_problem
+ Number of products is : 5
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 2415 
+with time taken : 30.144007000000002
+ number of decision variables: 1485
+ and number of nodes : 495
+
+Problem statement is : another_ATV_problem
+ Number of products is : 6
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 2965 
+with time taken : 30.132087000000002
+ number of decision variables: 1782
+ and number of nodes : 594
+
+Problem statement is : more_complex_problem
+ Number of products is : 1
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 284 
+with time taken : 60.014050000000005
+ number of decision variables: 198
+ and number of nodes : 111
+
+Problem statement is : more_complex_problem
+ Number of products is : 2
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 532 
+with time taken : 60.024738000000006
+ number of decision variables: 396
+ and number of nodes : 222
+
+Problem statement is : more_complex_problem
+ Number of products is : 3
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 791 
+with time taken : 60.04220900000001
+ number of decision variables: 594
+ and number of nodes : 333
+
+Problem statement is : more_complex_problem
+ Number of products is : 4
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1014 
+with time taken : 60.049237000000005
+ number of decision variables: 792
+ and number of nodes : 444
+
+Problem statement is : more_complex_problem
+ Number of products is : 5
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1344 
+with time taken : 60.027045
+ number of decision variables: 990
+ and number of nodes : 555
+
+Problem statement is : more_complex_problem
+ Number of products is : 6
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1588 
+with time taken : 60.124003
+ number of decision variables: 1188
+ and number of nodes : 666
+
+Problem statement is : more_complex_problem
+ Number of products is : 1
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 270 
+with time taken : 5751.773269
+ number of decision variables: 198
+ and number of nodes : 111
+
+Problem statement is : more_complex_problem
+ Number of products is : 2
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 469 
+with time taken : 5000.128047
+ number of decision variables: 396
+ and number of nodes : 222
+
+Problem statement is : more_complex_problem
+ Number of products is : 3
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 696 
+with time taken : 5000.353968
+ number of decision variables: 594
+ and number of nodes : 333
+
+Problem statement is : more_complex_problem
+ Number of products is : 4
+ Given Solving time is:  5000 
+ and solution type is : feasible
+ the makespan is : 908 
+with time taken : 2266.413418
+ number of decision variables: 792
+ and number of nodes : 444
+
+Problem statement is : more_complex_problem
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 343 
+with time taken : 30.033997000000003
+ number of decision variables: 343
+ and number of nodes : 170
+
+Problem statement is : more_complex_problem
+ Number of products is : 2
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 633 
+with time taken : 30.086841000000003
+ number of decision variables: 686
+ and number of nodes : 340
+
+Problem statement is : more_complex_problem
+ Number of products is : 3
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 899 
+with time taken : 30.131637
+ number of decision variables: 1029
+ and number of nodes : 510
+
+Problem statement is : more_complex_problem
+ Number of products is : 4
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1247 
+with time taken : 30.296984000000002
+ number of decision variables: 1372
+ and number of nodes : 680
+
+Problem statement is : more_complex_problem
+ Number of products is : 5
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1515 
+with time taken : 30.185793
+ number of decision variables: 1715
+ and number of nodes : 850
+
+Problem statement is : more_complex_problem
+ Number of products is : 6
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1783 
+with time taken : 29.732334
+ number of decision variables: 2058
+ and number of nodes : 1020
+
+Problem statement is : another atv problem
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 260 
+with time taken : 30.012512
+ number of decision variables: 297
+ and number of nodes : 99
+
+Problem statement is : another atv problem
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 277 
+with time taken : 30.014031000000003
+ number of decision variables: 297
+ and number of nodes : 99
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 633 
+with time taken : 30.017577000000003
+ number of decision variables: 594
+ and number of nodes : 198
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 632 
+with time taken : 30.024146000000002
+ number of decision variables: 594
+ and number of nodes : 198
+
+Problem statement is : another atv problem
+ Number of products is : 3
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1360 
+with time taken : 30.041761
+ number of decision variables: 891
+ and number of nodes : 297
+
+Problem statement is : another atv problem
+ Number of products is : 3
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1480 
+with time taken : 30.043726000000003
+ number of decision variables: 891
+ and number of nodes : 297
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1920 
+with time taken : 30.051468000000003
+ number of decision variables: 1188
+ and number of nodes : 396
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1975 
+with time taken : 30.055514000000002
+ number of decision variables: 1188
+ and number of nodes : 396
+
+Problem statement is : another atv problem
+ Number of products is : 5
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 2415 
+with time taken : 30.135542
+ number of decision variables: 1485
+ and number of nodes : 495
+
+Problem statement is : another atv problem
+ Number of products is : 5
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 2415 
+with time taken : 30.104284000000003
+ number of decision variables: 1485
+ and number of nodes : 495
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 2965 
+with time taken : 30.172050000000002
+ number of decision variables: 1782
+ and number of nodes : 594
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 2973 
+with time taken : 30.180850000000003
+ number of decision variables: 1782
+ and number of nodes : 594
+
+Problem statement is : another atv problem
+ Number of products is : 5
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 1363 
+with time taken : 15.088394000000001
+ number of decision variables: 990
+ and number of nodes : 555
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 2520 
+with time taken : 10.749135
+ number of decision variables: 1188
+ and number of nodes : 666
+
+Problem statement is : another atv problem
+ Number of products is : 5
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 1363 
+with time taken : 10.144585000000001
+ number of decision variables: 990
+ and number of nodes : 555
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 2520 
+with time taken : 10.038147
+ number of decision variables: 1188
+ and number of nodes : 666
+
+Problem statement is : another atv problem
+ Number of products is : 3
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 817 
+with time taken : 10.028051000000001
+ number of decision variables: 594
+ and number of nodes : 333
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 1098 
+with time taken : 10.053176
+ number of decision variables: 792
+ and number of nodes : 444
+
+Problem statement is : another atv problem
+ Number of products is : 5
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 1363 
+with time taken : 10.090984
+ number of decision variables: 990
+ and number of nodes : 555
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 2520 
+with time taken : 10.083045
+ number of decision variables: 1188
+ and number of nodes : 666
+
+Problem statement is : another atv problem
+ Number of products is : 3
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 817 
+with time taken : 10.028569000000001
+ number of decision variables: 594
+ and number of nodes : 333
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 2520 
+with time taken : 9.983242
+ number of decision variables: 1188
+ and number of nodes : 666
+
+Problem statement is : another atv problem
+ Number of products is : 9
+ Given Solving time is:  10 
+ and solution type is : feasible
+ the makespan is : 3780 
+with time taken : 9.710458000000001
+ number of decision variables: 1782
+ and number of nodes : 999
+
+Problem statement is : another atv problem
+ Number of products is : 3
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 774 
+with time taken : 60.038324
+ number of decision variables: 594
+ and number of nodes : 333
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1540 
+with time taken : 60.154727
+ number of decision variables: 1188
+ and number of nodes : 666
+
+Problem statement is : another atv problem
+ Number of products is : 9
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 3780 
+with time taken : 114.79684
+ number of decision variables: 1782
+ and number of nodes : 999
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 549 
+with time taken : 60.046855
+ number of decision variables: 396
+ and number of nodes : 222
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1027 
+with time taken : 60.114760000000004
+ number of decision variables: 792
+ and number of nodes : 444
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 1620 
+with time taken : 60.238987
+ number of decision variables: 1188
+ and number of nodes : 666
+
+Problem statement is : another atv problem
+ Number of products is : 8
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 2122 
+with time taken : 60.490501
+ number of decision variables: 1584
+ and number of nodes : 888
+
+Problem statement is : another atv problem
+ Number of products is : 10
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 4211 
+with time taken : 60.625907000000005
+ number of decision variables: 1980
+ and number of nodes : 1110
+
+Problem statement is : another atv problem
+ Number of products is : 12
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 5072 
+with time taken : 60.49134600000001
+ number of decision variables: 2376
+ and number of nodes : 1332
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  40 
+ and solution type is : feasible
+ the makespan is : 536 
+with time taken : 40.026209
+ number of decision variables: 396
+ and number of nodes : 222
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  40 
+ and solution type is : feasible
+ the makespan is : 1106 
+with time taken : 40.066061000000005
+ number of decision variables: 792
+ and number of nodes : 444
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  40 
+ and solution type is : feasible
+ the makespan is : 1620 
+with time taken : 40.133834
+ number of decision variables: 1188
+ and number of nodes : 666
+
+Problem statement is : another atv problem
+ Number of products is : 8
+ Given Solving time is:  40 
+ and solution type is : feasible
+ the makespan is : 3360 
+with time taken : 40.263361
+ number of decision variables: 1584
+ and number of nodes : 888
+
+Problem statement is : another atv problem
+ Number of products is : 10
+ Given Solving time is:  40 
+ and solution type is : feasible
+ the makespan is : 4211 
+with time taken : 40.123772
+ number of decision variables: 1980
+ and number of nodes : 1110
+
+Problem statement is : another atv problem
+ Number of products is : 12
+ Given Solving time is:  40 
+ and solution type is : feasible
+ the makespan is : 5072 
+with time taken : 39.670348000000004
+ number of decision variables: 2376
+ and number of nodes : 1332
+
+Problem statement is : another atv problem
+ Number of products is : 8
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 2122 
+with time taken : 60.305995
+ number of decision variables: 1584
+ and number of nodes : 888
+
+Problem statement is : another atv problem
+ Number of products is : 8
+ Given Solving time is:  40 
+ and solution type is : feasible
+ the makespan is : 3360 
+with time taken : 40.240108
+ number of decision variables: 1584
+ and number of nodes : 888
+
+Problem statement is : another atv problem
+ Number of products is : 8
+ Given Solving time is:  50 
+ and solution type is : feasible
+ the makespan is : 2122 
+with time taken : 50.179527
+ number of decision variables: 1584
+ and number of nodes : 888
+
+Problem statement is : another atv problem
+ Number of products is : 8
+ Given Solving time is:  45 
+ and solution type is : feasible
+ the makespan is : 2122 
+with time taken : 45.304846000000005
+ number of decision variables: 1584
+ and number of nodes : 888
+
+Problem statement is : another atv problem
+ Number of products is : 8
+ Given Solving time is:  40 
+ and solution type is : feasible
+ the makespan is : 3360 
+with time taken : 40.251536
+ number of decision variables: 1584
+ and number of nodes : 888
+
+Problem statement is : another atv problem
+ Number of products is : 8
+ Given Solving time is:  20 
+ and solution type is : feasible
+ the makespan is : 3360 
+with time taken : 7.883292000000001
+ number of decision variables: 1584
+ and number of nodes : 888
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  20 
+ and solution type is : feasible
+ the makespan is : 580 
+with time taken : 20.024227
+ number of decision variables: 396
+ and number of nodes : 222
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  20 
+ and solution type is : feasible
+ the makespan is : 1098 
+with time taken : 20.070257
+ number of decision variables: 792
+ and number of nodes : 444
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  20 
+ and solution type is : feasible
+ the makespan is : 1620 
+with time taken : 20.13907
+ number of decision variables: 1188
+ and number of nodes : 666
+
+Problem statement is : another atv problem
+ Number of products is : 8
+ Given Solving time is:  20 
+ and solution type is : feasible
+ the makespan is : 3360 
+with time taken : 20.093464
+ number of decision variables: 1584
+ and number of nodes : 888
+
+Problem statement is : another atv problem
+ Number of products is : 10
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 4211 
+with time taken : 60.410052
+ number of decision variables: 1980
+ and number of nodes : 1110
+
+Problem statement is : another atv problem
+ Number of products is : 13
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 5551 
+with time taken : 59.938027000000005
+ number of decision variables: 2574
+ and number of nodes : 1443
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 559 
+with time taken : 60.030236
+ number of decision variables: 396
+ and number of nodes : 222
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  40 
+ and solution type is : feasible
+ the makespan is : 580 
+with time taken : 2.044687
+ number of decision variables: 396
+ and number of nodes : 222
+
+Problem statement is : another atv problem
+ Number of products is : 10
+ Given Solving time is:  40 
+ and solution type is : feasible
+ the makespan is : 4211 
+with time taken : 39.535689000000005
+ number of decision variables: 1980
+ and number of nodes : 1110
+
+Problem statement is : another atv problem
+ Number of products is : 10
+ Given Solving time is:  120 
+ and solution type is : feasible
+ the makespan is : 2591 
+with time taken : 120.25375100000001
+ number of decision variables: 1980
+ and number of nodes : 1110
+
+Problem statement is : another atv problem
+ Number of products is : 10
+ Given Solving time is:  90 
+ and solution type is : feasible
+ the makespan is : 2586 
+with time taken : 90.274573
+ number of decision variables: 1980
+ and number of nodes : 1110
+
+Problem statement is : another atv problem
+ Number of products is : 10
+ Given Solving time is:  70 
+ and solution type is : feasible
+ the makespan is : 2600 
+with time taken : 70.281518
+ number of decision variables: 1980
+ and number of nodes : 1110
+
+Problem statement is : another atv problem
+ Number of products is : 10
+ Given Solving time is:  60 
+ and solution type is : feasible
+ the makespan is : 4211 
+with time taken : 59.851373
+ number of decision variables: 1980
+ and number of nodes : 1110
+
+Problem statement is : another atv problem
+ Number of products is : 10
+ Given Solving time is:  65 
+ and solution type is : feasible
+ the makespan is : 4211 
+with time taken : 65.313866
+ number of decision variables: 1980
+ and number of nodes : 1110
+
+Problem statement is : another atv problem
+ Number of products is : 10
+ Given Solving time is:  70 
+ and solution type is : feasible
+ the makespan is : 4211 
+with time taken : 70.28640700000001
+ number of decision variables: 1980
+ and number of nodes : 1110
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 577 
+with time taken : 15.025233
+ number of decision variables: 396
+ and number of nodes : 222
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 1098 
+with time taken : 15.081442000000001
+ number of decision variables: 792
+ and number of nodes : 444
+
+Problem statement is : another atv problem
+ Number of products is : 6
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 1620 
+with time taken : 15.209673
+ number of decision variables: 1188
+ and number of nodes : 666
+
+Problem statement is : another atv problem
+ Number of products is : 1
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 362 
+with time taken : 15.054279000000001
+ number of decision variables: 343
+ and number of nodes : 170
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 711 
+with time taken : 15.088741
+ number of decision variables: 686
+ and number of nodes : 340
+
+Problem statement is : another atv problem
+ Number of products is : 3
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 899 
+with time taken : 15.150036
+ number of decision variables: 1029
+ and number of nodes : 510
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 1247 
+with time taken : 15.300525
+ number of decision variables: 1372
+ and number of nodes : 680
+
+Problem statement is : another atv problem
+ Number of products is : 5
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 1515 
+with time taken : 15.015748
+ number of decision variables: 1715
+ and number of nodes : 850
+
+Problem statement is : another atv problem
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 340 
+with time taken : 30.036198000000002
+ number of decision variables: 343
+ and number of nodes : 170
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 631 
+with time taken : 30.083804
+ number of decision variables: 686
+ and number of nodes : 340
+
+Problem statement is : another atv problem
+ Number of products is : 3
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 899 
+with time taken : 30.108669000000003
+ number of decision variables: 1029
+ and number of nodes : 510
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1247 
+with time taken : 30.283535
+ number of decision variables: 1372
+ and number of nodes : 680
+
+Problem statement is : another atv problem
+ Number of products is : 5
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1515 
+with time taken : 30.038025
+ number of decision variables: 1715
+ and number of nodes : 850
+
+Problem statement is : another atv problem
+ Number of products is : 1
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 363 
+with time taken : 15.030648000000001
+ number of decision variables: 343
+ and number of nodes : 170
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 711 
+with time taken : 15.064377
+ number of decision variables: 686
+ and number of nodes : 340
+
+Problem statement is : another atv problem
+ Number of products is : 3
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 899 
+with time taken : 15.128919000000002
+ number of decision variables: 1029
+ and number of nodes : 510
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 1247 
+with time taken : 15.297707
+ number of decision variables: 1372
+ and number of nodes : 680
+
+Problem statement is : another atv problem
+ Number of products is : 5
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 1515 
+with time taken : 15.045739000000001
+ number of decision variables: 1715
+ and number of nodes : 850
+
+Problem statement is : another atv problem
+ Number of products is : 1
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 324 
+with time taken : 15.013470000000002
+ number of decision variables: 297
+ and number of nodes : 99
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 837 
+with time taken : 15.021458
+ number of decision variables: 594
+ and number of nodes : 198
+
+Problem statement is : another atv problem
+ Number of products is : 3
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 1480 
+with time taken : 15.043341000000002
+ number of decision variables: 891
+ and number of nodes : 297
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 1975 
+with time taken : 15.067307000000001
+ number of decision variables: 1188
+ and number of nodes : 396
+
+Problem statement is : another atv problem
+ Number of products is : 5
+ Given Solving time is:  15 
+ and solution type is : feasible
+ the makespan is : 2415 
+with time taken : 15.117468
+ number of decision variables: 1485
+ and number of nodes : 495
+
+Problem statement is : another atv problem
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 273 
+with time taken : 30.012899
+ number of decision variables: 297
+ and number of nodes : 99
+
+Problem statement is : another atv problem
+ Number of products is : 2
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 568 
+with time taken : 30.022241
+ number of decision variables: 594
+ and number of nodes : 198
+
+Problem statement is : another atv problem
+ Number of products is : 3
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1450 
+with time taken : 30.064569000000002
+ number of decision variables: 891
+ and number of nodes : 297
+
+Problem statement is : another atv problem
+ Number of products is : 4
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 1975 
+with time taken : 30.058237000000002
+ number of decision variables: 1188
+ and number of nodes : 396
+
+Problem statement is : another atv problem
+ Number of products is : 5
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 2415 
+with time taken : 30.153529000000002
+ number of decision variables: 1485
+ and number of nodes : 495
+
+Problem statement is : another atv problem
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 325 
+with time taken : 12.062685
+ number of decision variables: 297
+ and number of nodes : 99
+
+Problem statement is : another atv problem
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 400 
+with time taken : 11.498187000000001
+ number of decision variables: 343
+ and number of nodes : 170
+
+Problem statement is : another atv problem
+ Number of products is : 1
+ Given Solving time is:  30 
+ and solution type is : feasible
+ the makespan is : 404 
+with time taken : 5.187291
+ number of decision variables: 343
+ and number of nodes : 170
 

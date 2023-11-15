@@ -1,0 +1,477 @@
+id: sat_assem_htn
+type: sequential
+children:
+  - id: Panel_Assemblies
+    type: parallel
+    children:
+      - id: Panel_B1
+        type: sequential
+        children:
+          - id: Pick_and_Place_Panel_B1_X
+            type: atomic
+            agent: ["r2", "H1"]
+          - id: Pick_and_Place_Panel_B1_R
+            type: atomic
+            agent: ["r2", "H1"]
+          - id: Component_B1
+            type: independent
+            children:
+              - id: B1_Component1
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B1_Component1
+                    type: atomic
+                    agent: ["r1"]
+                  - id: Pick_and_Place_B1_Component2
+                    type: atomic
+                    agent: ["r1"]
+                  - id: Pick_and_Place_B1_Component_X2
+                    type: atomic
+                    agent: ["r1"]
+                  - id: Screw_Operation_B1_ComponentX2
+                    type: independent
+                    children:
+                      - id: Screw1_B1_Componenet1
+                        type: atomic
+                        agent: ["r3", "H1"]
+                      - id: Screw2_B1_Componenet1
+                        type: atomic
+                        agent: ["r3", "H1"]
+                      - id: Screw3_B1_Componenet1
+                        type: atomic
+                        agent: ["r3", "H1"]
+                      - id: Screw4_B1_Componenet1
+                        type: atomic
+                        agent: ["r3", "H1"]
+              - id: B1_Component2
+                type: sequential
+                children:
+                  - id: Pick_B1_Componenet2
+                    type: atomic
+                    agent: ["r1"]
+                  - id: Place_B1_Componenet2
+                    type: atomic
+                    agent: ["r1"]
+                  - id: Screw_Operation_B1_Componenet2
+                    type: parallel
+                    children:
+                      - id: Screw1_B1_Componenet2
+                        type: atomic
+                        agent: ["r3", "H1"]
+                      - id: Screw2_B1_Componenet2
+                        type: atomic
+                        agent: ["r3", "H1"]
+                      - id: Screw3_B1_Componenet2
+                        type: atomic
+                        agent: ["r3", "H1"]
+                      - id: Screw4_B1_Componenet2
+                        type: atomic
+                        agent: ["r3", "H1"]
+              - id: B1_Component3
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B1_Component3
+                    type: atomic
+                    agent: ["r1", "H1"]
+                  - id: Pick_and_Place_B1_Component_X4
+                    type: atomic
+                    agent: ["r1", "H1"]
+                  - id: Screw_Operation_B1_Component3
+                    type: independent
+                    children:
+                      - id: Screw1_B1_Component3
+                        type: atomic
+                        agent: ["H1"]
+                      - id: Screw2_B1_Component3
+                        type: atomic
+                        agent: ["H1"]
+                      - id: Screw3_B1_Component3
+                        type: atomic
+                        agent: ["H1"]
+                      - id: Screw4_B1_Component3
+                        type: atomic
+                        agent: ["H1"]
+              - id: B1_Component4
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B1_Component4
+                    type: atomic
+                    agent: ["r2", "H1"]
+                  - id: Pick_and_Place_B1_Component_D2
+                    type: atomic
+                    agent: ["r2", "H1"]
+                  - id: Screw_Operation_B1_Component4
+                    type: parallel
+                    children:
+                      - id: Screw1_B1_Component4
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw2_B1_Component4
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw3_B1_Component4
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw4_B1_Component4
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+          - id: Move_Panel_B1_to_the_Side
+            type: atomic
+            agent: ["H1"]
+          - id: Mount_Panel_B1_on_the_Fixture
+            type: atomic
+            agent: ["H1"]
+          - id: Hinge_Panel_B1
+            type: sequential
+            children:
+              - id: Hold_Hinge_to_Panel_B1
+                type: atomic
+                agent: ["r1", "r2"]
+              - id: Hinge_Screw_Operation_Panel_B1
+                type: independent
+                children:
+                  - id: Hinge_Panel_B1_Screw1
+                    type: atomic
+                    agent: ["r3"]
+                  - id: Hinge_Panel_B1_Screw2
+                    type: atomic
+                    agent: ["r3"]
+                  - id: Hinge_Panel_B1_Screw3
+                    type: atomic
+                    agent: ["r3"]
+                  - id: Hinge_Panel_B1_Screw4
+                    type: atomic
+                    agent: ["r3"]
+      - id: Panel_B2
+        type: sequential
+        children:
+          - id: Pick_and_Place_Panel_B2
+            type: atomic
+            agent: ["r1", "H1"]
+          - id: Component_B2
+            type: parallel
+            children:
+              - id: B2_Component1
+                type: parallel
+                children:
+                  - id: Pick_and_Place_B2_Component1
+                    type: atomic
+                    agent: ["r1"]
+                  - id: Screw_Operation_B2_Component1
+                    type: independent
+                    children:
+                      - id: Screw1_B2_Componenet1
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw2_B2_Componenet1
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw3_B2_Componenet1
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw4_B2_Componenet1
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+              - id: B2_Component2
+                type: independent
+                children:
+                  - id: Pick_and_Place_B2_Componenet2
+                    type: atomic
+                    agent: ["r1", "r2", "H1"]
+                  - id: Screw_Operation_B2_Componenet2
+                    type: independent
+                    children:
+                      - id: Screw1_B2_Componenet2
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw2_B2_Componenet2
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw3_B2_Componenet2
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw4_B2_Componenet2
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+              - id: B2_Component3
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B2_Component3
+                    type: atomic
+                    agent: ["r1", "r2", "H1"]
+                  - id: Screw_Operation_B2_Component3
+                    type: parallel
+                    children:
+                      - id: Screw1_B2_Component3
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw2_B2_Component3
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw3_B2_Component3
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw4_B2_Component3
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+              - id: B2_Component4
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B2_Component4
+                    type: atomic
+                    agent: ["r1"]
+                  - id: Screw_Operation_B2_Component4
+                    type: independent
+                    children:
+                      - id: Screw1_B2_Component4
+                        type: atomic
+                        agent: ["H1"]
+                      - id: Screw2_B2_Component4
+                        type: atomic
+                        agent: ["H1"]
+                      - id: Screw3_B2_Component4
+                        type: atomic
+                        agent: ["H1"]
+                      - id: Screw4_B2_Component4
+                        type: atomic
+                        agent: ["H1"]
+          - id: Move_Panel_B2_to_the_Side
+            type: atomic
+            agent: ["r2", "H1"]
+          - id: Mount_Panel_B2_on_the_Fixture
+            type: atomic
+            agent: ["r2", "H1"]
+          - id: Fix_Panel_B2_and_X2
+            type: atomic
+            agent: ["H1"]
+          - id: Fix_Panel_B2_and_X2_2
+            type: atomic
+            agent: ["H1"]
+          - id: Hinge_Panel_B2
+            type: sequential
+            children:
+              - id: Hold_Hinge_to_Panel_B2
+                type: atomic
+                agent: ["r1", "r2"]
+              - id: Hinge_Screw_Operation_Panel_B2
+                type: independent
+                children:
+                  - id: Hinge_Panel_B2_Screw1
+                    type: atomic
+                    agent: ["r3"]
+                  - id: Hinge_Panel_B2_Screw2
+                    type: atomic
+                    agent: ["r3"]
+      - id: Panel_B3
+        type: sequential
+        children:
+          - id: Pick_and_Place_Panel_B3
+            type: atomic
+            agent: ["r1", "r2"]
+          - id: Pick_and_Place_Panel_B3_FD
+            type: atomic
+            agent: ["r1", "r2"]
+          - id: Pick_and_Place_Panel_B3_FD_2
+            type: atomic
+            agent: ["r1"]
+          - id: Component_B3
+            type: independent
+            children:
+              - id: B3_Component1
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B3_Component1
+                    type: atomic
+                    agent: ["r2", "H1"]
+                  - id: Screw_Operation_B3_Component1
+                    type: independent
+                    children:
+                      - id: Screw1_B3_Componenet1
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw2_B3_Componenet1
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw3_B3_Componenet1
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw4_B3_Componenet1
+                        type: atomic
+                        agent: ["r3"]
+              - id: B3_Component2
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B3_Componenet2
+                    type: atomic
+                    agent: ["r1"]
+                  - id: Screw_Operation_B3_Componenet2
+                    type: independent
+                    children:
+                      - id: Screw1_B3_Componenet2
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw2_B3_Componenet2
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw3_B3_Componenet2
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw4_B3_Componenet2
+                        type: atomic
+                        agent: ["r3"]
+              - id: B3_Component3
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B3_Component3
+                    type: atomic
+                    agent: ["r1", "r2", "H1"]
+                  - id: Screw_Operation_B3_Component3
+                    type: sequential
+                    children:
+                      - id: Screw1_B3_Component3
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw2_B3_Component3
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw3_B3_Component3
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw4_B3_Component3
+                        type: atomic
+                        agent: ["r3"]
+              - id: B3_Component4
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B3_Component4
+                    type: atomic
+                    agent: ["r1"]
+                  - id: Screw_Operation_B3_Component4
+                    type: independent
+                    children:
+                      - id: Screw1_B3_Component4
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw2_B3_Component4
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw3_B3_Component4
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw4_B3_Component4
+                        type: atomic
+                        agent: ["r3"]
+          - id: Move_Panel_B3_to_the_Side
+            type: atomic
+            agent: ["r1"]
+          - id: Mount_Panel_B3_on_the_Fixture
+            type: atomic
+            agent: [H1"]
+          - id: Hinge_Panel_B3
+            type: sequential
+            children:
+              - id: Hold_Hinge_to_Panel_B3
+                type: atomic
+                agent: ["r2", "H1"]
+              - id: Hinge_Screw_Operation_Panel_B3
+                type: independent
+                children:
+                  - id: Hinge_Panel_B3_Screw1
+                    type: atomic
+                    agent: ["r1", "H1"]
+                  - id: Hinge_Panel_B3_Screw2
+                    type: atomic
+                    agent: ["r1", "H1"]
+      - id: Panel_B4
+        type: sequential
+        children:
+          - id: Pick_and_Place_Panel_B4
+            type: atomic
+            agent: ["r1"]
+          - id: Component_B4
+            type: independent
+            children:
+              - id: B4_Component1
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B4_Component1
+                    type: atomic
+                    agent: ["r1", "r2", "H1"]
+                  - id: Screw_Operation_B4_Component1
+                    type: independent
+                    children:
+                      - id: Screw1_B4_Componenet1
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw2_B4_Componenet1
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw3_B4_Componenet1
+                        type: atomic
+                        agent: ["r3"]
+                      - id: Screw4_B4_Componenet1
+                        type: atomic
+                        agent: ["r3"]
+              - id: B4_Component2
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B4_Componenet2
+                    type: atomic
+                    agent: ["r1", "r2", "H1"]
+                  - id: Screw_Operation_B4_Componenet2
+                    type: independent
+                    children:
+                      - id: Screw1_B4_Componenet2
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw2_B4_Componenet2
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw3_B4_Componenet2
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw4_B4_Componenet2
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+              - id: B4_Component3
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B4_Component3
+                    type: atomic
+                    agent: ["r1", "r2", "H1"]
+                  - id: Screw_Operation_B4_Component3
+                    type: parallel
+                    children:
+                      - id: Screw1_B4_Component3
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw2_B4_Component3
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw3_B4_Component3
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw4_B4_Component3
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+              - id: B4_Component4
+                type: sequential
+                children:
+                  - id: Pick_and_Place_B4_Component4
+                    type: atomic
+                    agent: ["r1", "r2", "H1"]
+                  - id: Screw_Operation_B4_Component4
+                    type: parallel
+                    children:
+                      - id: Screw1_B4_Component4
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw2_B4_Component4
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw3_B4_Component4
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]
+                      - id: Screw4_B4_Component4
+                        type: atomic
+                        agent: ["r1", "r2", "H1"]

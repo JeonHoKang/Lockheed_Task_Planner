@@ -1,0 +1,1038 @@
+Pick_and_Place_Panel_B1_X:
+  agent_model: ["r2", "H1"]
+  duration_model:
+    r2:
+      id: det
+      mean: 5
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_Panel_B1_R:
+  agent_model: ["r2", "H1"]
+  duration_model:
+    r2:
+      id: det
+      mean: 5
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_B1_Component1:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Pick_and_Place_B1_Component2:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Pick_and_Place_B1_Component_X2:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Screw1_B1_Componenet1:
+  agent_model: ["r3", "H1"]
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 10
+
+Screw2_B1_Componenet1:
+  agent_model: ["r3", "H1"]
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 10
+
+Screw3_B1_Componenet1:
+  agent_model: ["r3", "H1"]
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 10
+
+Screw4_B1_Componenet1:
+  agent_model: ["r3", "H1"]
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 10
+
+Pick_B1_Componenet2:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Place_B1_Componenet2:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Screw1_B1_Componenet2:
+  agent_model: ["r3", "H1"]
+  duration_model:
+    r3:
+      id: det
+      mean: 7
+    H1:
+      id: det
+      mean: 13
+
+Screw2_B1_Componenet2:
+  agent_model: ["r3", "H1"]
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 10
+
+Screw3_B1_Componenet2:
+  agent_model: ["r3", "H1"]
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 10
+
+
+Screw4_B1_Componenet2:
+  agent_model: ["r3", "H1"]
+  duration_model:
+    r3:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 10
+
+Pick_and_Place_B1_Component3:
+  agent_model: ["r1", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_B1_Component_X4:
+  agent_model: ["r1", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    H1:
+      id: det
+      mean: 13
+
+Screw1_B1_Component3:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Screw2_B1_Component3:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Screw3_B1_Component3:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Screw4_B1_Component3:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_B1_Component4:
+  agent_model: ["r2", "H1"]
+  duration_model:
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_B1_Component_D2:
+  agent_model: ["r2", "H1"]
+  duration_model:
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw1_B1_Component4:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw2_B1_Component4:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw3_B1_Component4:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw4_B1_Component4:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Move_Panel_B1_to_the_Side:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Mount_Panel_B1_on_the_Fixture:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Hold_Hinge_to_Panel_B1:
+  agent_model: ["r1", "r2"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+
+Hinge_Panel_B1_Screw1:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Hinge_Panel_B1_Screw2:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Hinge_Panel_B1_Screw3:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Hinge_Panel_B1_Screw4:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Pick_and_Place_Panel_B2:
+  agent_model: ["r1", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_B2_Component1:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Screw1_B2_Componenet1:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw2_B2_Componenet1:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw3_B2_Componenet1:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw4_B2_Componenet1:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_B2_Componenet2:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw1_B2_Componenet2:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw2_B2_Componenet2:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw3_B2_Componenet2:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw4_B2_Componenet2:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_B2_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw1_B2_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw2_B2_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw3_B2_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw4_B2_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_B2_Component4:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Screw1_B2_Component4:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Screw2_B2_Component4:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Screw3_B2_Component4:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Screw4_B2_Component4:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Move_Panel_B2_to_the_Side:
+  agent_model: ["r2", "H1"]
+  duration_model:
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Mount_Panel_B2_on_the_Fixture:
+  agent_model: ["r2", "H1"]
+  duration_model:
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Fix_Panel_B2_and_X2:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Fix_Panel_B2_and_X2_2:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Hold_Hinge_to_Panel_B2:
+  agent_model: ["r1", "r2"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+
+Hinge_Panel_B2_Screw1:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 6
+
+Hinge_Panel_B2_Screw2:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Pick_and_Place_Panel_B3:
+  agent_model: ["r1", "r2"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+
+Pick_and_Place_Panel_B3_FD:
+  agent_model: ["r1", "r2"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+
+Pick_and_Place_Panel_B3_FD_2:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Pick_and_Place_B3_Component1:
+  agent_model: ["r2", "H1"]
+  duration_model:
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 11
+
+Screw1_B3_Componenet1:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw2_B3_Componenet1:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw3_B3_Componenet1:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw4_B3_Componenet1:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Pick_and_Place_B3_Componenet2:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Screw1_B3_Componenet2:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw2_B3_Componenet2:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw3_B3_Componenet2:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw4_B3_Componenet2:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Pick_and_Place_B3_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw1_B3_Component3:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw2_B3_Component3:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw3_B3_Component3:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw4_B3_Component3:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Pick_and_Place_B3_Component4:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Screw1_B3_Component4:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw2_B3_Component4:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw3_B3_Component4:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw4_B3_Component4:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Move_Panel_B3_to_the_Side:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Mount_Panel_B3_on_the_Fixture:
+  agent_model: ["H1"]
+  duration_model:
+    H1:
+      id: det
+      mean: 13
+
+Hold_Hinge_to_Panel_B3:
+  agent_model: ["r2", "H1"]
+  duration_model:
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Hinge_Panel_B3_Screw1:
+  agent_model: ["r1","H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    H1:
+      id: det
+      mean: 13
+
+Hinge_Panel_B3_Screw2:
+  agent_model: ["r1", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_Panel_B4:
+  agent_model: ["r1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+
+Pick_and_Place_B4_Component1:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw1_B4_Componenet1:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw2_B4_Componenet1:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw3_B4_Componenet1:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Screw4_B4_Componenet1:
+  agent_model: ["r3"]
+  duration_model:
+    r3:
+      id: det
+      mean: 5
+
+Pick_and_Place_B4_Componenet2:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw1_B4_Componenet2:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw2_B4_Componenet2:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw3_B4_Componenet2:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw4_B4_Componenet2:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_B4_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw1_B4_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw2_B4_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw3_B4_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw4_B4_Component3:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Pick_and_Place_B4_Component4:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw1_B4_Component4:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw2_B4_Component4:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw3_B4_Component4:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
+
+Screw4_B4_Component4:
+  agent_model: ["r1", "r2", "H1"]
+  duration_model:
+    r1:
+      id: det
+      mean: 5
+    r2:
+      id: det
+      mean: 8
+    H1:
+      id: det
+      mean: 13
